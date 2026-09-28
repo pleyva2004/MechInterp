@@ -1,0 +1,27 @@
+[project]
+name = "exp1-refactored"
+version = "0.1.0"
+description = "Experiment 1: random-token attention baseline, 3-condition design (GPT-2 small, TL + HF)"
+requires-python = ">=3.12"
+dependencies = [
+    "matplotlib>=3.11",
+    "numpy>=2.0",
+    "pandas>=2.2",
+    "pyarrow>=17",
+    "pyyaml>=6.0",
+    "scipy>=1.11",
+    "torch>=2.6",
+    # 4.x removed HookedTransformer; 3.x still ships it.
+    "transformer-lens>=3.9,<4",
+    "transformers>=5.9",
+]
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

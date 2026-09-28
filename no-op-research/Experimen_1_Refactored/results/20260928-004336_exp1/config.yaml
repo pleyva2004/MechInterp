@@ -1,0 +1,55 @@
+# Experiment 1: random-token attention baseline. The ONLY source of experimental parameters.
+model: gpt2-small
+conditions:
+  A_rare:          {id_range: [1000, 39999]}
+  B_common:        {id_range: [0, 999]}
+  C_common_clean:  {id_range: [256, 999]}
+run_conditions: [B_common, C_common_clean]   # Phase 2 (Phase 1 ran [A_rare] -> results/20260927-235708_exp1)
+seq_len: 32                     # random tokens, excluding BOS
+prepend_bos: true               # BOS = <|endoftext|> id 50256, at position 0
+bos_token_id: 50256
+sample_without_replacement: true
+n_sequences: 1000
+seed: 0
+query_position: -1              # final token
+diffuse_threshold: 0.2
+batch_size: 250
+device: cpu
+dtype: float32
+
+# Both libraries run on identical token tensors; the primary backend's outputs carry the
+# spec file names ({condition}_attn.npy, {condition}_heads.parquet), the other gets a suffix.
+backends:
+  transformer_lens: {model_name: gpt2-small, suffix: ""}
+  huggingface:      {model_name: gpt2, attn_implementation: eager, suffix: _hf}
+primary_backend: transformer_lens
+
+paths:
+  sequences_dir: data/sequences
+  results_dir: results
+
+figures:
+  n_example_sequences: 4          # rows drawn in {condition}_sequences.png
+  tokenizer: gpt2                 # used only to decode ids into display text, never to build model input
+
+# Phase 2 cross-condition analysis; skipped entirely when enabled is false.
+comparison:
+  enabled: true
+  metric: sink_mass
+  pairs: [[A_rare, B_common], [A_rare, C_common_clean], [B_common, C_common_clean]]
+  monotonic_order: [A_rare, B_common, C_common_clean]   # tested hypothesis: head activity A < B < C
+  reference_runs:                 # condition -> earlier run folder, for conditions not in run_conditions
+    A_rare: results/20260927-235708_exp1
+  fdr_q: 0.05                     # Benjamini-Hochberg across ALL pairs x heads
+  bootstrap_iters: 1000
+  bootstrap_ci: 0.95
+  bootstrap_seed: 0
+  split_half_seed: 0
+  label_shift_highlight_tv: 0.2    # outline heads whose label-mix TV distance is at least this (phase2_label_shift.png)
+
+validation:
+  row_sum_atol: 1.0e-4
+  determinism_n: 50                       # re-extract the first N sequences, expect bit-identical output
+  known_prev_heads: [[4, 11], [2, 2]]     # [layer, head]
+  prev_head_min_prev_mass: 0.5            # "high prev_mass" cutoff for the known previous-token heads
+  cross_backend_atol: 1.0e-4              # max |TL - HF| attention difference allowed

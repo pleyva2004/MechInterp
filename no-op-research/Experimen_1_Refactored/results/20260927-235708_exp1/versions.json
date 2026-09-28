@@ -1,0 +1,10 @@
+{
+  "python": "3.12.12",
+  "torch": "2.14.0",
+  "transformer_lens": "3.9.0",
+  "transformers": "5.17.0",
+  "numpy": "2.5.3",
+  "pandas": "3.0.6",
+  "git_commit": "5a9591cd1c971d008b721a9274294c51d10bc896",
+  "git_dirty": true
+}

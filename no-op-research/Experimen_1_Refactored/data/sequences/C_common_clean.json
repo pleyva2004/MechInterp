@@ -1,0 +1,13 @@
+{
+  "condition": "C_common_clean",
+  "id_range": [
+    256,
+    999
+  ],
+  "n": 1000,
+  "seq_len": 32,
+  "base_seed": 0,
+  "seed": 3519401512,
+  "without_replacement": true,
+  "sha256": "5e4ce0d5101cf72fa1728249f04db076efffdedc669d0479984c7c8931904f90"
+}
