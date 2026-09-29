@@ -1,0 +1,98 @@
+# Experiment 1-extended: which positions and tokens drive the rare-vs-common head shifts found in
+# Experiment 1 (results/20260928-001947_exp1/conclusion.md). The ONLY source of parameters.
+# Positions in a BOS-prepended sequence: 0 = BOS, 1-30 = context X, 31 = previous P, 32 = query Q.
+model: gpt2-small               # TransformerLens only: Exp 1 showed TL and HF agree within 1e-4
+exp1_config: configs/exp1.yaml  # reference runs below are checked against it (exp1.phase2.SHARED_KEYS)
+exp1_runs:                      # saved Exp 1 attention + sequences, reused by Stage 0 and checks V1/V6
+  A_rare: results/20260927-235708_exp1
+  B_common: results/20260928-001947_exp1
+  C_common_clean: results/20260928-001947_exp1
+seq_len: 32                     # random tokens, excluding BOS
+bos_token_id: 50256
+seed: 0
+diffuse_threshold: 0.2
+batch_size: 250
+device: cpu                     # CPU + deterministic algorithms, so reruns are bit-identical to Exp 1
+dtype: float32
+
+target_heads:                   # [layer, head], grouped as in conclusion.md
+  rare_active:   [[7, 7], [10, 11], [9, 11], [11, 3], [11, 1], [1, 5], [1, 7]]
+  common_active: [[2, 4], [3, 3], [6, 8], [7, 0], [2, 0], [10, 9], [5, 2], [5, 6], [4, 0]]
+  byte_specific: [[0, 6], [10, 0], [9, 8]]
+primary_metrics:                # fixed before any run; see exp1extended/measures.py
+  rare_active: [sink_logit]
+  common_active: [sink_logit, prev_logit]
+  byte_specific: [other_gap]
+
+pools:                          # inclusive id ranges
+  rare: [1000, 39999]
+  common: [256, 999]
+  byte: [0, 255]
+matching:                       # rare_matched reproduces the common pool's joint distribution of these
+  features: [word_start, len_bin, is_alpha]
+  len_bins: [1, 2, 3, 4, 5]     # characters after any leading space; 0 counts as 1, the last bin is 5+
+
+stage0:                         # routing each head from the saved Exp 1 sequences (gate G0)
+  comparisons: [[A_rare, B_common], [A_rare, C_common_clean]]
+  route_share: 0.6              # query (or key) side if its share of the q/k-swap decomposition is >= this
+  route_icc: 0.2                # a query-side head whose final-token ICC is below this is context-driven
+  attractor_top_n: 10
+
+stage1:
+  n_pairs: 1000
+  cells:                        # segment -> member of the paired triple (r rare, m rare_matched, c common)
+    - {Q: r, P: r, X: r}
+    - {Q: r, P: r, X: c}
+    - {Q: r, P: c, X: r}
+    - {Q: r, P: c, X: c}
+    - {Q: c, P: r, X: r}
+    - {Q: c, P: r, X: c}
+    - {Q: c, P: c, X: r}
+    - {Q: c, P: c, X: c}
+    - {Q: m, P: m, X: m}
+    - {Q: m, P: c, X: c}
+    - {Q: c, P: m, X: m}
+  dose:
+    levels: [0, 1, 2, 4, 8, 15, 22, 30]   # context positions switched from rare to common (nested)
+    qp_arms: [r, c]                        # Q and P both rare, or both common
+    n_pairs: 500
+  pos31_gate: 0.25              # sweep position 31 too if a head's P effect is >= this share of its gap
+
+stage2:
+  positions: [32]
+  tokens:
+    all: [0, 999]
+    rare_uniform: 400
+    rare_matched: 400
+    rare_transition: {range: [1000, 2999], n: 200}
+  backgrounds: {rare: 16, common: 16}
+  reliability_min: 0.8
+  confirm: {top_n: 20, backgrounds: 8, baseline_tokens: 100}  # fresh backgrounds per type; rare_uniform baseline subsample
+  feature_bootstrap_iters: 200  # two-way (token x background) bootstrap of the feature regression; each refits all heads
+  stage1_run: null              # set to the Stage 1 run folder to check Stage 2 against the Stage 1 final-token effect
+
+stats:
+  fdr_q: 0.05
+  bootstrap_iters: 1000
+  ci: 0.95
+  n_permutations: 1000
+  min_gap_for_share: 0.05
+  bootstrap_seed: 0
+
+validation:
+  exp1_bitmatch_n: 50
+  determinism_n: 50
+  qk_atol: 1.0e-5
+  qk_rtol: 1.0e-5               # float32 scores: rounding grows with |score| (measured ~2e-6 relative)
+  bos_key_atol: 1.0e-5
+  row_sum_atol: 1.0e-4
+  known_prev_heads: [[4, 11], [2, 2]]
+  prev_head_min_prev_mass: 0.5  # Exp 1's cutoff, reported only: V8 gates on mode label Previous (L2H2 is 0.478 in Exp 1)
+  max_smd: 0.1
+
+paths:
+  sequences_dir: data/sequences/exp1extended
+  results_dir: results
+
+figures:
+  tokenizer: gpt2               # display text and token features only, never model input

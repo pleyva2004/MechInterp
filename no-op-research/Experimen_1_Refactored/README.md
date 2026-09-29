@@ -57,3 +57,28 @@ mode-label / sink-mass / entropy heatmaps per backend), and `validation_report.m
   re-tokenized, and no library default BOS behavior is relied on.
 - Sequence caches are verified against the config and a SHA-256 on every load; a mismatch
   raises instead of regenerating. Delete the files in `data/sequences/` explicitly to resample.
+
+## exp1ext: which tokens cause the rare-vs-common head changes
+
+`uv run python -m exp1ext.run --config configs/exp1ext.yaml` → `results/<YYYYMMDD-HHMMSS>_exp1ext/exp1ext_report.md`.
+Predictions were fixed before the first run in `exp1ext/PREDICTIONS.md`.
+
+- **Stage 0** (exp1 arrays, no model runs): exp1 sequences with each token shaded by the attention the final token
+  puts on it; attention received per key token id, as p_k and log(p_k / p_sink).
+- **Stage 1**: 2×2 of context class × final-token class (rare 1000–39999 / common 256–999), rows paired across cells,
+  so each head's rare→common change splits into a final-token (query) part, a context part and an interaction;
+  plus a dose-response over k common context tokens.
+- **Stage 2**: per-token sweeps over 100 base sequences per class: every id 0–999 and 2000 rare ids in the final slot
+  (under the causal mask this changes only the query), and substitutions at positions 31 and 16.
+- **Stage 3**: per-token effects regressed on token features, including the model's own log-prior for the token.
+- Tracked heads come from a rule (label-mix TV ≥ 0.2 in exp1), not a hand list; TL runs everything, HF re-runs
+  stage 1 and a subset of stage 2 as the cross-library check.
+
+| Path | Contents |
+|---|---|
+| `exp1ext/design.py` | builds the 2×2 cells, dose-response and position sweeps from hash-cached blocks in `data/sequences/exp1ext/` |
+| `exp1ext/extract.py` | chunked extraction: per-head metrics for all heads, full rows only for tracked heads |
+| `exp1ext/effects.py` | `decompose_2x2`, `per_token_effects`, `split_reliability`, `attention_received` |
+| `exp1ext/features.py` | `token_features`, `fit_feature_model` |
+| `exp1ext/plots_cells.py`, `exp1ext/plots_tokens.py` | 2×2 / decomposition / dose-response figures; per-token graphs, heatmaps, overlays |
+| `exp1ext/report.py`, `exp1ext/run.py` | report writer, entrypoint |

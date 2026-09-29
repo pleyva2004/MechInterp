@@ -1,0 +1,13 @@
+{
+  "condition": "sweep_bases_rare",
+  "id_range": [
+    1000,
+    39999
+  ],
+  "n": 100,
+  "seq_len": 32,
+  "base_seed": 0,
+  "seed": 3907017338,
+  "without_replacement": true,
+  "sha256": "2feaff137dedc24c0705c710915b8502d0ada3f348f79163641cecb160c98e7d"
+}

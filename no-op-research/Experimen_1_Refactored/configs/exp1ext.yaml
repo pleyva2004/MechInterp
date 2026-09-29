@@ -1,0 +1,80 @@
+# exp1ext: which tokens cause the rare-vs-common head changes found in Experiment 1, Phase 2.
+# The ONLY source of parameters for exp1ext. Positions are indices into the model input (BOS at 0,
+# random tokens at 1..32, final/query token at 32).
+model: gpt2-small
+seq_len: 32                     # random tokens, excluding BOS
+bos_token_id: 50256
+query_position: -1              # final token
+diffuse_threshold: 0.2
+batch_size: 250
+chunk_size: 5000                # sequences per extraction chunk; bounds memory (full attention is never kept for all)
+seed: 0                         # base seed; exp1ext block names differ from exp1's, so every sequence here is fresh
+device: cpu
+dtype: float32
+
+backends:
+  transformer_lens: {model_name: gpt2-small}
+  huggingface:      {model_name: gpt2, attn_implementation: eager}
+primary_backend: transformer_lens
+
+ranges:
+  rare:   [1000, 39999]         # exp1 condition A
+  common: [256, 999]            # exp1 condition C (byte-free); byte tokens enter only as swept tokens
+
+paths:
+  sequences_dir: data/sequences/exp1ext
+  results_dir: results
+
+# Heads to track: label-mix TV >= min_tv between the reference and any compared exp1 condition.
+head_selection:
+  source_runs:
+    A_rare: results/20260927-235708_exp1
+    B_common: results/20260928-004336_exp1
+    C_common_clean: results/20260928-004336_exp1
+  exp1_sequences_dir: data/sequences
+  reference: A_rare
+  compare_to: [B_common, C_common_clean]
+  min_tv: 0.2
+  min_sink_change: 0.02                 # below this |Δ mean sink_mass| a head is grouped "label mix only", not by sink direction
+  controls: [[4, 11], [5, 1], [0, 1]]   # previous-token head, pure sink head, self head
+
+stage0:                                  # observational, from the exp1 arrays (no model runs)
+  overlay_conditions: [A_rare, C_common_clean]
+  overlay_examples: 2                    # sequences per condition in each overlay figure
+  received_conditions: [B_common, C_common_clean]
+  received_top_k: 20
+
+factorial:                               # stage 1: context class x final-token class
+  n_per_cell: 1000
+
+dose_response:                           # stage 1: k context tokens of a rare sequence replaced by common ones
+  n: 500
+  ks: [0, 1, 2, 4, 8, 16, 31]
+
+sweep:                                   # stage 2: per-token sweeps over fixed base sequences
+  n_bases_per_class: 100                 # per-token SE ~0.02 sink_mass (at 20 it was ~0.045, a third of the class effect)
+  common_tokens: [0, 999]                # every id in this range is swept (includes byte tokens 0-255)
+  n_rare_tokens: 2000                    # random sample from ranges.rare
+  substitution_positions: [31, 16]       # previous token, middle; the query sweep is the final position
+  hf_bases_per_class: 2                  # HF re-runs these bases (all tokens, all positions) as a cross-check
+  reliability_seed: 0
+  top_k: 15
+
+stats:
+  bootstrap_iters: 1000
+  bootstrap_ci: 0.95
+  bootstrap_seed: 0
+
+# log_prior = the model's own mean log p(token | base context) at the final position; a better frequency/familiarity
+# proxy than BPE id (ids 0-255 are byte order, and merge order is only loosely monotone in frequency).
+features: [is_byte, leading_space, is_alpha, is_digit, is_punct, is_capitalized, n_chars, log_id, log_prior]
+
+validation:
+  row_sum_atol: 1.0e-4
+  determinism_n: 50
+  cross_backend_atol: 1.0e-4             # on probability-valued metrics
+  replication_min_r: 0.99                # AA/CC vs exp1 A/C per-head mean sink_mass, across all heads
+
+figures:
+  tokenizer: gpt2                        # decoding ids to display text only
+  heatmap_top_tokens: 40

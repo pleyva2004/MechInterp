@@ -1,0 +1,13 @@
+{
+  "condition": "factorial_common",
+  "id_range": [
+    256,
+    999
+  ],
+  "n": 1000,
+  "seq_len": 32,
+  "base_seed": 0,
+  "seed": 1887162556,
+  "without_replacement": true,
+  "sha256": "c7c4eaa9b654cc7ecb85503801740e137ddbe4fc7cb61c77db433b1f71f4b427"
+}

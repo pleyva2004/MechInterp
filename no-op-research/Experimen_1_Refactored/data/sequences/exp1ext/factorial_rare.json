@@ -1,0 +1,13 @@
+{
+  "condition": "factorial_rare",
+  "id_range": [
+    1000,
+    39999
+  ],
+  "n": 1000,
+  "seq_len": 32,
+  "base_seed": 0,
+  "seed": 3002547640,
+  "without_replacement": true,
+  "sha256": "d4960986226de90edd8154822b02b03b43fce401a42f60ffaf5611d98e1d88ac"
+}

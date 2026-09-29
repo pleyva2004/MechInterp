@@ -1,0 +1,13 @@
+{
+  "condition": "sweep_bases_common",
+  "id_range": [
+    256,
+    999
+  ],
+  "n": 100,
+  "seq_len": 32,
+  "base_seed": 0,
+  "seed": 1841625722,
+  "without_replacement": true,
+  "sha256": "7feeb82ec189f3de9251c02d99e56b9c642c08f7b85e4832d960522114598f1d"
+}

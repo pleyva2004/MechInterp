@@ -1,0 +1,13 @@
+{
+  "condition": "sweep_rare_tokens",
+  "id_range": [
+    1000,
+    39999
+  ],
+  "n": 1,
+  "seq_len": 2000,
+  "base_seed": 0,
+  "seed": 868034988,
+  "without_replacement": true,
+  "sha256": "860d93b40ac802b2bc833233c98648ab7a59373333f98ae9c4ccd0dc25f606a9"
+}

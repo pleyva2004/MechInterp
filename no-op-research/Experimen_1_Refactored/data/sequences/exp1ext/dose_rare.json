@@ -1,0 +1,13 @@
+{
+  "condition": "dose_rare",
+  "id_range": [
+    1000,
+    39999
+  ],
+  "n": 500,
+  "seq_len": 32,
+  "base_seed": 0,
+  "seed": 2902158362,
+  "without_replacement": true,
+  "sha256": "f624daeba43d5f9b9be42492b5f7254de07df9d606a939e6c545a8fd2fa75270"
+}

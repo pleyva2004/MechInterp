@@ -1,0 +1,13 @@
+{
+  "condition": "dose_replacements",
+  "id_range": [
+    256,
+    999
+  ],
+  "n": 500,
+  "seq_len": 31,
+  "base_seed": 0,
+  "seed": 408244270,
+  "without_replacement": true,
+  "sha256": "cd15f57c4418de1e3adee3f472573a646076de836a8d32686b25aeb820e26bbc"
+}
