@@ -1,0 +1,20 @@
+{
+  "rare/none": "bbe46f30272c2ff5475dcc93dd592f22291391859bd2cf7602ac5b882c6b23ca",
+  "common/none": "a8dac22883306bda1892c25fb8d822e1da6193da04399844f3279db9aaaa08ef",
+  "rare/sushi/near/nl": "163ce18ffac9791f9bf705148a8034b7ad900af2863970bfeeb4a552b8b2dc73",
+  "rare/sushi/near/shuffled": "98c2f03f7efeb96d2ecae7decea342ea494876b4d0dbbe50af4faa2eb7b3b158",
+  "rare/sushi/near/matched": "02fb370920da85e6b340678dd435005fa701b88a745e2aa8a04139c749ec9f4b",
+  "rare/sushi/near/matched_b": "b3bede538a79fb79271546a09ede000de844e5ceff5b59a251dba0d144d5a706",
+  "rare/sushi/far/nl": "530c51e754fb50d6b2e7fd06f0afe7244ac3f83b855b2646411f3b52126a36b9",
+  "rare/sushi/far/shuffled": "912d8b92c17d9b8b4c237b37b5b08323f9e85a7ef70978b592631dbc5ec32655",
+  "rare/sushi/far/matched": "83456ac91030ed180d0b6d713df1c46e3c7d7e1009d0071a5e7d6533e8899eec",
+  "rare/sushi/far/matched_b": "0a819d661eab550720fbf82e2cc4cc453b38563be32803bcb6cb9db00593d9a7",
+  "common/sushi/near/nl": "8cb979a6f7e7bb038ec1333c9e29e84cda3187424cea08c616bb36e6fbf2ad42",
+  "common/sushi/near/shuffled": "db38dd1670b1960015ab63427d58923d688603f4cc366e26b7fab14488a17f43",
+  "common/sushi/near/matched": "a375e12fb6c716ea6df14ba9662ee9cf9b8e4fcf2840284ef17b03e02f8096ed",
+  "common/sushi/near/matched_b": "72316099b94d51dd4e6570675c9c7890217de47fb3b00d79f05d198166b2a169",
+  "common/sushi/far/nl": "6a1d0ab0300fc77ee9235e6d89b42e72cd3ce914d6f30618c4a392bf418a77e1",
+  "common/sushi/far/shuffled": "e708c176c872041a8292f4339e395ab1f9ccd235e5b0734be9b4546bf2f11b4f",
+  "common/sushi/far/matched": "817d731aad287d5200869c37e69c24b93bb1147d975406cd6b7b638cb2c543a5",
+  "common/sushi/far/matched_b": "48ddc4de9bdbeaa598bf8c4366d91905be2ed89fa5fb1edfd928e5a911372748"
+}

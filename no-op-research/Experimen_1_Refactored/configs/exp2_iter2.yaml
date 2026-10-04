@@ -1,0 +1,136 @@
+# Experiment 2: does a short natural-language phrase written into random tokens change final-token attention,
+# and is that change about the phrase being language, about its particular tokens, or about their surface form?
+# The ONLY source of parameters for exp2. Positions are model-input indices (BOS at 0, random tokens at 1..32,
+# final/query token at 32). Iteration 2 of the exp2 loop (additivity + surprisal); see exp2/LOOP_LOG.md.
+model: gpt2-small
+seq_len: 32                     # random tokens, excluding BOS
+bos_token_id: 50256
+query_position: -1              # final token; it is never overwritten, so it stays the base row's random token
+diffuse_threshold: 0.2
+batch_size: 250
+seed: 0
+device: cpu
+dtype: float32
+
+backends:
+  transformer_lens: {model_name: gpt2-small}
+  huggingface:      {model_name: gpt2, attn_implementation: eager}
+primary_backend: transformer_lens
+
+paths:
+  sequences_dir: data/sequences/exp2
+  results_dir: results
+
+# Base rows: random ids, no repeats within a row, never containing any phrase id (a repeat would trigger
+# duplicate-token / induction heads). Byte tokens (0-255) are left out entirely (exp1: they drive their own heads).
+bases:
+  rare:   [1000, 39999]         # exp1 condition A
+  common: [256, 999]            # exp1 condition C
+n_bases: 1000
+
+# Each phrase: ids are authoritative and written straight into the id array (text is only checked to tokenize to
+# them). `shuffled` is a fixed scrambled order of the same ids; it keeps the LAST id in place, so in the `near`
+# placement the token right before the query (position 31) is identical in nl and shuffled.
+phrases:
+  sushi:
+    text: " I like sushi"
+    ids: [314, 588, 36324]
+    shuffled: [588, 314, 36324]   # " like I sushi"
+
+placements:
+  near: [29, 30, 31]            # phrase ends right before the query (iteration 1: near >> far)
+
+# Each phrase token alone at each slot it occupies in nl or shuffled; the base row everywhere else.
+custom_variants:
+  I@29:     {phrase: sushi, placement: near, writes: [[29, 314]]}
+  like@30:  {phrase: sushi, placement: near, writes: [[30, 588]]}
+  sushi@31: {phrase: sushi, placement: near, writes: [[31, 36324]]}
+  like@29:  {phrase: sushi, placement: near, writes: [[29, 588]]}
+  I@30:     {phrase: sushi, placement: near, writes: [[30, 314]]}
+
+# Matched controls: per row, one random id per phrase token with the same values of these features and from the
+# same id class as that token (exp1ext: leading space and byte-ness predicted per-token effects best).
+match_features: [leading_space, is_alpha, is_capitalized]
+token_classes:
+  common: [256, 999]
+  rare:   [1000, 39999]
+
+# Paired contrasts, a - b per row. total = order + identity + form exactly (on means).
+contrasts:
+  total:    [nl, none]          # inserting the phrase at all
+  order:    [nl, shuffled]      # word order / grammaticality, same tokens
+  identity: [shuffled, matched] # these particular tokens vs same-form random tokens
+  form:     [matched, none]     # same-form words vs the base class's random tokens
+  placebo:  [matched, matched_b] # two exchangeable random draws: should show nothing (noise floor)
+  I@29:     [I@29, none]
+  like@30:  [like@30, none]
+  sushi@31: [sushi@31, none]
+  like@29:  [like@29, none]
+  I@30:     [I@30, none]
+
+# interaction per row = (combo - none) - sum(part - none); 0 under exact additivity of the single-token effects
+additivity:
+  metric: sink_mass
+  combos:
+    nl:       {phrase: sushi, placement: near, parts: [I@29, like@30, sushi@31]}
+    shuffled: {phrase: sushi, placement: near, parts: [like@29, I@30, sushi@31]}
+  differences: [[nl, shuffled]]
+depth_groups:
+  early: [0, 1, 2, 3, 4, 5]
+  late:  [6, 7, 8, 9, 10, 11]
+
+# The model's own -log p(token | everything before it), TL only, summed over the slot positions; regressed against
+# the additivity metric within each row across every variant. query_position_nll is recorded but not used in checks.
+surprisal:
+  slot_positions: [29, 30, 31]
+  batch_size: 50                # full-vocabulary logits are built only at these positions
+
+# slot_mass = attention on the slot positions; slot_logratio = log(slot_mass / sink_mass), which cancels the
+# softmax normalizer (so it is not moved just because some other key gained or lost weight).
+metrics: [sink_mass, slot_mass, slot_logratio, prev_mass, entropy]
+slot_logratio_eps: 1.0e-12      # floor on both masses inside the log
+min_effect:                     # "meaningful" = BH-significant AND |mean difference| >= this
+  sink_mass: 0.02
+  slot_mass: 0.02
+  slot_logratio: 0.1
+  prev_mass: 0.02
+  entropy: 0.05
+
+tracked_heads_csv: results/20260928-135243_exp1ext/tracked_heads.csv   # exp1ext's rule-selected heads + controls
+
+replication:                    # the `none` rows should reproduce exp1's per-head mean sink_mass
+  rare:   {run: results/20260927-235708_exp1, condition: A_rare}
+  common: {run: results/20260928-004336_exp1, condition: C_common_clean}
+  min_r: 0.99
+
+stats:
+  bootstrap_iters: 1000
+  bootstrap_ci: 0.95
+  bootstrap_seed: 0
+  fdr_q: 0.05                   # BH over every (base, phrase, placement, contrast, head) test of one metric
+
+validation:
+  row_sum_atol: 1.0e-4
+  determinism_n: 50
+  cross_backend_atol: 1.0e-4
+
+# Pre-registered checks, evaluated automatically against exp2/PREDICTIONS_iter2.md (written before this iteration's run).
+predictions_file: exp2/PREDICTIONS_iter2.md
+predictions:
+  - {id: Q1, kind: depth_term_sign, term: nl, depth: late, sign: "+"}
+  - {id: Q2, kind: depth_term_sign, term: "nl−shuffled", depth: late, sign: "+"}
+  - {id: Q3, kind: order_fit_r2_below, pair: "nl−shuffled", max_r2: 0.5}
+  - {id: Q4, kind: surprisal_sign, depth: late, sign: "-"}
+  - {id: Q5, kind: surprisal_depth_ratio, larger: late, smaller: early}
+  - id: Q6a
+    kind: controls
+    min_mean: {L4H11: [prev_mass, 0.95], L5H1: [sink_mass, 0.90]}
+    mode_label: {L0H1: Self}
+  - id: Q6b
+    kind: few_meaningful
+    contrast: placebo
+    metric: sink_mass
+    max_heads: {near: 0}
+
+figures:
+  tokenizer: gpt2               # decoding ids for features and display only, never to build model input

@@ -1,0 +1,62 @@
+[
+  {
+    "id": "R0a",
+    "kind": "depth_term_sign",
+    "verdict": "PASS",
+    "detail": "common/sushi: +0.0282 [+0.0237, +0.0329]; rare/sushi: +0.0115 [+0.0083, +0.0147]"
+  },
+  {
+    "id": "R0b",
+    "kind": "depth_term_sign",
+    "verdict": "PASS",
+    "detail": "common/sushi: +0.0438 [+0.0396, +0.0481]; rare/sushi: +0.0117 [+0.0091, +0.0144]"
+  },
+  {
+    "id": "R1",
+    "kind": "pooled_term_sign",
+    "verdict": "PASS",
+    "detail": "common: +0.0270 [+0.0220, +0.0322] over 12 phrases; rare: +0.0183 [+0.0144, +0.0223] over 12 phrases"
+  },
+  {
+    "id": "R2",
+    "kind": "pooled_term_sign",
+    "verdict": "PASS",
+    "detail": "common: +0.0252 [+0.0201, +0.0307] over 12 phrases; rare: +0.0103 [+0.0084, +0.0127] over 12 phrases"
+  },
+  {
+    "id": "R3",
+    "kind": "phrase_count",
+    "verdict": "PASS",
+    "detail": "common: 12/12 phrases (need 8); opposite sign 0; rare: 12/12 phrases (need 8); opposite sign 0"
+  },
+  {
+    "id": "R4a",
+    "kind": "pooled_term_sign",
+    "verdict": "PASS",
+    "detail": "common: +0.1516 [+0.1240, +0.1801] over 12 phrases; rare: +0.1119 [+0.0866, +0.1375] over 12 phrases"
+  },
+  {
+    "id": "R4b",
+    "kind": "pooled_term_sign",
+    "verdict": "PASS",
+    "detail": "common: +0.1433 [+0.1136, +0.1753] over 12 phrases; rare: +0.0635 [+0.0506, +0.0786] over 12 phrases"
+  },
+  {
+    "id": "R5",
+    "kind": "phrase_spearman_below",
+    "verdict": "PASS",
+    "detail": "common: rho +0.19 (p 0.557); rare: rho +0.07 (p 0.829)"
+  },
+  {
+    "id": "R6a",
+    "kind": "controls",
+    "verdict": "FAIL",
+    "detail": "L4H11 prev_mass: min over cells 0.949 (floor 0.95); L5H1 sink_mass: min over cells 0.971 (floor 0.9); L0H1 mode Self in 240/240 cells"
+  },
+  {
+    "id": "R6b",
+    "kind": "few_meaningful",
+    "verdict": "FAIL",
+    "detail": "common/bikes/near: 0 (limit 0); common/cars/near: 0 (limit 0); common/chess/near: 0 (limit 0); common/coffee/near: 0 (limit 0); common/money/near: 0 (limit 0); common/music/near: 0 (limit 0); common/pizza/near: 0 (limit 0); common/rain/near: 0 (limit 0); common/rice/near: 0 (limit 0); common/songs/near: 0 (limit 0); common/sushi/near: 0 (limit 0); common/water/near: 0 (limit 0); rare/bikes/near: 1 (limit 0): L4H0; rare/cars/near: 0 (limit 0); rare/chess/near: 0 (limit 0); rare/coffee/near: 0 (limit 0); rare/money/near: 0 (limit 0); rare/music/near: 0 (limit 0); rare/pizza/near: 0 (limit 0); rare/rain/near: 0 (limit 0); rare/rice/near: 1 (limit 0): L7H0; rare/songs/near: 0 (limit 0); rare/sushi/near: 0 (limit 0); rare/water/near: 0 (limit 0)"
+  }
+]

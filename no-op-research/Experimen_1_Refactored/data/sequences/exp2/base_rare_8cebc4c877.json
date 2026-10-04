@@ -1,0 +1,13 @@
+{
+  "condition": "base_rare_8cebc4c877",
+  "id_range": [
+    0,
+    38998
+  ],
+  "n": 1000,
+  "seq_len": 32,
+  "base_seed": 0,
+  "seed": 2397787026,
+  "without_replacement": true,
+  "sha256": "bd1f1cdf7b8c65f0537f3e77b7ec89b08050f92cfebd58f4d7dcf1e41aa71377"
+}

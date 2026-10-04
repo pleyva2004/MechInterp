@@ -1,0 +1,38 @@
+[
+  {
+    "id": "P1",
+    "kind": "far_is_small",
+    "verdict": "FAIL",
+    "detail": "common/sushi: max |\u0394| 0.123 (L8H2), median 0.0081; rare/sushi: max |\u0394| 0.049 (L11H4), median 0.0046"
+  },
+  {
+    "id": "P2",
+    "kind": "median_ratio",
+    "verdict": "FAIL",
+    "detail": "common/sushi: median |\u0394| 0.0212 vs 0.0081, ratio 2.6; rare/sushi: median |\u0394| 0.0234 vs 0.0046, ratio 5.1"
+  },
+  {
+    "id": "P3",
+    "kind": "heads_move",
+    "verdict": "PASS",
+    "detail": "sushi: 10/20 heads with |\u0394| >= 0.05 (L7H0, L5H6, L6H8, L4H0, L4H1, L5H2, L6H10, L2H4, L6H11, L8H5)"
+  },
+  {
+    "id": "P4",
+    "kind": "few_meaningful",
+    "verdict": "FAIL",
+    "detail": "common/sushi/far: 14 (limit 2): L7H7, L7H11, L8H2, L9H8, L9H9, L10H1, L10H2, L10H8, L10H9, L10H10, L11H6, L11H9; common/sushi/near: 61 (limit 14): L3H8, L3H11, L4H0, L4H1, L4H5, L5H0, L5H2, L5H3, L5H4, L5H6, L5H9, L5H10; rare/sushi/far: 2 (limit 2): L8H2, L10H8; rare/sushi/near: 27 (limit 14): L2H4, L3H3, L3H9, L4H0, L4H3, L4H5, L5H2, L5H4, L5H6, L5H11, L6H5, L6H8"
+  },
+  {
+    "id": "P5",
+    "kind": "controls",
+    "verdict": "PASS",
+    "detail": "L4H11 prev_mass: min over cells 0.980 (floor 0.95); L5H1 sink_mass: min over cells 0.973 (floor 0.9); L0H1 mode Self in 20/20 cells"
+  },
+  {
+    "id": "P6",
+    "kind": "few_meaningful",
+    "verdict": "PASS",
+    "detail": "common/sushi/far: 0 (limit 0); common/sushi/near: 0 (limit 0); rare/sushi/far: 0 (limit 0); rare/sushi/near: 0 (limit 0)"
+  }
+]

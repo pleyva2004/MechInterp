@@ -1,0 +1,131 @@
+# Experiment 2: does a short natural-language phrase written into random tokens change final-token attention,
+# and is that change about the phrase being language, about its particular tokens, or about their surface form?
+# The ONLY source of parameters for exp2. Positions are model-input indices (BOS at 0, random tokens at 1..32,
+# final/query token at 32). Iteration 1 of the exp2 loop; see exp2/LOOP_LOG.md.
+model: gpt2-small
+seq_len: 32                     # random tokens, excluding BOS
+bos_token_id: 50256
+query_position: -1              # final token; it is never overwritten, so it stays the base row's random token
+diffuse_threshold: 0.2
+batch_size: 250
+seed: 0
+device: cpu
+dtype: float32
+
+backends:
+  transformer_lens: {model_name: gpt2-small}
+  huggingface:      {model_name: gpt2, attn_implementation: eager}
+primary_backend: transformer_lens
+
+paths:
+  sequences_dir: data/sequences/exp2
+  results_dir: results
+
+# Base rows: random ids, no repeats within a row, never containing any phrase id (a repeat would trigger
+# duplicate-token / induction heads). Byte tokens (0-255) are left out entirely (exp1: they drive their own heads).
+bases:
+  rare:   [1000, 39999]         # exp1 condition A
+  common: [256, 999]            # exp1 condition C
+n_bases: 1000
+
+# Each phrase: ids are authoritative and written straight into the id array (text is only checked to tokenize to
+# them). `shuffled` is a fixed scrambled order of the same ids; it keeps the LAST id in place, so in the `near`
+# placement the token right before the query (position 31) is identical in nl and shuffled.
+phrases:
+  sushi:
+    text: " I like sushi"
+    ids: [314, 588, 36324]
+    shuffled: [588, 314, 36324]   # " like I sushi"
+
+placements:
+  near: [29, 30, 31]            # phrase ends right before the query
+  far:  [14, 15, 16]            # mid-sequence (exp1ext measured single-token substitutions at 16 and 31)
+
+# Matched controls: per row, one random id per phrase token with the same values of these features and from the
+# same id class as that token (exp1ext: leading space and byte-ness predicted per-token effects best).
+match_features: [leading_space, is_alpha, is_capitalized]
+token_classes:
+  common: [256, 999]
+  rare:   [1000, 39999]
+
+# Paired contrasts, a - b per row. total = order + identity + form exactly (on means).
+contrasts:
+  total:    [nl, none]          # inserting the phrase at all
+  order:    [nl, shuffled]      # word order / grammaticality, same tokens
+  identity: [shuffled, matched] # these particular tokens vs same-form random tokens
+  form:     [matched, none]     # same-form words vs the base class's random tokens
+  placebo:  [matched, matched_b] # two exchangeable random draws: should show nothing (noise floor)
+
+# slot_mass = attention on the slot positions; slot_logratio = log(slot_mass / sink_mass), which cancels the
+# softmax normalizer (so it is not moved just because some other key gained or lost weight).
+metrics: [sink_mass, slot_mass, slot_logratio, prev_mass, entropy]
+slot_logratio_eps: 1.0e-12      # floor on both masses inside the log
+min_effect:                     # "meaningful" = BH-significant AND |mean difference| >= this
+  sink_mass: 0.02
+  slot_mass: 0.02
+  slot_logratio: 0.1
+  prev_mass: 0.02
+  entropy: 0.05
+
+tracked_heads_csv: results/20260928-135243_exp1ext/tracked_heads.csv   # exp1ext's rule-selected heads + controls
+
+replication:                    # the `none` rows should reproduce exp1's per-head mean sink_mass
+  rare:   {run: results/20260927-235708_exp1, condition: A_rare}
+  common: {run: results/20260928-004336_exp1, condition: C_common_clean}
+  min_r: 0.99
+
+stats:
+  bootstrap_iters: 1000
+  bootstrap_ci: 0.95
+  bootstrap_seed: 0
+  fdr_q: 0.05                   # BH over every (base, phrase, placement, contrast, head) test of one metric
+
+validation:
+  row_sum_atol: 1.0e-4
+  determinism_n: 50
+  cross_backend_atol: 1.0e-4
+
+# Pre-registered checks, evaluated automatically against exp2/PREDICTIONS.md (written before the first run).
+predictions_file: exp2/PREDICTIONS.md
+predictions:
+  - id: P1
+    kind: far_is_small
+    contrast: total
+    metric: sink_mass
+    placement: far
+    max_abs: 0.10               # no head moves this much
+    max_median_abs: 0.015       # typical head barely moves
+  - id: P2
+    kind: median_ratio
+    contrast: total
+    metric: sink_mass
+    numerator: near
+    denominator: far
+    min_ratio: 3.0
+  - id: P3
+    kind: heads_move
+    contrast: total
+    metric: sink_mass
+    placement: near
+    base: rare
+    # exp1ext position-31 token-sd >= 0.05 on rare bases (stage2_all_heads_token_means.npz), all 144 heads, sd-ranked
+    heads: [L7H0, L5H0, L5H6, L7H7, L6H8, L4H0, L4H1, L8H6, L8H1, L5H2, L6H10, L4H3, L4H8, L2H4, L6H11, L7H1, L5H4, L8H5, L3H3, L7H11]
+    min_abs: 0.05
+    min_fraction: 0.5
+  - id: P4
+    kind: few_meaningful
+    contrast: order
+    metric: sink_mass
+    max_heads: {near: 14, far: 2}   # per base class; 14 = 10% of heads
+  - id: P5
+    kind: controls
+    min_mean: {L4H11: [prev_mass, 0.95], L5H1: [sink_mass, 0.90]}
+    mode_label: {L0H1: Self}
+  - id: P6
+    kind: few_meaningful
+    contrast: placebo
+    metric: sink_mass
+    max_heads: {near: 0, far: 0}
+
+figures:
+  tokenizer: gpt2               # decoding ids for features and display only, never to build model input

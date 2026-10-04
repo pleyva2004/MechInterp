@@ -1,0 +1,1 @@
+Crashed after analysis (replication loop bug, fixed in exp2/run.py); no results saved. Superseded by the next exp2 run.

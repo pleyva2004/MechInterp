@@ -1,0 +1,44 @@
+[
+  {
+    "id": "Q1",
+    "kind": "depth_term_sign",
+    "verdict": "PASS",
+    "detail": "common: +0.0279 [+0.0244, +0.0313]; rare: +0.0132 [+0.0110, +0.0154]"
+  },
+  {
+    "id": "Q2",
+    "kind": "depth_term_sign",
+    "verdict": "PASS",
+    "detail": "common: +0.0425 [+0.0396, +0.0456]; rare: +0.0091 [+0.0071, +0.0111]"
+  },
+  {
+    "id": "Q3",
+    "kind": "order_fit_r2_below",
+    "verdict": "PASS",
+    "detail": "common: r\u00b2 0.001 (slope -0.15); rare: r\u00b2 0.007 (slope 0.11)"
+  },
+  {
+    "id": "Q4",
+    "kind": "surprisal_sign",
+    "verdict": "PASS",
+    "detail": "common: slope -0.00139 [-0.00170, -0.00108] per nat; rare: slope -0.00107 [-0.00125, -0.00089] per nat"
+  },
+  {
+    "id": "Q5",
+    "kind": "surprisal_depth_ratio",
+    "verdict": "PASS",
+    "detail": "common: |late| 0.00139 vs |early| 0.00022; rare: |late| 0.00107 vs |early| 0.00025"
+  },
+  {
+    "id": "Q6a",
+    "kind": "controls",
+    "verdict": "PASS",
+    "detail": "L4H11 prev_mass: min over cells 0.980 (floor 0.95); L5H1 sink_mass: min over cells 0.971 (floor 0.9); L0H1 mode Self in 20/20 cells"
+  },
+  {
+    "id": "Q6b",
+    "kind": "few_meaningful",
+    "verdict": "PASS",
+    "detail": "common/sushi/near: 0 (limit 0); rare/sushi/near: 0 (limit 0)"
+  }
+]
