@@ -1,0 +1,216 @@
+# Experiment 2: does a short natural-language phrase written into random tokens change final-token attention,
+# and is that change about the phrase being language, about its particular tokens, or about their surface form?
+# The ONLY source of parameters for exp2. Positions are model-input indices (BOS at 0, random tokens at 1..32,
+# final/query token at 32). Test C (preposition determiner noun), 12 phrases, logit scale; see exp2/PREDICTIONS_testC.md.
+model: gpt2-small
+seq_len: 32                     # random tokens, excluding BOS
+bos_token_id: 50256
+query_position: -1              # final token; it is never overwritten, so it stays the base row's random token
+diffuse_threshold: 0.2
+batch_size: 250
+seed: 0
+device: cpu
+dtype: float32
+
+backends:
+  transformer_lens: {model_name: gpt2-small}
+  huggingface:      {model_name: gpt2, attn_implementation: eager}
+primary_backend: transformer_lens
+
+paths:
+  sequences_dir: data/sequences/exp2
+  results_dir: results
+
+# Base rows: random ids, no repeats within a row, never containing any phrase id (a repeat would trigger
+# duplicate-token / induction heads). Byte tokens (0-255) are left out entirely (exp1: they drive their own heads).
+bases:
+  rare:   [1000, 39999]         # exp1 condition A
+  common: [256, 999]            # exp1 condition C
+n_bases: 500                    # per base class; 12 phrases x 9 variants each
+
+# Each phrase: ids are authoritative and written straight into the id array (text is only checked to tokenize to
+# them). shuffled = first two swapped: same ids, last id kept in place (position 31 identical in nl and shuffled).
+phrases:
+  table: {text: " on the table", ids: [319, 262, 3084], shuffled: [262, 319, 3084]}
+  house: {text: " in the house", ids: [287, 262, 2156], shuffled: [262, 287, 2156]}
+  door: {text: " at the door", ids: [379, 262, 3420], shuffled: [262, 379, 3420]}
+  bed: {text: " under the bed", ids: [739, 262, 3996], shuffled: [262, 739, 3996]}
+  river: {text: " near the river", ids: [1474, 262, 7850], shuffled: [262, 1474, 7850]}
+  wall: {text: " behind the wall", ids: [2157, 262, 3355], shuffled: [262, 2157, 3355]}
+  room: {text: " into the room", ids: [656, 262, 2119], shuffled: [262, 656, 2119]}
+  hill: {text: " over the hill", ids: [625, 262, 12788], shuffled: [262, 625, 12788]}
+  city: {text: " from the city", ids: [422, 262, 1748], shuffled: [262, 422, 1748]}
+  dog: {text: " with the dog", ids: [351, 262, 3290], shuffled: [262, 351, 3290]}
+  street: {text: " across the street", ids: [1973, 262, 4675], shuffled: [262, 1973, 4675]}
+  window: {text: " through the window", ids: [832, 262, 4324], shuffled: [262, 832, 4324]}
+
+placements:
+  near: [29, 30, 31]
+
+# Each phrase token alone at each slot it occupies in nl or shuffled; the base row everywhere else.
+custom_variants:
+  "table:on@29": {phrase: table, placement: near, writes: [[29, 319]]}
+  "table:the@30": {phrase: table, placement: near, writes: [[30, 262]]}
+  "table:table@31": {phrase: table, placement: near, writes: [[31, 3084]]}
+  "table:the@29": {phrase: table, placement: near, writes: [[29, 262]]}
+  "table:on@30": {phrase: table, placement: near, writes: [[30, 319]]}
+  "house:in@29": {phrase: house, placement: near, writes: [[29, 287]]}
+  "house:the@30": {phrase: house, placement: near, writes: [[30, 262]]}
+  "house:house@31": {phrase: house, placement: near, writes: [[31, 2156]]}
+  "house:the@29": {phrase: house, placement: near, writes: [[29, 262]]}
+  "house:in@30": {phrase: house, placement: near, writes: [[30, 287]]}
+  "door:at@29": {phrase: door, placement: near, writes: [[29, 379]]}
+  "door:the@30": {phrase: door, placement: near, writes: [[30, 262]]}
+  "door:door@31": {phrase: door, placement: near, writes: [[31, 3420]]}
+  "door:the@29": {phrase: door, placement: near, writes: [[29, 262]]}
+  "door:at@30": {phrase: door, placement: near, writes: [[30, 379]]}
+  "bed:under@29": {phrase: bed, placement: near, writes: [[29, 739]]}
+  "bed:the@30": {phrase: bed, placement: near, writes: [[30, 262]]}
+  "bed:bed@31": {phrase: bed, placement: near, writes: [[31, 3996]]}
+  "bed:the@29": {phrase: bed, placement: near, writes: [[29, 262]]}
+  "bed:under@30": {phrase: bed, placement: near, writes: [[30, 739]]}
+  "river:near@29": {phrase: river, placement: near, writes: [[29, 1474]]}
+  "river:the@30": {phrase: river, placement: near, writes: [[30, 262]]}
+  "river:river@31": {phrase: river, placement: near, writes: [[31, 7850]]}
+  "river:the@29": {phrase: river, placement: near, writes: [[29, 262]]}
+  "river:near@30": {phrase: river, placement: near, writes: [[30, 1474]]}
+  "wall:behind@29": {phrase: wall, placement: near, writes: [[29, 2157]]}
+  "wall:the@30": {phrase: wall, placement: near, writes: [[30, 262]]}
+  "wall:wall@31": {phrase: wall, placement: near, writes: [[31, 3355]]}
+  "wall:the@29": {phrase: wall, placement: near, writes: [[29, 262]]}
+  "wall:behind@30": {phrase: wall, placement: near, writes: [[30, 2157]]}
+  "room:into@29": {phrase: room, placement: near, writes: [[29, 656]]}
+  "room:the@30": {phrase: room, placement: near, writes: [[30, 262]]}
+  "room:room@31": {phrase: room, placement: near, writes: [[31, 2119]]}
+  "room:the@29": {phrase: room, placement: near, writes: [[29, 262]]}
+  "room:into@30": {phrase: room, placement: near, writes: [[30, 656]]}
+  "hill:over@29": {phrase: hill, placement: near, writes: [[29, 625]]}
+  "hill:the@30": {phrase: hill, placement: near, writes: [[30, 262]]}
+  "hill:hill@31": {phrase: hill, placement: near, writes: [[31, 12788]]}
+  "hill:the@29": {phrase: hill, placement: near, writes: [[29, 262]]}
+  "hill:over@30": {phrase: hill, placement: near, writes: [[30, 625]]}
+  "city:from@29": {phrase: city, placement: near, writes: [[29, 422]]}
+  "city:the@30": {phrase: city, placement: near, writes: [[30, 262]]}
+  "city:city@31": {phrase: city, placement: near, writes: [[31, 1748]]}
+  "city:the@29": {phrase: city, placement: near, writes: [[29, 262]]}
+  "city:from@30": {phrase: city, placement: near, writes: [[30, 422]]}
+  "dog:with@29": {phrase: dog, placement: near, writes: [[29, 351]]}
+  "dog:the@30": {phrase: dog, placement: near, writes: [[30, 262]]}
+  "dog:dog@31": {phrase: dog, placement: near, writes: [[31, 3290]]}
+  "dog:the@29": {phrase: dog, placement: near, writes: [[29, 262]]}
+  "dog:with@30": {phrase: dog, placement: near, writes: [[30, 351]]}
+  "street:across@29": {phrase: street, placement: near, writes: [[29, 1973]]}
+  "street:the@30": {phrase: street, placement: near, writes: [[30, 262]]}
+  "street:street@31": {phrase: street, placement: near, writes: [[31, 4675]]}
+  "street:the@29": {phrase: street, placement: near, writes: [[29, 262]]}
+  "street:across@30": {phrase: street, placement: near, writes: [[30, 1973]]}
+  "window:through@29": {phrase: window, placement: near, writes: [[29, 832]]}
+  "window:the@30": {phrase: window, placement: near, writes: [[30, 262]]}
+  "window:window@31": {phrase: window, placement: near, writes: [[31, 4324]]}
+  "window:the@29": {phrase: window, placement: near, writes: [[29, 262]]}
+  "window:through@30": {phrase: window, placement: near, writes: [[30, 832]]}
+
+# Matched controls: per row, one random id per phrase token with the same values of these features and from the
+# same id class as that token (exp1ext: leading space and byte-ness predicted per-token effects best).
+match_features: [leading_space, is_alpha, is_capitalized]
+token_classes:
+  common: [256, 999]
+  rare:   [1000, 39999]
+
+# Paired contrasts, a - b per row. total = order + identity + form exactly (on means).
+contrasts:
+  total:    [nl, none]          # inserting the phrase at all
+  order:    [nl, shuffled]      # word order / grammaticality, same tokens
+  identity: [shuffled, matched] # these particular tokens vs same-form random tokens
+  form:     [matched, none]     # same-form words vs the base class's random tokens
+  placebo:  [matched, matched_b] # two exchangeable random draws: should show nothing (noise floor)
+
+# interaction per row = (combo - none) - sum(part - none); 0 under exact additivity of the single-token effects
+additivity:
+  metrics: [sink_mass, sink_logit]   # sink_logit = log(p / (1 - p)): checks the bounded-scale objection
+  combos:
+    "table:nl":       {phrase: table, placement: near, variant: nl, parts: ["table:on@29", "table:the@30", "table:table@31"]}
+    "table:shuffled": {phrase: table, placement: near, variant: shuffled, parts: ["table:the@29", "table:on@30", "table:table@31"]}
+    "house:nl":       {phrase: house, placement: near, variant: nl, parts: ["house:in@29", "house:the@30", "house:house@31"]}
+    "house:shuffled": {phrase: house, placement: near, variant: shuffled, parts: ["house:the@29", "house:in@30", "house:house@31"]}
+    "door:nl":       {phrase: door, placement: near, variant: nl, parts: ["door:at@29", "door:the@30", "door:door@31"]}
+    "door:shuffled": {phrase: door, placement: near, variant: shuffled, parts: ["door:the@29", "door:at@30", "door:door@31"]}
+    "bed:nl":       {phrase: bed, placement: near, variant: nl, parts: ["bed:under@29", "bed:the@30", "bed:bed@31"]}
+    "bed:shuffled": {phrase: bed, placement: near, variant: shuffled, parts: ["bed:the@29", "bed:under@30", "bed:bed@31"]}
+    "river:nl":       {phrase: river, placement: near, variant: nl, parts: ["river:near@29", "river:the@30", "river:river@31"]}
+    "river:shuffled": {phrase: river, placement: near, variant: shuffled, parts: ["river:the@29", "river:near@30", "river:river@31"]}
+    "wall:nl":       {phrase: wall, placement: near, variant: nl, parts: ["wall:behind@29", "wall:the@30", "wall:wall@31"]}
+    "wall:shuffled": {phrase: wall, placement: near, variant: shuffled, parts: ["wall:the@29", "wall:behind@30", "wall:wall@31"]}
+    "room:nl":       {phrase: room, placement: near, variant: nl, parts: ["room:into@29", "room:the@30", "room:room@31"]}
+    "room:shuffled": {phrase: room, placement: near, variant: shuffled, parts: ["room:the@29", "room:into@30", "room:room@31"]}
+    "hill:nl":       {phrase: hill, placement: near, variant: nl, parts: ["hill:over@29", "hill:the@30", "hill:hill@31"]}
+    "hill:shuffled": {phrase: hill, placement: near, variant: shuffled, parts: ["hill:the@29", "hill:over@30", "hill:hill@31"]}
+    "city:nl":       {phrase: city, placement: near, variant: nl, parts: ["city:from@29", "city:the@30", "city:city@31"]}
+    "city:shuffled": {phrase: city, placement: near, variant: shuffled, parts: ["city:the@29", "city:from@30", "city:city@31"]}
+    "dog:nl":       {phrase: dog, placement: near, variant: nl, parts: ["dog:with@29", "dog:the@30", "dog:dog@31"]}
+    "dog:shuffled": {phrase: dog, placement: near, variant: shuffled, parts: ["dog:the@29", "dog:with@30", "dog:dog@31"]}
+    "street:nl":       {phrase: street, placement: near, variant: nl, parts: ["street:across@29", "street:the@30", "street:street@31"]}
+    "street:shuffled": {phrase: street, placement: near, variant: shuffled, parts: ["street:the@29", "street:across@30", "street:street@31"]}
+    "window:nl":       {phrase: window, placement: near, variant: nl, parts: ["window:through@29", "window:the@30", "window:window@31"]}
+    "window:shuffled": {phrase: window, placement: near, variant: shuffled, parts: ["window:the@29", "window:through@30", "window:window@31"]}
+  differences: [[nl, shuffled]]
+depth_groups:
+  early: [0, 1, 2, 3, 4, 5]
+  late:  [6, 7, 8, 9, 10, 11]
+
+# The model's own -log p(token | everything before it), TL only, summed over the slot positions; regressed against
+# the additivity metric within each row across every variant. query_position_nll is recorded but not used in checks.
+surprisal:
+  slot_positions: [29, 30, 31]
+  batch_size: 50                # full-vocabulary logits are built only at these positions
+
+# slot_mass = attention on the slot positions; slot_logratio = log(slot_mass / sink_mass), which cancels the
+# softmax normalizer (so it is not moved just because some other key gained or lost weight).
+metrics: [sink_mass, slot_mass, prev_mass, entropy]
+slot_logratio_eps: 1.0e-12      # floor on both masses inside the log
+sink_logit_eps: 1.0e-6          # clip sink_mass to [eps, 1 - eps] before the logit
+min_effect:                     # "meaningful" = BH-significant AND |mean difference| >= this
+  sink_mass: 0.02
+  slot_mass: 0.02
+  slot_logratio: 0.1
+  prev_mass: 0.02
+  entropy: 0.05
+
+tracked_heads_csv: results/20260928-135243_exp1ext/tracked_heads.csv   # exp1ext's rule-selected heads + controls
+
+replication:                    # the `none` rows should reproduce exp1's per-head mean sink_mass
+  rare:   {run: results/20260927-235708_exp1, condition: A_rare}
+  common: {run: results/20260928-004336_exp1, condition: C_common_clean}
+  min_r: 0.99
+
+stats:
+  bootstrap_iters: 1000
+  bootstrap_ci: 0.95
+  bootstrap_seed: 0
+  fdr_q: 0.05                   # BH over every (base, phrase, placement, contrast, head) test of one metric
+
+validation:
+  row_sum_atol: 1.0e-4
+  determinism_n: 50
+  cross_backend_atol: 1.0e-4
+
+# Pre-registered checks, evaluated automatically against exp2/PREDICTIONS_testC.md (written before any Test C data).
+predictions_file: exp2/PREDICTIONS_testC.md
+predictions:
+  - {id: C1, kind: pooled_term_sign, term: nl, depth: late, sign: "+"}
+  - {id: C2, kind: pooled_term_sign, term: "nl−shuffled", depth: late, sign: "+"}
+  - {id: C3, kind: phrase_count, term: "nl−shuffled", depth: late, sign: "+", min_count: 8}
+  - {id: C4, kind: pooled_term_sign, metric: sink_logit, term: "nl−shuffled", depth: late, sign: "+"}
+  - id: C5a
+    kind: controls
+    min_mean: {L4H11: [prev_mass, 0.94], L5H1: [sink_mass, 0.90]}
+    mode_label: {L0H1: Self}
+  - id: C5b
+    kind: few_meaningful
+    contrast: placebo
+    metric: sink_mass
+    max_heads: {near: 1}
+
+figures:
+  tokenizer: gpt2               # decoding ids for features and display only, never to build model input
+  per_phrase: [table]           # per-phrase heatmaps / forests / tables only for these; the rest are pooled

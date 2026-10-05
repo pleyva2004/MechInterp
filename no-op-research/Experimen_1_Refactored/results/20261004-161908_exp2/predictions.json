@@ -1,0 +1,38 @@
+[
+  {
+    "id": "C1",
+    "kind": "pooled_term_sign",
+    "verdict": "PASS",
+    "detail": "common: +0.0093 [+0.0040, +0.0149] over 12 phrases; rare: +0.0327 [+0.0239, +0.0409] over 12 phrases"
+  },
+  {
+    "id": "C2",
+    "kind": "pooled_term_sign",
+    "verdict": "PASS",
+    "detail": "common: +0.0131 [+0.0093, +0.0169] over 12 phrases; rare: +0.0168 [+0.0117, +0.0214] over 12 phrases"
+  },
+  {
+    "id": "C3",
+    "kind": "phrase_count",
+    "verdict": "PASS",
+    "detail": "common: 11/12 phrases (need 8); opposite sign 0; rare: 11/12 phrases (need 8); opposite sign 0"
+  },
+  {
+    "id": "C4",
+    "kind": "pooled_term_sign",
+    "verdict": "PASS",
+    "detail": "common: +0.0756 [+0.0547, +0.0970] over 12 phrases; rare: +0.0985 [+0.0683, +0.1257] over 12 phrases"
+  },
+  {
+    "id": "C5a",
+    "kind": "controls",
+    "verdict": "PASS",
+    "detail": "L4H11 prev_mass: min over cells 0.974 (floor 0.94); L5H1 sink_mass: min over cells 0.973 (floor 0.9); L0H1 mode Self in 240/240 cells"
+  },
+  {
+    "id": "C5b",
+    "kind": "few_meaningful",
+    "verdict": "PASS",
+    "detail": "common/bed/near: 0 (limit 1); common/city/near: 0 (limit 1); common/dog/near: 0 (limit 1); common/door/near: 0 (limit 1); common/hill/near: 1 (limit 1): L7H8; common/house/near: 0 (limit 1); common/river/near: 0 (limit 1); common/room/near: 0 (limit 1); common/street/near: 1 (limit 1): L11H9; common/table/near: 0 (limit 1); common/wall/near: 1 (limit 1): L7H0; common/window/near: 0 (limit 1); rare/bed/near: 0 (limit 1); rare/city/near: 0 (limit 1); rare/dog/near: 1 (limit 1): L5H6; rare/door/near: 1 (limit 1): L5H6; rare/hill/near: 1 (limit 1): L5H6; rare/house/near: 1 (limit 1): L7H0; rare/river/near: 0 (limit 1); rare/room/near: 1 (limit 1): L5H6; rare/street/near: 0 (limit 1); rare/table/near: 1 (limit 1): L3H3; rare/wall/near: 0 (limit 1); rare/window/near: 0 (limit 1)"
+  }
+]

@@ -139,9 +139,10 @@ def _depth_mean(x: np.ndarray, layers: Sequence[int]) -> np.ndarray:
 
 
 def interactions(cells: dict[Key, dict[str, np.ndarray]], combos: dict[str, dict[str, Any]], metric: str) -> dict[tuple, np.ndarray]:
-    """Per (base, phrase, placement, variant): per-row interaction [n, L, H] = (combo − none) − Σ_j (part_j − none).
-    combos: name -> {phrase, placement, parts: [single-token variant names], variant (default: the name)}, so several
-    phrases can each have an "nl" combo. Zero under exact additivity of the single-token effects (relative to the
+    """Per (base, phrase, placement, label): per-row interaction [n, L, H] = (combo − none) − Σ_j (part_j − none).
+    combos: name -> {phrase, placement, parts: [variant names], variant (default: the name), label (default: the
+    variant)}, so several phrases can each have an "nl" combo, and a phrase-specific pair variant can carry a shared
+    label (e.g. "VO") for pooling across phrases. Zero under exact additivity of the parts' effects (relative to the
     same base row)."""
     out = {}
     for base in sorted({k[0] for k in cells}):
@@ -150,26 +151,30 @@ def interactions(cells: dict[Key, dict[str, np.ndarray]], combos: dict[str, dict
             none = cells[(*g, "none")][metric]
             additive = sum(cells[(*g, part)][metric] - none for part in spec["parts"])
             variant = spec.get("variant", combo)
-            out[(*g, variant)] = (cells[(*g, variant)][metric] - none) - additive
+            out[(*g, spec.get("label", variant))] = (cells[(*g, variant)][metric] - none) - additive
     return out
 
 
 def additivity_tables(cells: dict[Key, dict[str, np.ndarray]], combos: dict[str, dict[str, Any]],
                       differences: Sequence[Sequence[str]], depth_groups: dict[str, Sequence[int]], metric: str,
-                      boot: dict[str, Any]) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+                      boot: dict[str, Any], linear_terms: dict[str, dict[str, float]] | None = None,
+                      ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     """Returns
     - per_head: one row per (base, phrase, placement, combo, head): observed (combo − none), additive (Σ parts),
       interaction (mean, CI, Wilcoxon p, rank-biserial), for each combo
     - depth: per (base, phrase, placement, term, depth group): mean over the group's heads, per row, then a bootstrap
-      CI over rows; term = a combo's interaction, or "a−b" for a pair in `differences` (interaction of a minus b)
+      CI over rows; term = a combo's interaction (its label), "a−b" for a pair in `differences` (interaction of a
+      minus b), or a name in `linear_terms` ({label: coefficient}, e.g. the three-way term nl − PV − VO − PO)
     - order_fit: per (base, phrase, placement, pair): across heads, the observed difference between the two combos
       (e.g. nl − shuffled, the order contrast) against its additive prediction: slope, r, r²."""
     inter = interactions(cells, combos, metric)
+    variant_of = {(spec["phrase"], spec["placement"], spec.get("label", spec.get("variant", name))): spec.get("variant", name)
+                  for name, spec in combos.items()}
     rows, depth_rows, fit_rows = [], [], []
     for (base, phrase, placement, combo), x in inter.items():
         g = (base, phrase, placement)
         none = cells[(*g, "none")][metric]
-        observed = (cells[(*g, combo)][metric] - none).mean(axis=0)
+        observed = (cells[(*g, variant_of[(phrase, placement, combo)])][metric] - none).mean(axis=0)
         mean, lo, hi = bootstrap_mean_per_unit(x, **boot)
         test = paired_test(x)
         for (layer, head), m in np.ndenumerate(mean):
@@ -188,12 +193,22 @@ def additivity_tables(cells: dict[Key, dict[str, np.ndarray]], combos: dict[str,
             for depth, layers in depth_groups.items():
                 dm, dlo, dhi = bootstrap_mean_per_unit(_depth_mean(d, layers)[:, None], **boot)
                 depth_rows.append((base, phrase, placement, f"{a}−{b}", depth, float(dm[0]), float(dlo[0]), float(dhi[0])))
-            observed = (cells[(*g, a)][metric] - cells[(*g, b)][metric]).mean(axis=0).ravel()
+            va, vb = variant_of[(phrase, placement, a)], variant_of[(phrase, placement, b)]
+            observed = (cells[(*g, va)][metric] - cells[(*g, vb)][metric]).mean(axis=0).ravel()
             additive = observed - d.mean(axis=0).ravel()
             slope = float(np.polyfit(additive, observed, 1)[0])
             r = float(np.corrcoef(additive, observed)[0, 1])
             fit_rows.append((base, phrase, placement, f"{a}−{b}", slope, r, r * r,
                              float(np.abs(observed).mean()), float(np.abs(observed - additive).mean())))
+    for name, coefs in (linear_terms or {}).items():
+        for base, phrase, placement in sorted({k[:3] for k in inter}):
+            g = (base, phrase, placement)
+            if any((*g, label) not in inter for label in coefs):
+                continue
+            d = sum(c * inter[(*g, label)] for label, c in coefs.items())
+            for depth, layers in depth_groups.items():
+                dm, dlo, dhi = bootstrap_mean_per_unit(_depth_mean(d, layers)[:, None], **boot)
+                depth_rows.append((base, phrase, placement, name, depth, float(dm[0]), float(dlo[0]), float(dhi[0])))
     per_head = pd.DataFrame(rows, columns=["base", "phrase", "placement", "combo", "layer", "head", "name", "observed",
                                            "additive", "interaction", "lo", "hi", "p", "effect_size"])
     depth = pd.DataFrame(depth_rows, columns=["base", "phrase", "placement", "term", "depth", "mean", "lo", "hi"])
@@ -254,13 +269,16 @@ def _sel(effects: pd.DataFrame, **kw: Any) -> pd.DataFrame:
     return effects[mask]
 
 
-def phrase_level(depth: pd.DataFrame, variants: pd.DataFrame | None, boot: dict[str, Any]) -> pd.DataFrame:
+def phrase_level(depth: pd.DataFrame, variants: pd.DataFrame | None, boot: dict[str, Any],
+                 differences: Sequence[Sequence[str]] = ()) -> pd.DataFrame:
     """Phrases as the unit. depth: additivity depth table (with a `metric` column) over several phrases; variants:
     surprisal_slopes' per-variant table (for the nl / shuffled surprisal gap), or None.
 
     One row per (metric, base, term, depth): mean over phrases of the per-phrase means, a percentile CI from
     bootstrapping phrases, how many phrases have a row-bootstrap CI excluding 0 on each side, and the Spearman
-    correlation across phrases between the term and the surprisal gap NLL(shuffled) − NLL(nl)."""
+    correlation across phrases between the term and the surprisal gap NLL(shuffled) − NLL(nl). Each [a, b] in
+    `differences` adds a term "a−b" built from the per-phrase means (n_pos / n_neg count point estimates there, since
+    no per-phrase row-level CI exists for it)."""
     from scipy.stats import spearmanr
 
     tail = (1.0 - boot["ci"]) / 2.0 * 100.0
@@ -268,6 +286,20 @@ def phrase_level(depth: pd.DataFrame, variants: pd.DataFrame | None, boot: dict[
     if variants is not None:
         piv = variants.pivot_table(index=["base", "phrase"], columns="variant", values="mean_slot_nll")
         gap = (piv["shuffled"] - piv["nl"]).rename("nll_gap")
+    keys = ["metric", "base", "phrase", "depth"]
+    extra_terms = []
+    for a, b in differences:
+        ta = depth[depth["term"] == a].set_index(keys)["mean"]
+        tb = depth[depth["term"] == b].set_index(keys)["mean"]
+        d = (ta - tb).dropna().rename("mean").reset_index()
+        # No row-level CI exists for a difference of per-phrase means: lo / hi only mark the point estimate's sign,
+        # so n_pos / n_neg count signs for these terms.
+        d["lo"] = np.where(d["mean"] > 0, 1.0, -np.inf)
+        d["hi"] = np.where(d["mean"] < 0, -1.0, np.inf)
+        extra_terms.append(d.assign(term=f"{a}−{b}"))
+    if extra_terms:
+        ext = pd.concat(extra_terms, ignore_index=True)
+        depth = pd.concat([depth, ext.reindex(columns=depth.columns)], ignore_index=True)
     rows = []
     for (metric, base, term, dname), g in depth.groupby(["metric", "base", "term", "depth"], sort=False):
         vals = g.set_index("phrase")["mean"]
@@ -284,6 +316,24 @@ def phrase_level(depth: pd.DataFrame, variants: pd.DataFrame | None, boot: dict[
     return pd.DataFrame(rows)
 
 
+def familiarity_table(depth: pd.DataFrame, familiarity: pd.DataFrame) -> pd.DataFrame:
+    """Across phrases, Spearman correlation between a pair term's depth-group interaction and that pair's familiarity
+    (familiarity: columns phrase, label, nll = the model's −log p of the pair's second token given BOS + its first;
+    lower = more familiar). One row per (metric, base, label, depth)."""
+    from scipy.stats import spearmanr
+
+    rows = []
+    for label, fam in familiarity.groupby("label", sort=False):
+        f = fam.set_index("phrase")["nll"]
+        for (metric, base, dname), g in depth[depth["term"] == label].groupby(["metric", "base", "depth"], sort=False):
+            vals = g.set_index("phrase")["mean"]
+            x = f.reindex(vals.index)
+            rho, pval = spearmanr(x.to_numpy(), vals.to_numpy())
+            rows.append({"metric": metric, "base": base, "label": label, "depth": dname, "n_phrases": len(vals),
+                         "mean_nll": float(x.mean()), "spearman_rho": float(rho), "spearman_p": float(pval)})
+    return pd.DataFrame(rows)
+
+
 def _ci_has_sign(lo: float, hi: float, sign: str) -> bool:
     return lo > 0 if sign == "+" else hi < 0
 
@@ -295,7 +345,8 @@ def check_prediction(spec: dict[str, Any], effects: pd.DataFrame, cells: pd.Data
     ("additivity_depth", "order_fit") and surprisal_slopes ("surprisal_depth") outputs for the kinds that use them."""
     kind, out = spec["kind"], {"id": spec["id"], "kind": spec["kind"]}
     if kind in ("depth_term_sign", "surprisal_sign", "surprisal_depth_ratio", "order_fit_r2_below", "pooled_term_sign",
-                "phrase_count", "phrase_spearman_below"):
+                "phrase_count", "phrase_spearman_below", "pooled_ratio_at_least", "pooled_abs_less",
+                "familiarity_rho_sign"):
         return out | _check_extra(spec, extra or {})
     sel = _sel(effects, contrast=spec.get("contrast"), metric=spec.get("metric")) if "contrast" in spec else effects
     parts, ok = [], True
@@ -337,6 +388,8 @@ def check_prediction(spec: dict[str, Any], effects: pd.DataFrame, cells: pd.Data
             parts.append(f"{name} mode {label} in {int((labs == label).sum())}/{len(labs)} cells")
     else:
         raise ValueError(f"unknown prediction kind {kind!r}")
+    if not parts:  # a filter that matches nothing must not pass by default
+        return out | {"verdict": "FAIL", "detail": "no rows matched this check's filters"}
     out.update(verdict="PASS" if ok else "FAIL", detail="; ".join(parts))
     return out
 
@@ -353,7 +406,13 @@ def _check_extra(spec: dict[str, Any], extra: dict[str, pd.DataFrame]) -> dict[s
     `metric` (default sink_mass) and `phrase` (default: every phrase present) filter the tables; each check must hold
     in every listed base (default: every base present) and, for per-phrase kinds, every selected phrase."""
     kind, parts, ok = spec["kind"], [], True
-    if kind in ("pooled_term_sign", "phrase_count", "phrase_spearman_below"):
+    if kind in ("pooled_ratio_at_least", "pooled_abs_less"):
+        t = extra["phrase_pooled"]
+        t = t[t["depth"] == spec["depth"]]
+    elif kind == "familiarity_rho_sign":
+        t = extra["familiarity"]
+        t = t[(t["label"] == spec["label"]) & (t["depth"] == spec["depth"])]
+    elif kind in ("pooled_term_sign", "phrase_count", "phrase_spearman_below"):
         t = extra["phrase_pooled"]
         t = t[(t["term"] == spec["term"]) & (t["depth"] == spec["depth"])]
     elif kind == "depth_term_sign":
@@ -400,9 +459,26 @@ def _check_extra(spec: dict[str, Any], extra: dict[str, pd.DataFrame]) -> dict[s
                 n = r["n_pos"] if spec["sign"] == "+" else r["n_neg"]
                 good = n >= spec["min_count"]
                 parts.append(f"{tag}: {n}/{r['n_phrases']} phrases (need {spec['min_count']}); opposite sign {r['n_neg'] if spec['sign'] == '+' else r['n_pos']}")
+            elif kind == "pooled_ratio_at_least":
+                num = g.loc[g["term"] == spec["numerator"], "pooled_mean"].iloc[0]
+                den = g.loc[g["term"] == spec["denominator"], "pooled_mean"].iloc[0]
+                ratio = num / den if den != 0 else np.nan
+                good = bool(ratio >= spec["min_ratio"])
+                parts.append(f"{tag}: {spec['numerator']} {num:+.4f} / {spec['denominator']} {den:+.4f} = {ratio:.2f}")
+            elif kind == "pooled_abs_less":
+                a = g.loc[g["term"] == spec["term"], "pooled_mean"].iloc[0]
+                b = g.loc[g["term"] == spec["than"], "pooled_mean"].iloc[0]
+                good = bool(abs(a) < b)
+                parts.append(f"{tag}: |{spec['term']}| {abs(a):.4f} vs {spec['than']} {b:+.4f}")
+            elif kind == "familiarity_rho_sign":
+                r = g.iloc[0]
+                good = bool(r["spearman_rho"] < 0) if spec["sign"] == "-" else bool(r["spearman_rho"] > 0)
+                parts.append(f"{tag}: rho {r['spearman_rho']:+.2f} (p {r['spearman_p']:.3f}, n {r['n_phrases']})")
             else:
                 r = g.iloc[0]
                 good = bool(r["spearman_rho"] < spec["max_rho"])
                 parts.append(f"{tag}: rho {r['spearman_rho']:+.2f} (p {r['spearman_p']:.3f})")
             ok &= bool(good)
+    if not parts:  # a filter that matches nothing must not pass by default
+        return {"verdict": "FAIL", "detail": "no rows matched this check's filters"}
     return {"verdict": "PASS" if ok else "FAIL", "detail": "; ".join(parts)}

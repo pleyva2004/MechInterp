@@ -173,3 +173,113 @@ surprisal gap tests H1′ against H1 more directly.
 - Other templates (adjective–noun, prepositional phrases), and gpt2-medium.
 
 Loop stopped after iteration 3 (the cap).
+
+## Follow-up tests A and C (user chose these from exp2/NEXT_TESTS.md)
+
+- Test A (which part of the phrase carries the effect): `configs/exp2_testA.yaml`, predictions
+  `exp2/PREDICTIONS_testA.md` (A1–A6), recorded 2026-10-04 before any Test A data. Same phrases and bases as
+  iteration 3, plus PV / VO / PO pair variants; the three-way term = nl − PV − VO − PO interactions; pair
+  familiarity = −log p(second | BOS first).
+- Test C (other templates): `configs/exp2_testC_adj.yaml`, `configs/exp2_testC_prep.yaml`, predictions
+  `exp2/PREDICTIONS_testC.md` (C1–C5), recorded before any Test C data.
+- A6 / C5 sanity thresholds were loosened after iteration 3 (L4H11 floor 0.95 → 0.94; placebo ≤ 1 head per group),
+  stated in both predictions files.
+- Code added: combo `label`s and `linear_terms` in `additivity_tables`, `pooled_differences` in `phrase_level`,
+  `familiarity_table`, `exp2.run.pair_nll`, prediction kinds pooled_ratio_at_least / pooled_abs_less /
+  familiarity_rho_sign.
+- Process note: a 20-row smoke run of Test A (scratchpad) printed its prediction lines after the predictions were
+  written; they were not used.
+- Bug fixed (found by the Test A test agent): a prediction check whose filters matched no rows returned PASS with
+  an empty detail. Checks now FAIL with "no rows matched". Audit: none of the three finished exp2 runs had an empty
+  PASS. Test A started before the fix, so its predictions are checked by hand for this; the Test C runs use the fix.
+
+### Test A results (`results/20261004-152303_exp2`)
+
+Checks all PASS; the terms shared with iteration 3 are identical (max |Δ| 0.0, same rows). Every prediction lists its
+values (no empty PASS; this run predates the vacuous-pass fix).
+
+| id | result | what happened |
+|---|---|---|
+| A1 VO pair adds sink | PASS | +0.0125 [+0.0101, +0.0152] common, +0.0112 [+0.0084, +0.0141] rare; 12/12 phrases positive in both |
+| A2 VO is the main pair | PASS | VO − PV +0.0033 [+0.0003, +0.0065] common (barely), +0.0072 rare; VO − PO +0.011 / +0.010 |
+| A3 VO ≥ half of nl | FAIL (common) | VO / nl = 0.46 common, 0.61 rare |
+| A4 little left for the triple | PASS | |triple| 0.0040 common (CI excludes 0), 0.0014 rare (CI includes 0), vs VO ≈ 0.012 |
+| A5 familiar VO pairs add more (sign) | PASS (weak) | ρ −0.27 (p 0.39) common, −0.55 (p 0.07) rare |
+| A6 sanity | PASS | L4H11 ≥ 0.949, placebo ≤ 1 head per group (2 groups with 1) |
+
+Decomposition of the late-layer nl interaction (pooled; it sums exactly):
+
+| base | nl | PV | VO | PO (non-adjacent) | triple |
+|---|---|---|---|---|---|
+| common | +0.0270 | +0.0092 (34%) | +0.0125 (46%) | +0.0013 (5%) | +0.0040 (15%) |
+| rare | +0.0183 | +0.0041 (22%) | +0.0112 (61%) | +0.0016 (9%) | +0.0014 (8%) |
+
+What it shows: the extra sink is mostly pairwise between adjacent tokens. The verb–object pair (the one ending at
+q−1) carries about half, the pronoun–verb pair a quarter to a third, the non-adjacent pair little, and the
+three-way term little. So the late heads respond to locally coherent adjacent pairs, strongest for the pair right
+before the query, not to the 3-token structure as such. More familiar verb–object pairs tend to add more, but with
+12 phrases that is not significant.
+
+### Test C results, adjective–noun–verb (`results/20261004-155651_exp2`)
+
+Checks all PASS (replication r 0.9996 / 0.9996; TL vs HF max |Δ| 6.0e-05, decisions 100%). Uses the vacuous-pass fix.
+
+| id | result | what happened |
+|---|---|---|
+| C1 nl interaction > 0 | PASS | +0.0216 [+0.0184, +0.0246] common, +0.0122 [+0.0105, +0.0140] rare; 12/12 phrases in both |
+| C2 nl − shuffled > 0 | PASS | +0.0176 [+0.0143, +0.0209] common; +0.0037 [+0.0002, +0.0074] rare (barely) |
+| C3 ≥ 8/12 phrases | FAIL (rare) | 12/12 common; 6/12 rare, 2 with the opposite sign |
+| C4 logit scale | FAIL (rare) | common +0.098 [+0.079, +0.117]; rare +0.018 [−0.005, +0.041] |
+| C5 sanity | PASS | |
+
+What it shows: "the phrase adds beyond its tokens" generalizes to this template in both base classes. The order
+effect generalizes on common bases but is weak and inconsistent on rare bases, where the scrambled versions also add
+sink (pooled +0.0085, 9/12 positive).
+
+Post-hoc check (not pre-registered): several scrambled orders still end in a plausible adjective + noun pair
+(" big bark", " wild run"), so the pair before the query might explain the rare-base weakness. It does not, as
+measured: the scrambled versions' interaction does not track the familiarity of their final pair (ρ +0.22 common,
++0.08 rare). The rare-base weakness stays unexplained; the order effect has been weaker on rare bases in every run
+so far.
+
+### Test C results, preposition–determiner–noun (`results/20261004-161908_exp2`)
+
+Checks all PASS (replication r 0.9993 / 0.9995; TL vs HF max |Δ| 7.0e-05, decisions 100%; max |Δ rank-biserial|
+0.12, again on heads whose per-row differences are at float-noise level).
+
+| id | result | what happened |
+|---|---|---|
+| C1 nl interaction > 0 | PASS | +0.0093 [+0.0040, +0.0149] common (7/12 phrases), +0.0327 [+0.0239, +0.0409] rare (11/12) |
+| C2 nl − shuffled > 0 | PASS | +0.0131 [+0.0093, +0.0169] common, +0.0168 [+0.0117, +0.0214] rare |
+| C3 ≥ 8/12 phrases | PASS | 11/12 in both, none opposite |
+| C4 logit scale | PASS | +0.076 / +0.099 |
+| C5 sanity | PASS | |
+
+Expectation check: prep was expected to give smaller effects. True on common bases (nl +0.009), false on rare
+bases (nl +0.033, the largest of any template).
+
+## Summary after Tests A and C
+
+Late-layer (L6–11) pooled interaction, sink_mass (n = phrases with their own CI excluding 0):
+
+| template | base | nl interaction | nl − shuffled | phrases with nl − shuffled > 0 |
+|---|---|---|---|---|
+| pronoun–verb–object (iteration 3) | common | +0.027 | +0.025 | 12/12 |
+| pronoun–verb–object | rare | +0.018 | +0.010 | 12/12 |
+| adjective–noun–verb | common | +0.022 | +0.018 | 12/12 |
+| adjective–noun–verb | rare | +0.012 | +0.004 | 6/12 |
+| preposition–determiner–noun | common | +0.009 | +0.013 | 11/12 |
+| preposition–determiner–noun | rare | +0.033 | +0.017 | 11/12 |
+
+1. Generalization (Test C): in every template × base cell, the grammatical phrase raises late-layer sink beyond its
+   single tokens and beyond its scrambled version (pooled CIs exclude 0 in all six). Per-phrase consistency fails
+   in one cell (adjective–noun–verb, rare bases: 6/12, and not significant on the logit scale).
+2. Mechanism shape (Test A): the extra sink is mostly pairwise between adjacent tokens. The pair ending right before
+   the query carries about half, the earlier adjacent pair a quarter to a third, the non-adjacent pair and the
+   three-way term little.
+3. Unexplained heterogeneity: which base class shows the larger effect depends on the template (adjective–noun–verb
+   stronger on common bases, preposition–determiner–noun on rare bases). The post-hoc final-pair-familiarity
+   explanation for the adjective–noun–verb rare cell did not hold.
+4. Updated working hypothesis: late heads rest on BOS more when the tokens right before the query form locally
+   coherent adjacent pairs, the pair ending at q−1 most of all. It is not explained by the model's surprisal of the
+   tokens (iterations 2–3) and only weakly, non-significantly, by pair familiarity (Test A).

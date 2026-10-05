@@ -1,0 +1,38 @@
+[
+  {
+    "id": "C1",
+    "kind": "pooled_term_sign",
+    "verdict": "PASS",
+    "detail": "common: +0.0216 [+0.0184, +0.0246] over 12 phrases; rare: +0.0122 [+0.0105, +0.0140] over 12 phrases"
+  },
+  {
+    "id": "C2",
+    "kind": "pooled_term_sign",
+    "verdict": "PASS",
+    "detail": "common: +0.0176 [+0.0143, +0.0209] over 12 phrases; rare: +0.0037 [+0.0002, +0.0074] over 12 phrases"
+  },
+  {
+    "id": "C3",
+    "kind": "phrase_count",
+    "verdict": "FAIL",
+    "detail": "common: 12/12 phrases (need 8); opposite sign 0; rare: 6/12 phrases (need 8); opposite sign 2"
+  },
+  {
+    "id": "C4",
+    "kind": "pooled_term_sign",
+    "verdict": "FAIL",
+    "detail": "common: +0.0983 [+0.0789, +0.1168] over 12 phrases; rare: +0.0181 [-0.0046, +0.0413] over 12 phrases"
+  },
+  {
+    "id": "C5a",
+    "kind": "controls",
+    "verdict": "PASS",
+    "detail": "L4H11 prev_mass: min over cells 0.957 (floor 0.94); L5H1 sink_mass: min over cells 0.960 (floor 0.9); L0H1 mode Self in 240/240 cells"
+  },
+  {
+    "id": "C5b",
+    "kind": "few_meaningful",
+    "verdict": "PASS",
+    "detail": "common/babies/near: 0 (limit 1); common/bells/near: 0 (limit 1); common/birds/near: 0 (limit 1); common/cars/near: 0 (limit 1); common/dogs/near: 0 (limit 1); common/horses/near: 0 (limit 1); common/kids/near: 1 (limit 1): L11H11; common/men/near: 0 (limit 1); common/stars/near: 0 (limit 1); common/trees/near: 0 (limit 1); common/water/near: 0 (limit 1); common/wind/near: 1 (limit 1): L5H6; rare/babies/near: 1 (limit 1): L5H6; rare/bells/near: 0 (limit 1); rare/birds/near: 0 (limit 1); rare/cars/near: 0 (limit 1); rare/dogs/near: 0 (limit 1); rare/horses/near: 0 (limit 1); rare/kids/near: 1 (limit 1): L3H3; rare/men/near: 0 (limit 1); rare/stars/near: 0 (limit 1); rare/trees/near: 0 (limit 1); rare/water/near: 0 (limit 1); rare/wind/near: 0 (limit 1)"
+  }
+]

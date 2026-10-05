@@ -226,6 +226,12 @@ def write_report(path: Path, cfg: dict[str, Any], run_id: str, R: dict[str, Any]
             rows.append(r)
         w("Late-layer interaction for every phrase (* = row-bootstrap CI excludes 0):\n")
         w(md_table(pd.DataFrame(rows)) + "\n")
+        if "familiarity" in extra:
+            w("Pair familiarity (−log p of the pair's second token given BOS + its first, TL; lower = more familiar) "
+              "against each pair's interaction, across phrases:\n")
+            w(md_table(extra["familiarity"], floatfmt="+.3f") + "\n")
+            fam = extra["pair_familiarity"].assign(phrase=lambda d: d["phrase"].map(lambda n: cfg["phrases"][n]["text"].strip()))
+            w(md_table(fam.pivot(index="phrase", columns="label", values="nll").reset_index(), floatfmt=".2f") + "\n")
 
     w("## Figures\n")
     for f in R["figures"]:

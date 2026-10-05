@@ -1,0 +1,13 @@
+{
+  "condition": "base_common_51a276874c",
+  "id_range": [
+    0,
+    742
+  ],
+  "n": 500,
+  "seq_len": 32,
+  "base_seed": 0,
+  "seed": 1199749329,
+  "without_replacement": true,
+  "sha256": "f573d2ccd04cdc4658bd5a95b8bbd92de073e462a86528bc2042454886edcc71"
+}

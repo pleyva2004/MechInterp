@@ -1,0 +1,295 @@
+# Experiment 2: does a short natural-language phrase written into random tokens change final-token attention,
+# and is that change about the phrase being language, about its particular tokens, or about their surface form?
+# The ONLY source of parameters for exp2. Positions are model-input indices (BOS at 0, random tokens at 1..32,
+# final/query token at 32). Test A (which part of the phrase carries the effect; exp2/NEXT_TESTS.md). Same phrases and bases as iteration 3; see exp2/LOOP_LOG.md.
+model: gpt2-small
+seq_len: 32                     # random tokens, excluding BOS
+bos_token_id: 50256
+query_position: -1              # final token; it is never overwritten, so it stays the base row's random token
+diffuse_threshold: 0.2
+batch_size: 250
+seed: 0
+device: cpu
+dtype: float32
+
+backends:
+  transformer_lens: {model_name: gpt2-small}
+  huggingface:      {model_name: gpt2, attn_implementation: eager}
+primary_backend: transformer_lens
+
+paths:
+  sequences_dir: data/sequences/exp2
+  results_dir: results
+
+# Base rows: random ids, no repeats within a row, never containing any phrase id (a repeat would trigger
+# duplicate-token / induction heads). Byte tokens (0-255) are left out entirely (exp1: they drive their own heads).
+bases:
+  rare:   [1000, 39999]         # exp1 condition A
+  common: [256, 999]            # exp1 condition C
+n_bases: 500                    # per base class; 12 phrases x 9 variants each
+
+# Each phrase: ids are authoritative and written straight into the id array (text is only checked to tokenize to
+# them). shuffled = VERB PRON OBJ: same ids, last id kept in place (position 31 identical in nl and shuffled).
+phrases:
+  sushi: {text: " I like sushi", ids: [314, 588, 36324], shuffled: [588, 314, 36324]}
+  water: {text: " we need water", ids: [356, 761, 1660], shuffled: [761, 356, 1660]}
+  pizza: {text: " she ate pizza", ids: [673, 15063, 14256], shuffled: [15063, 673, 14256]}
+  music: {text: " they love music", ids: [484, 1842, 2647], shuffled: [1842, 484, 2647]}
+  coffee: {text: " he drinks coffee", ids: [339, 11758, 6891], shuffled: [11758, 339, 6891]}
+  chess: {text: " you play chess", ids: [345, 711, 19780], shuffled: [711, 345, 19780]}
+  rain: {text: " I hate rain", ids: [314, 5465, 6290], shuffled: [5465, 314, 6290]}
+  cars: {text: " we sell cars", ids: [356, 3677, 5006], shuffled: [3677, 356, 5006]}
+  songs: {text: " she wrote songs", ids: [673, 2630, 7259], shuffled: [2630, 673, 7259]}
+  rice: {text: " they grow rice", ids: [484, 1663, 11464], shuffled: [1663, 484, 11464]}
+  bikes: {text: " he fixed bikes", ids: [339, 5969, 16715], shuffled: [5969, 339, 16715]}
+  money: {text: " you want money", ids: [345, 765, 1637], shuffled: [765, 345, 1637]}
+
+placements:
+  near: [29, 30, 31]
+
+# Each phrase token alone at each slot it occupies in nl or shuffled; the base row everywhere else.
+custom_variants:
+  "sushi:I@29": {phrase: sushi, placement: near, writes: [[29, 314]]}
+  "sushi:like@30": {phrase: sushi, placement: near, writes: [[30, 588]]}
+  "sushi:sushi@31": {phrase: sushi, placement: near, writes: [[31, 36324]]}
+  "sushi:like@29": {phrase: sushi, placement: near, writes: [[29, 588]]}
+  "sushi:I@30": {phrase: sushi, placement: near, writes: [[30, 314]]}
+  "water:we@29": {phrase: water, placement: near, writes: [[29, 356]]}
+  "water:need@30": {phrase: water, placement: near, writes: [[30, 761]]}
+  "water:water@31": {phrase: water, placement: near, writes: [[31, 1660]]}
+  "water:need@29": {phrase: water, placement: near, writes: [[29, 761]]}
+  "water:we@30": {phrase: water, placement: near, writes: [[30, 356]]}
+  "pizza:she@29": {phrase: pizza, placement: near, writes: [[29, 673]]}
+  "pizza:ate@30": {phrase: pizza, placement: near, writes: [[30, 15063]]}
+  "pizza:pizza@31": {phrase: pizza, placement: near, writes: [[31, 14256]]}
+  "pizza:ate@29": {phrase: pizza, placement: near, writes: [[29, 15063]]}
+  "pizza:she@30": {phrase: pizza, placement: near, writes: [[30, 673]]}
+  "music:they@29": {phrase: music, placement: near, writes: [[29, 484]]}
+  "music:love@30": {phrase: music, placement: near, writes: [[30, 1842]]}
+  "music:music@31": {phrase: music, placement: near, writes: [[31, 2647]]}
+  "music:love@29": {phrase: music, placement: near, writes: [[29, 1842]]}
+  "music:they@30": {phrase: music, placement: near, writes: [[30, 484]]}
+  "coffee:he@29": {phrase: coffee, placement: near, writes: [[29, 339]]}
+  "coffee:drinks@30": {phrase: coffee, placement: near, writes: [[30, 11758]]}
+  "coffee:coffee@31": {phrase: coffee, placement: near, writes: [[31, 6891]]}
+  "coffee:drinks@29": {phrase: coffee, placement: near, writes: [[29, 11758]]}
+  "coffee:he@30": {phrase: coffee, placement: near, writes: [[30, 339]]}
+  "chess:you@29": {phrase: chess, placement: near, writes: [[29, 345]]}
+  "chess:play@30": {phrase: chess, placement: near, writes: [[30, 711]]}
+  "chess:chess@31": {phrase: chess, placement: near, writes: [[31, 19780]]}
+  "chess:play@29": {phrase: chess, placement: near, writes: [[29, 711]]}
+  "chess:you@30": {phrase: chess, placement: near, writes: [[30, 345]]}
+  "rain:I@29": {phrase: rain, placement: near, writes: [[29, 314]]}
+  "rain:hate@30": {phrase: rain, placement: near, writes: [[30, 5465]]}
+  "rain:rain@31": {phrase: rain, placement: near, writes: [[31, 6290]]}
+  "rain:hate@29": {phrase: rain, placement: near, writes: [[29, 5465]]}
+  "rain:I@30": {phrase: rain, placement: near, writes: [[30, 314]]}
+  "cars:we@29": {phrase: cars, placement: near, writes: [[29, 356]]}
+  "cars:sell@30": {phrase: cars, placement: near, writes: [[30, 3677]]}
+  "cars:cars@31": {phrase: cars, placement: near, writes: [[31, 5006]]}
+  "cars:sell@29": {phrase: cars, placement: near, writes: [[29, 3677]]}
+  "cars:we@30": {phrase: cars, placement: near, writes: [[30, 356]]}
+  "songs:she@29": {phrase: songs, placement: near, writes: [[29, 673]]}
+  "songs:wrote@30": {phrase: songs, placement: near, writes: [[30, 2630]]}
+  "songs:songs@31": {phrase: songs, placement: near, writes: [[31, 7259]]}
+  "songs:wrote@29": {phrase: songs, placement: near, writes: [[29, 2630]]}
+  "songs:she@30": {phrase: songs, placement: near, writes: [[30, 673]]}
+  "rice:they@29": {phrase: rice, placement: near, writes: [[29, 484]]}
+  "rice:grow@30": {phrase: rice, placement: near, writes: [[30, 1663]]}
+  "rice:rice@31": {phrase: rice, placement: near, writes: [[31, 11464]]}
+  "rice:grow@29": {phrase: rice, placement: near, writes: [[29, 1663]]}
+  "rice:they@30": {phrase: rice, placement: near, writes: [[30, 484]]}
+  "bikes:he@29": {phrase: bikes, placement: near, writes: [[29, 339]]}
+  "bikes:fixed@30": {phrase: bikes, placement: near, writes: [[30, 5969]]}
+  "bikes:bikes@31": {phrase: bikes, placement: near, writes: [[31, 16715]]}
+  "bikes:fixed@29": {phrase: bikes, placement: near, writes: [[29, 5969]]}
+  "bikes:he@30": {phrase: bikes, placement: near, writes: [[30, 339]]}
+  "money:you@29": {phrase: money, placement: near, writes: [[29, 345]]}
+  "money:want@30": {phrase: money, placement: near, writes: [[30, 765]]}
+  "money:money@31": {phrase: money, placement: near, writes: [[31, 1637]]}
+  "money:want@29": {phrase: money, placement: near, writes: [[29, 765]]}
+  "money:you@30": {phrase: money, placement: near, writes: [[30, 345]]}
+# Test A: pairs of phrase tokens, the third slot keeps its base token
+  "sushi:I@29+like@30": {phrase: sushi, placement: near, writes: [[29, 314], [30, 588]]}
+  "sushi:like@30+sushi@31": {phrase: sushi, placement: near, writes: [[30, 588], [31, 36324]]}
+  "sushi:I@29+sushi@31": {phrase: sushi, placement: near, writes: [[29, 314], [31, 36324]]}
+  "water:we@29+need@30": {phrase: water, placement: near, writes: [[29, 356], [30, 761]]}
+  "water:need@30+water@31": {phrase: water, placement: near, writes: [[30, 761], [31, 1660]]}
+  "water:we@29+water@31": {phrase: water, placement: near, writes: [[29, 356], [31, 1660]]}
+  "pizza:she@29+ate@30": {phrase: pizza, placement: near, writes: [[29, 673], [30, 15063]]}
+  "pizza:ate@30+pizza@31": {phrase: pizza, placement: near, writes: [[30, 15063], [31, 14256]]}
+  "pizza:she@29+pizza@31": {phrase: pizza, placement: near, writes: [[29, 673], [31, 14256]]}
+  "music:they@29+love@30": {phrase: music, placement: near, writes: [[29, 484], [30, 1842]]}
+  "music:love@30+music@31": {phrase: music, placement: near, writes: [[30, 1842], [31, 2647]]}
+  "music:they@29+music@31": {phrase: music, placement: near, writes: [[29, 484], [31, 2647]]}
+  "coffee:he@29+drinks@30": {phrase: coffee, placement: near, writes: [[29, 339], [30, 11758]]}
+  "coffee:drinks@30+coffee@31": {phrase: coffee, placement: near, writes: [[30, 11758], [31, 6891]]}
+  "coffee:he@29+coffee@31": {phrase: coffee, placement: near, writes: [[29, 339], [31, 6891]]}
+  "chess:you@29+play@30": {phrase: chess, placement: near, writes: [[29, 345], [30, 711]]}
+  "chess:play@30+chess@31": {phrase: chess, placement: near, writes: [[30, 711], [31, 19780]]}
+  "chess:you@29+chess@31": {phrase: chess, placement: near, writes: [[29, 345], [31, 19780]]}
+  "rain:I@29+hate@30": {phrase: rain, placement: near, writes: [[29, 314], [30, 5465]]}
+  "rain:hate@30+rain@31": {phrase: rain, placement: near, writes: [[30, 5465], [31, 6290]]}
+  "rain:I@29+rain@31": {phrase: rain, placement: near, writes: [[29, 314], [31, 6290]]}
+  "cars:we@29+sell@30": {phrase: cars, placement: near, writes: [[29, 356], [30, 3677]]}
+  "cars:sell@30+cars@31": {phrase: cars, placement: near, writes: [[30, 3677], [31, 5006]]}
+  "cars:we@29+cars@31": {phrase: cars, placement: near, writes: [[29, 356], [31, 5006]]}
+  "songs:she@29+wrote@30": {phrase: songs, placement: near, writes: [[29, 673], [30, 2630]]}
+  "songs:wrote@30+songs@31": {phrase: songs, placement: near, writes: [[30, 2630], [31, 7259]]}
+  "songs:she@29+songs@31": {phrase: songs, placement: near, writes: [[29, 673], [31, 7259]]}
+  "rice:they@29+grow@30": {phrase: rice, placement: near, writes: [[29, 484], [30, 1663]]}
+  "rice:grow@30+rice@31": {phrase: rice, placement: near, writes: [[30, 1663], [31, 11464]]}
+  "rice:they@29+rice@31": {phrase: rice, placement: near, writes: [[29, 484], [31, 11464]]}
+  "bikes:he@29+fixed@30": {phrase: bikes, placement: near, writes: [[29, 339], [30, 5969]]}
+  "bikes:fixed@30+bikes@31": {phrase: bikes, placement: near, writes: [[30, 5969], [31, 16715]]}
+  "bikes:he@29+bikes@31": {phrase: bikes, placement: near, writes: [[29, 339], [31, 16715]]}
+  "money:you@29+want@30": {phrase: money, placement: near, writes: [[29, 345], [30, 765]]}
+  "money:want@30+money@31": {phrase: money, placement: near, writes: [[30, 765], [31, 1637]]}
+  "money:you@29+money@31": {phrase: money, placement: near, writes: [[29, 345], [31, 1637]]}
+
+# Matched controls: per row, one random id per phrase token with the same values of these features and from the
+# same id class as that token (exp1ext: leading space and byte-ness predicted per-token effects best).
+match_features: [leading_space, is_alpha, is_capitalized]
+token_classes:
+  common: [256, 999]
+  rare:   [1000, 39999]
+
+# Paired contrasts, a - b per row. total = order + identity + form exactly (on means).
+contrasts:
+  total:    [nl, none]          # inserting the phrase at all
+  order:    [nl, shuffled]      # word order / grammaticality, same tokens
+  identity: [shuffled, matched] # these particular tokens vs same-form random tokens
+  form:     [matched, none]     # same-form words vs the base class's random tokens
+  placebo:  [matched, matched_b] # two exchangeable random draws: should show nothing (noise floor)
+
+# interaction per row = (combo - none) - sum(part - none); 0 under exact additivity of the single-token effects
+additivity:
+  metrics: [sink_mass, sink_logit]   # sink_logit = log(p / (1 - p)): checks the bounded-scale objection
+  combos:
+    "sushi:nl":       {phrase: sushi, placement: near, variant: nl, parts: ["sushi:I@29", "sushi:like@30", "sushi:sushi@31"]}
+    "sushi:shuffled": {phrase: sushi, placement: near, variant: shuffled, parts: ["sushi:like@29", "sushi:I@30", "sushi:sushi@31"]}
+    "water:nl":       {phrase: water, placement: near, variant: nl, parts: ["water:we@29", "water:need@30", "water:water@31"]}
+    "water:shuffled": {phrase: water, placement: near, variant: shuffled, parts: ["water:need@29", "water:we@30", "water:water@31"]}
+    "pizza:nl":       {phrase: pizza, placement: near, variant: nl, parts: ["pizza:she@29", "pizza:ate@30", "pizza:pizza@31"]}
+    "pizza:shuffled": {phrase: pizza, placement: near, variant: shuffled, parts: ["pizza:ate@29", "pizza:she@30", "pizza:pizza@31"]}
+    "music:nl":       {phrase: music, placement: near, variant: nl, parts: ["music:they@29", "music:love@30", "music:music@31"]}
+    "music:shuffled": {phrase: music, placement: near, variant: shuffled, parts: ["music:love@29", "music:they@30", "music:music@31"]}
+    "coffee:nl":       {phrase: coffee, placement: near, variant: nl, parts: ["coffee:he@29", "coffee:drinks@30", "coffee:coffee@31"]}
+    "coffee:shuffled": {phrase: coffee, placement: near, variant: shuffled, parts: ["coffee:drinks@29", "coffee:he@30", "coffee:coffee@31"]}
+    "chess:nl":       {phrase: chess, placement: near, variant: nl, parts: ["chess:you@29", "chess:play@30", "chess:chess@31"]}
+    "chess:shuffled": {phrase: chess, placement: near, variant: shuffled, parts: ["chess:play@29", "chess:you@30", "chess:chess@31"]}
+    "rain:nl":       {phrase: rain, placement: near, variant: nl, parts: ["rain:I@29", "rain:hate@30", "rain:rain@31"]}
+    "rain:shuffled": {phrase: rain, placement: near, variant: shuffled, parts: ["rain:hate@29", "rain:I@30", "rain:rain@31"]}
+    "cars:nl":       {phrase: cars, placement: near, variant: nl, parts: ["cars:we@29", "cars:sell@30", "cars:cars@31"]}
+    "cars:shuffled": {phrase: cars, placement: near, variant: shuffled, parts: ["cars:sell@29", "cars:we@30", "cars:cars@31"]}
+    "songs:nl":       {phrase: songs, placement: near, variant: nl, parts: ["songs:she@29", "songs:wrote@30", "songs:songs@31"]}
+    "songs:shuffled": {phrase: songs, placement: near, variant: shuffled, parts: ["songs:wrote@29", "songs:she@30", "songs:songs@31"]}
+    "rice:nl":       {phrase: rice, placement: near, variant: nl, parts: ["rice:they@29", "rice:grow@30", "rice:rice@31"]}
+    "rice:shuffled": {phrase: rice, placement: near, variant: shuffled, parts: ["rice:grow@29", "rice:they@30", "rice:rice@31"]}
+    "bikes:nl":       {phrase: bikes, placement: near, variant: nl, parts: ["bikes:he@29", "bikes:fixed@30", "bikes:bikes@31"]}
+    "bikes:shuffled": {phrase: bikes, placement: near, variant: shuffled, parts: ["bikes:fixed@29", "bikes:he@30", "bikes:bikes@31"]}
+    "money:nl":       {phrase: money, placement: near, variant: nl, parts: ["money:you@29", "money:want@30", "money:money@31"]}
+    "money:shuffled": {phrase: money, placement: near, variant: shuffled, parts: ["money:want@29", "money:you@30", "money:money@31"]}
+    "sushi:PV": {phrase: sushi, placement: near, variant: "sushi:I@29+like@30", label: PV, parts: ["sushi:I@29", "sushi:like@30"]}
+    "sushi:VO": {phrase: sushi, placement: near, variant: "sushi:like@30+sushi@31", label: VO, parts: ["sushi:like@30", "sushi:sushi@31"]}
+    "sushi:PO": {phrase: sushi, placement: near, variant: "sushi:I@29+sushi@31", label: PO, parts: ["sushi:I@29", "sushi:sushi@31"]}
+    "water:PV": {phrase: water, placement: near, variant: "water:we@29+need@30", label: PV, parts: ["water:we@29", "water:need@30"]}
+    "water:VO": {phrase: water, placement: near, variant: "water:need@30+water@31", label: VO, parts: ["water:need@30", "water:water@31"]}
+    "water:PO": {phrase: water, placement: near, variant: "water:we@29+water@31", label: PO, parts: ["water:we@29", "water:water@31"]}
+    "pizza:PV": {phrase: pizza, placement: near, variant: "pizza:she@29+ate@30", label: PV, parts: ["pizza:she@29", "pizza:ate@30"]}
+    "pizza:VO": {phrase: pizza, placement: near, variant: "pizza:ate@30+pizza@31", label: VO, parts: ["pizza:ate@30", "pizza:pizza@31"]}
+    "pizza:PO": {phrase: pizza, placement: near, variant: "pizza:she@29+pizza@31", label: PO, parts: ["pizza:she@29", "pizza:pizza@31"]}
+    "music:PV": {phrase: music, placement: near, variant: "music:they@29+love@30", label: PV, parts: ["music:they@29", "music:love@30"]}
+    "music:VO": {phrase: music, placement: near, variant: "music:love@30+music@31", label: VO, parts: ["music:love@30", "music:music@31"]}
+    "music:PO": {phrase: music, placement: near, variant: "music:they@29+music@31", label: PO, parts: ["music:they@29", "music:music@31"]}
+    "coffee:PV": {phrase: coffee, placement: near, variant: "coffee:he@29+drinks@30", label: PV, parts: ["coffee:he@29", "coffee:drinks@30"]}
+    "coffee:VO": {phrase: coffee, placement: near, variant: "coffee:drinks@30+coffee@31", label: VO, parts: ["coffee:drinks@30", "coffee:coffee@31"]}
+    "coffee:PO": {phrase: coffee, placement: near, variant: "coffee:he@29+coffee@31", label: PO, parts: ["coffee:he@29", "coffee:coffee@31"]}
+    "chess:PV": {phrase: chess, placement: near, variant: "chess:you@29+play@30", label: PV, parts: ["chess:you@29", "chess:play@30"]}
+    "chess:VO": {phrase: chess, placement: near, variant: "chess:play@30+chess@31", label: VO, parts: ["chess:play@30", "chess:chess@31"]}
+    "chess:PO": {phrase: chess, placement: near, variant: "chess:you@29+chess@31", label: PO, parts: ["chess:you@29", "chess:chess@31"]}
+    "rain:PV": {phrase: rain, placement: near, variant: "rain:I@29+hate@30", label: PV, parts: ["rain:I@29", "rain:hate@30"]}
+    "rain:VO": {phrase: rain, placement: near, variant: "rain:hate@30+rain@31", label: VO, parts: ["rain:hate@30", "rain:rain@31"]}
+    "rain:PO": {phrase: rain, placement: near, variant: "rain:I@29+rain@31", label: PO, parts: ["rain:I@29", "rain:rain@31"]}
+    "cars:PV": {phrase: cars, placement: near, variant: "cars:we@29+sell@30", label: PV, parts: ["cars:we@29", "cars:sell@30"]}
+    "cars:VO": {phrase: cars, placement: near, variant: "cars:sell@30+cars@31", label: VO, parts: ["cars:sell@30", "cars:cars@31"]}
+    "cars:PO": {phrase: cars, placement: near, variant: "cars:we@29+cars@31", label: PO, parts: ["cars:we@29", "cars:cars@31"]}
+    "songs:PV": {phrase: songs, placement: near, variant: "songs:she@29+wrote@30", label: PV, parts: ["songs:she@29", "songs:wrote@30"]}
+    "songs:VO": {phrase: songs, placement: near, variant: "songs:wrote@30+songs@31", label: VO, parts: ["songs:wrote@30", "songs:songs@31"]}
+    "songs:PO": {phrase: songs, placement: near, variant: "songs:she@29+songs@31", label: PO, parts: ["songs:she@29", "songs:songs@31"]}
+    "rice:PV": {phrase: rice, placement: near, variant: "rice:they@29+grow@30", label: PV, parts: ["rice:they@29", "rice:grow@30"]}
+    "rice:VO": {phrase: rice, placement: near, variant: "rice:grow@30+rice@31", label: VO, parts: ["rice:grow@30", "rice:rice@31"]}
+    "rice:PO": {phrase: rice, placement: near, variant: "rice:they@29+rice@31", label: PO, parts: ["rice:they@29", "rice:rice@31"]}
+    "bikes:PV": {phrase: bikes, placement: near, variant: "bikes:he@29+fixed@30", label: PV, parts: ["bikes:he@29", "bikes:fixed@30"]}
+    "bikes:VO": {phrase: bikes, placement: near, variant: "bikes:fixed@30+bikes@31", label: VO, parts: ["bikes:fixed@30", "bikes:bikes@31"]}
+    "bikes:PO": {phrase: bikes, placement: near, variant: "bikes:he@29+bikes@31", label: PO, parts: ["bikes:he@29", "bikes:bikes@31"]}
+    "money:PV": {phrase: money, placement: near, variant: "money:you@29+want@30", label: PV, parts: ["money:you@29", "money:want@30"]}
+    "money:VO": {phrase: money, placement: near, variant: "money:want@30+money@31", label: VO, parts: ["money:want@30", "money:money@31"]}
+    "money:PO": {phrase: money, placement: near, variant: "money:you@29+money@31", label: PO, parts: ["money:you@29", "money:money@31"]}
+  differences: [[nl, shuffled]]
+  linear_terms:                 # three-way term = nl interaction minus the three pair interactions
+    triple: {nl: 1, PV: -1, VO: -1, PO: -1}
+  pooled_differences: [[VO, PV], [VO, PO]]
+  familiarity: {PV: [0, 1], VO: [1, 2]}   # phrase id indices of the adjacent pairs scored by -log p(second | BOS first)
+depth_groups:
+  early: [0, 1, 2, 3, 4, 5]
+  late:  [6, 7, 8, 9, 10, 11]
+
+# The model's own -log p(token | everything before it), TL only, summed over the slot positions; regressed against
+# the additivity metric within each row across every variant. query_position_nll is recorded but not used in checks.
+surprisal:
+  slot_positions: [29, 30, 31]
+  batch_size: 50                # full-vocabulary logits are built only at these positions
+
+# slot_mass = attention on the slot positions; slot_logratio = log(slot_mass / sink_mass), which cancels the
+# softmax normalizer (so it is not moved just because some other key gained or lost weight).
+metrics: [sink_mass, slot_mass, prev_mass, entropy]
+slot_logratio_eps: 1.0e-12      # floor on both masses inside the log
+sink_logit_eps: 1.0e-6          # clip sink_mass to [eps, 1 - eps] before the logit
+min_effect:                     # "meaningful" = BH-significant AND |mean difference| >= this
+  sink_mass: 0.02
+  slot_mass: 0.02
+  slot_logratio: 0.1
+  prev_mass: 0.02
+  entropy: 0.05
+
+tracked_heads_csv: results/20260928-135243_exp1ext/tracked_heads.csv   # exp1ext's rule-selected heads + controls
+
+replication:                    # the `none` rows should reproduce exp1's per-head mean sink_mass
+  rare:   {run: results/20260927-235708_exp1, condition: A_rare}
+  common: {run: results/20260928-004336_exp1, condition: C_common_clean}
+  min_r: 0.99
+
+stats:
+  bootstrap_iters: 1000
+  bootstrap_ci: 0.95
+  bootstrap_seed: 0
+  fdr_q: 0.05                   # BH over every (base, phrase, placement, contrast, head) test of one metric
+
+validation:
+  row_sum_atol: 1.0e-4
+  determinism_n: 50
+  cross_backend_atol: 1.0e-4
+
+# Pre-registered checks, evaluated automatically against exp2/PREDICTIONS_testA.md (written before this test's run).
+predictions_file: exp2/PREDICTIONS_testA.md
+predictions:
+  - {id: A1, kind: pooled_term_sign, term: VO, depth: late, sign: "+"}
+  - {id: A2a, kind: pooled_term_sign, term: "VO−PV", depth: late, sign: "+"}
+  - {id: A2b, kind: pooled_term_sign, term: "VO−PO", depth: late, sign: "+"}
+  - {id: A3, kind: pooled_ratio_at_least, numerator: VO, denominator: nl, min_ratio: 0.5, depth: late}
+  - {id: A4, kind: pooled_abs_less, term: triple, than: VO, depth: late}
+  - {id: A5, kind: familiarity_rho_sign, label: VO, depth: late, sign: "-"}
+  - id: A6a
+    kind: controls
+    min_mean: {L4H11: [prev_mass, 0.94], L5H1: [sink_mass, 0.90]}
+    mode_label: {L0H1: Self}
+  - id: A6b
+    kind: few_meaningful
+    contrast: placebo
+    metric: sink_mass
+    max_heads: {near: 1}
+
+figures:
+  tokenizer: gpt2               # decoding ids for features and display only, never to build model input
+  per_phrase: [sushi]           # per-phrase heatmaps / forests / tables only for these; the rest are pooled

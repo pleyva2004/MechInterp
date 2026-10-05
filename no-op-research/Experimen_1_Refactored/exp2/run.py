@@ -25,7 +25,7 @@ from exp1.runlog import make_run_dir, save_config_copy, save_versions
 from exp1.sequences import prepend_bos, sequences_hash
 from exp1.validation import check_determinism
 from exp1ext.features import token_features
-from exp2.analysis import (additivity_tables, cell_summary, phrase_level, check_prediction, contrast_table, pool_over_phrases,
+from exp2.analysis import (additivity_tables, cell_summary, familiarity_table, phrase_level, check_prediction, contrast_table, pool_over_phrases,
                            surprisal_slopes, tv_table)
 from exp2.design import (VARIANTS, build_custom, build_variants, cached_base_block, check_custom, check_variants, derive_seed,
                          matched_pools, positions_to_slots)
@@ -115,6 +115,16 @@ def slot_nll(model, tokens: np.ndarray, positions: list[int], bos_id: int, batch
     return np.concatenate(out)
 
 
+def pair_nll(model, pairs: list[tuple[int, int]], bos_id: int) -> np.ndarray:
+    """-log p(b | BOS a) for each (a, b): how familiar the adjacent pair is to the model on its own. TL only."""
+    import torch
+
+    x = torch.tensor([[bos_id, a, b] for a, b in pairs])
+    with torch.inference_mode():
+        logp = torch.log_softmax(model(x, return_type="logits")[:, 1, :].double(), dim=-1)
+    return -logp[torch.arange(len(pairs)), x[:, 2]].numpy()
+
+
 def group_variants(cfg: dict[str, Any], phrase: str, placement: str) -> list[str]:
     return list(VARIANTS) + [v for v, spec in cfg.get("custom_variants", {}).items()
                              if spec["phrase"] == phrase and spec["placement"] == placement]
@@ -181,6 +191,7 @@ def main(argv: list[str] | None = None) -> Path:
     raw: dict[str, dict[tuple, dict[str, Any]]] = {}
     checks: dict[str, Any] = {"row_sum_dev": {}, "determinism": {}}
     nll_raw: dict[tuple, np.ndarray] = {}  # [n, slots + query] per sequence set, TL
+    pair_fam: pd.DataFrame | None = None
     for backend in backends:
         bcfg = cfg["backends"][backend]
         model = load_model(backend, bcfg["model_name"], cfg["device"], cfg["dtype"], bcfg.get("attn_implementation"))
@@ -200,6 +211,13 @@ def main(argv: list[str] | None = None) -> Path:
                 checks["determinism"][backend] = check_determinism(model, prepend_bos(tokens, cfg["bos_token_id"]), attn,
                                                                    v["determinism_n"], cfg["batch_size"], cfg["query_position"])
         checks["row_sum_dev"][backend] = dev
+        fam_spec = cfg.get("additivity", {}).get("familiarity")
+        if backend == "transformer_lens" and fam_spec:
+            pairs = [(name, label, ph["ids"][i], ph["ids"][j]) for name, ph in cfg["phrases"].items()
+                     for label, (i, j) in fam_spec.items()]
+            nll_pairs = pair_nll(model, [(a, b) for _, _, a, b in pairs], cfg["bos_token_id"])
+            pair_fam = pd.DataFrame([{"phrase": n, "label": lab, "first": a, "second": b, "nll": float(v)}
+                                     for (n, lab, a, b), v in zip(pairs, nll_pairs)])
         log(f"[{BACKEND_NAMES[backend]}] extracted {len(runs)} sets", t0)
         del model
 
@@ -220,7 +238,7 @@ def main(argv: list[str] | None = None) -> Path:
         tables: dict[str, list[pd.DataFrame]] = {"additivity_heads": [], "additivity_depth": [], "order_fit": []}
         for metric in additivity_metrics(cfg):
             per_head, depth, order_fit = additivity_tables(cells[prim], ad["combos"], ad["differences"], cfg["depth_groups"],
-                                                           metric, boot)
+                                                           metric, boot, ad.get("linear_terms"))
             per_head["q"] = bh_fdr(per_head["p"].to_numpy())  # over every interaction test of this metric
             for name, table in zip(tables, (per_head, depth, order_fit)):
                 tables[name].append(table.assign(metric=metric))
@@ -236,7 +254,11 @@ def main(argv: list[str] | None = None) -> Path:
                                    for r in var_s.itertuples()]
         extra |= {"surprisal_heads": heads_s, "surprisal_depth": depth_s, "surprisal_variants": var_s}
     if len(cfg["phrases"]) > 1 and "additivity_depth" in extra:
-        extra["phrase_pooled"] = phrase_level(extra["additivity_depth"], extra.get("surprisal_variants"), boot)
+        extra["phrase_pooled"] = phrase_level(extra["additivity_depth"], extra.get("surprisal_variants"), boot,
+                                              cfg["additivity"].get("pooled_differences", []))
+    if pair_fam is not None:
+        extra["pair_familiarity"] = pair_fam
+        extra["familiarity"] = familiarity_table(extra["additivity_depth"], pair_fam)
     predictions = [check_prediction(spec, effects, cells_df, extra) for spec in cfg["predictions"]]
     pooled = pool_over_phrases(effects) if len(cfg["phrases"]) > 1 else None
     log("analysis done", t0)

@@ -1,0 +1,216 @@
+# Experiment 2: does a short natural-language phrase written into random tokens change final-token attention,
+# and is that change about the phrase being language, about its particular tokens, or about their surface form?
+# The ONLY source of parameters for exp2. Positions are model-input indices (BOS at 0, random tokens at 1..32,
+# final/query token at 32). Test C (adjective noun verb), 12 phrases, logit scale; see exp2/PREDICTIONS_testC.md.
+model: gpt2-small
+seq_len: 32                     # random tokens, excluding BOS
+bos_token_id: 50256
+query_position: -1              # final token; it is never overwritten, so it stays the base row's random token
+diffuse_threshold: 0.2
+batch_size: 250
+seed: 0
+device: cpu
+dtype: float32
+
+backends:
+  transformer_lens: {model_name: gpt2-small}
+  huggingface:      {model_name: gpt2, attn_implementation: eager}
+primary_backend: transformer_lens
+
+paths:
+  sequences_dir: data/sequences/exp2
+  results_dir: results
+
+# Base rows: random ids, no repeats within a row, never containing any phrase id (a repeat would trigger
+# duplicate-token / induction heads). Byte tokens (0-255) are left out entirely (exp1: they drive their own heads).
+bases:
+  rare:   [1000, 39999]         # exp1 condition A
+  common: [256, 999]            # exp1 condition C
+n_bases: 500                    # per base class; 12 phrases x 9 variants each
+
+# Each phrase: ids are authoritative and written straight into the id array (text is only checked to tokenize to
+# them). shuffled = first two swapped: same ids, last id kept in place (position 31 identical in nl and shuffled).
+phrases:
+  dogs: {text: " big dogs bark", ids: [1263, 6844, 21405], shuffled: [6844, 1263, 21405]}
+  birds: {text: " small birds sing", ids: [1402, 10087, 1702], shuffled: [10087, 1402, 1702]}
+  men: {text: " old men walk", ids: [1468, 1450, 2513], shuffled: [1450, 1468, 2513]}
+  kids: {text: " young kids play", ids: [1862, 3988, 711], shuffled: [3988, 1862, 711]}
+  water: {text: " hot water flows", ids: [3024, 1660, 15623], shuffled: [1660, 3024, 15623]}
+  wind: {text: " cold wind blows", ids: [4692, 2344, 20385], shuffled: [2344, 4692, 20385]}
+  stars: {text: " bright stars shine", ids: [6016, 5788, 18340], shuffled: [5788, 6016, 18340]}
+  trees: {text: " tall trees grow", ids: [7331, 7150, 1663], shuffled: [7150, 7331, 1663]}
+  cars: {text: " fast cars race", ids: [3049, 5006, 3234], shuffled: [5006, 3049, 3234]}
+  bells: {text: " loud bells ring", ids: [7812, 30987, 5858], shuffled: [30987, 7812, 5858]}
+  horses: {text: " wild horses run", ids: [4295, 14260, 1057], shuffled: [14260, 4295, 1057]}
+  babies: {text: " tiny babies sleep", ids: [7009, 11903, 3993], shuffled: [11903, 7009, 3993]}
+
+placements:
+  near: [29, 30, 31]
+
+# Each phrase token alone at each slot it occupies in nl or shuffled; the base row everywhere else.
+custom_variants:
+  "dogs:big@29": {phrase: dogs, placement: near, writes: [[29, 1263]]}
+  "dogs:dogs@30": {phrase: dogs, placement: near, writes: [[30, 6844]]}
+  "dogs:bark@31": {phrase: dogs, placement: near, writes: [[31, 21405]]}
+  "dogs:dogs@29": {phrase: dogs, placement: near, writes: [[29, 6844]]}
+  "dogs:big@30": {phrase: dogs, placement: near, writes: [[30, 1263]]}
+  "birds:small@29": {phrase: birds, placement: near, writes: [[29, 1402]]}
+  "birds:birds@30": {phrase: birds, placement: near, writes: [[30, 10087]]}
+  "birds:sing@31": {phrase: birds, placement: near, writes: [[31, 1702]]}
+  "birds:birds@29": {phrase: birds, placement: near, writes: [[29, 10087]]}
+  "birds:small@30": {phrase: birds, placement: near, writes: [[30, 1402]]}
+  "men:old@29": {phrase: men, placement: near, writes: [[29, 1468]]}
+  "men:men@30": {phrase: men, placement: near, writes: [[30, 1450]]}
+  "men:walk@31": {phrase: men, placement: near, writes: [[31, 2513]]}
+  "men:men@29": {phrase: men, placement: near, writes: [[29, 1450]]}
+  "men:old@30": {phrase: men, placement: near, writes: [[30, 1468]]}
+  "kids:young@29": {phrase: kids, placement: near, writes: [[29, 1862]]}
+  "kids:kids@30": {phrase: kids, placement: near, writes: [[30, 3988]]}
+  "kids:play@31": {phrase: kids, placement: near, writes: [[31, 711]]}
+  "kids:kids@29": {phrase: kids, placement: near, writes: [[29, 3988]]}
+  "kids:young@30": {phrase: kids, placement: near, writes: [[30, 1862]]}
+  "water:hot@29": {phrase: water, placement: near, writes: [[29, 3024]]}
+  "water:water@30": {phrase: water, placement: near, writes: [[30, 1660]]}
+  "water:flows@31": {phrase: water, placement: near, writes: [[31, 15623]]}
+  "water:water@29": {phrase: water, placement: near, writes: [[29, 1660]]}
+  "water:hot@30": {phrase: water, placement: near, writes: [[30, 3024]]}
+  "wind:cold@29": {phrase: wind, placement: near, writes: [[29, 4692]]}
+  "wind:wind@30": {phrase: wind, placement: near, writes: [[30, 2344]]}
+  "wind:blows@31": {phrase: wind, placement: near, writes: [[31, 20385]]}
+  "wind:wind@29": {phrase: wind, placement: near, writes: [[29, 2344]]}
+  "wind:cold@30": {phrase: wind, placement: near, writes: [[30, 4692]]}
+  "stars:bright@29": {phrase: stars, placement: near, writes: [[29, 6016]]}
+  "stars:stars@30": {phrase: stars, placement: near, writes: [[30, 5788]]}
+  "stars:shine@31": {phrase: stars, placement: near, writes: [[31, 18340]]}
+  "stars:stars@29": {phrase: stars, placement: near, writes: [[29, 5788]]}
+  "stars:bright@30": {phrase: stars, placement: near, writes: [[30, 6016]]}
+  "trees:tall@29": {phrase: trees, placement: near, writes: [[29, 7331]]}
+  "trees:trees@30": {phrase: trees, placement: near, writes: [[30, 7150]]}
+  "trees:grow@31": {phrase: trees, placement: near, writes: [[31, 1663]]}
+  "trees:trees@29": {phrase: trees, placement: near, writes: [[29, 7150]]}
+  "trees:tall@30": {phrase: trees, placement: near, writes: [[30, 7331]]}
+  "cars:fast@29": {phrase: cars, placement: near, writes: [[29, 3049]]}
+  "cars:cars@30": {phrase: cars, placement: near, writes: [[30, 5006]]}
+  "cars:race@31": {phrase: cars, placement: near, writes: [[31, 3234]]}
+  "cars:cars@29": {phrase: cars, placement: near, writes: [[29, 5006]]}
+  "cars:fast@30": {phrase: cars, placement: near, writes: [[30, 3049]]}
+  "bells:loud@29": {phrase: bells, placement: near, writes: [[29, 7812]]}
+  "bells:bells@30": {phrase: bells, placement: near, writes: [[30, 30987]]}
+  "bells:ring@31": {phrase: bells, placement: near, writes: [[31, 5858]]}
+  "bells:bells@29": {phrase: bells, placement: near, writes: [[29, 30987]]}
+  "bells:loud@30": {phrase: bells, placement: near, writes: [[30, 7812]]}
+  "horses:wild@29": {phrase: horses, placement: near, writes: [[29, 4295]]}
+  "horses:horses@30": {phrase: horses, placement: near, writes: [[30, 14260]]}
+  "horses:run@31": {phrase: horses, placement: near, writes: [[31, 1057]]}
+  "horses:horses@29": {phrase: horses, placement: near, writes: [[29, 14260]]}
+  "horses:wild@30": {phrase: horses, placement: near, writes: [[30, 4295]]}
+  "babies:tiny@29": {phrase: babies, placement: near, writes: [[29, 7009]]}
+  "babies:babies@30": {phrase: babies, placement: near, writes: [[30, 11903]]}
+  "babies:sleep@31": {phrase: babies, placement: near, writes: [[31, 3993]]}
+  "babies:babies@29": {phrase: babies, placement: near, writes: [[29, 11903]]}
+  "babies:tiny@30": {phrase: babies, placement: near, writes: [[30, 7009]]}
+
+# Matched controls: per row, one random id per phrase token with the same values of these features and from the
+# same id class as that token (exp1ext: leading space and byte-ness predicted per-token effects best).
+match_features: [leading_space, is_alpha, is_capitalized]
+token_classes:
+  common: [256, 999]
+  rare:   [1000, 39999]
+
+# Paired contrasts, a - b per row. total = order + identity + form exactly (on means).
+contrasts:
+  total:    [nl, none]          # inserting the phrase at all
+  order:    [nl, shuffled]      # word order / grammaticality, same tokens
+  identity: [shuffled, matched] # these particular tokens vs same-form random tokens
+  form:     [matched, none]     # same-form words vs the base class's random tokens
+  placebo:  [matched, matched_b] # two exchangeable random draws: should show nothing (noise floor)
+
+# interaction per row = (combo - none) - sum(part - none); 0 under exact additivity of the single-token effects
+additivity:
+  metrics: [sink_mass, sink_logit]   # sink_logit = log(p / (1 - p)): checks the bounded-scale objection
+  combos:
+    "dogs:nl":       {phrase: dogs, placement: near, variant: nl, parts: ["dogs:big@29", "dogs:dogs@30", "dogs:bark@31"]}
+    "dogs:shuffled": {phrase: dogs, placement: near, variant: shuffled, parts: ["dogs:dogs@29", "dogs:big@30", "dogs:bark@31"]}
+    "birds:nl":       {phrase: birds, placement: near, variant: nl, parts: ["birds:small@29", "birds:birds@30", "birds:sing@31"]}
+    "birds:shuffled": {phrase: birds, placement: near, variant: shuffled, parts: ["birds:birds@29", "birds:small@30", "birds:sing@31"]}
+    "men:nl":       {phrase: men, placement: near, variant: nl, parts: ["men:old@29", "men:men@30", "men:walk@31"]}
+    "men:shuffled": {phrase: men, placement: near, variant: shuffled, parts: ["men:men@29", "men:old@30", "men:walk@31"]}
+    "kids:nl":       {phrase: kids, placement: near, variant: nl, parts: ["kids:young@29", "kids:kids@30", "kids:play@31"]}
+    "kids:shuffled": {phrase: kids, placement: near, variant: shuffled, parts: ["kids:kids@29", "kids:young@30", "kids:play@31"]}
+    "water:nl":       {phrase: water, placement: near, variant: nl, parts: ["water:hot@29", "water:water@30", "water:flows@31"]}
+    "water:shuffled": {phrase: water, placement: near, variant: shuffled, parts: ["water:water@29", "water:hot@30", "water:flows@31"]}
+    "wind:nl":       {phrase: wind, placement: near, variant: nl, parts: ["wind:cold@29", "wind:wind@30", "wind:blows@31"]}
+    "wind:shuffled": {phrase: wind, placement: near, variant: shuffled, parts: ["wind:wind@29", "wind:cold@30", "wind:blows@31"]}
+    "stars:nl":       {phrase: stars, placement: near, variant: nl, parts: ["stars:bright@29", "stars:stars@30", "stars:shine@31"]}
+    "stars:shuffled": {phrase: stars, placement: near, variant: shuffled, parts: ["stars:stars@29", "stars:bright@30", "stars:shine@31"]}
+    "trees:nl":       {phrase: trees, placement: near, variant: nl, parts: ["trees:tall@29", "trees:trees@30", "trees:grow@31"]}
+    "trees:shuffled": {phrase: trees, placement: near, variant: shuffled, parts: ["trees:trees@29", "trees:tall@30", "trees:grow@31"]}
+    "cars:nl":       {phrase: cars, placement: near, variant: nl, parts: ["cars:fast@29", "cars:cars@30", "cars:race@31"]}
+    "cars:shuffled": {phrase: cars, placement: near, variant: shuffled, parts: ["cars:cars@29", "cars:fast@30", "cars:race@31"]}
+    "bells:nl":       {phrase: bells, placement: near, variant: nl, parts: ["bells:loud@29", "bells:bells@30", "bells:ring@31"]}
+    "bells:shuffled": {phrase: bells, placement: near, variant: shuffled, parts: ["bells:bells@29", "bells:loud@30", "bells:ring@31"]}
+    "horses:nl":       {phrase: horses, placement: near, variant: nl, parts: ["horses:wild@29", "horses:horses@30", "horses:run@31"]}
+    "horses:shuffled": {phrase: horses, placement: near, variant: shuffled, parts: ["horses:horses@29", "horses:wild@30", "horses:run@31"]}
+    "babies:nl":       {phrase: babies, placement: near, variant: nl, parts: ["babies:tiny@29", "babies:babies@30", "babies:sleep@31"]}
+    "babies:shuffled": {phrase: babies, placement: near, variant: shuffled, parts: ["babies:babies@29", "babies:tiny@30", "babies:sleep@31"]}
+  differences: [[nl, shuffled]]
+depth_groups:
+  early: [0, 1, 2, 3, 4, 5]
+  late:  [6, 7, 8, 9, 10, 11]
+
+# The model's own -log p(token | everything before it), TL only, summed over the slot positions; regressed against
+# the additivity metric within each row across every variant. query_position_nll is recorded but not used in checks.
+surprisal:
+  slot_positions: [29, 30, 31]
+  batch_size: 50                # full-vocabulary logits are built only at these positions
+
+# slot_mass = attention on the slot positions; slot_logratio = log(slot_mass / sink_mass), which cancels the
+# softmax normalizer (so it is not moved just because some other key gained or lost weight).
+metrics: [sink_mass, slot_mass, prev_mass, entropy]
+slot_logratio_eps: 1.0e-12      # floor on both masses inside the log
+sink_logit_eps: 1.0e-6          # clip sink_mass to [eps, 1 - eps] before the logit
+min_effect:                     # "meaningful" = BH-significant AND |mean difference| >= this
+  sink_mass: 0.02
+  slot_mass: 0.02
+  slot_logratio: 0.1
+  prev_mass: 0.02
+  entropy: 0.05
+
+tracked_heads_csv: results/20260928-135243_exp1ext/tracked_heads.csv   # exp1ext's rule-selected heads + controls
+
+replication:                    # the `none` rows should reproduce exp1's per-head mean sink_mass
+  rare:   {run: results/20260927-235708_exp1, condition: A_rare}
+  common: {run: results/20260928-004336_exp1, condition: C_common_clean}
+  min_r: 0.99
+
+stats:
+  bootstrap_iters: 1000
+  bootstrap_ci: 0.95
+  bootstrap_seed: 0
+  fdr_q: 0.05                   # BH over every (base, phrase, placement, contrast, head) test of one metric
+
+validation:
+  row_sum_atol: 1.0e-4
+  determinism_n: 50
+  cross_backend_atol: 1.0e-4
+
+# Pre-registered checks, evaluated automatically against exp2/PREDICTIONS_testC.md (written before any Test C data).
+predictions_file: exp2/PREDICTIONS_testC.md
+predictions:
+  - {id: C1, kind: pooled_term_sign, term: nl, depth: late, sign: "+"}
+  - {id: C2, kind: pooled_term_sign, term: "nl−shuffled", depth: late, sign: "+"}
+  - {id: C3, kind: phrase_count, term: "nl−shuffled", depth: late, sign: "+", min_count: 8}
+  - {id: C4, kind: pooled_term_sign, metric: sink_logit, term: "nl−shuffled", depth: late, sign: "+"}
+  - id: C5a
+    kind: controls
+    min_mean: {L4H11: [prev_mass, 0.94], L5H1: [sink_mass, 0.90]}
+    mode_label: {L0H1: Self}
+  - id: C5b
+    kind: few_meaningful
+    contrast: placebo
+    metric: sink_mass
+    max_heads: {near: 1}
+
+figures:
+  tokenizer: gpt2               # decoding ids for features and display only, never to build model input
+  per_phrase: [dogs]           # per-phrase heatmaps / forests / tables only for these; the rest are pooled

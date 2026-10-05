@@ -1,0 +1,13 @@
+{
+  "condition": "base_rare_fe61e5925d",
+  "id_range": [
+    0,
+    38984
+  ],
+  "n": 500,
+  "seq_len": 32,
+  "base_seed": 0,
+  "seed": 3382210896,
+  "without_replacement": true,
+  "sha256": "30f03d1cfce4db87fea33712e16ec3b4d13d4d7fd775322d578520e857c1bccf"
+}

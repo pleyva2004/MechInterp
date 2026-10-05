@@ -1,0 +1,32 @@
+{
+  "row_sum_dev": {
+    "transformer_lens": 4.861828131197399e-07,
+    "huggingface": 4.6644709073007107e-07
+  },
+  "determinism": {
+    "transformer_lens": [
+      true,
+      0.0
+    ],
+    "huggingface": [
+      true,
+      0.0
+    ]
+  },
+  "replication": {
+    "rare": 0.9995673208588036,
+    "common": 0.9996241985985261
+  },
+  "cross_backend": {
+    "huggingface": {
+      "max_abs_diff": {
+        "sink_mass": 2.0235776901245117e-05,
+        "slot_mass": 3.0053304726607166e-05,
+        "prev_mass": 5.996227264404297e-05
+      },
+      "label_agreement": 0.9999985532407407,
+      "meaningful_agreement": 1.0,
+      "max_effect_size_diff": 0.024359773402548884
+    }
+  }
+}
