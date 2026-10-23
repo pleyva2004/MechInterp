@@ -1,0 +1,74 @@
+# Experiment 3, class 2, position sweep: country at model position i, capital at j, for every 1 <= i < j <= 32.
+# j = 32 puts the capital at the final query; otherwise the query is the row's own random token. Per placement and
+# row: 11 correct cells, two wrong derangements (22 cells) and a placebo derangement (11 cells). See
+# exp3/PREDICTIONS_positions.md. Positions are model-input indices (BOS at 0, random tokens at 1..32).
+model: gpt2-small
+seq_len: 32
+bos_token_id: 50256
+query_position: -1
+diffuse_threshold: 0.2
+batch_size: 550                 # 12.5 rows x 44 cells
+seed: 0
+device: cpu
+dtype: float32
+
+backends:
+  transformer_lens: {model_name: gpt2-small}
+  huggingface:      {model_name: gpt2, attn_implementation: eager}
+primary_backend: transformer_lens
+
+paths:
+  sequences_dir: data/sequences/exp3
+  results_dir: results
+
+# The first n_rows rows of R1-out / R1-in's cached base block (same cache name, n, seed and exclusion list).
+bases:
+  rare:   [1000, 39999]
+  common: [256, 999]
+base_cache_n: 200
+n_rows: 50
+
+placements: all                 # every (i, j) with 1 <= i < j <= seq_len; or a list of [i, j] (smoke tests)
+latin_square_seed: 3
+
+stimuli:
+  - {country: " France",  country_id: 4881, capital: " Paris",   capital_id: 6342,  city: " Lyon",       city_id: 35193}
+  - {country: " Germany", country_id: 4486, capital: " Berlin",  capital_id: 11307, city: " Munich",     city_id: 22418}
+  - {country: " Italy",   country_id: 8031, capital: " Rome",    capital_id: 10598, city: " Milan",      city_id: 21574}
+  - {country: " Spain",   country_id: 8602, capital: " Madrid",  capital_id: 14708, city: " Barcelona",  city_id: 15142}
+  - {country: " Russia",  country_id: 3284, capital: " Moscow",  capital_id: 9070,  city: " Petersburg", city_id: 27051}
+  - {country: " Ireland", country_id: 7517, capital: " Dublin",  capital_id: 18220, city: " Cork",       city_id: 25567}
+  - {country: " Ukraine", country_id: 7049, capital: " Kiev",    capital_id: 22761, city: " Donetsk",    city_id: 31819}
+  - {country: " Japan",   country_id: 2869, capital: " Tokyo",   capital_id: 11790, city: " Kyoto",      city_id: 36298}
+  - {country: " China",   country_id: 2807, capital: " Beijing", capital_id: 11618, city: " Shanghai",   city_id: 21865}
+  - {country: " Egypt",   country_id: 6365, capital: " Cairo",   capital_id: 23732, city: " Alexandria", city_id: 27872}
+  - {country: " Canada",  country_id: 3340, capital: " Ottawa",  capital_id: 14074, city: " Montreal",   city_id: 12871}
+
+demonstration_ids: [12671, 24377, 10710, 29679, 16490, 31104, 10315, 21891, 12873, 32955, 7648, 36878,
+                    8037, 34753, 4068, 20882, 16952, 35007, 13316, 31721, 17456, 34802]
+
+analysis:
+  late_layers: [6, 11]
+  margin: 0.005                 # |T| needed for a significant placement
+  bootstrap: {iters: 2000, seed: 0}
+  q: 0.05
+  head_min_abs: 0.02
+
+checks:
+  hf_placements: [[1, 2], [30, 31], [31, 32]]
+  hf_rows: 5
+  hf_atol: 1.0e-4
+  determinism_placement: [31, 32]
+  determinism_rows: 2
+  row_sum_atol: 1.0e-4
+
+figures:
+  tokenizer: gpt2
+  pattern_placements: [[2, 3], [15, 16], [30, 31], [16, 32], [31, 32]]
+
+predictions:
+  - {id: S1, kind: query_gap_negative, i_range: [26, 31]}
+  - {id: S2, kind: query_decay, near: 31, far_max: 16}
+  - {id: S3, kind: max_fraction_significant, metric: BOS, contrast: fact, j_max: 31, max_fraction: 0.10}
+  - {id: S4, kind: within_pair_shift, j_range: [28, 31]}
+  - {id: S5, kind: max_fraction_significant, metric: BOS, contrast: placebo, j_max: 32, max_fraction: 0.05}

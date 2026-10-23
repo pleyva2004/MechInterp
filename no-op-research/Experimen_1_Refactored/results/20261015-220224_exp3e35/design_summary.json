@@ -1,0 +1,397 @@
+{
+  "phrase_ids": [
+    314,
+    339,
+    345,
+    356,
+    484,
+    588,
+    673,
+    711,
+    761,
+    765,
+    1637,
+    1660,
+    1663,
+    1842,
+    2630,
+    2647,
+    3677,
+    5006,
+    5465,
+    5969,
+    6290,
+    6891,
+    7259,
+    11464,
+    11758,
+    14256,
+    15063,
+    16715,
+    19780,
+    36324
+  ],
+  "byte_ids": {
+    "period": 13,
+    "comma": 11,
+    "newline": 198,
+    "x": 87,
+    "seven": 22
+  },
+  "design": {
+    "rare": {
+      "phrase+period": {
+        "seq_len": 32,
+        "written": [
+          26,
+          27,
+          28,
+          29
+        ],
+        "categories": {
+          "Delimiter": [
+            29
+          ]
+        },
+        "repeat_groups": 0
+      },
+      "phrase+comma": {
+        "seq_len": 32,
+        "written": [
+          26,
+          27,
+          28,
+          29
+        ],
+        "categories": {
+          "Delimiter": [
+            29
+          ]
+        },
+        "repeat_groups": 0
+      },
+      "phrase+newline": {
+        "seq_len": 32,
+        "written": [
+          26,
+          27,
+          28,
+          29
+        ],
+        "categories": {
+          "Delimiter": [
+            29
+          ]
+        },
+        "repeat_groups": 0
+      },
+      "phrase+x": {
+        "seq_len": 32,
+        "written": [
+          26,
+          27,
+          28,
+          29
+        ],
+        "categories": {
+          "Delimiter": [
+            29
+          ]
+        },
+        "repeat_groups": 0
+      },
+      "phrase+seven": {
+        "seq_len": 32,
+        "written": [
+          26,
+          27,
+          28,
+          29
+        ],
+        "categories": {
+          "Delimiter": [
+            29
+          ]
+        },
+        "repeat_groups": 0
+      },
+      "phrase+r": {
+        "seq_len": 32,
+        "written": [
+          26,
+          27,
+          28
+        ],
+        "categories": {
+          "Delimiter": [
+            29
+          ]
+        },
+        "repeat_groups": 0
+      },
+      "random+period": {
+        "seq_len": 32,
+        "written": [
+          29
+        ],
+        "categories": {
+          "Delimiter": [
+            29
+          ]
+        },
+        "repeat_groups": 0
+      },
+      "random+comma": {
+        "seq_len": 32,
+        "written": [
+          29
+        ],
+        "categories": {
+          "Delimiter": [
+            29
+          ]
+        },
+        "repeat_groups": 0
+      },
+      "random+newline": {
+        "seq_len": 32,
+        "written": [
+          29
+        ],
+        "categories": {
+          "Delimiter": [
+            29
+          ]
+        },
+        "repeat_groups": 0
+      },
+      "random+x": {
+        "seq_len": 32,
+        "written": [
+          29
+        ],
+        "categories": {
+          "Delimiter": [
+            29
+          ]
+        },
+        "repeat_groups": 0
+      },
+      "random+seven": {
+        "seq_len": 32,
+        "written": [
+          29
+        ],
+        "categories": {
+          "Delimiter": [
+            29
+          ]
+        },
+        "repeat_groups": 0
+      },
+      "random+r": {
+        "seq_len": 32,
+        "written": [],
+        "categories": {
+          "Delimiter": [
+            29
+          ]
+        },
+        "repeat_groups": 0
+      },
+      "random_b+r": {
+        "seq_len": 32,
+        "written": [
+          26,
+          27,
+          28
+        ],
+        "categories": {
+          "Delimiter": [
+            29
+          ]
+        },
+        "repeat_groups": 0
+      }
+    },
+    "common": {
+      "phrase+period": {
+        "seq_len": 32,
+        "written": [
+          26,
+          27,
+          28,
+          29
+        ],
+        "categories": {
+          "Delimiter": [
+            29
+          ]
+        },
+        "repeat_groups": 0
+      },
+      "phrase+comma": {
+        "seq_len": 32,
+        "written": [
+          26,
+          27,
+          28,
+          29
+        ],
+        "categories": {
+          "Delimiter": [
+            29
+          ]
+        },
+        "repeat_groups": 0
+      },
+      "phrase+newline": {
+        "seq_len": 32,
+        "written": [
+          26,
+          27,
+          28,
+          29
+        ],
+        "categories": {
+          "Delimiter": [
+            29
+          ]
+        },
+        "repeat_groups": 0
+      },
+      "phrase+x": {
+        "seq_len": 32,
+        "written": [
+          26,
+          27,
+          28,
+          29
+        ],
+        "categories": {
+          "Delimiter": [
+            29
+          ]
+        },
+        "repeat_groups": 0
+      },
+      "phrase+seven": {
+        "seq_len": 32,
+        "written": [
+          26,
+          27,
+          28,
+          29
+        ],
+        "categories": {
+          "Delimiter": [
+            29
+          ]
+        },
+        "repeat_groups": 0
+      },
+      "phrase+r": {
+        "seq_len": 32,
+        "written": [
+          26,
+          27,
+          28
+        ],
+        "categories": {
+          "Delimiter": [
+            29
+          ]
+        },
+        "repeat_groups": 0
+      },
+      "random+period": {
+        "seq_len": 32,
+        "written": [
+          29
+        ],
+        "categories": {
+          "Delimiter": [
+            29
+          ]
+        },
+        "repeat_groups": 0
+      },
+      "random+comma": {
+        "seq_len": 32,
+        "written": [
+          29
+        ],
+        "categories": {
+          "Delimiter": [
+            29
+          ]
+        },
+        "repeat_groups": 0
+      },
+      "random+newline": {
+        "seq_len": 32,
+        "written": [
+          29
+        ],
+        "categories": {
+          "Delimiter": [
+            29
+          ]
+        },
+        "repeat_groups": 0
+      },
+      "random+x": {
+        "seq_len": 32,
+        "written": [
+          29
+        ],
+        "categories": {
+          "Delimiter": [
+            29
+          ]
+        },
+        "repeat_groups": 0
+      },
+      "random+seven": {
+        "seq_len": 32,
+        "written": [
+          29
+        ],
+        "categories": {
+          "Delimiter": [
+            29
+          ]
+        },
+        "repeat_groups": 0
+      },
+      "random+r": {
+        "seq_len": 32,
+        "written": [],
+        "categories": {
+          "Delimiter": [
+            29
+          ]
+        },
+        "repeat_groups": 0
+      },
+      "random_b+r": {
+        "seq_len": 32,
+        "written": [
+          26,
+          27,
+          28
+        ],
+        "categories": {
+          "Delimiter": [
+            29
+          ]
+        },
+        "repeat_groups": 0
+      }
+    }
+  },
+  "base_pool_size": {
+    "rare": 38980,
+    "common": 734
+  }
+}

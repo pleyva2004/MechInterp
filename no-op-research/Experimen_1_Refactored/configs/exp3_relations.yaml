@@ -1,0 +1,77 @@
+# Experiment 3, class 2, R1-out: a country at position 30 and a capital (or a city) at 31; the final query at 32
+# stays the base row's own random token. Every country meets every capital (and every city), so each token sits once
+# in a correct cell and n - 1 times in a wrong one. See exp3/DESIGN_relations.md. The ONLY source of parameters.
+# Positions are model-input indices (BOS at 0, random tokens at 1..32, final/query token at 32).
+model: gpt2-small
+seq_len: 32                     # random tokens, excluding BOS
+bos_token_id: 50256
+query_position: -1              # final token; never overwritten
+diffuse_threshold: 0.2
+batch_size: 243                 # one base row's cells per batch (2 x 11 x 11 + none)
+seed: 0
+device: cpu
+dtype: float32
+
+backends:
+  transformer_lens: {model_name: gpt2-small}
+  huggingface:      {model_name: gpt2, attn_implementation: eager}
+primary_backend: transformer_lens
+
+paths:
+  sequences_dir: data/sequences/exp3
+  results_dir: results
+
+# Base rows: random ids, no repeats within a row; every stimulus and demonstration id is excluded from the filler.
+bases:
+  rare:   [1000, 39999]
+  common: [256, 999]
+n_bases: 200                    # per base class (power: exp3/DESIGN_relations.md section 5)
+
+positions: {country: 30, partner: 31}
+
+# Selected before any attention data (exp3/DESIGN_relations.md section 2). ids are authoritative; text is only
+# checked to tokenize to them.
+stimuli:
+  - {country: " France",  country_id: 4881, capital: " Paris",   capital_id: 6342,  city: " Lyon",       city_id: 35193}
+  - {country: " Germany", country_id: 4486, capital: " Berlin",  capital_id: 11307, city: " Munich",     city_id: 22418}
+  - {country: " Italy",   country_id: 8031, capital: " Rome",    capital_id: 10598, city: " Milan",      city_id: 21574}
+  - {country: " Spain",   country_id: 8602, capital: " Madrid",  capital_id: 14708, city: " Barcelona",  city_id: 15142}
+  - {country: " Russia",  country_id: 3284, capital: " Moscow",  capital_id: 9070,  city: " Petersburg", city_id: 27051}
+  - {country: " Ireland", country_id: 7517, capital: " Dublin",  capital_id: 18220, city: " Cork",       city_id: 25567}
+  - {country: " Ukraine", country_id: 7049, capital: " Kiev",    capital_id: 22761, city: " Donetsk",    city_id: 31819}
+  - {country: " Japan",   country_id: 2869, capital: " Tokyo",   capital_id: 11790, city: " Kyoto",      city_id: 36298}
+  - {country: " China",   country_id: 2807, capital: " Beijing", capital_id: 11618, city: " Shanghai",   city_id: 21865}
+  - {country: " Egypt",   country_id: 6365, capital: " Cairo",   capital_id: 23732, city: " Alexandria", city_id: 27872}
+  - {country: " Canada",  country_id: 3340, capital: " Ottawa",  capital_id: 14074, city: " Montreal",   city_id: 12871}
+
+# The 11 eligible pairs left out of the grids (R3's demonstrations); excluded from the filler as well.
+demonstration_ids: [12671, 24377, 10710, 29679, 16490, 31104, 10315, 21891, 12873, 32955, 7648, 36878,
+                    8037, 34753, 4068, 20882, 16952, 35007, 13316, 31721, 17456, 34802]
+
+analysis:
+  late_layers: [6, 11]          # inclusive
+  margin: 0.005                 # equivalence margin on T (about half the smallest pooled late effect in Exp 2)
+  n_permutations: 10000
+  n_placebo: 20                 # random derangements scored as if they were the correct pairing
+  permutation_seed: 1
+  placebo_seed: 2
+  bootstrap: {iters: 2000, seed: 0}
+  meaningful: {q: 0.05, min_abs: 0.02}
+  switch: {q: 0.05, min_shift: 0.15}
+
+checks:
+  hf_rows: 50                   # per base class: TL vs HF on identical ids
+  hf_atol: 1.0e-4
+  determinism_rows: 5           # per base class: a second TL pass must match the first exactly
+  row_sum_atol: 1.0e-4
+
+figures:
+  tokenizer: gpt2
+
+# Pre-registered (exp3/PREDICTIONS_relations.md). T = mean(correct cells) - mean(wrong cells), late = layers 6-11
+# pooled over their 72 heads, metric = BOS mass at the final query.
+predictions:
+  - {id: Rout-1, grid: capital, metric: BOS, kind: verdict, expect: positive}
+  - {id: Rout-2, grid: city, metric: BOS, kind: verdict, expect: positive}
+  - {id: Rout-3, grid: capital, metric: BOS, kind: item_signs, sign: positive, min_items: 9}
+  - {id: Rout-4, kind: placebo, metric: BOS, max_significant: 2, max_mean_switches: 1.0}

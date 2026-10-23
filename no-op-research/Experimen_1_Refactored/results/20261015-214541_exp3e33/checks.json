@@ -1,0 +1,11 @@
+{
+  "design (base outside written positions; filler holds no written id; no BOS; no repeated id)": "PASS (asserted per variant and base class)",
+  "E3.3 layout (nl_g vs shuffled_g only at 29\u2212g, 30\u2212g, O at 31\u2212g in both, shuffled = V P O; every variant vs none only at its phrase positions; matched / matched_b from their pools; 24-token rows = the row's first 24 tokens; query = the row's own token)": "PASS (asserted per base class)",
+  "attention rows sum to 1": "PASS (atol 0.0001, asserted per batch; max |sum \u2212 1| 4.9e-07)",
+  "determinism, rare (20 rows)": "PASS (max |\u0394| 0.0e+00)",
+  "TL vs HF, rare (10 rows, 3000 sequences)": "PASS (max |\u0394| 2.3e-05, argmax-key agreement 99.9998%)",
+  "placebo switching heads \u2264 1, rare": "PASS (0 argmax, 0 mass)",
+  "determinism, common (20 rows)": "PASS (max |\u0394| 0.0e+00)",
+  "TL vs HF, common (10 rows, 3000 sequences)": "PASS (max |\u0394| 1.5e-05, argmax-key agreement 100.0000%)",
+  "placebo switching heads \u2264 1, common": "PASS (0 argmax, 0 mass)"
+}

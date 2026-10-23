@@ -1,0 +1,10 @@
+{
+  "design (grid and extra cells; no repeats/BOS/stimulus ids in bases)": "PASS (asserted per row)",
+  "attention rows sum to 1": "PASS (atol 0.0001, asserted per batch)",
+  "determinism, rare (5 rows)": "PASS (max |\u0394| 0.0e+00)",
+  "TL vs HF, rare (50 rows)": "PASS (max |\u0394| 5.0e-05, argmax-key agreement 99.9999%)",
+  "manipulation, rare": "PASS (11/11 countries prefer their capital)",
+  "determinism, common (5 rows)": "PASS (max |\u0394| 0.0e+00)",
+  "TL vs HF, common (50 rows)": "PASS (max |\u0394| 2.9e-05, argmax-key agreement 99.9999%)",
+  "manipulation, common": "PASS (11/11 countries prefer their capital)"
+}

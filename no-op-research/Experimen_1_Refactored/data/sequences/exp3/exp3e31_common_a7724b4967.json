@@ -1,0 +1,13 @@
+{
+  "condition": "exp3e31_common_a7724b4967",
+  "id_range": [
+    0,
+    733
+  ],
+  "n": 500,
+  "seq_len": 32,
+  "base_seed": 0,
+  "seed": 2429098397,
+  "without_replacement": true,
+  "sha256": "73bb4d78fdd94f847cf53b361f3437a8ed0c8c7d9fca8476c73e60bea28ca7ea"
+}

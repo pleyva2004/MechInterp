@@ -1,0 +1,217 @@
+passage,k,variant,repeated_ids,extra_occurrences,min_distance,ids
+fisherman,1,nl,0,0,,
+fisherman,2,nl,0,0,,
+fisherman,3,nl,0,0,,
+fisherman,3,shuffled,0,0,,
+fisherman,4,nl,0,0,,
+fisherman,4,shuffled,0,0,,
+fisherman,6,nl,0,0,,
+fisherman,6,shuffled,0,0,,
+fisherman,8,nl,0,0,,
+fisherman,8,shuffled,0,0,,
+fisherman,12,nl,0,0,,
+fisherman,12,shuffled,0,0,,
+fisherman,16,nl,2,2,5.0,11 339
+fisherman,16,shuffled,2,2,4.0,11 339
+fisherman,24,nl,3,3,5.0,11 262 339
+fisherman,24,shuffled,3,3,4.0,11 262 339
+fisherman,31,nl,3,4,5.0,11 262 339
+fisherman,31,shuffled,3,4,1.0,11 262 339
+party,1,nl,0,0,,
+party,2,nl,0,0,,
+party,3,nl,0,0,,
+party,3,shuffled,0,0,,
+party,4,nl,0,0,,
+party,4,shuffled,0,0,,
+party,6,nl,0,0,,
+party,6,shuffled,0,0,,
+party,8,nl,0,0,,
+party,8,shuffled,0,0,,
+party,12,nl,1,1,3.0,616
+party,12,shuffled,1,1,1.0,616
+party,16,nl,1,1,3.0,616
+party,16,shuffled,1,1,11.0,616
+party,24,nl,3,3,3.0,11 366 616
+party,24,shuffled,3,3,1.0,11 366 616
+party,31,nl,5,5,3.0,11 262 366 616 9975
+party,31,shuffled,5,5,10.0,11 262 366 616 9975
+bridge,1,nl,0,0,,
+bridge,2,nl,0,0,,
+bridge,3,nl,0,0,,
+bridge,3,shuffled,0,0,,
+bridge,4,nl,0,0,,
+bridge,4,shuffled,0,0,,
+bridge,6,nl,0,0,,
+bridge,6,shuffled,0,0,,
+bridge,8,nl,1,1,5.0,284
+bridge,8,shuffled,1,1,3.0,284
+bridge,12,nl,1,1,5.0,284
+bridge,12,shuffled,1,1,2.0,284
+bridge,16,nl,2,2,5.0,262 284
+bridge,16,shuffled,2,2,7.0,262 284
+bridge,24,nl,2,3,5.0,262 284
+bridge,24,shuffled,2,3,2.0,262 284
+bridge,31,nl,2,3,5.0,262 284
+bridge,31,shuffled,2,3,3.0,262 284
+tea,1,nl,0,0,,
+tea,2,nl,0,0,,
+tea,3,nl,0,0,,
+tea,3,shuffled,0,0,,
+tea,4,nl,0,0,,
+tea,4,shuffled,0,0,,
+tea,6,nl,0,0,,
+tea,6,shuffled,0,0,,
+tea,8,nl,0,0,,
+tea,8,shuffled,0,0,,
+tea,12,nl,1,1,4.0,340
+tea,12,shuffled,1,1,6.0,340
+tea,16,nl,2,2,4.0,11 340
+tea,16,shuffled,2,2,4.0,11 340
+tea,24,nl,3,3,4.0,11 262 340
+tea,24,shuffled,3,3,3.0,11 262 340
+tea,31,nl,6,6,4.0,11 257 262 287 340 1660
+tea,31,shuffled,6,6,4.0,11 257 262 287 340 1660
+plants,1,nl,0,0,,
+plants,2,nl,0,0,,
+plants,3,nl,0,0,,
+plants,3,shuffled,0,0,,
+plants,4,nl,1,1,3.0,262
+plants,4,shuffled,1,1,2.0,262
+plants,6,nl,1,1,3.0,262
+plants,6,shuffled,1,1,4.0,262
+plants,8,nl,1,1,3.0,262
+plants,8,shuffled,1,1,5.0,262
+plants,12,nl,1,2,3.0,262
+plants,12,shuffled,1,2,5.0,262
+plants,16,nl,1,2,3.0,262
+plants,16,shuffled,1,2,3.0,262
+plants,24,nl,1,2,3.0,262
+plants,24,shuffled,1,2,6.0,262
+plants,31,nl,2,3,3.0,262 290
+plants,31,shuffled,2,3,13.0,262 290
+moon,1,nl,0,0,,
+moon,2,nl,0,0,,
+moon,3,nl,0,0,,
+moon,3,shuffled,0,0,,
+moon,4,nl,0,0,,
+moon,4,shuffled,0,0,,
+moon,6,nl,0,0,,
+moon,6,shuffled,0,0,,
+moon,8,nl,0,0,,
+moon,8,shuffled,0,0,,
+moon,12,nl,0,0,,
+moon,12,shuffled,0,0,,
+moon,16,nl,1,2,3.0,262
+moon,16,shuffled,1,2,3.0,262
+moon,24,nl,2,4,3.0,262 286
+moon,24,shuffled,2,4,1.0,262 286
+moon,31,nl,3,6,3.0,262 286 319
+moon,31,shuffled,3,6,3.0,262 286 319
+game,1,nl,0,0,,
+game,2,nl,0,0,,
+game,3,nl,0,0,,
+game,3,shuffled,0,0,,
+game,4,nl,0,0,,
+game,4,shuffled,0,0,,
+game,6,nl,0,0,,
+game,6,shuffled,0,0,,
+game,8,nl,0,0,,
+game,8,shuffled,0,0,,
+game,12,nl,0,0,,
+game,12,shuffled,0,0,,
+game,16,nl,1,1,8.0,262
+game,16,shuffled,1,1,8.0,262
+game,24,nl,1,2,5.0,262
+game,24,shuffled,1,2,7.0,262
+game,31,nl,2,5,4.0,262 284
+game,31,shuffled,2,5,1.0,262 284
+garage,1,nl,0,0,,
+garage,2,nl,0,0,,
+garage,3,nl,0,0,,
+garage,3,shuffled,0,0,,
+garage,4,nl,0,0,,
+garage,4,shuffled,0,0,,
+garage,6,nl,0,0,,
+garage,6,shuffled,0,0,,
+garage,8,nl,0,0,,
+garage,8,shuffled,0,0,,
+garage,12,nl,0,0,,
+garage,12,shuffled,0,0,,
+garage,16,nl,0,0,,
+garage,16,shuffled,0,0,,
+garage,24,nl,2,2,4.0,11 257
+garage,24,shuffled,2,2,9.0,11 257
+garage,31,nl,5,5,4.0,11 257 314 422 616
+garage,31,shuffled,5,5,2.0,11 257 314 422 616
+storm,1,nl,0,0,,
+storm,2,nl,0,0,,
+storm,3,nl,0,0,,
+storm,3,shuffled,0,0,,
+storm,4,nl,0,0,,
+storm,4,shuffled,0,0,,
+storm,6,nl,0,0,,
+storm,6,shuffled,0,0,,
+storm,8,nl,0,0,,
+storm,8,shuffled,0,0,,
+storm,12,nl,0,0,,
+storm,12,shuffled,0,0,,
+storm,16,nl,0,0,,
+storm,16,shuffled,0,0,,
+storm,24,nl,1,1,5.0,262
+storm,24,shuffled,1,1,14.0,262
+storm,31,nl,2,3,5.0,262 318
+storm,31,shuffled,2,3,3.0,262 318
+pizza,1,nl,0,0,,
+pizza,2,nl,0,0,,
+pizza,3,nl,0,0,,
+pizza,3,shuffled,0,0,,
+pizza,4,nl,0,0,,
+pizza,4,shuffled,0,0,,
+pizza,6,nl,0,0,,
+pizza,6,shuffled,0,0,,
+pizza,8,nl,0,0,,
+pizza,8,shuffled,0,0,,
+pizza,12,nl,1,1,5.0,290
+pizza,12,shuffled,1,1,1.0,290
+pizza,16,nl,2,2,5.0,290 318
+pizza,16,shuffled,2,2,1.0,290 318
+pizza,24,nl,4,6,5.0,11 262 290 318
+pizza,24,shuffled,4,6,2.0,11 262 290 318
+pizza,31,nl,6,8,5.0,11 13 262 290 314 318
+pizza,31,shuffled,6,8,3.0,11 13 262 290 314 318
+password,1,nl,0,0,,
+password,2,nl,0,0,,
+password,3,nl,0,0,,
+password,3,shuffled,0,0,,
+password,4,nl,0,0,,
+password,4,shuffled,0,0,,
+password,6,nl,0,0,,
+password,6,shuffled,0,0,,
+password,8,nl,1,1,6.0,257
+password,8,shuffled,1,1,4.0,257
+password,12,nl,2,2,5.0,257 345
+password,12,shuffled,2,2,5.0,257 345
+password,16,nl,2,2,5.0,257 345
+password,16,shuffled,2,2,2.0,257 345
+password,24,nl,2,2,5.0,257 345
+password,24,shuffled,2,2,3.0,257 345
+password,31,nl,5,5,5.0,11 257 262 290 345
+password,31,shuffled,5,5,5.0,11 257 262 290 345
+rabbit,1,nl,0,0,,
+rabbit,2,nl,0,0,,
+rabbit,3,nl,0,0,,
+rabbit,3,shuffled,0,0,,
+rabbit,4,nl,0,0,,
+rabbit,4,shuffled,0,0,,
+rabbit,6,nl,0,0,,
+rabbit,6,shuffled,0,0,,
+rabbit,8,nl,0,0,,
+rabbit,8,shuffled,0,0,,
+rabbit,12,nl,0,0,,
+rabbit,12,shuffled,0,0,,
+rabbit,16,nl,1,1,14.0,284
+rabbit,16,shuffled,1,1,7.0,284
+rabbit,24,nl,3,4,3.0,262 284 673
+rabbit,24,shuffled,3,4,3.0,262 284 673
+rabbit,31,nl,3,5,3.0,262 284 673
+rabbit,31,shuffled,3,5,1.0,262 284 673

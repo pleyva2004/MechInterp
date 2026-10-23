@@ -1,0 +1,22 @@
+[
+  {
+    "id": "Rout-1",
+    "verdict": "FAIL",
+    "detail": "rare: equivalent -0.0009 [-0.0017, -0.0000], perm p 0.9474; common: negative -0.0037 [-0.0048, -0.0027], perm p 0.9999"
+  },
+  {
+    "id": "Rout-2",
+    "verdict": "FAIL",
+    "detail": "rare: positive +0.0057 [+0.0049, +0.0064], perm p 0.0001; common: equivalent +0.0009 [-0.0001, +0.0020], perm p 0.1922"
+  },
+  {
+    "id": "Rout-3",
+    "verdict": "FAIL",
+    "detail": "rare: 3/11; common: 2/11"
+  },
+  {
+    "id": "Rout-4",
+    "verdict": "PASS",
+    "detail": "rare/capital: 2/20 p<0.05, mean switches 0.00; rare/city: 1/20 p<0.05, mean switches 0.00; common/capital: 0/20 p<0.05, mean switches 0.00; common/city: 1/20 p<0.05, mean switches 0.00"
+  }
+]

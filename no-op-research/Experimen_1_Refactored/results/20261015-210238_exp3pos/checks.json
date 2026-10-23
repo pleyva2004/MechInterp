@@ -1,0 +1,12 @@
+{
+  "design (ids at i/j, base elsewhere, no repeats/BOS/stimulus ids)": "PASS (asserted per placement)",
+  "attention rows sum to 1": "PASS (atol 0.0001, asserted per batch)",
+  "determinism, rare": "PASS (max |\u0394| 0.0e+00)",
+  "TL vs HF, rare": "PASS (max |\u0394| 4.3e-05)",
+  "determinism, common": "PASS (max |\u0394| 0.0e+00)",
+  "TL vs HF, common": "PASS (max |\u0394| 1.9e-05)",
+  "consistency rare (30, 31) (report only)": "late BOS T -0.0007",
+  "consistency rare (31, 32) (report only)": "late BOS T -0.0154",
+  "consistency common (30, 31) (report only)": "late BOS T -0.0032",
+  "consistency common (31, 32) (report only)": "late BOS T -0.0331"
+}

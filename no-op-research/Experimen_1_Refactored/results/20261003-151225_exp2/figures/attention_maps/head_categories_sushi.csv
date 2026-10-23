@@ -1,0 +1,17 @@
+base,placement,variant,first token (BOS),previous token,other phrase slot,other token
+rare,near,none,117,13,0,14
+rare,near,nl,116,12,4,12
+rare,near,shuffled,116,12,5,11
+rare,near,matched,116,11,3,14
+rare,far,none,116,10,0,18
+rare,far,nl,117,10,0,17
+rare,far,shuffled,117,10,0,17
+rare,far,matched,116,10,0,18
+common,near,none,115,14,1,14
+common,near,nl,118,12,4,10
+common,near,shuffled,115,14,5,10
+common,near,matched,116,15,3,10
+common,far,none,115,9,0,20
+common,far,nl,116,8,0,20
+common,far,shuffled,117,7,0,20
+common,far,matched,115,9,0,20

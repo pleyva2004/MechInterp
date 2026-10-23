@@ -1,0 +1,129 @@
+# Experiment 3, E3.5: punctuation, does a delimiter replace BOS as the resting place? (exp3/DESIGN.md section 3;
+# predictions in exp3/PREDICTIONS_e35.md, written before any E3.5 data). The ONLY source of parameters for
+# exp3.run_e35. Positions are model-input indices (BOS at 0, random tokens at 1..32, final/query token at 32).
+model: gpt2-small
+seq_len: 32                     # random tokens, excluding BOS
+bos_token_id: 50256
+diffuse_threshold: 0.2
+seed: 0
+device: cpu
+dtype: float32
+
+backends:
+  transformer_lens: {model_name: gpt2-small}
+  huggingface:      {model_name: gpt2, attn_implementation: eager}
+primary_backend: transformer_lens
+
+paths:
+  sequences_dir: data/sequences/exp3
+  results_dir: results
+
+# Base rows: random ids, no repeats within a row; every phrase id is excluded from the filler (as in Exp 2). Both
+# ranges start above 255, so no base row holds a byte token.
+bases:
+  rare:   [1000, 39999]
+  common: [256, 999]
+n_bases: 300                    # per base class (DESIGN.md section 4)
+
+# The 12 pronoun-verb-object phrases of iteration 3 (configs/exp2_iter3.yaml). ids are authoritative; text is only
+# checked to tokenize to them.
+phrases:
+  sushi:  {text: " I like sushi",     ids: [314, 588, 36324]}
+  water:  {text: " we need water",    ids: [356, 761, 1660]}
+  pizza:  {text: " she ate pizza",    ids: [673, 15063, 14256]}
+  music:  {text: " they love music",  ids: [484, 1842, 2647]}
+  coffee: {text: " he drinks coffee", ids: [339, 11758, 6891]}
+  chess:  {text: " you play chess",   ids: [345, 711, 19780]}
+  rain:   {text: " I hate rain",      ids: [314, 5465, 6290]}
+  cars:   {text: " we sell cars",     ids: [356, 3677, 5006]}
+  songs:  {text: " she wrote songs",  ids: [673, 2630, 7259]}
+  rice:   {text: " they grow rice",   ids: [484, 1663, 11464]}
+  bikes:  {text: " he fixed bikes",   ids: [339, 5969, 16715]}
+  money:  {text: " you want money",   ids: [345, 765, 1637]}
+
+# d at position 29: the byte tokens, in grid order (r, the row's own token, is added as the sixth d). Each text must
+# tokenize to exactly [id] with the gpt2 tokenizer (checked at run time); every id is 0-255.
+bytes:
+  period:  {text: ".",  id: 13,  delimiter: true}
+  comma:   {text: ",",  id: 11,  delimiter: true}
+  newline: {text: "\n", id: 198, delimiter: true}
+  x:       {text: "x",  id: 87,  delimiter: false}
+  seven:   {text: "7",  id: 22,  delimiter: false}
+
+# Phrase (or the row's own tokens) at 26-28, d at 29, the row's own tokens at 30-31, query at 32.
+layout: {phrase: [26, 27, 28], delimiter: 29, query: 32}
+
+extraction:
+  chunk_rows: 20                # phrase variants: one TL forward pass = 20 rows x 12 phrases (240 sequences)
+  shared_chunk_rows: 240        # random variants and placebo: one sequence per row, 240 rows per pass
+
+# Contrasts: a - b per row; category masks from `mask_from` (default: a, the treated arm). Names follow the grid:
+# gain_<d> (phrase+d - phrase+r), rgain_<d> (random+d - random+r, masks from phrase+d so the interaction's four arms
+# share masks), ctx_<d> (phrase+d - random+d). PREDICTIONS_e35.md, "Contrasts".
+contrasts:
+  gain_period:   {a: phrase+period,  b: phrase+r}                            # E5a switches, E5c
+  gain_comma:    {a: phrase+comma,   b: phrase+r}
+  gain_newline:  {a: phrase+newline, b: phrase+r}
+  gain_x:        {a: phrase+x,       b: phrase+r}                            # E5c
+  gain_seven:    {a: phrase+seven,   b: phrase+r}                            # E5c
+  rgain_period:  {a: random+period,  b: random+r, mask_from: phrase+period}
+  rgain_comma:   {a: random+comma,   b: random+r, mask_from: phrase+comma}
+  rgain_newline: {a: random+newline, b: random+r, mask_from: phrase+newline}
+  rgain_x:       {a: random+x,       b: random+r, mask_from: phrase+x}
+  rgain_seven:   {a: random+seven,   b: random+r, mask_from: phrase+seven}
+  ctx_period:    {a: phrase+period,  b: random+period}
+  ctx_comma:     {a: phrase+comma,   b: random+comma}
+  ctx_newline:   {a: phrase+newline, b: random+newline}
+  ctx_x:         {a: phrase+x,       b: random+x}
+  ctx_seven:     {a: phrase+seven,   b: random+seven}
+  ctx_r:         {a: phrase+r,       b: random+r}                            # phrase - none
+  placebo:       {a: random_b+r,     b: random+r, mask_from: phrase+period}  # masks of E5a's switch contrast
+
+# Interactions: treated contrast - control contrast, per row. Both must use identical masks (checked).
+interactions:
+  x_period:        {treated: gain_period,  control: rgain_period}           # E5a, E5b
+  x_comma:         {treated: gain_comma,   control: rgain_comma}
+  x_newline:       {treated: gain_newline, control: rgain_newline}
+  x_x:             {treated: gain_x,       control: rgain_x}
+  x_seven:         {treated: gain_seven,   control: rgain_seven}
+  period_vs_x:     {treated: gain_period,  control: gain_x}                 # E5c
+  period_vs_seven: {treated: gain_period,  control: gain_seven}             # E5c
+
+# Exp 1's previous-token heads: they should keep Previous in every variant (a check; a change flags a confound).
+previous_heads: [L1H0, L2H2, L2H3, L2H5, L2H8, L2H9, L3H2, L3H6, L3H7, L3H8, L4H11]
+
+analysis:
+  late_layers: [6, 11]          # inclusive
+  margin: 0.005                 # m for TOST equivalence and non-inferiority (DESIGN.md section 2)
+  bootstrap: {iters: 2000, seed: 0}
+  meaningful: {q: 0.05, min_abs: 0.02}
+  switch: {q: 0.05, min_shift: 0.15}
+  max_placebo_switches: 1
+
+checks:
+  hf_rows: 25                   # per base class: TL vs HF on identical ids (all variants and phrases)
+  hf_atol: 1.0e-4
+  determinism_rows: 20          # per base class: re-extract the first chunk(s) covering these rows; must match exactly
+  row_sum_atol: 1.0e-4
+
+figures:
+  tokenizer: gpt2               # checking ids and decoding for display only, never to build model input
+
+outputs:
+  save_att_row: true            # per-row phrase-averaged attention [rows, V, L, H, K] in attention.npz (~150 MB at 300 rows)
+report_measures: [BOS, Delimiter, BOS+Delimiter, Previous, Span, Filler, Phrase]  # pooled table in the report; pooled.csv has all
+
+# Pre-registered (exp3/PREDICTIONS_e35.md). Each must hold in both base classes. `of` names a contrast or an
+# interaction; the value tested is the late pooled per-row Δ.
+predictions:
+  - id: E5a
+    kind: all
+    parts:
+      - {kind: positive, of: x_period, measure: Delimiter}
+      - {kind: switch_count, contrast: gain_period, labels: argmax, from: Sink, to: Delimiter, layers: [6, 11], min_beyond_placebo: 5}
+  - {id: E5b, kind: noninferior, of: x_period, measure: BOS+Delimiter, margin: 0.005}
+  - id: E5c
+    kind: all
+    parts:
+      - {kind: positive, of: period_vs_x, measure: Delimiter}
+      - {kind: positive, of: period_vs_seven, measure: Delimiter}

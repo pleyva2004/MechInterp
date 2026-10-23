@@ -1,0 +1,201 @@
+base,type,passages,k,E
+rare,aux–verb,fisherman,1,-0.007370036393404007
+rare,aux–verb,fisherman,2,0.00039343520998954775
+rare,aux–verb,fisherman,3,-0.005588165372610092
+rare,aux–verb,fisherman,4,0.001973083466291428
+rare,aux–verb,fisherman,6,0.008625710755586624
+rare,aux–verb,fisherman,8,0.02810587778687477
+rare,aux–verb,fisherman,12,0.07169733449816704
+rare,aux–verb,fisherman,16,0.08358178719878197
+rare,aux–verb,fisherman,24,0.11344323441386223
+rare,aux–verb,fisherman,31,0.13766056448221206
+rare,prep–det,party plants,1,0.011117579862475396
+rare,prep–det,party plants,2,0.012157006487250328
+rare,prep–det,party plants,3,-0.0030938852578401566
+rare,prep–det,party plants,4,0.0008507082611322403
+rare,prep–det,party plants,6,0.010116527825593948
+rare,prep–det,party plants,8,0.020585874542593953
+rare,prep–det,party plants,12,0.04670044265687466
+rare,prep–det,party plants,16,0.07581211790442466
+rare,prep–det,party plants,24,0.09789921425282955
+rare,prep–det,party plants,31,0.12402011148631573
+rare,det–adj,bridge password,1,-0.005119337514042854
+rare,det–adj,bridge password,2,-0.0015083757787942886
+rare,det–adj,bridge password,3,-0.014038270488381386
+rare,det–adj,bridge password,4,-0.008010528907179832
+rare,det–adj,bridge password,6,-0.003425125852227211
+rare,det–adj,bridge password,8,0.003703871890902519
+rare,det–adj,bridge password,12,0.023064475283026697
+rare,det–adj,bridge password,16,0.02930684559047222
+rare,det–adj,bridge password,24,0.07029945008456706
+rare,det–adj,bridge password,31,0.126822117716074
+rare,prep–num,tea,1,-0.01071481004357338
+rare,prep–num,tea,2,-0.011230031251907349
+rare,prep–num,tea,3,-0.016732645928859712
+rare,prep–num,tea,4,-0.010745131373405457
+rare,prep–num,tea,6,-0.008914678394794463
+rare,prep–num,tea,8,0.0012006020545959472
+rare,prep–num,tea,12,0.016322419494390488
+rare,prep–num,tea,16,0.04542451813817024
+rare,prep–num,tea,24,0.0906030011177063
+rare,prep–num,tea,31,0.12502649769186974
+rare,prep–adj,moon,1,-0.0027440308034420015
+rare,prep–adj,moon,2,-0.025130378007888796
+rare,prep–adj,moon,3,-0.016749942004680635
+rare,prep–adj,moon,4,-0.01639408081769943
+rare,prep–adj,moon,6,-0.005063287019729614
+rare,prep–adj,moon,8,0.02869232267141342
+rare,prep–adj,moon,12,0.05478510737419128
+rare,prep–adj,moon,16,0.06730406448245048
+rare,prep–adj,moon,24,0.10060426920652389
+rare,prep–adj,moon,31,0.1437323981523514
+rare,pron–aux,game,1,0.0030211493372917174
+rare,pron–aux,game,2,0.005876936763525009
+rare,pron–aux,game,3,0.005831741094589234
+rare,pron–aux,game,4,0.015250726193189621
+rare,pron–aux,game,6,0.014782183915376662
+rare,pron–aux,game,8,0.015096697956323624
+rare,pron–aux,game,12,0.02133884310722351
+rare,pron–aux,game,16,0.03243821308016777
+rare,pron–aux,game,24,0.06434335052967072
+rare,pron–aux,game,31,0.12258867889642716
+rare,verb–prep,garage,1,0.023279653787612917
+rare,verb–prep,garage,2,0.007924313694238662
+rare,verb–prep,garage,3,0.01774367958307266
+rare,verb–prep,garage,4,0.01894632160663605
+rare,verb–prep,garage,6,0.0387898363173008
+rare,verb–prep,garage,8,0.06821875423192977
+rare,verb–prep,garage,12,0.07869335904717445
+rare,verb–prep,garage,16,0.08073396146297455
+rare,verb–prep,garage,24,0.11237553909420966
+rare,verb–prep,garage,31,0.14755212604999543
+rare,aux–adv,storm,1,-0.004440611153841019
+rare,aux–adv,storm,2,0.009709323048591614
+rare,aux–adv,storm,3,0.010129707753658295
+rare,aux–adv,storm,4,0.0018321126699447632
+rare,aux–adv,storm,6,0.011588416695594787
+rare,aux–adv,storm,8,0.023043290227651596
+rare,aux–adv,storm,12,0.048326970785856245
+rare,aux–adv,storm,16,0.06989723548293114
+rare,aux–adv,storm,24,0.11475094094872475
+rare,aux–adv,storm,31,0.16038644805550575
+rare,adv–verb,pizza,1,-0.011354240030050278
+rare,adv–verb,pizza,2,-0.015164036750793457
+rare,adv–verb,pizza,3,-0.005573331564664841
+rare,adv–verb,pizza,4,0.013435840457677841
+rare,adv–verb,pizza,6,0.017520801275968553
+rare,adv–verb,pizza,8,0.022969144880771637
+rare,adv–verb,pizza,12,0.034462312310934065
+rare,adv–verb,pizza,16,0.047729511111974716
+rare,adv–verb,pizza,24,0.08511359542608261
+rare,adv–verb,pizza,31,0.14136414259672164
+rare,particle–prep,rabbit,1,-0.02616483226418495
+rare,particle–prep,rabbit,2,-0.017623401880264282
+rare,particle–prep,rabbit,3,-0.00765949696302414
+rare,particle–prep,rabbit,4,-0.000266878604888916
+rare,particle–prep,rabbit,6,-0.00619014173746109
+rare,particle–prep,rabbit,8,0.011441313028335572
+rare,particle–prep,rabbit,12,0.05448831126093864
+rare,particle–prep,rabbit,16,0.060450918525457385
+rare,particle–prep,rabbit,24,0.09050224706530571
+rare,particle–prep,rabbit,31,0.1167487645149231
+common,aux–verb,fisherman,1,0.022927521020174025
+common,aux–verb,fisherman,2,-0.0035514479875564577
+common,aux–verb,fisherman,3,0.012869585752487183
+common,aux–verb,fisherman,4,0.031049357056617738
+common,aux–verb,fisherman,6,0.05219397872686386
+common,aux–verb,fisherman,8,0.07272149637341499
+common,aux–verb,fisherman,12,0.10312615349888801
+common,aux–verb,fisherman,16,0.11372090324759483
+common,aux–verb,fisherman,24,0.13655606105923654
+common,aux–verb,fisherman,31,0.15258605569601058
+common,prep–det,party plants,1,0.042995948866009714
+common,prep–det,party plants,2,0.06299454145133496
+common,prep–det,party plants,3,0.06998427376151085
+common,prep–det,party plants,4,0.07979542911052703
+common,prep–det,party plants,6,0.09768143661320208
+common,prep–det,party plants,8,0.11460576571524142
+common,prep–det,party plants,12,0.1272763692587614
+common,prep–det,party plants,16,0.14127901405096055
+common,prep–det,party plants,24,0.1592869408428669
+common,prep–det,party plants,31,0.17258092075586318
+common,det–adj,bridge password,1,0.005934589505195618
+common,det–adj,bridge password,2,0.023663123920559883
+common,det–adj,bridge password,3,0.02758890241384506
+common,det–adj,bridge password,4,0.028406283035874363
+common,det–adj,bridge password,6,0.03960539415478706
+common,det–adj,bridge password,8,0.053928748443722724
+common,det–adj,bridge password,12,0.06984754376113414
+common,det–adj,bridge password,16,0.07917406864464283
+common,det–adj,bridge password,24,0.11433229506015777
+common,det–adj,bridge password,31,0.15287752509117125
+common,prep–num,tea,1,0.004815879017114639
+common,prep–num,tea,2,0.000659024715423584
+common,prep–num,tea,3,-0.009562453329563141
+common,prep–num,tea,4,0.0024102155864238737
+common,prep–num,tea,6,0.020978756248950958
+common,prep–num,tea,8,0.03402194023132324
+common,prep–num,tea,12,0.060443421453237535
+common,prep–num,tea,16,0.09417608186602593
+common,prep–num,tea,24,0.1362011630833149
+common,prep–num,tea,31,0.15296706244349478
+common,prep–adj,moon,1,0.012148120552301406
+common,prep–adj,moon,2,0.011973492056131362
+common,prep–adj,moon,3,0.03912397012114525
+common,prep–adj,moon,4,0.05648092329502106
+common,prep–adj,moon,6,0.07471640437841415
+common,prep–adj,moon,8,0.09946676030755043
+common,prep–adj,moon,12,0.11943185806274415
+common,prep–adj,moon,16,0.12436191082000732
+common,prep–adj,moon,24,0.15409532636404039
+common,prep–adj,moon,31,0.17812113851308822
+common,pron–aux,game,1,-0.001877744495868683
+common,pron–aux,game,2,0.012780464440584182
+common,pron–aux,game,3,0.03362627178430557
+common,pron–aux,game,4,0.04429520219564438
+common,pron–aux,game,6,0.041301399767398835
+common,pron–aux,game,8,0.045942243188619614
+common,pron–aux,game,12,0.060618054419755936
+common,pron–aux,game,16,0.07337257936596871
+common,pron–aux,game,24,0.10967684537172318
+common,pron–aux,game,31,0.14423502385616302
+common,verb–prep,garage,1,0.010404164046049118
+common,verb–prep,garage,2,0.014857585877180099
+common,verb–prep,garage,3,0.0354045820236206
+common,verb–prep,garage,4,0.04222148686647415
+common,verb–prep,garage,6,0.05718103393912315
+common,verb–prep,garage,8,0.08598840251564979
+common,verb–prep,garage,12,0.09422468230128288
+common,verb–prep,garage,16,0.09792596831917763
+common,verb–prep,garage,24,0.12143032789230347
+common,verb–prep,garage,31,0.14370856702327728
+common,aux–adv,storm,1,0.003666270524263382
+common,aux–adv,storm,2,0.031702528297901156
+common,aux–adv,storm,3,0.04088656783103943
+common,aux–adv,storm,4,0.053910509645938874
+common,aux–adv,storm,6,0.07494560778141021
+common,aux–adv,storm,8,0.087430712133646
+common,aux–adv,storm,12,0.10318118408322334
+common,aux–adv,storm,16,0.11757465526461601
+common,aux–adv,storm,24,0.15104840487241744
+common,aux–adv,storm,31,0.1776125204563141
+common,adv–verb,pizza,1,0.022336872965097426
+common,adv–verb,pizza,2,0.017550809234380724
+common,adv–verb,pizza,3,0.014341221898794174
+common,adv–verb,pizza,4,0.04478971123695374
+common,adv–verb,pizza,6,0.06061577588319778
+common,adv–verb,pizza,8,0.06759998813271523
+common,adv–verb,pizza,12,0.0798809638619423
+common,adv–verb,pizza,16,0.10696951478719711
+common,adv–verb,pizza,24,0.142199764251709
+common,adv–verb,pizza,31,0.17157176554203032
+common,particle–prep,rabbit,1,0.0010803791880607606
+common,particle–prep,rabbit,2,-0.001746891587972641
+common,particle–prep,rabbit,3,0.009451937228441239
+common,particle–prep,rabbit,4,0.026375477463006974
+common,particle–prep,rabbit,6,0.035062234401702884
+common,particle–prep,rabbit,8,0.06302548006176949
+common,particle–prep,rabbit,12,0.09241033375263213
+common,particle–prep,rabbit,16,0.09472959458827973
+common,particle–prep,rabbit,24,0.12240350782871247
+common,particle–prep,rabbit,31,0.13957806497812272

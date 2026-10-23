@@ -1,0 +1,18 @@
+{
+  "design (base outside written positions; filler holds no written id; no BOS; no repeats within a row)": "PASS (asserted per variant and base class)",
+  "E3.5 layout (d arms differ from r arms only at 29; phrase arms from random arms and the placebo from none only at 26\u201328; none = the base row; random variants identical across phrases; the byte is the row's only id \u2264 255)": "PASS (asserted per base class)",
+  "byte ids (gpt2 tokenizer)": "PASS (\".\" \u2192 13, \",\" \u2192 11, \"\\n\" \u2192 198, \"x\" \u2192 87, \"7\" \u2192 22)",
+  "attention rows sum to 1": "PASS (atol 0.0001, asserted per batch; max |sum \u2212 1| 4.6e-07)",
+  "determinism, rare, per_unit variants (20 rows)": "PASS (max |\u0394| 0.0e+00)",
+  "TL vs HF, rare, per_unit variants (25 rows, 1800 sequences)": "PASS (max |\u0394| 2.9e-05, argmax-key agreement 100.0000%)",
+  "determinism, rare, shared variants (240 rows)": "PASS (max |\u0394| 0.0e+00)",
+  "TL vs HF, rare, shared variants (25 rows, 175 sequences)": "PASS (max |\u0394| 3.4e-05, argmax-key agreement 100.0000%)",
+  "placebo switching heads \u2264 1, rare": "PASS (0 argmax, 0 mass)",
+  "Exp 1 previous-token heads keep Previous in all 13 variants, rare": "FAIL (flags a confound) (4 head \u00d7 variant cells not Previous; 6 switches from Previous)",
+  "determinism, common, per_unit variants (20 rows)": "PASS (max |\u0394| 0.0e+00)",
+  "TL vs HF, common, per_unit variants (25 rows, 1800 sequences)": "PASS (max |\u0394| 1.5e-05, argmax-key agreement 100.0000%)",
+  "determinism, common, shared variants (240 rows)": "PASS (max |\u0394| 0.0e+00)",
+  "TL vs HF, common, shared variants (25 rows, 175 sequences)": "PASS (max |\u0394| 1.3e-05, argmax-key agreement 100.0000%)",
+  "placebo switching heads \u2264 1, common": "PASS (0 argmax, 0 mass)",
+  "Exp 1 previous-token heads keep Previous in all 13 variants, common": "FAIL (flags a confound) (18 head \u00d7 variant cells not Previous; 7 switches from Previous)"
+}

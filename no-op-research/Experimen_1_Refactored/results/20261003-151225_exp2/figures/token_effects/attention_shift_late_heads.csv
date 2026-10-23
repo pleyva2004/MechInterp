@@ -1,0 +1,79 @@
+base,placement,variant,bin,mean_change_late_heads
+rare,near,nl,BOS,0.024902399629354477
+rare,near,nl,rest of context (28),-0.007323038298636675
+rare,near,nl,29 ' I',-0.002572912722826004
+rare,near,nl,30 ' like',-0.00548937451094389
+rare,near,nl,31 ' sushi',-0.010923766531050205
+rare,near,nl,itself (32),0.0014066112926229835
+rare,near,shuffled,BOS,0.019514262676239014
+rare,near,shuffled,rest of context (28),0.0002264645299874246
+rare,near,shuffled,29 ' I',5.87786144023994e-06
+rare,near,shuffled,30 ' like',-0.012462631799280643
+rare,near,shuffled,31 ' sushi',-0.008274906314909458
+rare,near,shuffled,itself (32),0.0009909352520480752
+rare,near,matched,BOS,-0.01849156618118286
+rare,near,matched,rest of context (28),0.02064741589128971
+rare,near,matched,29 ' I',-0.0025772820226848125
+rare,near,matched,30 ' like',-0.0025423855986446142
+rare,near,matched,31 ' sushi',-0.00012317486107349396
+rare,near,matched,itself (32),0.0030868896283209324
+rare,far,nl,BOS,0.009158092550933361
+rare,far,nl,rest of context (27),-0.0022257561795413494
+rare,far,nl,previous (31),-0.0006713334587402642
+rare,far,nl,14 ' I',-0.0006016345578245819
+rare,far,nl,15 ' like',-0.003472299315035343
+rare,far,nl,16 ' sushi',-0.0015258517814800143
+rare,far,nl,itself (32),-0.0006612378056161106
+rare,far,shuffled,BOS,0.005267720203846693
+rare,far,shuffled,rest of context (27),0.0009018298587761819
+rare,far,shuffled,previous (31),-0.0004219394759275019
+rare,far,shuffled,14 ' I',0.0002298214822076261
+rare,far,shuffled,15 ' like',-0.00393535615876317
+rare,far,shuffled,16 ' sushi',-0.0018606440862640738
+rare,far,shuffled,itself (32),-0.00018144295609090477
+rare,far,matched,BOS,-0.004159626550972462
+rare,far,matched,rest of context (27),0.008643110282719135
+rare,far,matched,previous (31),0.0006417123950086534
+rare,far,matched,14 ' I',-0.0020285500213503838
+rare,far,matched,15 ' like',-0.0026066540740430355
+rare,far,matched,16 ' sushi',-0.0010814708657562733
+rare,far,matched,itself (32),0.0005914641078561544
+common,near,nl,BOS,0.056824591010808945
+common,near,nl,rest of context (28),-0.07436829060316086
+common,near,nl,29 ' I',-0.004978062119334936
+common,near,nl,30 ' like',-0.0007075320463627577
+common,near,nl,31 ' sushi',0.02477438934147358
+common,near,nl,itself (32),-0.0015450507635250688
+common,near,shuffled,BOS,0.01681457832455635
+common,near,shuffled,rest of context (28),-0.041682690382003784
+common,near,shuffled,29 ' I',0.0017436034977436066
+common,near,shuffled,30 ' like',-0.001202683662995696
+common,near,shuffled,31 ' sushi',0.025696339085698128
+common,near,shuffled,itself (32),-0.0013691341737285256
+common,near,matched,BOS,-0.007534926291555166
+common,near,matched,rest of context (28),-0.011039779521524906
+common,near,matched,29 ' I',1.4162686966301408e-05
+common,near,matched,30 ' like',0.0011629712535068393
+common,near,matched,31 ' sushi',0.014633945189416409
+common,near,matched,itself (32),0.0027636573649942875
+common,far,nl,BOS,0.014274322427809238
+common,far,nl,rest of context (27),-0.021107187494635582
+common,far,nl,previous (31),-0.0008385193068534136
+common,far,nl,14 ' I',0.0008174489485099912
+common,far,nl,15 ' like',-0.0015556786675006151
+common,far,nl,16 ' sushi',0.009335342794656754
+common,far,nl,itself (32),-0.0009257470373995602
+common,far,shuffled,BOS,0.009078674018383026
+common,far,shuffled,rest of context (27),-0.014695965684950352
+common,far,shuffled,previous (31),-0.001092431484721601
+common,far,shuffled,14 ' I',0.0025292551144957542
+common,far,shuffled,15 ' like',-0.0031322480645030737
+common,far,shuffled,16 ' sushi',0.008084865286946297
+common,far,shuffled,itself (32),-0.0007721882429905236
+common,far,matched,BOS,-0.008348219096660614
+common,far,matched,rest of context (27),0.004021339118480682
+common,far,matched,previous (31),0.0001991241442738101
+common,far,matched,14 ' I',8.035392966121435e-06
+common,far,matched,15 ' like',-0.0004581719113048166
+common,far,matched,16 ' sushi',0.00445532938465476
+common,far,matched,itself (32),0.00012251402949914336

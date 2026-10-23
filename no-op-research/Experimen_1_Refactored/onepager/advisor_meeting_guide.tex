@@ -1,0 +1,159 @@
+% Private meeting guide (not for sending): what to say per stage, numbers to have at hand, likely questions.
+% Numbers from ../exp3/LOG.md and ../exp3/ANALYSIS.md (fact-checked against the run reports).
+% Build (from this folder): pdflatex advisor_meeting_guide.tex
+\documentclass[10pt]{article}
+\usepackage[letterpaper,margin=0.55in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[scaled=0.92]{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage[hidelinks]{hyperref}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+\setlist{nosep,leftmargin=1.1em,itemsep=1pt}
+\definecolor{cblue}{HTML}{2A78D6}
+\definecolor{ink2}{HTML}{52514E}
+\definecolor{muted}{HTML}{898781}
+\definecolor{axis}{HTML}{C3C2B7}
+\definecolor{plane}{HTML}{F4F3EF}
+\renewcommand{\arraystretch}{1.2}
+\newcommand{\stage}[2]{\par\vspace{6pt}{\large\bfseries\color{cblue}#1}\hfill{\large\bfseries #2}\\[-4pt]\rule{\linewidth}{0.6pt}\par}
+\newcommand{\lab}[1]{\textbf{\color{ink2}#1}}
+\newcommand{\qa}[1]{\par\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash\itshape}p{0.36\linewidth}X@{}}\toprule #1 \bottomrule\end{tabularx}\par}
+
+\begin{document}
+\small
+
+{\Large\bfseries Advisor meeting guide (private)}\\
+{\footnotesize\color{muted} Send \texttt{advisor\_onepager.pdf} beforehand. Have it open during the meeting: the figure panels \ding{172}\ding{173}\ding{174} are what you point at.}
+
+\vspace{4pt}
+\fcolorbox{axis}{plane}{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\textbf{Timing.} Your plan (3 $\times$ [5 + 3] + 10) adds up to 34 min, so this uses 30:\\
+\begin{tabular}{@{}lll@{}}
+0:00--1:00 & framing & 1 min \\
+1:00--7:00 & result \ding{172} more text $\to$ more resting & 4 talk + 2 questions \\
+7:00--13:00 & result \ding{173} completion releases it & 4 + 2 \\
+13:00--19:00 & result \ding{174} truth alone does not & 4 + 2 \\
+19:00--29:00 & next direction and planning & 10 \\
+29:00--30:00 & agree on next steps & 1 \\
+\end{tabular}\\
+If a question runs long, cut the ``how'' part of the next result; never cut planning below 8 min.}}
+
+%=========================================================================
+\stage{Framing}{0:00--1:00}
+\lab{Say:} ``At the final token most late heads park their attention on the first token (BOS), which we treat as a no-op. I wanted to know what turns that on and off. Three results, then one proposal.''\\
+\lab{Background, only if asked:}
+\begin{itemize}
+\item \textbf{Exp 1:} on random tokens $\sim$74\% of heads park on BOS (73.6 / 73.6 / 75.7\% across three filler types), more in later layers. 134 of 144 heads shift between rare and common fillers.
+\item \textbf{Exp 2:} a coherent 3-word phrase right before the final token raises late BOS mass. This held for 12/12 phrases and three templates, and on the logit scale. In Test A the adjacent pair before the final token carried about half (46\% / 61\%).
+\end{itemize}
+
+%=========================================================================
+\stage{Result \ding{172}: more coherent text $\to$ more resting}{1:00--7:00}
+\lab{Say (4 min):}
+\begin{itemize}
+\item \textbf{Setup:} the last $k$ = 1--31 tokens of 12 hand-written passages, written before a random final token. Compared with random tokens, the same words scrambled, and same-form random words.
+\item \textbf{Finding:} late BOS mass rises steadily with $k$: +0.02 / +0.07 at 8 tokens and +0.13 / +0.16 at 31 tokens (rare / common filler). Point at panel \ding{172}.
+\item \textbf{It is about ordered language:} scrambled text sits far lower (gap +0.117 / +0.114 at $k$ = 31).
+\item \textbf{It is not the last word pair:} randomizing the final two tokens keeps 65--72\%. This overturns my earlier Test A account, which held only for 3-word phrases.
+\end{itemize}
+\lab{Numbers to have:} 12/12 passages positive from $k$ = 12. Common filler is flattening (fitted saturation constant $\approx$16 tokens); rare filler shows no saturation within 31. Rare filler shows $\approx$0 for $k \le 4$.
+\qa{
+``Isn't that just fewer random tokens?'' & No. The same-form random-word control replaces the same number of tokens and does \emph{not} raise BOS; it falls slightly below random tokens ($-0.08$ / $-0.07$). Use E(k) vs random tokens as the clean number, not ``vs same-form words'' (+0.21), which double-counts. \\
+``Could it be length or position?'' & Every comparison is at the same length. E3.3 moved a phrase while keeping its distance to the final token: absolute position made no difference on rare filler (small +0.004 on common). \\
+``Why nothing on rare filler for short $k$?'' & Not explained. Several effects differ between filler types. That is a planned control (D4: vary filler frequency in steps). \\
+``Which heads?'' & Broad: dozens of late heads switch from diffuse or reading-the-text to resting as $k$ grows, many only at $k \ge 8$--24. Single heads move up to $\sim$0.6--0.8 (e.g.\ L8H6). \\
+``Distance?'' & E3.3: word order matters mostly right next to the final token (it more than halves after one token, with a small residual out to 15). Real words still raise resting 15 tokens away. \\
+}
+
+%=========================================================================
+\stage{Result \ding{173}: completion releases it}{7:00--13:00}
+\lab{Say (4 min):}
+\begin{itemize}
+\item \textbf{Setup:} 11 countries $\times$ 11 capitals. The country is at 31 and the capital is the final token. Each capital appears once with its own country and 10 times with others, so the capital's own effect cancels in correct $-$ wrong.
+\item \textbf{Finding:} correct pairs lower late BOS by $-0.018$ / $-0.034$, in 11/11 countries (permutation over pairings $p < 10^{-4}$). Own-country cities give $-0.015$ / $-0.016$.
+\item \textbf{Any distance:} a sweep of all 496 placements shows the drop from every one of the 31 country positions. On rare filler it is even \emph{larger} when the country is far ($-0.034$ at position 1 vs $-0.015$ at 31); on common filler it is flat. Placebo pairings are significant at 0 of 496 placements. Point at panel \ding{173}.
+\item \textbf{Same direction for other completions:} a phrase's object vs a same-form word ($-0.054$ / $-0.026$); a passage's true next word vs a wrong word ($-0.063$ / $-0.062$, 12/12 passages).
+\end{itemize}
+\lab{Be precise:} completion \emph{shrinks} the context's BOS boost. It reverses it fully only for capitals and for E3.1 on rare filler.
+\qa{
+``Isn't it just a different final token?'' & No: correct and wrong cells use the same set of final tokens, and correct $-$ wrong cancels token identity. Item-level permutation test over all pairings: $p < 10^{-4}$. \\
+``Is this just predictability?'' & Not simply. Across pairings the expected capital rests less, but within the correct pairing, rows where the capital was \emph{less} expected rest less too ($\rho$ = $-0.28$ / $-0.23$; my prediction had the opposite sign). Predictability alone does not order it. \\
+``Where does the attention go?'' & Mostly spread over the rest of the context (filler +0.015 / +0.029 vs country +0.002 / +0.006). Per token the country gains $\sim$5$\times$ an average filler token. 3--4 late heads switch outright from BOS to the country (L6H8 in every cell). \\
+``Why stronger when far?'' & Rare filler only; not explained yet. I would not build on it until it replicates. \\
+``Do you know GPT-2 knows these?'' & Yes, a manipulation check (see \ding{174}). Stimuli were chosen before any attention data: single tokens, and the capital ranked first in ``The capital of X is''. \\
+}
+
+%=========================================================================
+\stage{Result \ding{174}: truth alone does not}{13:00--19:00}
+\lab{Say (4 min):}
+\begin{itemize}
+\item \textbf{Setup:} the same grid with the pair at 30--31, followed by the row's own random token as the final token. That is the Exp 2 layout, but now truth is the only thing that differs.
+\item \textbf{Finding:} correct vs wrong capital barely moves resting: $-0.0009$ (rare; statistically equivalent to 0) and $-0.0037$ (common). Any country + capital pair vs none raises it by +0.013 / +0.050. Point at panel \ding{174}.
+\item \textbf{GPT-2 does know them:} at the country, its own capital is preferred in 11/11 countries (+2.4 / +2.7 nats; ranked first of 11 in 78--83\% of rows).
+\item \textbf{Truth shows up elsewhere:} correct pairs move attention inside the pair, from the capital ($-0.004$ to $-0.008$) to the country (+0.001 to +0.004), in all four cells.
+\end{itemize}
+\lab{Takeaway:} resting responds to whether the current token uses the context (\ding{173}), not to whether the context is true. So the earlier ``coherent pair $\to$ park'' was about real words and form.
+\qa{
+``So truth is invisible to attention?'' & Not invisible: it changes attention within the pair. It just does not change the resting (BOS) share before an unrelated token. \\
+``What about cities?'' & Caveat: an own-country city \emph{did} raise BOS on rare filler (+0.0057, 11/11) but not on common. So say ``for capitals''. \\
+``Other positions?'' & Across the 465 placements with a random final token the effect is slightly \emph{negative} ($-0.002$ to $-0.004$; on rare filler down to $-0.007$ when the country is early), never positive. \\
+``Why does any pair raise BOS?'' & Consistent with \ding{172}: real words raise resting, the same ``form'' effect we saw in Exp 2. \\
+}
+
+%=========================================================================
+\stage{Next direction and planning}{19:00--29:00}
+\lab{Pitch (3 min): is resting actually a no-op?}
+\begin{itemize}
+\item \textbf{Why now:} all evidence is attention weights; ``no-op'' is still an interpretation. \ding{172} and \ding{173} give two dials that move resting in opposite directions with the same tokens.
+\item \textbf{Test 1, value-weighted attention:} does the head output $\sum_k \alpha_k v_k$ shrink as BOS weight rises? Literature: Kobayashi et al.\ 2020 found tiny value norms on [SEP]/punctuation in BERT.
+\item \textbf{Test 2, ablation:} mean-ablate each late head and measure the change in the next-token distribution (KL) in high-resting vs released contexts from the same grids.
+\item \textbf{Cost:} small. About 1--2 days of code reusing the pipeline. Compute is minutes: $\sim$72 heads $\times$ a few contexts $\times$ 100 rows.
+\item \textbf{Stakes:} confirmed means ``no-op'' is measured, and the completion signal becomes the circuit target. Refuted means BOS attention does real work and the thesis changes.
+\end{itemize}
+\lab{Alternatives if he prefers (have one line each):}
+\begin{itemize}
+\item \textbf{D2, completion mechanism (patching):} the R1-in grid is a clean contrast (same final token, only the country differs). Patch the residual at the country position per layer, the late heads' q vs k/v, and MLP outputs. About 1 week.
+\item \textbf{D3, natural text:} per-token relation between BOS mass and whether a token completes earlier structure, controlling for surprisal, on OpenWebText windows. About 1 week.
+\item \textbf{D4, filler-type splits:} vary filler frequency in 4 steps and rerun the core contrasts. About 1 day; explains the rare/common differences.
+\item \textbf{D5, generality:} GPT-2 medium (deferred at the start; needs his OK) or Pythia; other relations (day $\to$ next day, number $\to$ number).
+\end{itemize}
+\lab{Ask him (pick 2--3):}
+\begin{enumerate}
+\item Is the no-op test the right next step, or go straight to mechanism (D2)?
+\item What evidence would convince him that resting is a no-op: output norms, ablation, or both?
+\item Should I replicate in a second model before writing anything up?
+\item Is it OK to move from random-token contexts to natural text (D3)?
+\item What timeline and write-up target should I aim for?
+\end{enumerate}
+
+%=========================================================================
+\stage{Wrap}{29:00--30:00}
+Repeat back the agreed next step, the evidence bar, and when you will report. Example: ``No-op test first, both output norms and ablation, results in two weeks.''
+
+%=========================================================================
+\vspace{6pt}
+\fcolorbox{axis}{plane}{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\footnotesize
+\textbf{Cheat sheet: methods and rigor, for any ``how do you know'' question.}
+\begin{itemize}
+\item \textbf{Setup:} BOS (\texttt{<|endoftext|>}, prepended by hand) + 32 tokens; attention measured at the final token. \textbf{Late} = layers 6--11, mean over their 72 heads (fixed in advance from Exp 1). \textbf{Rare / common} filler = ids 1000--39999 / 256--999. Byte tokens 0--255 are excluded, and the two filler types serve as two independent replications.
+\item \textbf{Pre-registration:} every prediction is written before data and checked by code. 19 of 37 held in Exp 3, and the failures are reported.
+\item \textbf{Statistics:} paired within-row contrasts; Wilcoxon + BH-FDR over the 144 heads; bootstrap CIs. For the grids, a permutation test over pairings handles item-level variance. A three-way verdict uses a $\pm$0.005 equivalence margin.
+\item \textbf{Integrity:} TransformerLens vs Hugging Face max $|\Delta| < 5\times10^{-5}$; reruns bit-identical; placebos $\le$1 switching head; sweep placebo 0/496.
+\item \textbf{Positive control (E3.4):} on repeats, 5--7 heads (L5H0, L5H1, L5H5, L6H9, L7H1, L7H2, L7H10) switch from BOS to the copy target, taking more from BOS than renormalization predicts. L5H5 and L6H9 match the IOI paper. So the metrics do detect real role changes.
+\item \textbf{Other Exp 3 runs, if asked:}
+  \begin{itemize}
+  \item E3.3 (distance): see \ding{172}.
+  \item E3.5: punctuation does not replace BOS (a period draws only +0.007 / +0.013; one early head, L2H5, tracks punctuation).
+  \item E3.4: natural phrases are copied \emph{less} than look-alike words.
+  \end{itemize}
+\item \textbf{Known weaknesses:} GPT-2 small only; mostly random-token contexts; effects that differ between filler types; ``no-op'' not yet shown functionally (hence the proposal).
+\item \textbf{Files:} \texttt{exp3/LOG.md} (every run), \texttt{exp3/ANALYSIS.md} (synthesis), \texttt{onepager/experiment\_summaries.pdf} (all 15 experiments), per-run reports in \texttt{results/}.
+\end{itemize}}}
+
+\end{document}

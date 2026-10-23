@@ -1,0 +1,13 @@
+{
+  "design (base outside written positions; filler holds no written id; no BOS; repeats only where declared and present in every row)": "PASS (asserted per variant and base class)",
+  "E3.4 layout (controls differ only at 10\u201312, repeat-nl-1 only at 31; ids as in the table; other-nl shares no id)": "PASS (asserted per base class)",
+  "attention rows sum to 1": "PASS (atol 0.0001, asserted per batch; max |sum \u2212 1| 4.6e-07)",
+  "determinism, rare (20 rows)": "PASS (max |\u0394| 0.0e+00)",
+  "TL vs HF, rare (25 rows, 2400 sequences)": "PASS (max |\u0394| 3.6e-05, argmax-key agreement 100.0000%)",
+  "placebo switching heads \u2264 1, rare": "PASS (0 argmax, 0 mass)",
+  "L5H5 and L6H9 among induction heads, rare": "PASS (10 induction heads; L5H5 in (0.88), L6H9 in (0.81))",
+  "determinism, common (20 rows)": "PASS (max |\u0394| 0.0e+00)",
+  "TL vs HF, common (25 rows, 2400 sequences)": "PASS (max |\u0394| 2.7e-05, argmax-key agreement 100.0000%)",
+  "placebo switching heads \u2264 1, common": "PASS (0 argmax, 0 mass)",
+  "L5H5 and L6H9 among induction heads, common": "PASS (4 induction heads; L5H5 in (0.79), L6H9 in (0.70))"
+}

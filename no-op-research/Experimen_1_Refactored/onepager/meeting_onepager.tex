@@ -1,0 +1,108 @@
+% One-page meeting sheet in the experiment_summaries format: the three results from advisor_meeting_guide.pdf plus
+% the proposed next experiment, one line per field, real example sequences (decoded from the runs' saved rows:
+% common filler, first row) and Experiment 1-style attention maps (../exp3/meeting_maps.py).
+% Build (from this folder): pdflatex meeting_onepager.tex
+\documentclass[10pt]{article}
+\usepackage[letterpaper,hmargin=0.42in,vmargin=0.34in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[scaled=0.92]{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage[hidelinks]{hyperref}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1pt}
+\definecolor{cblue}{HTML}{2A78D6}
+\definecolor{corange}{HTML}{EB6834}
+\definecolor{ink2}{HTML}{52514E}
+\definecolor{muted}{HTML}{898781}
+\definecolor{axis}{HTML}{C3C2B7}
+\definecolor{plane}{HTML}{F4F3EF}
+\definecolor{wordbg}{HTML}{DCEAFB}
+\renewcommand{\arraystretch}{1.05}
+
+% token chips: \tb BOS, \tk random filler, \tw inserted word, \tq final token (where attention is measured)
+\newcommand{\chip}[3]{{\setlength{\fboxsep}{0.8pt}\setlength{\fboxrule}{0.4pt}\fcolorbox{#1}{#2}{\strut\ttfamily\scriptsize #3}}\hspace{0.6pt}}
+\newcommand{\tb}{\chip{ink2}{ink2}{\color{white}BOS}}
+\newcommand{\tk}[1]{\chip{axis}{white}{\color{muted}#1}}
+\newcommand{\tw}[1]{\chip{cblue}{wordbg}{#1}}
+\newcommand{\tq}[1]{\chip{corange}{white}{\bfseries #1}}
+\newcommand{\gap}[1]{{\color{muted}\scriptsize\,\dots\,#1\,\dots\,}}
+\newcommand{\ex}[1]{\leavevmode{\color{ink2}\scriptsize #1:}\ }
+
+% \exper{title}{right note}{tested}{hypothesis}{confound}{result}{examples}{graph sentence}{figure}
+\newcommand{\exper}[9]{%
+  \par\noindent\begin{minipage}{\linewidth}
+  {\bfseries #1}\hfill{\color{muted}\scriptsize #2}\\[-2pt]
+  {\footnotesize\begin{tabularx}{\linewidth}{@{}>{\leavevmode\color{ink2}\bfseries}p{2.0cm}X@{}}
+  \toprule
+  Tested & #3 \\
+  Hypothesis & #4 \\
+  Confound & #5 \\
+  Result & #6 \\
+  Example & #7 \\
+  Graph & #8 \\
+  \bottomrule
+  \end{tabularx}}\\[1pt]
+  \centering\includegraphics[width=0.7\linewidth]{#9}
+  \end{minipage}\par\vspace{2pt}}
+
+\begin{document}
+
+{\Large\bfseries When do GPT-2's attention heads rest?}\hfill{\footnotesize\color{muted} GPT-2 small · BOS + 32 tokens · common filler shown}\\[2pt]
+\fcolorbox{axis}{plane}{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{\small\textbf{Idea:} late heads rest on BOS (a no-op) when the context has nothing for the current token to use, and stop when the current token completes it.\\
+{\footnotesize Examples below are real rows: \tb\ start token \ \tk{gray} random filler \ \tw{blue} inserted words \ \tq{orange} final token, where attention is measured.}}}
+
+\vspace{3pt}
+\exper{\color{cblue}\ding{172}\ \color{black}Experiment 15 · more coherent text $\to$ more resting}{1:00--7:00}
+{1 to 31 words of natural text before a random final token.}
+{Resting levels off after about 3 words.}
+{Fewer random tokens: matched with scrambled words and look-alike random words.}
+{\textbf{Wrong:} resting keeps rising, +0.13 / +0.16 at 31 words, even without the last word pair.}
+{\ex{8 words}\tb\tk{ir}\tk{ations}\tk{01}\gap{19 random}\tk{--------}\tw{he}\tw{knew}\tw{that}\tw{tomorrow}\tw{the}\tw{weather}\tw{would}\tw{be}\tq{count}\newline
+ \ex{31 words}\tb\tw{sand}\tw{as}\tw{the}\tw{sun}\tw{went}\tw{down}\gap{21 words}\tw{the}\tw{weather}\tw{would}\tw{be}\tq{count}}
+{Most heads already rest on BOS; the change maps turn redder as the text gets longer.}
+{meeting_map_1.png}
+
+\exper{\color{cblue}\ding{173}\ \color{black}Experiments 9--10 · completion releases it}{7:00--13:00}
+{Capital as the final token, with its country 1 to 31 positions earlier.}
+{A correct capital pulls late heads off BOS.}
+{Final-token identity: each capital used once correctly and ten times wrongly.}
+{\textbf{Right:} $-0.018$ / $-0.034$ in 11/11 countries, from every position; placebo 0 of 496.}
+{\ex{correct}\tb\tk{she}\tk{sc}\tk{sa}\gap{27 random}\tw{France}\tq{Paris}\quad
+ \ex{wrong}\tb\tk{she}\gap{29 random}\tw{Japan}\tq{Paris}\quad
+ \ex{far}\tb\tw{France}\tk{sc}\tk{sa}\gap{27 random}\tk{dis}\tq{Paris}}
+{Late heads turn blue (less resting) for correct capitals, whether the country is adjacent or far.}
+{meeting_map_2.png}
+
+\exper{\color{cblue}\ding{174}\ \color{black}Experiment 8 · truth alone does not}{13:00--19:00}
+{True vs false country--capital pair before a random final token.}
+{A true pair raises resting more than a false one.}
+{Token identity: full country $\times$ capital grid; GPT-2 knows all 11 capitals.}
+{\textbf{Wrong:} true $\approx$ false ($-0.001$ / $-0.004$); any real pair raises resting (+0.013 / +0.05).}
+{\ex{true}\tb\tk{she}\tk{sc}\tk{sa}\gap{26 random}\tw{France}\tw{Paris}\tq{ious}\qquad
+ \ex{false}\tb\tk{she}\tk{sc}\tk{sa}\gap{26 random}\tw{Japan}\tw{Paris}\tq{ious}}
+{Correct and wrong pairs give the same red change vs no pair.}
+{meeting_map_3.png}
+
+\fcolorbox{axis}{plane}{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{%
+{\bfseries Proposed Experiment 16 · is resting actually a no-op?}\hfill{\color{muted}\scriptsize 19:00--29:00}\\[-2pt]
+{\footnotesize\begin{tabularx}{\linewidth}{@{}>{\leavevmode\color{ink2}\bfseries}p{2.0cm}X@{}}
+\toprule
+Tested & Remove each late head where it rests vs where completion releases it. \\
+Hypothesis & Resting heads write almost nothing, so removing them barely changes predictions. \\
+Confound & Token changes: reuse grids where resting moves but the tokens stay fixed. \\
+Why & \ding{172}--\ding{174} measure attention only; this tests whether resting really does nothing. \\
+Example & The same rows as \ding{172} (31 words vs random tokens) and \ding{173} (correct vs wrong capital). \\
+Graph & Planned: cost of removing each head against its BOS attention, resting vs released. \\
+\bottomrule
+\end{tabularx}}}}
+
+\vspace{2pt}
+{\scriptsize\color{ink2}\textbf{Trust:} pre-registered predictions (19 of 37 held) · TransformerLens = Hugging Face to $5\times10^{-5}$ · placebos quiet · copying heads detected as a positive control. \textbf{Limits:} GPT-2 small only · mostly random-token contexts.}
+
+\end{document}

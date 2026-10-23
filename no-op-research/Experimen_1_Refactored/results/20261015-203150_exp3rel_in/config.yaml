@@ -1,0 +1,85 @@
+# Experiment 3, class 2, R1-in: a country at position 31 and a capital (or a city) AT the final query, 32.
+# The query token is edited, but every contrast holds it fixed on average: each capital sits once in a correct cell
+# and 10 times in wrong ones, so T = mean(correct) - mean(wrong) cancels each capital's own query effect. Extra cells:
+# an anchor (country at 31 + a same-form random word at 32, drawn per row) and capital-alone (the row's own token at
+# 31 + the capital at 32). See exp3/DESIGN_relations.md section 4. Shares stimuli and settings with R1-out.
+model: gpt2-small
+seq_len: 32                     # random tokens, excluding BOS
+bos_token_id: 50256
+query_position: -1              # final token; written in this run (the capital / city / anchor)
+diffuse_threshold: 0.2
+batch_size: 265                 # one base row: 2 x 11 x 11 grid cells + none + 11 anchor + 11 capital-alone
+seed: 0
+device: cpu
+dtype: float32
+
+backends:
+  transformer_lens: {model_name: gpt2-small}
+  huggingface:      {model_name: gpt2, attn_implementation: eager}
+primary_backend: transformer_lens
+
+paths:
+  sequences_dir: data/sequences/exp3
+  results_dir: results
+
+# Same base rows as R1-out (same cache names, seed and exclusion list).
+bases:
+  rare:   [1000, 39999]
+  common: [256, 999]
+n_bases: 200
+
+positions: {country: 31, partner: 32}
+
+stimuli:
+  - {country: " France",  country_id: 4881, capital: " Paris",   capital_id: 6342,  city: " Lyon",       city_id: 35193}
+  - {country: " Germany", country_id: 4486, capital: " Berlin",  capital_id: 11307, city: " Munich",     city_id: 22418}
+  - {country: " Italy",   country_id: 8031, capital: " Rome",    capital_id: 10598, city: " Milan",      city_id: 21574}
+  - {country: " Spain",   country_id: 8602, capital: " Madrid",  capital_id: 14708, city: " Barcelona",  city_id: 15142}
+  - {country: " Russia",  country_id: 3284, capital: " Moscow",  capital_id: 9070,  city: " Petersburg", city_id: 27051}
+  - {country: " Ireland", country_id: 7517, capital: " Dublin",  capital_id: 18220, city: " Cork",       city_id: 25567}
+  - {country: " Ukraine", country_id: 7049, capital: " Kiev",    capital_id: 22761, city: " Donetsk",    city_id: 31819}
+  - {country: " Japan",   country_id: 2869, capital: " Tokyo",   capital_id: 11790, city: " Kyoto",      city_id: 36298}
+  - {country: " China",   country_id: 2807, capital: " Beijing", capital_id: 11618, city: " Shanghai",   city_id: 21865}
+  - {country: " Egypt",   country_id: 6365, capital: " Cairo",   capital_id: 23732, city: " Alexandria", city_id: 27872}
+  - {country: " Canada",  country_id: 3340, capital: " Ottawa",  capital_id: 14074, city: " Montreal",   city_id: 12871}
+
+demonstration_ids: [12671, 24377, 10710, 29679, 16490, 31104, 10315, 21891, 12873, 32955, 7648, 36878,
+                    8037, 34753, 4068, 20882, 16952, 35007, 13316, 31721, 17456, 34802]
+
+# Anchor words: per row and country, a random id with the same values of these features and from the same id class
+# as that country's capital (exp2's matched machinery), never a stimulus or demonstration id.
+match_features: [leading_space, is_alpha, is_capitalized]
+token_classes:
+  common: [256, 999]
+  rare:   [1000, 39999]
+
+analysis:
+  late_layers: [6, 11]
+  margin: 0.005
+  n_permutations: 10000
+  n_placebo: 20
+  permutation_seed: 1
+  placebo_seed: 2
+  bootstrap: {iters: 2000, seed: 0}
+  meaningful: {q: 0.05, min_abs: 0.02}
+  switch: {q: 0.05, min_shift: 0.15}
+
+checks:
+  hf_rows: 50
+  hf_atol: 1.0e-4
+  determinism_rows: 5
+  row_sum_atol: 1.0e-4
+
+figures:
+  tokenizer: gpt2
+
+# Pre-registered (exp3/PREDICTIONS_relations_in.md, copied from exp3/DESIGN_relations.md section 4, which was
+# written before any attention data). Late = layers 6-11 pooled; each must hold in both base classes.
+predictions:
+  - {id: Rin-1, kind: verdict, grid: capital, metric: BOS, expect: negative}
+  - {id: Rin-2, kind: country_absorbs, min_share: 0.5}
+  - {id: Rin-3, kind: switches, grid: capital, from: Sink, to: Country, min_beyond_placebo: 3}
+  - {id: Rin-4, kind: capital_minus_city, metric: BOS, expect: negative}
+  - {id: Rin-5, kind: assoc_slope, grid: capital, sign: negative}
+  - {id: Rin-6, kind: item_signs, grid: capital, metric: BOS, sign: negative, min_items: 9}
+  - {id: Rin-7, kind: dose, sign: positive}

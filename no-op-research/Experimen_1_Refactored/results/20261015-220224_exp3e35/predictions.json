@@ -1,0 +1,233 @@
+[
+  {
+    "id": "E5a",
+    "verdict": "FAIL",
+    "detail": "rare: (fails) x_period on Delimiter: +0.0008 [-0.0001, +0.0019]; per phrase +0.0008 [-0.0001, +0.0016], 9/12 > 0 AND (fails) gain_period: 1 heads in L6-11 switch Sink\u2192Delimiter [L11H4 (+0.26)]; placebo 0; beyond placebo 1 (need \u2265 5); common: (ok) x_period on Delimiter: +0.0031 [+0.0020, +0.0042]; per phrase +0.0031 [+0.0023, +0.0038], 12/12 > 0 AND (fails) gain_period: 0 heads in L6-11 switch Sink\u2192Delimiter [none]; placebo 0; beyond placebo 0 (need \u2265 5)",
+    "per_base": {
+      "rare": false,
+      "common": false
+    },
+    "stats": {
+      "rare": {
+        "parts": [
+          {
+            "n": 300,
+            "mean": 0.0008168336739404061,
+            "lo": -0.00012769790790135042,
+            "hi": 0.0018819486994741035,
+            "lo90": 1.1602864434950697e-05,
+            "hi90": 0.0016967730859588086,
+            "wilcoxon_p": 0.40021878994534665,
+            "tost": true,
+            "verdict": "equivalent",
+            "unit": {
+              "contrast": "x_period",
+              "measure": "Delimiter",
+              "unit_units": 12,
+              "unit_mean": 0.0008168338151234725,
+              "unit_lo": -5.302484731914204e-05,
+              "unit_hi": 0.001563733979396703,
+              "unit_n_pos": 9,
+              "unit_n_neg": 3
+            }
+          },
+          {
+            "count": 1,
+            "placebo": 0,
+            "beyond": 1,
+            "heads": [
+              "L11H4"
+            ]
+          }
+        ]
+      },
+      "common": {
+        "parts": [
+          {
+            "n": 300,
+            "mean": 0.003073642461750658,
+            "lo": 0.0020055531506760448,
+            "hi": 0.00420016671833368,
+            "lo90": 0.0021534110133732917,
+            "hi90": 0.004022395408370905,
+            "wilcoxon_p": 4.605389886737567e-07,
+            "tost": true,
+            "verdict": "positive",
+            "unit": {
+              "contrast": "x_period",
+              "measure": "Delimiter",
+              "unit_units": 12,
+              "unit_mean": 0.0030736430480222524,
+              "unit_lo": 0.002285485324860524,
+              "unit_hi": 0.0038010417193597972,
+              "unit_n_pos": 12,
+              "unit_n_neg": 0
+            }
+          },
+          {
+            "count": 0,
+            "placebo": 0,
+            "beyond": 0,
+            "heads": []
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "E5b",
+    "verdict": "PASS",
+    "detail": "rare: x_period on BOS+Delimiter: +0.0004, one-sided 95% bound -0.0009 (need > -0.005); per phrase +0.0004 [-0.0009, +0.0019], 5/12 > 0; common: x_period on BOS+Delimiter: +0.0090, one-sided 95% bound +0.0068 (need > -0.005); per phrase +0.0090 [+0.0069, +0.0111], 12/12 > 0",
+    "per_base": {
+      "rare": true,
+      "common": true
+    },
+    "stats": {
+      "rare": {
+        "n": 300,
+        "mean": 0.0003831553229042909,
+        "lo": -0.001085974227765278,
+        "hi": 0.0019145086897496195,
+        "lo90": -0.0009201631294025958,
+        "hi90": 0.0017056569356144577,
+        "wilcoxon_p": 0.8190542850232205,
+        "tost": true,
+        "verdict": "equivalent",
+        "unit": {
+          "contrast": "x_period",
+          "measure": "BOS+Delimiter",
+          "unit_units": 12,
+          "unit_mean": 0.00038315840013739135,
+          "unit_lo": -0.000947176674893449,
+          "unit_hi": 0.0019470296904150416,
+          "unit_n_pos": 5,
+          "unit_n_neg": 7
+        }
+      },
+      "common": {
+        "n": 300,
+        "mean": 0.009002727840819291,
+        "lo": 0.006375919098607939,
+        "hi": 0.011612283311064023,
+        "lo90": 0.006784082347392608,
+        "hi90": 0.011269200054853714,
+        "wilcoxon_p": 2.3665900680587e-09,
+        "tost": false,
+        "verdict": "positive",
+        "unit": {
+          "contrast": "x_period",
+          "measure": "BOS+Delimiter",
+          "unit_units": 12,
+          "unit_mean": 0.009002725141989585,
+          "unit_lo": 0.006937745978620822,
+          "unit_hi": 0.011142872991214968,
+          "unit_n_pos": 12,
+          "unit_n_neg": 0
+        }
+      }
+    }
+  },
+  {
+    "id": "E5c",
+    "verdict": "PASS",
+    "detail": "rare: (ok) period_vs_x on Delimiter: +0.0123 [+0.0114, +0.0133]; per phrase +0.0123 [+0.0106, +0.0139], 12/12 > 0 AND (ok) period_vs_seven on Delimiter: +0.0085 [+0.0077, +0.0093]; per phrase +0.0085 [+0.0078, +0.0091], 12/12 > 0; common: (ok) period_vs_x on Delimiter: +0.0116 [+0.0104, +0.0129]; per phrase +0.0116 [+0.0103, +0.0130], 12/12 > 0 AND (ok) period_vs_seven on Delimiter: +0.0066 [+0.0057, +0.0076]; per phrase +0.0066 [+0.0059, +0.0074], 12/12 > 0",
+    "per_base": {
+      "rare": true,
+      "common": true
+    },
+    "stats": {
+      "rare": {
+        "parts": [
+          {
+            "n": 300,
+            "mean": 0.01229508698012863,
+            "lo": 0.011362699883324483,
+            "hi": 0.013294608726382547,
+            "lo90": 0.011498403839562268,
+            "hi90": 0.013124640917024692,
+            "wilcoxon_p": 2.9960118585262723e-49,
+            "tost": false,
+            "verdict": "positive",
+            "unit": {
+              "contrast": "period_vs_x",
+              "measure": "Delimiter",
+              "unit_units": 12,
+              "unit_mean": 0.012295086959040621,
+              "unit_lo": 0.01060908015311644,
+              "unit_hi": 0.013892953092261452,
+              "unit_n_pos": 12,
+              "unit_n_neg": 0
+            }
+          },
+          {
+            "n": 300,
+            "mean": 0.008495383322093597,
+            "lo": 0.007724443207284076,
+            "hi": 0.009295474093400419,
+            "lo90": 0.007833023450912979,
+            "hi90": 0.009151809990915066,
+            "wilcoxon_p": 4.0672180707170814e-47,
+            "tost": false,
+            "verdict": "positive",
+            "unit": {
+              "contrast": "period_vs_seven",
+              "measure": "Delimiter",
+              "unit_units": 12,
+              "unit_mean": 0.008495383213481141,
+              "unit_lo": 0.007778459687342143,
+              "unit_hi": 0.0090684597793475,
+              "unit_n_pos": 12,
+              "unit_n_neg": 0
+            }
+          }
+        ]
+      },
+      "common": {
+        "parts": [
+          {
+            "n": 300,
+            "mean": 0.011622853808616697,
+            "lo": 0.010377824786559435,
+            "hi": 0.012870159963747496,
+            "lo90": 0.010567795565604908,
+            "hi90": 0.012651211838838246,
+            "wilcoxon_p": 4.934212522561905e-43,
+            "tost": false,
+            "verdict": "positive",
+            "unit": {
+              "contrast": "period_vs_x",
+              "measure": "Delimiter",
+              "unit_units": 12,
+              "unit_mean": 0.011622853908273908,
+              "unit_lo": 0.010280971783950614,
+              "unit_hi": 0.012956739915583361,
+              "unit_n_pos": 12,
+              "unit_n_neg": 0
+            }
+          },
+          {
+            "n": 300,
+            "mean": 0.006627605129915297,
+            "lo": 0.005662730638482777,
+            "hi": 0.007628492968603293,
+            "lo90": 0.005814538601607186,
+            "hi90": 0.0074542904450233365,
+            "wilcoxon_p": 1.8810864966220572e-30,
+            "tost": false,
+            "verdict": "positive",
+            "unit": {
+              "contrast": "period_vs_seven",
+              "measure": "Delimiter",
+              "unit_units": 12,
+              "unit_mean": 0.006627605239239832,
+              "unit_lo": 0.005893913472187705,
+              "unit_hi": 0.00735523504564642,
+              "unit_n_pos": 12,
+              "unit_n_neg": 0
+            }
+          }
+        ]
+      }
+    }
+  }
+]

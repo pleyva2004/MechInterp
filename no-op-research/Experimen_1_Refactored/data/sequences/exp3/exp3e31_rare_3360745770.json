@@ -1,0 +1,13 @@
+{
+  "condition": "exp3e31_rare_3360745770",
+  "id_range": [
+    0,
+    38979
+  ],
+  "n": 500,
+  "seq_len": 32,
+  "base_seed": 0,
+  "seed": 1504962598,
+  "without_replacement": true,
+  "sha256": "c4da53a1b58a2e537a662327d4cb0d90fbec8b7248e4bbeb64662af4c5b90747"
+}

@@ -1,0 +1,340 @@
+{
+  "phrase_ids": [
+    314,
+    339,
+    345,
+    356,
+    484,
+    588,
+    673,
+    711,
+    761,
+    765,
+    1637,
+    1660,
+    1663,
+    1842,
+    2630,
+    2647,
+    3677,
+    5006,
+    5465,
+    5969,
+    6290,
+    6891,
+    7259,
+    11464,
+    11758,
+    14256,
+    15063,
+    16715,
+    19780,
+    36324
+  ],
+  "design": {
+    "rare": {
+      "repeat-nl": {
+        "seq_len": 32,
+        "written": [
+          10,
+          11,
+          12,
+          31,
+          32
+        ],
+        "categories": {
+          "Copy": [
+            12
+          ],
+          "Dup": [
+            11
+          ]
+        },
+        "repeat_groups": 24
+      },
+      "norepeat-nl": {
+        "seq_len": 32,
+        "written": [
+          31,
+          32
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "other-nl": {
+        "seq_len": 32,
+        "written": [
+          10,
+          11,
+          12,
+          31,
+          32
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "repeat-nl-1": {
+        "seq_len": 32,
+        "written": [
+          10,
+          11,
+          12,
+          32
+        ],
+        "categories": {
+          "Copy": [
+            12
+          ],
+          "Dup": [
+            11
+          ]
+        },
+        "repeat_groups": 12
+      },
+      "repeat-matched": {
+        "seq_len": 32,
+        "written": [
+          10,
+          11,
+          12,
+          31,
+          32
+        ],
+        "categories": {
+          "Copy": [
+            12
+          ],
+          "Dup": [
+            11
+          ]
+        },
+        "repeat_groups": 24
+      },
+      "repeat-rand": {
+        "seq_len": 32,
+        "written": [
+          10,
+          11,
+          12,
+          31,
+          32
+        ],
+        "categories": {
+          "Copy": [
+            12
+          ],
+          "Dup": [
+            11
+          ]
+        },
+        "repeat_groups": 24
+      },
+      "norepeat-rand": {
+        "seq_len": 32,
+        "written": [
+          31,
+          32
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "norepeat-rand_b": {
+        "seq_len": 32,
+        "written": [
+          10,
+          11,
+          12,
+          31,
+          32
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      }
+    },
+    "common": {
+      "repeat-nl": {
+        "seq_len": 32,
+        "written": [
+          10,
+          11,
+          12,
+          31,
+          32
+        ],
+        "categories": {
+          "Copy": [
+            12
+          ],
+          "Dup": [
+            11
+          ]
+        },
+        "repeat_groups": 24
+      },
+      "norepeat-nl": {
+        "seq_len": 32,
+        "written": [
+          31,
+          32
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "other-nl": {
+        "seq_len": 32,
+        "written": [
+          10,
+          11,
+          12,
+          31,
+          32
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "repeat-nl-1": {
+        "seq_len": 32,
+        "written": [
+          10,
+          11,
+          12,
+          32
+        ],
+        "categories": {
+          "Copy": [
+            12
+          ],
+          "Dup": [
+            11
+          ]
+        },
+        "repeat_groups": 12
+      },
+      "repeat-matched": {
+        "seq_len": 32,
+        "written": [
+          10,
+          11,
+          12,
+          31,
+          32
+        ],
+        "categories": {
+          "Copy": [
+            12
+          ],
+          "Dup": [
+            11
+          ]
+        },
+        "repeat_groups": 24
+      },
+      "repeat-rand": {
+        "seq_len": 32,
+        "written": [
+          10,
+          11,
+          12,
+          31,
+          32
+        ],
+        "categories": {
+          "Copy": [
+            12
+          ],
+          "Dup": [
+            11
+          ]
+        },
+        "repeat_groups": 24
+      },
+      "norepeat-rand": {
+        "seq_len": 32,
+        "written": [
+          31,
+          32
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "norepeat-rand_b": {
+        "seq_len": 32,
+        "written": [
+          10,
+          11,
+          12,
+          31,
+          32
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      }
+    }
+  },
+  "base_pool_size": {
+    "rare": 38980,
+    "common": 734
+  },
+  "matched_pool_sizes": {
+    "sushi": [
+      43,
+      280,
+      16019
+    ],
+    "water": [
+      279,
+      279,
+      16019
+    ],
+    "pizza": [
+      280,
+      16018,
+      16018
+    ],
+    "music": [
+      280,
+      16018,
+      16018
+    ],
+    "coffee": [
+      280,
+      16018,
+      16018
+    ],
+    "chess": [
+      279,
+      279,
+      16019
+    ],
+    "rain": [
+      43,
+      16018,
+      16018
+    ],
+    "cars": [
+      280,
+      16018,
+      16018
+    ],
+    "songs": [
+      280,
+      16018,
+      16018
+    ],
+    "rice": [
+      280,
+      16018,
+      16018
+    ],
+    "bikes": [
+      280,
+      16018,
+      16018
+    ],
+    "money": [
+      279,
+      279,
+      16019
+    ]
+  }
+}

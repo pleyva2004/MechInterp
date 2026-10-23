@@ -1,0 +1,169 @@
+% Every experiment in one-sentence fields: number, what was tested, hypothesis, confound, results, graph.
+% Numbers come from the saved runs (../exp2/LOOP_LOG.md, ../exp3/LOG.md and each run's report).
+% Build (from this folder): pdflatex experiment_summaries.tex
+\documentclass[10pt]{article}
+\usepackage[letterpaper,margin=0.6in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[scaled=0.92]{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+\definecolor{ink2}{HTML}{52514E}
+\definecolor{muted}{HTML}{898781}
+\definecolor{plane}{HTML}{F4F3EF}
+\graphicspath{{../results/}{../../experiment_1/results/}}
+\renewcommand{\arraystretch}{1.25}
+
+% \exper{number and name}{tested}{hypothesis}{confound}{results}{graph sentence}{figure path}{run folder}
+\newcommand{\exper}[8]{%
+  \par\noindent\begin{minipage}{\linewidth}
+  {\large\bfseries Experiment #1}\hfill{\color{muted}\scriptsize\texttt{results/#8}}\\[-2pt]
+  \begin{tabularx}{\linewidth}{@{}>{\leavevmode\color{ink2}\bfseries}p{2.9cm}X@{}}
+  \toprule
+  What was tested & #2 \\
+  Hypothesis & #3 \\
+  Confound & #4 \\
+  Results & #5 \\
+  Graph & #6 \\
+  \bottomrule
+  \end{tabularx}\\[3pt]
+  \centering\includegraphics[width=0.94\linewidth,height=0.25\textheight,keepaspectratio]{#7}
+  \end{minipage}\par\vspace{10pt}}
+
+\begin{document}
+
+{\LARGE\bfseries The no-op experiments, one sentence at a time}\\[2pt]
+{\small\color{muted} GPT-2 small \,·\, BOS + 32 tokens, attention measured at the final token \,·\, ``BOS mass'' = attention a head parks on the first token (the no-op) \,·\, ``late'' = layers 6--11 \,·\, rare / common = the id range of the random filler tokens}
+
+\vspace{8pt}
+
+%=========================== EXPERIMENT 1 ===========================
+\exper{1 · the no-op baseline (refactored Experiment 1)}
+{Final-token attention of all 144 heads on 1000 random-token rows in three conditions: rare ids, common ids, and common ids without byte tokens.}
+{Most heads park on BOS on random input, and the token class changes how many do.}
+{Byte tokens (ids 0--255) could drive heads on their own, so the common condition was run both with and without them.}
+{About 74\% of heads park on BOS in every condition, more in late layers, yet 134 of 144 heads shift their BOS mass between rare and common tokens.}
+{What each head attends to most in the three conditions (green = BOS in this figure), which look almost identical.}
+{20260928-004336_exp1/figures/phase2_mode_label_panels.png}{20260928-004336\_exp1}
+
+\exper{2 · which tokens move the heads (exp1ext)}
+{A 2$\times$2 of context class $\times$ final-token class, plus single tokens swapped into each position.}
+{The late-head shift comes from the context rather than from the final token.}
+{Context class and final-token class always changed together in Experiment 1, so the 2$\times$2 crossed them.}
+{The shift came from the whole context, and a single swapped token mattered only at position 31, right before the final token.}
+{Change in BOS mass per head when one token is swapped in at position 31, by token, with brackets and punctuation moving L7H7 by up to 0.5.}
+{20260928-135243_exp1ext/figures/stage2_token_head_heatmap_p31.png}{20260928-135243\_exp1ext}
+
+%=========================== EXPERIMENT 2 ===========================
+\exper{3 · a phrase in the noise (Exp 2, iteration 1)}
+{`` I like sushi'' written at positions 29--31 or 14--16 of random rows, against its scrambled order and same-form random words.}
+{A coherent phrase right before the final token changes late-head BOS mass more than its controls, and a far placement does little.}
+{Writing any tokens changes attention, so the phrase was compared with its scrambled order, same-form random words and a second random-word placebo.}
+{Near the final token the phrase raised late BOS mass, word order and the specific tokens mattered, and the far placement was weaker but not null (37 / 25 heads); 3 of 6 predictions held.}
+{Experiment 1-style maps with the phrase near the final token, where late layers turn red in the change row for the phrase but much less for its controls.}
+{20261003-151225_exp2/figures/attention_maps/common_sushi_near.png}{20261003-151225\_exp2}
+
+\exper{4 · more than the sum of its words (Exp 2, iteration 2)}
+{Each word of the phrase written alone, plus the model's surprisal of the words.}
+{Word effects add up, and the model's surprise explains the phrase effect.}
+{A phrase effect could be just its words' effects or their predictability, so single-word variants and slot surprisal were measured on the same rows.}
+{The phrase exceeded the sum of its words while the scrambled order did not, single words explained none of the order effect ($r^2 \approx 0$), and surprisal explained about a tenth; 7 of 7 predictions held.}
+{Observed change, sum of single-word changes and their interaction per head, where the phrase's interaction is positive in late layers.}
+{20261003-230841_exp2/figures/common_sushi_near_additivity.png}{20261003-230841\_exp2}
+
+\exper{5 · twelve phrases (Exp 2, iteration 3)}
+{Twelve pronoun--verb--object phrases at 29--31, each against its scrambled order and its single words, on both base classes.}
+{Coherent adjacent words right before the final token make late heads park, for every phrase.}
+{One phrase could be special and bounded masses can fake interactions, so twelve phrases were tested and the results were repeated on the logit scale.}
+{The phrase-minus-scrambled interaction was positive for 12 of 12 phrases on both bases (+0.025 common, +0.010 rare) and on the logit scale, and surprisal did not explain it; 8 of 10 predictions held.}
+{Per-phrase interaction terms with CIs, all above zero.}
+{20261004-125831_exp2/figures/phrase_terms_sink_mass.png}{20261004-125831\_exp2}
+
+\exper{6 · which word pairs do the work (Test A)}
+{Every word pair of the twelve phrases written alone (pronoun--verb, verb--object, pronoun~\dots~object) against the full phrase.}
+{The extra BOS mass is mostly carried by the adjacent pair ending right before the final token.}
+{A three-word effect could come from any pair, so every pair was written alone and the three-way term was separated by decomposition.}
+{The pair ending at 31 carried about half (46\% common, 61\% rare), the earlier pair a quarter to a third, and the non-adjacent pair and three-way term little; 7 of 8 predictions held.}
+{Late-layer BOS change for each word, each pair and the full phrase, with ticks at the sum of the words alone.}
+{20261004-152303_exp2/figures/buildup_sink_mass.png}{20261004-152303\_exp2}
+
+\exper{7 · other phrase types (Test C)}
+{Twelve adjective--noun--verb and twelve preposition--determiner--noun phrases with the same controls.}
+{The phrase effect generalizes beyond pronoun--verb--object grammar.}
+{The effect could be specific to one template, so two other templates were tested on both base classes with identical controls.}
+{All six template $\times$ base cells showed the effect (pooled CIs above zero), but adjective phrases on rare bases were inconsistent (6 of 12 phrases); 4 of 6 and 6 of 6 predictions held.}
+{Per-phrase interaction terms for the adjective--noun--verb template, including the weak rare-base cell.}
+{20261004-155651_exp2/figures/phrase_terms_sink_mass.png}{20261004-155651\_exp2}
+
+%=========================== EXPERIMENT 3 ===========================
+\exper{8 · a true fact before a random final token (Exp 3, R1-out)}
+{Every one of 11 countries paired at positions 30--31 with every capital (and every non-capital city), followed by the row's random final token.}
+{A true country--capital pair raises late BOS mass more than a false one, as coherent phrases did.}
+{Truth is tied to which tokens appear, so every country met every capital and each token's own effect cancels in correct $-$ wrong.}
+{For capitals, truth barely changed late BOS mass ($-0.0009$ rare, $-0.0037$ common; a correct city raised it only on rare bases, +0.0057), but correct pairs moved attention from the capital onto the country; 1 of 4 predictions held.}
+{Late-layer correct $-$ wrong BOS mass with 95\% CIs against 20 placebo pairings and the $\pm0.005$ equivalence band.}
+{20261015-190957_exp3rel/figures/pooled_T_BOS.png}{20261015-190957\_exp3rel}
+
+\exper{9 · the capital as the final token (Exp 3, R1-in)}
+{The same grids with the country at 31 and the capital or city as the final token, plus a country + random-word anchor.}
+{A correct capital at the final token takes late heads off BOS and onto the country.}
+{Changing the final token changes every head's query, so each capital appears once with its own country and ten times with others, cancelling its own effect.}
+{A correct capital cut late BOS mass by 0.018 (rare) and 0.034 (common) in 11 of 11 countries, but most of the freed attention spread over the random context (+0.015 / +0.029) rather than onto the country (+0.002 / +0.006); 3 of 7 predictions held.}
+{Per-head correct $-$ wrong BOS mass for capitals and cities on both bases, blue across the late layers.}
+{20261015-203150_exp3rel_in/figures/head_T_BOS.png}{20261015-203150\_exp3rel\_in}
+
+\exper{10 · every position of the pair (Exp 3, position sweep)}
+{The country at every position $i$ and the capital at every later position $j \le 32$ (496 placements), correct vs wrong pairings.}
+{The release at the final token survives a gap but weakens with distance, and pairs before a random final token change little.}
+{Position and distance move together, so all 496 placements used the same rows plus a placebo pairing at every placement.}
+{With the capital as the final token every country position released BOS, on rare bases more strongly the farther away the country was ($-0.034$ at position 1 vs $-0.015$ at 31; flat on common), and the placebo was significant at 0 of 496 placements; 3 of 5 predictions held.}
+{Late BOS change along the adjacent diagonal, with the capital as the final token, and with the capital at 31, by position.}
+{20261015-210238_exp3pos/figures/profiles_BOS.png}{20261015-210238\_exp3pos}
+
+\exper{11 · copying as a positive control (Exp 3, E3.4)}
+{A phrase or random block repeated so that the final token's earlier copy is followed by a copy target, against unrepeated controls.}
+{Known induction heads switch from BOS to the copy target, showing the role metrics can see a head change job.}
+{Any change in tokens could move attention, so each control differed only at the earlier copy and the final token was identical.}
+{Five to seven heads (L5H0, L5H1, L5H5, L6H9, L7H1, L7H2, L7H10) switched from BOS to the copy target, taking more from BOS than renormalization predicts, while natural phrases were copied less than look-alike words; 3 of 5 predictions held.}
+{Experiment 1-style maps, where the copy target (green) takes over heads in layers 5--7 on repeats.}
+{20261015-211838_exp3e34/figures/exp1style_maps_rare.png}{20261015-211838\_exp3e34}
+
+\exper{12 · distance from the final token (Exp 3, E3.3)}
+{The three-word phrase ending $g$ = 0 to 24 tokens before the final token, against its scrambled order and no phrase.}
+{The phrase effect halves within one token and is gone by a gap of 24.}
+{Distance is tied to absolute position, so a 24-token-row control kept the gap at zero while moving the phrase to positions 21--23.}
+{Word order mattered mostly next to the final token (rare: +0.013 $\to$ +0.005 after one step, a small residual out to 15, zero at 24) while real words still raised BOS 15 tokens away, and absolute position did not matter on rare bases; 3 of 3 predictions held.}
+{Late BOS change (phrase $-$ scrambled and phrase $-$ none) against the gap $g$.}
+{20261015-214541_exp3e33/figures/sweep_pooled.png}{20261015-214541\_exp3e33}
+
+\exper{13 · punctuation as a resting place (Exp 3, E3.5)}
+{A period, comma or newline (or the byte tokens ``x'', ``7'') three tokens before the final token, after a phrase or after random tokens.}
+{A period after a phrase becomes an alternative resting place and takes attention from BOS.}
+{A period is also a rare byte token, so it sat away from the previous-token slot and was compared with the non-punctuation bytes ``x'' and ``7''.}
+{A period drew only +0.007 / +0.013 of late attention and 0--1 late heads switched to it, while early head L2H5 tracked the most recent punctuation; 2 of 3 predictions held.}
+{Experiment 1-style maps, where the punctuation slot (brown) appears only in early heads such as L2H5.}
+{20261015-220224_exp3e35/figures/exp1style_maps_rare.png}{20261015-220224\_exp3e35}
+
+\exper{14 · the final token completes the phrase (Exp 3, E3.1)}
+{The phrase's first two words at 30--31 with the final token being the completing object, an implausible object, a same-form random word, or a random token.}
+{When the final token completes the phrase, late heads leave BOS to read it, unlike after an unrelated final token.}
+{``Completes the phrase'' could just mean ``the final token is a real word'', so completing objects were compared with same-form words and implausible objects.}
+{The context raised late BOS mass after non-completing final tokens but much less after the completing object (rare: it fell, $-0.044$; common: +0.008 vs +0.034 for a same-form word), with almost no late heads switching role (1 / 0); 3 of 6 predictions held.}
+{Experiment 1-style maps, where the change row turns blue for the completing object and red for the random final token.}
+{20261015-221059_exp3e31/figures/exp1style_maps_rare.png}{20261015-221059\_exp3e31}
+
+\exper{15 · from one word to natural text (Exp 3, E3.2)}
+{The last $k$ = 1 to 31 tokens of twelve hand-written passages before a random final token, plus the passage's true next word as the final token.}
+{Parking saturates by about three coherent tokens, so longer natural text adds nothing.}
+{More text also means fewer random tokens, so every length was compared with same-form random words and with the scrambled passage.}
+{Late BOS mass kept rising with length to +0.133 (rare) and +0.159 (common) at 31 tokens without needing the final word pair, and the true next word shrank that rise by 0.06; 1 of 4 predictions held.}
+{Late BOS change against the number of passage tokens, for the passage, its scrambled order and same-form words.}
+{20261015-223621_exp3e32/figures/sweep.png}{20261015-223621\_exp3e32}
+
+\end{document}

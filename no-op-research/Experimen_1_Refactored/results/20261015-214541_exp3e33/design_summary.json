@@ -1,0 +1,594 @@
+{
+  "phrase_ids": [
+    314,
+    339,
+    345,
+    356,
+    484,
+    588,
+    673,
+    711,
+    761,
+    765,
+    1637,
+    1660,
+    1663,
+    1842,
+    2630,
+    2647,
+    3677,
+    5006,
+    5465,
+    5969,
+    6290,
+    6891,
+    7259,
+    11464,
+    11758,
+    14256,
+    15063,
+    16715,
+    19780,
+    36324
+  ],
+  "design": {
+    "rare": {
+      "none": {
+        "seq_len": 32,
+        "written": [],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "nl_g0": {
+        "seq_len": 32,
+        "written": [
+          29,
+          30,
+          31
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "shuffled_g0": {
+        "seq_len": 32,
+        "written": [
+          29,
+          30,
+          31
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "nl_g1": {
+        "seq_len": 32,
+        "written": [
+          28,
+          29,
+          30
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "shuffled_g1": {
+        "seq_len": 32,
+        "written": [
+          28,
+          29,
+          30
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "nl_g2": {
+        "seq_len": 32,
+        "written": [
+          27,
+          28,
+          29
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "shuffled_g2": {
+        "seq_len": 32,
+        "written": [
+          27,
+          28,
+          29
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "nl_g3": {
+        "seq_len": 32,
+        "written": [
+          26,
+          27,
+          28
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "shuffled_g3": {
+        "seq_len": 32,
+        "written": [
+          26,
+          27,
+          28
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "nl_g4": {
+        "seq_len": 32,
+        "written": [
+          25,
+          26,
+          27
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "shuffled_g4": {
+        "seq_len": 32,
+        "written": [
+          25,
+          26,
+          27
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "nl_g6": {
+        "seq_len": 32,
+        "written": [
+          23,
+          24,
+          25
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "shuffled_g6": {
+        "seq_len": 32,
+        "written": [
+          23,
+          24,
+          25
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "nl_g8": {
+        "seq_len": 32,
+        "written": [
+          21,
+          22,
+          23
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "shuffled_g8": {
+        "seq_len": 32,
+        "written": [
+          21,
+          22,
+          23
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "nl_g12": {
+        "seq_len": 32,
+        "written": [
+          17,
+          18,
+          19
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "shuffled_g12": {
+        "seq_len": 32,
+        "written": [
+          17,
+          18,
+          19
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "nl_g15": {
+        "seq_len": 32,
+        "written": [
+          14,
+          15,
+          16
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "shuffled_g15": {
+        "seq_len": 32,
+        "written": [
+          14,
+          15,
+          16
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "nl_g24": {
+        "seq_len": 32,
+        "written": [
+          5,
+          6,
+          7
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "shuffled_g24": {
+        "seq_len": 32,
+        "written": [
+          5,
+          6,
+          7
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "matched": {
+        "seq_len": 32,
+        "written": [
+          29,
+          30,
+          31
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "matched_b": {
+        "seq_len": 32,
+        "written": [
+          29,
+          30,
+          31
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "nl_len24": {
+        "seq_len": 24,
+        "written": [
+          21,
+          22,
+          23
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "shuffled_len24": {
+        "seq_len": 24,
+        "written": [
+          21,
+          22,
+          23
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      }
+    },
+    "common": {
+      "none": {
+        "seq_len": 32,
+        "written": [],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "nl_g0": {
+        "seq_len": 32,
+        "written": [
+          29,
+          30,
+          31
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "shuffled_g0": {
+        "seq_len": 32,
+        "written": [
+          29,
+          30,
+          31
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "nl_g1": {
+        "seq_len": 32,
+        "written": [
+          28,
+          29,
+          30
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "shuffled_g1": {
+        "seq_len": 32,
+        "written": [
+          28,
+          29,
+          30
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "nl_g2": {
+        "seq_len": 32,
+        "written": [
+          27,
+          28,
+          29
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "shuffled_g2": {
+        "seq_len": 32,
+        "written": [
+          27,
+          28,
+          29
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "nl_g3": {
+        "seq_len": 32,
+        "written": [
+          26,
+          27,
+          28
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "shuffled_g3": {
+        "seq_len": 32,
+        "written": [
+          26,
+          27,
+          28
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "nl_g4": {
+        "seq_len": 32,
+        "written": [
+          25,
+          26,
+          27
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "shuffled_g4": {
+        "seq_len": 32,
+        "written": [
+          25,
+          26,
+          27
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "nl_g6": {
+        "seq_len": 32,
+        "written": [
+          23,
+          24,
+          25
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "shuffled_g6": {
+        "seq_len": 32,
+        "written": [
+          23,
+          24,
+          25
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "nl_g8": {
+        "seq_len": 32,
+        "written": [
+          21,
+          22,
+          23
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "shuffled_g8": {
+        "seq_len": 32,
+        "written": [
+          21,
+          22,
+          23
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "nl_g12": {
+        "seq_len": 32,
+        "written": [
+          17,
+          18,
+          19
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "shuffled_g12": {
+        "seq_len": 32,
+        "written": [
+          17,
+          18,
+          19
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "nl_g15": {
+        "seq_len": 32,
+        "written": [
+          14,
+          15,
+          16
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "shuffled_g15": {
+        "seq_len": 32,
+        "written": [
+          14,
+          15,
+          16
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "nl_g24": {
+        "seq_len": 32,
+        "written": [
+          5,
+          6,
+          7
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "shuffled_g24": {
+        "seq_len": 32,
+        "written": [
+          5,
+          6,
+          7
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "matched": {
+        "seq_len": 32,
+        "written": [
+          29,
+          30,
+          31
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "matched_b": {
+        "seq_len": 32,
+        "written": [
+          29,
+          30,
+          31
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "nl_len24": {
+        "seq_len": 24,
+        "written": [
+          21,
+          22,
+          23
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "shuffled_len24": {
+        "seq_len": 24,
+        "written": [
+          21,
+          22,
+          23
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      }
+    }
+  },
+  "matched_pool_sizes": {
+    "sushi": [
+      43,
+      280,
+      16019
+    ],
+    "water": [
+      279,
+      279,
+      16019
+    ],
+    "pizza": [
+      280,
+      16018,
+      16018
+    ],
+    "music": [
+      280,
+      16018,
+      16018
+    ],
+    "coffee": [
+      280,
+      16018,
+      16018
+    ],
+    "chess": [
+      279,
+      279,
+      16019
+    ],
+    "rain": [
+      43,
+      16018,
+      16018
+    ],
+    "cars": [
+      280,
+      16018,
+      16018
+    ],
+    "songs": [
+      280,
+      16018,
+      16018
+    ],
+    "rice": [
+      280,
+      16018,
+      16018
+    ],
+    "bikes": [
+      280,
+      16018,
+      16018
+    ],
+    "money": [
+      279,
+      279,
+      16019
+    ]
+  }
+}

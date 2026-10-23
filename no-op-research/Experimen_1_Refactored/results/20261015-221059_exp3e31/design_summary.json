@@ -1,0 +1,405 @@
+{
+  "phrase_ids": [
+    314,
+    339,
+    345,
+    356,
+    484,
+    588,
+    673,
+    711,
+    761,
+    765,
+    1637,
+    1660,
+    1663,
+    1842,
+    2630,
+    2647,
+    3677,
+    5006,
+    5465,
+    5969,
+    6290,
+    6891,
+    7259,
+    11464,
+    11758,
+    14256,
+    15063,
+    16715,
+    19780,
+    36324
+  ],
+  "design": {
+    "rare": {
+      "PV+O": {
+        "seq_len": 32,
+        "written": [
+          30,
+          31,
+          32
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "rr+O": {
+        "seq_len": 32,
+        "written": [
+          32
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "PV+Op": {
+        "seq_len": 32,
+        "written": [
+          30,
+          31,
+          32
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "rr+Op": {
+        "seq_len": 32,
+        "written": [
+          32
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "PV+M": {
+        "seq_len": 32,
+        "written": [
+          30,
+          31,
+          32
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "rr+M": {
+        "seq_len": 32,
+        "written": [
+          32
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "PV+r": {
+        "seq_len": 32,
+        "written": [
+          30,
+          31
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "rr+r": {
+        "seq_len": 32,
+        "written": [],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "VP+O": {
+        "seq_len": 32,
+        "written": [
+          30,
+          31,
+          32
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "VP+r": {
+        "seq_len": 32,
+        "written": [
+          30,
+          31
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "PVO+r": {
+        "seq_len": 32,
+        "written": [
+          29,
+          30,
+          31
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "matched": {
+        "seq_len": 32,
+        "written": [
+          30,
+          31,
+          32
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "matched_b": {
+        "seq_len": 32,
+        "written": [
+          30,
+          31,
+          32
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      }
+    },
+    "common": {
+      "PV+O": {
+        "seq_len": 32,
+        "written": [
+          30,
+          31,
+          32
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "rr+O": {
+        "seq_len": 32,
+        "written": [
+          32
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "PV+Op": {
+        "seq_len": 32,
+        "written": [
+          30,
+          31,
+          32
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "rr+Op": {
+        "seq_len": 32,
+        "written": [
+          32
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "PV+M": {
+        "seq_len": 32,
+        "written": [
+          30,
+          31,
+          32
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "rr+M": {
+        "seq_len": 32,
+        "written": [
+          32
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "PV+r": {
+        "seq_len": 32,
+        "written": [
+          30,
+          31
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "rr+r": {
+        "seq_len": 32,
+        "written": [],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "VP+O": {
+        "seq_len": 32,
+        "written": [
+          30,
+          31,
+          32
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "VP+r": {
+        "seq_len": 32,
+        "written": [
+          30,
+          31
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "PVO+r": {
+        "seq_len": 32,
+        "written": [
+          29,
+          30,
+          31
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "matched": {
+        "seq_len": 32,
+        "written": [
+          30,
+          31,
+          32
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      },
+      "matched_b": {
+        "seq_len": 32,
+        "written": [
+          30,
+          31,
+          32
+        ],
+        "categories": {},
+        "repeat_groups": 0
+      }
+    }
+  },
+  "base_pool_size": {
+    "rare": 38980,
+    "common": 734
+  },
+  "matched_pool_sizes": {
+    "sushi": [
+      43,
+      280,
+      16019
+    ],
+    "water": [
+      279,
+      279,
+      16019
+    ],
+    "pizza": [
+      280,
+      16018,
+      16018
+    ],
+    "music": [
+      280,
+      16018,
+      16018
+    ],
+    "coffee": [
+      280,
+      16018,
+      16018
+    ],
+    "chess": [
+      279,
+      279,
+      16019
+    ],
+    "rain": [
+      43,
+      16018,
+      16018
+    ],
+    "cars": [
+      280,
+      16018,
+      16018
+    ],
+    "songs": [
+      280,
+      16018,
+      16018
+    ],
+    "rice": [
+      280,
+      16018,
+      16018
+    ],
+    "bikes": [
+      280,
+      16018,
+      16018
+    ],
+    "money": [
+      279,
+      279,
+      16019
+    ]
+  },
+  "oprime": {
+    "sushi": {
+      "phrase": "songs",
+      "id": 7259,
+      "text": " I like songs"
+    },
+    "water": {
+      "phrase": "chess",
+      "id": 19780,
+      "text": " we need chess"
+    },
+    "pizza": {
+      "phrase": "music",
+      "id": 2647,
+      "text": " she ate music"
+    },
+    "music": {
+      "phrase": "cars",
+      "id": 5006,
+      "text": " they love cars"
+    },
+    "coffee": {
+      "phrase": "money",
+      "id": 1637,
+      "text": " he drinks money"
+    },
+    "chess": {
+      "phrase": "coffee",
+      "id": 6891,
+      "text": " you play coffee"
+    },
+    "rain": {
+      "phrase": "rice",
+      "id": 11464,
+      "text": " I hate rice"
+    },
+    "cars": {
+      "phrase": "rain",
+      "id": 6290,
+      "text": " we sell rain"
+    },
+    "songs": {
+      "phrase": "water",
+      "id": 1660,
+      "text": " she wrote water"
+    },
+    "rice": {
+      "phrase": "pizza",
+      "id": 14256,
+      "text": " they grow pizza"
+    },
+    "bikes": {
+      "phrase": "sushi",
+      "id": 36324,
+      "text": " he fixed sushi"
+    },
+    "money": {
+      "phrase": "bikes",
+      "id": 16715,
+      "text": " you want bikes"
+    }
+  },
+  "oprime_is_derangement": true
+}

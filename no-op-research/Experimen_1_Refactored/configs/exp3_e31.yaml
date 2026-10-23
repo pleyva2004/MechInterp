@@ -1,0 +1,127 @@
+# Experiment 3, E3.1: query inside vs outside the phrase (exp3/DESIGN.md section 3; predictions in
+# exp3/PREDICTIONS_e31.md, written before any E3.1 data). The ONLY source of parameters for exp3.run_e31.
+# Positions are model-input indices (BOS at 0, random tokens at 1..32, final/query token at 32).
+model: gpt2-small
+seq_len: 32                     # random tokens, excluding BOS
+bos_token_id: 50256
+diffuse_threshold: 0.2
+seed: 0
+device: cpu
+dtype: float32
+
+backends:
+  transformer_lens: {model_name: gpt2-small}
+  huggingface:      {model_name: gpt2, attn_implementation: eager}
+primary_backend: transformer_lens
+
+paths:
+  sequences_dir: data/sequences/exp3
+  results_dir: results
+
+# Base rows: random ids, no repeats within a row; every phrase id is excluded from the filler (as in Exp 2).
+bases:
+  rare:   [1000, 39999]
+  common: [256, 999]
+n_bases: 500                    # per base class (DESIGN.md section 2 rule 4)
+
+# The 12 pronoun-verb-object phrases of iteration 3 (configs/exp2_iter3.yaml). ids are authoritative; text is only
+# checked to tokenize to them.
+phrases:
+  sushi:  {text: " I like sushi",     ids: [314, 588, 36324]}
+  water:  {text: " we need water",    ids: [356, 761, 1660]}
+  pizza:  {text: " she ate pizza",    ids: [673, 15063, 14256]}
+  music:  {text: " they love music",  ids: [484, 1842, 2647]}
+  coffee: {text: " he drinks coffee", ids: [339, 11758, 6891]}
+  chess:  {text: " you play chess",   ids: [345, 711, 19780]}
+  rain:   {text: " I hate rain",      ids: [314, 5465, 6290]}
+  cars:   {text: " we sell cars",     ids: [356, 3677, 5006]}
+  songs:  {text: " she wrote songs",  ids: [673, 2630, 7259]}
+  rice:   {text: " they grow rice",   ids: [484, 1663, 11464]}
+  bikes:  {text: " he fixed bikes",   ids: [339, 5969, 16715]}
+  money:  {text: " you want money",   ids: [345, 765, 1637]}
+
+# O' (variant suffix "Op"): for each phrase, another phrase's object, implausible after " P V". Fixed before any E3.1
+# run. A derangement: every object serves exactly once as O', so the PV+O and PV+Op arms hold the same 12 query ids per
+# row (only their pairing with the context differs). Rule:
+# - restrictive verbs (need, ate, drinks, play, sell, wrote, grow, fixed) get an object that the verb's meaning excludes;
+# - the four preference verbs (like, love, hate, want) accept almost any noun. They got the four objects left over
+#   (songs, rice, bikes, cars), assigned to minimise their summed log P subject to log P(O') < log P(O).
+# Check: GPT-2 small next-token log P on BOS + " P V" (clean context, no random tokens), O' vs O in brackets. Every
+# O' is less probable than O. GPT-2 does not rank O first in every context (e.g. " he fixed" prefers " money"), so
+# the run also reports log P of each query in the E3.1 contexts.
+oprime:
+  sushi:  songs    # " I like songs": like takes any noun; a leftover object (-9.6 vs -8.8)
+  water:  chess    # " we need chess": a board game is not a necessity (-13.0 vs -8.7)
+  pizza:  music    # " she ate music": music is not edible; DESIGN.md's example (-10.7 vs -7.0)
+  music:  cars     # " they love cars": love takes any noun; a leftover object (-8.7 vs -7.4)
+  coffee: money    # " he drinks money": money is not a drink (-8.1 vs -4.6)
+  chess:  coffee   # " you play coffee": coffee is not a game or an instrument (-11.9 vs -7.7)
+  rain:   rice     # " I hate rice": hate takes any noun; a leftover object (-10.2 vs -8.7)
+  cars:   rain     # " we sell rain": rain cannot be sold (-9.7 vs -7.3)
+  songs:  water    # " she wrote water": water is not something written (-12.6 vs -10.9)
+  rice:   pizza    # " they grow pizza": pizza is a dish, not a crop (-11.5 vs -8.9)
+  bikes:  sushi    # " he fixed sushi": food is not repaired (-12.6 vs -11.0)
+  money:  bikes    # " you want bikes": want takes any noun; a leftover object (-13.7 vs -8.3)
+
+# Context P V at 30-31, query at 32; the sanity variant PVO+r writes P V O at 29-31 (iteration 3's nl).
+layout: {context: [30, 31], query: 32, sanity: [29, 30, 31]}
+
+# M and the placebo pair: per row, one id per phrase token with the same values of these features and from the same id
+# class (exp2's matched pools). M uses O's pool.
+match_features: [leading_space, is_alpha, is_capitalized]
+token_classes:
+  common: [256, 999]
+  rare:   [1000, 39999]
+
+extraction:
+  chunk_rows: 20                # one TL forward pass = chunk_rows rows x 12 units of one variant (240 sequences)
+
+# Two-arm contrasts: a - b per row; category masks from `mask_from` (default: a, the treated arm). DESIGN.md section 3.
+contrasts:
+  C_O:      {a: PV+O,  b: rr+O}                        # C(O); E1c (role switches)
+  C_Op:     {a: PV+Op, b: rr+Op}                       # C(O')
+  C_M:      {a: PV+M,  b: rr+M}                        # C(M)
+  C_r:      {a: PV+r,  b: rr+r}                        # C(r)
+  order_O:  {a: PV+O,  b: VP+O}                        # reported; also changes the token at 31 (V vs P)
+  order_r:  {a: PV+r,  b: VP+r}                        # reported; also changes the token at 31 (V vs P)
+  sanity:   {a: PVO+r, b: rr+r}                        # E1a (iteration 3's nl - none)
+  placebo:  {a: matched_b, b: matched, mask_from: PV+O}  # masks of the contrast it controls (E1c)
+# Differences of two contrasts: (plus.a - plus.b) - (minus.a - minus.b) per row, with `mask_from`'s masks on all four
+# arms. Measures only: McNemar needs two arms, so no labels, switches or TV.
+differences:
+  interaction:   {plus: C_O,     minus: C_r,     mask_from: PV+O}   # C(O) - C(r); E1b
+  completion:    {plus: C_O,     minus: C_M,     mask_from: PV+O}   # C(O) - C(M); E1e
+  plausibility:  {plus: C_O,     minus: C_Op,    mask_from: PV+O}   # C(O) - C(O'); E1e bet
+  order_x_query: {plus: order_O, minus: order_r, mask_from: PV+O}   # (PV+O - VP+O) - (PV+r - VP+r); E1d
+
+analysis:
+  late_layers: [6, 11]          # inclusive
+  margin: 0.005                 # m for TOST equivalence (DESIGN.md section 2)
+  bootstrap: {iters: 2000, seed: 0}
+  meaningful: {q: 0.05, min_abs: 0.02}
+  switch: {q: 0.05, min_shift: 0.15}
+  max_placebo_switches: 1
+  logit_eps: 1.0e-6             # logit(BOS) check: BOS mass clipped to [eps, 1 - eps]
+
+checks:
+  hf_rows: 25                   # per base class: TL vs HF on identical ids (all variants and phrases)
+  hf_atol: 1.0e-4
+  determinism_rows: 20          # per base class: re-extract the first chunk(s) covering these rows; must match exactly
+  row_sum_atol: 1.0e-4
+  manipulation_rows: 25         # per base class: log P of the query token in each context (reported, not gating)
+  manipulation_batch: 24        # sequences per logits pass (full-vocabulary logits are large)
+
+figures:
+  tokenizer: gpt2               # decoding ids for features and display only, never to build model input
+
+outputs:
+  save_att_row: true            # per-row unit-averaged attention [rows, V, L, H, K] in attention.npz (~250 MB at 500 rows)
+
+# Pre-registered (exp3/PREDICTIONS_e31.md). Each must hold in both base classes.
+predictions:
+  - {id: E1a, kind: sign, contrast: sanity, measure: BOS, sign: positive}
+  - {id: E1b, kind: sign, contrast: interaction, measure: BOS, sign: negative}
+  - {id: E1c, kind: switch_count, contrast: C_O, labels: argmax, from: Sink, to: [Span, Previous], layers: [6, 11], min_beyond_placebo: 5}
+  - {id: E1d, kind: unit_sign, contrast: order_x_query, measure: Phrase, sign: positive}
+  - {id: E1e, kind: sign, contrast: completion, measure: BOS, sign: negative}
+  - {id: E1e-bet, kind: sign, contrast: plausibility, measure: BOS, sign: negative, note: "bet, low confidence"}

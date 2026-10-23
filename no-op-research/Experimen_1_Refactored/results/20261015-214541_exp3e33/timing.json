@@ -1,0 +1,18 @@
+{
+  "sequences": 120000,
+  "seconds": 740.9073281288147,
+  "seq_per_s": 161.96357552983565,
+  "per_base": {
+    "rare": {
+      "sequences": 60000,
+      "seconds": 366.4656090736389
+    },
+    "common": {
+      "sequences": 60000,
+      "seconds": 374.4417190551758
+    }
+  },
+  "determinism_seconds": 93.55653095245361,
+  "hf_check_seconds": 82.78519606590271,
+  "analysis_seconds": 50.16317296028137
+}

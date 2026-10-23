@@ -1,0 +1,13 @@
+{
+  "design (base outside written positions; filler holds no written id; no BOS; repeats only between positions holding one passage id, declared per passage, in every row)": "PASS (asserted per variant and base class)",
+  "E3.2 layout (per-passage redraws only at collisions; nl / shuffled / matched / matched_b differ only on the span; shuffled keeps 31; matched keeps punctuation, one draw per word, nested; passage-rr only at 30\u201331; 2 \u00d7 2 cells differ only at 1\u201331 or 32; w from t's pool)": "PASS (asserted per base class)",
+  "attention rows sum to 1": "PASS (atol 0.0001, asserted per batch; max |sum \u2212 1| 4.7e-07)",
+  "determinism, rare (20 rows)": "PASS (max |\u0394| 0.0e+00)",
+  "TL vs HF, rare (10 rows, 4320 sequences)": "PASS (max |\u0394| 2.5e-05, argmax-key agreement 100.0000%)",
+  "placebo_8 switching heads \u2264 1, rare": "PASS (0 argmax, 0 mass)",
+  "placebo_31 switching heads \u2264 1, rare": "PASS (0 argmax, 0 mass)",
+  "determinism, common (20 rows)": "PASS (max |\u0394| 0.0e+00)",
+  "TL vs HF, common (10 rows, 4320 sequences)": "PASS (max |\u0394| 3.8e-05, argmax-key agreement 100.0000%)",
+  "placebo_8 switching heads \u2264 1, common": "PASS (0 argmax, 0 mass)",
+  "placebo_31 switching heads \u2264 1, common": "PASS (0 argmax, 0 mass)"
+}
