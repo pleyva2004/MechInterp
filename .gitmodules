@@ -1,0 +1,3 @@
+[submodule "Easy-Transformer"]
+	path = Easy-Transformer
+	url = https://github.com/redwoodresearch/Easy-Transformer.git
