@@ -1,0 +1,110 @@
+% Private meeting guide (not to share): the whole project at a glance, how solid each result is, wording to use and
+% avoid, likely questions with answers, and a 30-minute plan. Sources: onepager/experiment_summaries.pdf (Exp 1-15),
+% exp4/LOG.md (Exp 4, 4b, topology), exp5/LOG.md (Exp 5). Build: pdflatex advisor_guide_2026-11-03.tex
+\documentclass[10pt]{article}
+\usepackage[letterpaper,hmargin=0.55in,vmargin=0.45in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[scaled=0.92]{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage[hidelinks]{hyperref}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2pt}
+\setlist{nosep,leftmargin=1.2em,itemsep=1.5pt}
+\definecolor{cblue}{HTML}{2A78D6}
+\definecolor{cgreen}{HTML}{1BAF7A}
+\definecolor{corange}{HTML}{EB6834}
+\definecolor{ink2}{HTML}{52514E}
+\definecolor{muted}{HTML}{898781}
+\definecolor{plane}{HTML}{F4F3EF}
+\newcommand{\head}[1]{\par\vspace{5pt}{\large\bfseries #1}\\[-4pt]\rule{\linewidth}{0.5pt}\par}
+\newcommand{\solid}{\leavevmode{\color{cgreen}\bfseries solid}}  % \leavevmode keeps the label on the row's first line
+\newcommand{\mixed}{\leavevmode{\color{corange}\bfseries mixed}}
+\newcommand{\fragile}{\leavevmode{\color{corange}\bfseries fragile}}
+\renewcommand{\arraystretch}{1.15}
+
+\begin{document}
+
+{\LARGE\bfseries Meeting guide (private)}\hfill{\color{muted}\small share: advisor\_brief\_2026-11-03.pdf}\\[2pt]
+{\small\color{ink2} Goal: show what the residual stream adds (his suggestion), and leave with one decision:
+generalise first, or go deeper.}
+
+\head{30-minute plan}
+\begin{tabularx}{\linewidth}{@{}>{\bfseries}l X@{}}
+0--3 & The question in one line: do late heads ``rest'' on BOS as a no-op, and what wakes them? Hand him the brief. \\
+3--10 & \textbf{Result 1} (attention): the matching capital lowers resting at every distance; same-country heads from layer 0; L11H8 is not a previous-token head. \\
+10--20 & \textbf{Result 2} (residual stream, the main part): the match enters $T$'s stream at layer 1, via L0H2 and MLP0, as a ``matching country attended'' signal; patching shows the resting effect is assembled in layers 3--7, and from layer 8 the stream alone reproduces it. \\
+20--25 & \textbf{Result 3}: in the writes, the no-op is a constant offset from BOS attention, not quieter reading. Then the main caveat: 11 pairs. \\
+25--30 & \textbf{Decide}: generalise (more pairs, cities and demonyms) or go deeper (MLP0, the layer 3--7 assembly)? \\
+\end{tabularx}
+
+\head{Everything at a glance}
+{\small
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{2.4cm} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{1.25cm}@{}}
+\textbf{Work} & \textbf{Main takeaway} & \textbf{Status} \\ \hline
+Exp 1, baseline & About 74\% of heads park on BOS on random tokens, more in late layers. 134 of 144 shift with the token class. & \solid \\
+Exp 1ext & The shift comes from the whole context; a single swapped token matters only right before $T$. & \solid \\
+Exp 2, iterations 1--3; Tests A and C & A coherent phrase raises late BOS mass for 12 of 12 phrases; the word pair ending at 31 carries about half. The effect holds for other phrase types, except adjective phrases on rare filler. & \solid \\
+Exp 3, relations and controls (8--15) & Completion at the query lowers resting at any distance (R1-in, sweep, E3.1, E3.2). Truth before an unrelated token doesn't. Copy heads take a separate route off BOS. Resting rises with the amount of real text. Several predictions failed. & \mixed \\
+Exp 4, controlled difference (random $T$) & L11H8 reads countries, with recency, and is not a previous-token head. Only L4H11 is a pure previous-token head. The other previous-token heads read nearby words. Four late heads attend at any distance (L10H3 to named entities, L11H7 partly to frequency). & \solid \\
+Exp 4b, capital as $T$ & The matching capital lowers late resting at every distance ($-0.02$ to $-0.04$). Same-country heads from layer 0 (L0H2, L4H10, L3H0, L1H11). Previous-token heads look away from an adjacent same-country token. & \solid \\
+Topology, 4 analyses & Head families are real but not tight clusters. There are no loops, and depth gives only a weak order. Curve shapes are now measured. Only the matching capital closes a layer-0 attention loop (raw attention). & \mixed \\
+Exp 5, residual stream (R1--R5, P) & The match enters at layer 1 (R1-b; MLP0 56--59\%). It persists to the end, diluted (R4). The resting effect is assembled in layers 3--7 (P-a). No-op = constant offset (R2). Distance dependence rises, not falls (R3 FAIL). Routes depend on weighting (R5 FAIL). Four heads carry 18--36\% (P-b, fragile). & \mixed \\
+\end{tabularx}}
+
+\head{Say this, not that (verified wording)}
+{\small
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X@{}}
+\textbf{Say} & \textbf{Avoid} \\ \hline
+``consistent across rows for these 11 pairs'' & ``general'' / ``robust across countries'' \\
+``same-country association heads'' & ``capital lookup heads'' \\
+``a matching-country-attended signal'' & ``the stream encodes which country'' \\
+``exact per-pair null, $p = 1/1024$, margin 1.3--1.6$\times$'' & ``9.7$\times$ the null'' (that null was too lenient) \\
+``no-op = attention reweighted onto a constant BOS vector'' & ``resting heads are quiet / read less'' \\
+``from layer 8 the stream reproduces the effect within $\pm 6\%$; context still matters at layers 6--7'' & ``the context doesn't matter after layer 8'' \\
+``F rises with layer in every fixed-window variant'' & ``F rises'' with no mention of the shrinking window \\
+\end{tabularx}}
+
+\head{Likely questions}
+{\small
+\begin{description}[leftmargin=0pt,itemsep=2pt,font=\bfseries\color{ink2}]
+\item[Why pair by capital (France \dots\ Paris vs China \dots\ Paris)?] With the same country and different capitals,
+  everything before $T$ is identical, so patching $T$'s stream would trivially carry 100\%. Pairing by capital keeps
+  $T$ identical: the stream before layer 0 is equal by construction, which is a built-in null.
+\item[Isn't the layer-1 signal just L0H2 moving attention off BOS?] Partly. The attention part (about 40\%) is a shared
+  BOS$\to$country write that doesn't say which country. But it fires only for the matching country: L0H2 gives 0.34--0.43
+  to its own country against 0.03 for a wrong one. And 56--59\% of the signal comes from MLP0.
+\item[How do you know it isn't country identity?] The country-identity part of the mean is about 0\%. A mismatched
+  country looks like filler to $T$. A placebo comparing two wrong capitals gives a much weaker signal, below the
+  per-pair null.
+\item[Only 11 pairs?] Yes, and in paired tests the effective $n$ is 11. We switched to a per-pair null for that reason.
+  Generalising is the main open item, and the first decision to make.
+\item[Does topology add anything beyond probes?] Honestly, mostly confirmation. The new pieces are the attention-graph
+  loop that only the matching capital closes, and the measured curve shapes (L3H0 prefers far countries). Clustering
+  topology is fragile: Rips and single linkage chain points together.
+\item[What does F $\approx$ 1 from layer 8 mean?] Patching $T$'s stream never changes earlier positions, so F
+  $\approx$ 1 means late resting depends on $T$'s stream, given context keys that still differ. That isn't trivial. Per
+  layer, the keys still add 2--17\%.
+\item[Why did the distance test fail?] The stream's distance dependence rises with depth, driven partly by the
+  adjacent position. Excluding it, the rise holds on rare filler and is weak on common. With a random final token the
+  predicted fall does appear.
+\item[How sure are these numbers?] Every analysis was pre-registered with fixed pass rules. Each was re-checked
+  independently: recomputed, Hugging Face re-implementations for patching and the extraction, adversarial verifiers.
+  The verifiers corrected wording in every round.
+\end{description}}
+
+\head{Next-step options to put to him}
+{\small
+\begin{tabularx}{\linewidth}{@{}l X l@{}}
+\textbf{A, generalise} & More country--capital pairs, plus cities and demonyms at $\tau$. Tests whether the layer-1 signal is ``capital of'' or same-country relatedness, and replaces 11 with a real sample. & $\sim$1 day \\
+\textbf{B, MLP0} & Split MLP0's 56--59\% of the layer-1 signal into neurons. Is it a relatedness detector? & $\sim$1 day \\
+\textbf{C, layers 3--7} & Path patching per head and MLP in layers 3--7, where the resting effect is assembled. & 1--2 days \\
+\end{tabularx}
+\textbf{My recommendation: A first.} Every result so far is ``consistent for 11 pairs'', and B and C are more
+convincing on a real sample.}
+
+\end{document}

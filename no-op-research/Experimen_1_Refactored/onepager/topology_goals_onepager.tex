@@ -1,0 +1,99 @@
+% One-pager: goal and procedure of each of the four topological analyses of Exp 4 / 4b.
+% Sources: exp4/PREDICTIONS_tda{1,2,3,4}.md and exp4/LOG.md. Build (from this folder): pdflatex topology_goals_onepager.tex
+\documentclass[10pt]{article}
+\usepackage[letterpaper,hmargin=0.6in,vmargin=0.3in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[scaled=0.92]{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{microtype}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2pt}
+\setlist[enumerate]{nosep,leftmargin=1.5em,itemsep=1.5pt}
+\definecolor{ink2}{HTML}{52514E}
+\definecolor{muted}{HTML}{898781}
+\definecolor{plane}{HTML}{F4F3EF}
+\newcommand{\analysis}[3]{%
+  \vspace{5pt}
+  {\large\bfseries #1}\hfill{\color{muted}\footnotesize #2}\\[-3pt]\rule{\linewidth}{0.5pt}\par
+  \colorbox{plane}{\parbox{\dimexpr\linewidth-2\fboxsep}{\small\textbf{Goal.} #3}}\par\vspace{1pt}
+  {\small\textbf{Procedure}}\par\small}
+
+\begin{document}
+
+{\LARGE\bfseries Topological analyses of Exp 4 / 4b: goal and procedure}\\[3pt]
+{\small\color{ink2} GPT-2 small, 200 random rows $\times$ 11 country--capital pairs. $D(d)$ = change in the final
+token's attention to position $\tau$ when a country sits there instead of a control token, at distance $d = 32-\tau$
+($d = 1..31$). Final token = its capital (own), a wrong capital, or a random token. Each analysis was pre-registered
+in \texttt{exp4/PREDICTIONS\_tda$k$.md} before it ran.}
+
+\analysis{1 \textperiodcentered\ Persistent homology of head profiles}{\texttt{exp4/tda1\_heads.py}}
+{Test whether the six head types set by hand thresholds in Exp 4 are real, persistent clusters of heads, and whether
+continuous families (loops) exist among heads.}
+\begin{enumerate}
+\item Make one point per head (144): concatenate its $D(d)$ curves for the country arm under a random, own and wrong
+  final token, plus the placebo-word arm, in both filler types (248 numbers).
+\item Build a distance matrix between heads: Euclidean on raw values (main); correlation and z-scored distances as
+  robustness checks.
+\item Run Vietoris--Rips persistent homology (ripser): H0 bars are clusters, H1 bars are loops.
+\item Resample the 200 rows 500 times. Call a feature real only if it beats the bootstrap noise band (Fasy et al.), and
+  score each cluster by how often it recurs (Jaccard $\ge$ 0.75 = stable). Compare against two null models.
+\item Compare the clusters to the hand-set labels (adjusted Rand index) and check whether the four same-country
+  heads group together.
+\end{enumerate}
+
+\analysis{2 \textperiodcentered\ Mapper over depth}{\texttt{exp4/tda2\_mapper.py}}
+{Test whether a head's range (local vs global response to a country) changes smoothly with layer or splits into
+branches, and test the post hoc ``layers 2--3 local, 5--8, 9--11 global'' grouping as a hypothesis.}
+\begin{enumerate}
+\item One point per head (144): its 6 country-arm curves (own, wrong, random $\times$ common, rare), 186 numbers,
+  rescaled to shape ($v/(\lVert v\rVert+\lambda)$) so magnitude does not dominate.
+\item Use the layer index as the lens and cover layers 0--11 with overlapping windows (main: 4 layers wide, step 2).
+\item Within each window, cluster heads by single linkage at a distance cutoff $\varepsilon$ set from the data.
+\item Draw the graph: one node per cluster per window; join two nodes when they share a head. Read off branches and
+  components, and test the six pre-registered hypotheses (M1a--M4).
+\item Repeat over 21 window and cutoff settings and over bootstrap resamples to see which structure is stable.
+  Secondary lenses: a locality score (far / near effect) and PC1.
+\item As an exploratory check without a lens, cluster with kNN + Louvain and with average / Ward linkage, and measure
+  how well communities track layer (normalised mutual information).
+\end{enumerate}
+
+\analysis{3 \textperiodcentered\ 1-D persistence of distance curves}{\texttt{exp4/tda3\_curves.py}}
+{Replace eyeballed curve shapes (``decays'', ``flat'', ``rises with distance'', ``spike at the far end'') with a count
+and ranking of each curve's peaks and troughs that survives sampling noise.}
+\begin{enumerate}
+\item Take each head's $D(d)$ curve for every final token and filler type (1152 curves).
+\item Treat the 31 points as a path graph. Compute sublevel-set H0 of $f$ (troughs) and of $-f$ (peaks). A bar's
+  length is the feature's persistence; the global max and min get the curve's range.
+\item Build a null: resample the 200 rows 2000 times, subtract the full-sample mean curve, recompute. Set thresholds at
+  the 99th percentile of the null range and of the largest non-essential bar.
+\item Call a bar significant if it exceeds its threshold and is at least 0.02 (the repo's margin). No bar counts unless
+  the curve's range passes too.
+\item Sort curves into shape classes (near-peak decay, far rise, plateau, ends) and test the five named checks
+  C1--C5 on L9H8, L11H8, L3H0, L0H2 and the previous-token heads. Code was validated against gudhi.
+\end{enumerate}
+
+\analysis{4 \textperiodcentered\ Topology of the attention graph}{\texttt{exp4/tda4\_graph.py}}
+{Test whether a matching country--capital pair changes the \emph{topology} of the attention network, for example by
+closing a loop (a persistent 1-cycle) through the capital's edge to its country that a wrong capital does not.}
+\begin{enumerate}
+\item Re-run the model and save full $33\times33$ attention patterns for control, own, wrong and random final token,
+  at $\tau \in \{31,30,28,24,16,8,1\}$, both fillers, 200 rows $\times$ 11 countries. Average over the 11 countries,
+  then over rows.
+\item Build one graph per layer (mean over its 12 heads) and per named head. Edge weight
+  $w = \max(A_{ij}, A_{ji})$; distance $1-w$. Delete BOS in the main analysis, since kept it fills every loop.
+\item Compute persistent H0 and H1 on the clique complex (gudhi; ripser as a cross-check).
+\item Compare own vs wrong: is the difference larger than a swap null (G1), and does only the matching capital close a
+  loop through its country, in every bootstrap (G2)?
+\item Check what causes it: transplant the capital$\to$country edge alone and see if the difference disappears
+  (G3a), compare against the BOS-kept graph (B1), and confirm the extraction against Hugging Face.
+\end{enumerate}
+
+\vfill
+{\scriptsize\color{muted} Verdicts and numbers are in the results one-pager (\texttt{topology\_onepager.pdf}) and
+\texttt{exp4/LOG.md}. Caveat common to all four: the same 11 pairs throughout, so ``beyond the null'' means
+consistent, not large.}
+\end{document}
