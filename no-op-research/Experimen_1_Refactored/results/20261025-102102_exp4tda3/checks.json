@@ -1,0 +1,35 @@
+{
+  "algorithm": {
+    "continuous": {
+      "curves": 1000,
+      "mismatching_curves": 0,
+      "essential_is_range": true
+    },
+    "ties": {
+      "curves": 1000,
+      "mismatching_curves": 0,
+      "essential_is_range": true
+    },
+    "endpoints": true
+  },
+  "mean_match": {
+    "random/common": 0.0,
+    "own/common": 1.4360547065744855e-05,
+    "wrong/common": 1.4475551433856815e-05,
+    "fact/common": 1.8361681140971475e-05,
+    "random/rare": 0.0,
+    "own/rare": 1.3423375785345804e-05,
+    "wrong/rare": 2.682358026504482e-05,
+    "fact/rare": 2.8140321373937294e-05
+  },
+  "null_calibration": {
+    "range": {
+      "0.95": 0.05096354166666667,
+      "0.99": 0.010847222222222222
+    },
+    "non": {
+      "0.95": 0.05075520833333333,
+      "0.99": 0.010467013888888887
+    }
+  }
+}

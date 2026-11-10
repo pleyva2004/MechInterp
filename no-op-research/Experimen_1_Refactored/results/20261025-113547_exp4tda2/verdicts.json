@@ -1,0 +1,44 @@
+{
+  "M1a": {
+    "main": false,
+    "s_grid": 0.3333333333333333,
+    "s_boot": 0.31785714285714284,
+    "main_boot": 0.0,
+    "verdict": "UNSTABLE"
+  },
+  "M1b": {
+    "main": false,
+    "s_grid": 0.23809523809523808,
+    "s_boot": 0.23833333333333334,
+    "main_boot": 0.0,
+    "verdict": "FAIL"
+  },
+  "M1c": {
+    "main": false,
+    "s_grid": 0.0,
+    "s_boot": 0.015,
+    "main_boot": 0.0,
+    "verdict": "FAIL"
+  },
+  "M2": {
+    "main": false,
+    "s_grid": 0.0,
+    "s_boot": 0.0,
+    "main_boot": 0.0,
+    "verdict": "FAIL"
+  },
+  "M3": {
+    "main": false,
+    "s_grid": 0.0,
+    "s_boot": 0.0,
+    "main_boot": 0.0,
+    "verdict": "FAIL"
+  },
+  "M4": {
+    "main": false,
+    "s_grid": 0.0,
+    "s_boot": 0.0,
+    "main_boot": 0.0,
+    "verdict": "FAIL"
+  }
+}

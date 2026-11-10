@@ -1,0 +1,10 @@
+{
+  "design (ids at \u03c4 and 32, row elsewhere, no repeats/BOS/stimulus ids; control = row + capital)": "PASS (asserted per \u03c4 and condition)",
+  "wrong-capital derangement has no fixed point; each capital once per row": "PASS",
+  "attention rows sum to 1 (every query, every head)": "PASS (max abs(sum \u2212 1) 4.6e-07, atol 0.0001, asserted per batch)",
+  "causal: upper triangle of every mean graph is 0": "PASS (max 0.0e+00)",
+  "prefix identity: wrong / random query rows 0..31 equal own's": "PASS (max abs \u0394 0.0e+00)",
+  "determinism: first batch (50 rows, common, own, \u03c4 31) recomputed": "PASS (max abs \u0394 0.0e+00)",
+  "query-32 weights on \u03c4 / BOS / 31 match Exp 4b (own, wrong, control) and Exp 4 (random)": "PASS (max abs \u0394 2.4e-04, atol 0.002)",
+  "gudhi vs ripser diagrams (bottleneck, every full-sample graph)": "PASS (max 3.0e-08)"
+}

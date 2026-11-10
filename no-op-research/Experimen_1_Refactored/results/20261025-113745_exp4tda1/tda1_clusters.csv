@@ -1,0 +1,69 @@
+variant,component,size,gap_to_rest,internal_scale,recurrence,members,labels_common,labels_rare
+raw,1,110,0.19237,0.18468,0.984,L0H0 L0H1 L0H3 L0H5 L0H6 L0H8 L0H11 L1H1 L1H2 L1H3 L1H4 L1H7 L1H8 L1H9 L1H10 L2H1 L2H6 L2H7 L2H10 L2H11 L3H3 L3H5 L3H9 L3H10 L3H11 L4H0 L4H1 L4H2 L4H3 L4H5 L4H6 L4H7 L4H9 L4H11 L5H0 L5H1 L5H2 L5H3 L5H4 L5H5 L5H7 L5H8 L5H9 L5H10 L5H11 L6H0 L6H1 L6H2 L6H3 L6H4 L6H5 L6H6 L6H7 L6H8 L6H9 L6H10 L6H11 L7H1 L7H2 L7H3 L7H4 L7H5 L7H6 L7H7 L7H8 L7H9 L7H10 L7H11 L8H0 L8H1 L8H2 L8H3 L8H4 L8H5 L8H6 L8H7 L8H8 L8H9 L8H10 L8H11 L9H0 L9H1 L9H2 L9H3 L9H4 L9H5 L9H6 L9H7 L9H9 L9H10 L9H11 L10H1 L10H2 L10H4 L10H5 L10H6 L10H7 L10H8 L10H9 L10H10 L10H11 L11H0 L11H1 L11H3 L11H4 L11H5 L11H6 L11H9 L11H10 L11H11,no effect; no effect; negative; no effect; global; no effect; no effect; no effect; local; no effect; no effect; global; no effect; no effect; no effect; global; no effect; local; local; local; negative; global; negative; no effect; no effect; negative; negative; no effect; plain prev; no effect; gated prev; no effect; no effect; plain prev; local; no effect; gated prev; local; no effect; no effect; no effect; gated prev; no effect; gated prev; no effect; gated prev; gated prev; no effect; local; global; gated prev; no effect; gated prev; gated prev; no effect; local; no effect; no effect; no effect; local; no effect; no effect; local; global; negative; gated prev; no effect; local; no effect; no effect; no effect; no effect; no effect; local; local; local; global; gated prev; no effect; global; no effect; no effect; local; local; no effect; no effect; no effect; local; no effect; no effect; no effect; no effect; no effect; no effect; no effect; global; gated prev; no effect; no effect; no effect; global; no effect; global; global; no effect; no effect; no effect; no effect; no effect; no effect,no effect; no effect; no effect; no effect; no effect; no effect; no effect; no effect; no effect; no effect; no effect; no effect; no effect; no effect; no effect; no effect; gated prev; local; local; no effect; local; local; no effect; no effect; plain prev; negative; no effect; no effect; plain prev; no effect; no effect; no effect; no effect; plain prev; no effect; no effect; negative; local; negative; no effect; no effect; no effect; no effect; no effect; no effect; gated prev; no effect; no effect; no effect; no effect; no effect; no effect; no effect; gated prev; no effect; no effect; no effect; no effect; no effect; local; no effect; no effect; no effect; local; no effect; no effect; no effect; no effect; no effect; no effect; no effect; no effect; negative; no effect; no effect; gated prev; no effect; no effect; no effect; local; no effect; no effect; no effect; local; no effect; no effect; no effect; local; no effect; no effect; no effect; negative; no effect; negative; no effect; no effect; gated prev; no effect; no effect; no effect; no effect; no effect; no effect; local; no effect; negative; no effect; negative; local; no effect
+raw,2,3,0.19237,0.18139,0.548,L0H7 L2H0 L2H4,negative; negative; negative,no effect; negative; no effect
+raw,3,2,0.22032,0.16942,0.924,L2H5 L3H8,local; gated prev,local; local
+raw,4,1,0.84118,0,1.000,L0H2,local,no effect
+raw,5,1,0.20482,0,1.000,L0H4,negative,no effect
+raw,6,1,0.25361,0,1.000,L0H9,no effect,no effect
+raw,7,1,0.27377,0,1.000,L0H10,no effect,no effect
+raw,8,1,0.21671,0,0.984,L1H0,negative,negative
+raw,9,1,1.4203,0,1.000,L1H5,no effect,no effect
+raw,10,1,0.20051,0,0.996,L1H6,no effect,no effect
+raw,11,1,0.41028,0,1.000,L1H11,no effect,no effect
+raw,12,1,0.2038,0,0.956,L2H2,plain prev,local
+raw,13,1,0.24123,0,1.000,L2H3,local,local
+raw,14,1,0.34268,0,1.000,L2H8,negative,negative
+raw,15,1,0.24123,0,1.000,L2H9,local,local
+raw,16,1,0.85426,0,1.000,L3H0,no effect,no effect
+raw,17,1,0.21305,0,0.984,L3H1,local,local
+raw,18,1,0.20185,0,0.952,L3H2,gated prev,plain prev
+raw,19,1,0.59044,0,1.000,L3H4,gated prev,no effect
+raw,20,1,0.3443,0,1.000,L3H6,local,local
+raw,21,1,0.2038,0,0.956,L3H7,local,plain prev
+raw,22,1,0.23092,0,1.000,L4H4,no effect,no effect
+raw,23,1,0.28721,0,1.000,L4H8,no effect,no effect
+raw,24,1,0.84118,0,1.000,L4H10,no effect,no effect
+raw,25,1,0.25206,0,1.000,L5H6,plain prev,negative
+raw,26,1,0.21852,0,0.996,L7H0,local,local
+raw,27,1,0.57351,0,1.000,L9H8,global,global
+raw,28,1,0.26319,0,1.000,L10H0,global,no effect
+raw,29,1,0.36391,0,1.000,L10H3,global,global
+raw,30,1,0.37582,0,1.000,L11H2,global,global
+raw,31,1,0.36391,0,1.000,L11H7,global,global
+raw,32,1,0.25236,0,1.000,L11H8,local,local
+corr,1,144,inf,0.56678,1.000,L0H0 L0H1 L0H2 L0H3 L0H4 L0H5 L0H6 L0H7 L0H8 L0H9 L0H10 L0H11 L1H0 L1H1 L1H2 L1H3 L1H4 L1H5 L1H6 L1H7 L1H8 L1H9 L1H10 L1H11 L2H0 L2H1 L2H2 L2H3 L2H4 L2H5 L2H6 L2H7 L2H8 L2H9 L2H10 L2H11 L3H0 L3H1 L3H2 L3H3 L3H4 L3H5 L3H6 L3H7 L3H8 L3H9 L3H10 L3H11 L4H0 L4H1 L4H2 L4H3 L4H4 L4H5 L4H6 L4H7 L4H8 L4H9 L4H10 L4H11 L5H0 L5H1 L5H2 L5H3 L5H4 L5H5 L5H6 L5H7 L5H8 L5H9 L5H10 L5H11 L6H0 L6H1 L6H2 L6H3 L6H4 L6H5 L6H6 L6H7 L6H8 L6H9 L6H10 L6H11 L7H0 L7H1 L7H2 L7H3 L7H4 L7H5 L7H6 L7H7 L7H8 L7H9 L7H10 L7H11 L8H0 L8H1 L8H2 L8H3 L8H4 L8H5 L8H6 L8H7 L8H8 L8H9 L8H10 L8H11 L9H0 L9H1 L9H2 L9H3 L9H4 L9H5 L9H6 L9H7 L9H8 L9H9 L9H10 L9H11 L10H0 L10H1 L10H2 L10H3 L10H4 L10H5 L10H6 L10H7 L10H8 L10H9 L10H10 L10H11 L11H0 L11H1 L11H2 L11H3 L11H4 L11H5 L11H6 L11H7 L11H8 L11H9 L11H10 L11H11,no effect; no effect; local; negative; negative; no effect; global; negative; no effect; no effect; no effect; no effect; negative; no effect; local; no effect; no effect; no effect; no effect; global; no effect; no effect; no effect; no effect; negative; global; plain prev; local; negative; local; no effect; local; negative; local; local; local; no effect; local; gated prev; negative; gated prev; global; local; local; gated prev; negative; no effect; no effect; negative; negative; no effect; plain prev; no effect; no effect; gated prev; no effect; no effect; no effect; no effect; plain prev; local; no effect; gated prev; local; no effect; no effect; plain prev; no effect; gated prev; no effect; gated prev; no effect; gated prev; gated prev; no effect; local; global; gated prev; no effect; gated prev; gated prev; no effect; local; no effect; local; no effect; no effect; local; no effect; no effect; local; global; negative; gated prev; no effect; local; no effect; no effect; no effect; no effect; no effect; local; local; local; global; gated prev; no effect; global; no effect; no effect; local; local; no effect; no effect; no effect; local; global; no effect; no effect; no effect; global; no effect; no effect; global; no effect; no effect; global; gated prev; no effect; no effect; no effect; global; no effect; global; global; global; no effect; no effect; no effect; global; local; no effect; no effect; no effect,no effect; no effect; no effect; no effect; no effect; no effect; no effect; no effect; no effect; no effect; no effect; no effect; negative; no effect; no effect; no effect; no effect; no effect; no effect; no effect; no effect; no effect; no effect; no effect; negative; no effect; local; local; no effect; local; gated prev; local; negative; local; local; no effect; no effect; local; plain prev; local; no effect; local; local; plain prev; local; no effect; no effect; plain prev; negative; no effect; no effect; plain prev; no effect; no effect; no effect; no effect; no effect; no effect; no effect; plain prev; no effect; no effect; negative; local; negative; no effect; negative; no effect; no effect; no effect; no effect; no effect; gated prev; no effect; no effect; no effect; no effect; no effect; no effect; no effect; gated prev; no effect; no effect; no effect; local; no effect; no effect; local; no effect; no effect; no effect; local; no effect; no effect; no effect; no effect; no effect; no effect; no effect; no effect; negative; no effect; no effect; gated prev; no effect; no effect; no effect; local; no effect; no effect; no effect; local; no effect; no effect; no effect; local; global; no effect; no effect; no effect; no effect; negative; no effect; global; negative; no effect; no effect; gated prev; no effect; no effect; no effect; no effect; no effect; no effect; global; local; no effect; negative; no effect; global; local; negative; local; no effect
+std,1,110,8.1197,8.0877,0.956,L0H0 L0H1 L0H3 L0H4 L0H5 L0H7 L0H8 L0H10 L0H11 L1H0 L1H1 L1H2 L1H3 L1H4 L1H8 L1H9 L1H10 L2H0 L2H2 L2H4 L2H5 L2H6 L2H7 L2H9 L2H10 L2H11 L3H2 L3H3 L3H5 L3H7 L3H8 L3H9 L3H10 L3H11 L4H0 L4H1 L4H2 L4H3 L4H4 L4H5 L4H6 L4H7 L4H9 L4H11 L5H0 L5H1 L5H2 L5H4 L5H5 L5H6 L5H7 L5H8 L5H9 L5H10 L5H11 L6H0 L6H1 L6H2 L6H3 L6H4 L6H5 L6H6 L6H7 L6H8 L6H9 L6H10 L6H11 L7H0 L7H1 L7H2 L7H3 L7H4 L7H5 L7H6 L7H7 L7H8 L7H9 L7H10 L7H11 L8H0 L8H1 L8H2 L8H3 L8H4 L8H5 L8H7 L8H8 L8H9 L8H10 L9H0 L9H1 L9H2 L9H3 L9H4 L9H5 L9H6 L9H7 L9H9 L9H10 L10H1 L10H2 L10H5 L10H7 L10H8 L10H9 L10H10 L11H3 L11H5 L11H10 L11H11,no effect; no effect; negative; negative; no effect; negative; no effect; no effect; no effect; negative; no effect; local; no effect; no effect; no effect; no effect; no effect; negative; plain prev; negative; local; no effect; local; local; local; local; gated prev; negative; global; local; gated prev; negative; no effect; no effect; negative; negative; no effect; plain prev; no effect; no effect; gated prev; no effect; no effect; plain prev; local; no effect; gated prev; no effect; no effect; plain prev; no effect; gated prev; no effect; gated prev; no effect; gated prev; gated prev; no effect; local; global; gated prev; no effect; gated prev; gated prev; no effect; local; no effect; local; no effect; no effect; local; no effect; no effect; local; global; negative; gated prev; no effect; local; no effect; no effect; no effect; no effect; no effect; local; local; global; gated prev; no effect; no effect; no effect; local; local; no effect; no effect; no effect; local; no effect; no effect; no effect; no effect; no effect; gated prev; no effect; no effect; no effect; global; no effect; no effect; no effect,no effect; no effect; no effect; no effect; no effect; no effect; no effect; no effect; no effect; negative; no effect; no effect; no effect; no effect; no effect; no effect; no effect; negative; local; no effect; local; gated prev; local; local; local; no effect; plain prev; local; local; plain prev; local; no effect; no effect; plain prev; negative; no effect; no effect; plain prev; no effect; no effect; no effect; no effect; no effect; plain prev; no effect; no effect; negative; negative; no effect; negative; no effect; no effect; no effect; no effect; no effect; gated prev; no effect; no effect; no effect; no effect; no effect; no effect; no effect; gated prev; no effect; no effect; no effect; local; no effect; no effect; local; no effect; no effect; no effect; local; no effect; no effect; no effect; no effect; no effect; no effect; no effect; no effect; negative; no effect; gated prev; no effect; no effect; no effect; no effect; no effect; no effect; local; no effect; no effect; no effect; local; no effect; no effect; negative; no effect; no effect; gated prev; no effect; no effect; no effect; local; negative; local; no effect
+std,2,1,22.84,0,1.000,L0H2,local,no effect
+std,3,1,9.3433,0,0.983,L0H6,global,no effect
+std,4,1,8.5598,0,1.000,L0H9,no effect,no effect
+std,5,1,43.616,0,1.000,L1H5,no effect,no effect
+std,6,1,8.6113,0,0.986,L1H6,no effect,no effect
+std,7,1,8.7328,0,0.992,L1H7,global,no effect
+std,8,1,9.4769,0,1.000,L1H11,no effect,no effect
+std,9,1,8.6857,0,0.997,L2H1,global,no effect
+std,10,1,8.1197,0,0.561,L2H3,local,local
+std,11,1,11.959,0,1.000,L2H8,negative,negative
+std,12,1,18.674,0,1.000,L3H0,no effect,no effect
+std,13,1,10.547,0,0.998,L3H1,local,local
+std,14,1,24.139,0,1.000,L3H4,gated prev,no effect
+std,15,1,10.658,0,1.000,L3H6,local,local
+std,16,1,15.048,0,1.000,L4H8,no effect,no effect
+std,17,1,18.674,0,1.000,L4H10,no effect,no effect
+std,18,1,8.9412,0,0.998,L5H3,local,local
+std,19,1,8.8836,0,1.000,L8H6,local,no effect
+std,20,1,8.6776,0,0.931,L8H11,global,local
+std,21,1,29.493,0,1.000,L9H8,global,global
+std,22,1,11.358,0,1.000,L9H11,no effect,no effect
+std,23,1,12.557,0,1.000,L10H0,global,no effect
+std,24,1,25.386,0,1.000,L10H3,global,global
+std,25,1,14.503,0,1.000,L10H4,no effect,negative
+std,26,1,8.265,0,0.792,L10H6,global,no effect
+std,27,1,8.7328,0,0.995,L10H11,global,no effect
+std,28,1,8.8836,0,1.000,L11H0,no effect,no effect
+std,29,1,11.445,0,0.999,L11H1,global,no effect
+std,30,1,19.885,0,1.000,L11H2,global,global
+std,31,1,9.4319,0,0.998,L11H4,no effect,no effect
+std,32,1,12.55,0,1.000,L11H6,no effect,no effect
+std,33,1,19.885,0,1.000,L11H7,global,global
+std,34,1,10.046,0,1.000,L11H8,local,local
+std,35,1,10.558,0,1.000,L11H9,no effect,negative

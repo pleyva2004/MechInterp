@@ -1,0 +1,68 @@
+{
+  "primary": {
+    "C1": {
+      "verdict": "PASS",
+      "detail": "common: class plateau, f(31) +0.1830, f(30) +0.1448; peak at 31 pers 0.0408 vs θ 0.0170 (non-essential), sig True | rare: class U-shape, f(31) +0.0557, f(30) +0.0491; peak at 31 pers 0.0241 vs θ 0.0090 (non-essential), sig True"
+    },
+    "C2": {
+      "verdict": "PASS",
+      "detail": "random/common: near-peak decay (sign +1, d* 1, R 0.065, 1 peaks) | own/common: near-peak decay (sign +1, d* 1, R 0.151, 1 peaks) | wrong/common: near-peak decay (sign +1, d* 1, R 0.152, 1 peaks) | random/rare: near-peak decay (sign +1, d* 1, R 0.041, 1 peaks) | own/rare: near-peak decay (sign +1, d* 1, R 0.066, 1 peaks) | wrong/rare: near-peak decay (sign +1, d* 1, R 0.066, 1 peaks)"
+    },
+    "C3": {
+      "verdict": "PASS",
+      "detail": "common: sign +1, gate True, d* 30, R 0.272 (θ 0.016), class far rise, f(30) +0.410, f(31) +0.309 | rare: sign +1, gate True, d* 30, R 0.379 (θ 0.018), class far rise, f(30) +0.516, f(31) +0.384"
+    },
+    "C4": {
+      "verdict": "PASS",
+      "detail": "common: plateau (R 0.076, θ 0.002, ρ 0.18, mean +0.376, 0 significant bars at 2 ≤ d ≤ 30) | rare: plateau (R 0.071, θ 0.004, ρ 0.19, mean +0.345, 0 significant bars at 2 ≤ d ≤ 30)"
+    },
+    "C5": {
+      "verdict": "PASS",
+      "detail": "0 bars at d ≥ 9 among 66 curves; closest non-essential bar to its null threshold: L3H7 wrong/common peak@12: 0.0147 vs θ_non 0.0154"
+    }
+  },
+  "sensitivity": {
+    "q95": {
+      "C1": true,
+      "C2": true,
+      "C3": true,
+      "C4": true,
+      "C5": true
+    },
+    "no margin": {
+      "C1": true,
+      "C2": true,
+      "C3": true,
+      "C4": true,
+      "C5": true
+    },
+    "rel 0.3": {
+      "C1": true,
+      "C2": true,
+      "C3": true,
+      "C4": true,
+      "C5": true
+    },
+    "rel 0.7": {
+      "C1": true,
+      "C2": true,
+      "C3": true,
+      "C4": true,
+      "C5": true
+    }
+  },
+  "descriptive": {
+    "E1": {
+      "held": true,
+      "detail": "null or plateau in the random condition: 90 / 110 of 144 (common / rare)"
+    },
+    "E2": {
+      "held": true,
+      "detail": "heads with ≥ 1 significant feature, own vs random: common 87 vs 57, rare 75 vs 35"
+    },
+    "E3": {
+      "held": true,
+      "detail": "L9H8 / L10H3 / L11H7 / L11H2, random: common: plateau, plateau, far rise, plateau; rare: U-shape, plateau, far rise, plateau"
+    }
+  }
+}

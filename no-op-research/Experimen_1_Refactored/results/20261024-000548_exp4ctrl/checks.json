@@ -1,0 +1,10 @@
+{
+  "design (ids at \u03c4, row elsewhere, no repeats/BOS/stimulus ids)": "PASS (asserted per \u03c4 and arm)",
+  "attention rows sum to 1": "PASS (atol 0.0001, asserted per batch)",
+  "determinism, common": "PASS (max |\u0394| 0.0e+00)",
+  "TL vs HF, common": "PASS (max |\u0394| 1.4e-05)",
+  "L4H11 prev_score \u2265 0.9, common": "PASS (0.986)",
+  "determinism, rare": "PASS (max |\u0394| 0.0e+00)",
+  "TL vs HF, rare": "PASS (max |\u0394| 1.3e-05)",
+  "L4H11 prev_score \u2265 0.9, rare": "PASS (0.985)"
+}

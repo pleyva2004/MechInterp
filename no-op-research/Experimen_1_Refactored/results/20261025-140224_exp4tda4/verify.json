@@ -1,0 +1,178 @@
+{
+  "provenance": {
+    "run_start": "11:36:14",
+    "tda4_graph_mtime": "11:35:46",
+    "tda4_graph_sha256": "0a8b99241b2c5bfd97885fc64d18e5bb7216e78185b4ecbcf2e9b5c5608d2c6e",
+    "modified_after_start": [
+      "exp4/tda1_heads.py"
+    ],
+    "run_code_sha256": "5e0b520f25f32359d2a3ec16cd3b615d00da5b6b0da0886990116a140e1dcdb6",
+    "smoke2_code_sha256": "5e0b520f25f32359d2a3ec16cd3b615d00da5b6b0da0886990116a140e1dcdb6",
+    "prereg_copy_identical": true,
+    "config_copy_identical": true
+  },
+  "coverage": {
+    "graphs_keys": [
+      "common/control",
+      "common/own",
+      "common/random",
+      "common/wrong",
+      "rare/control",
+      "rare/own",
+      "rare/random",
+      "rare/wrong"
+    ],
+    "graph_shape": [
+      7,
+      22,
+      33,
+      33
+    ],
+    "taus": [
+      31,
+      30,
+      28,
+      24,
+      16,
+      8,
+      1
+    ],
+    "units": [
+      "L0",
+      "L1",
+      "L2",
+      "L3",
+      "L4",
+      "L5",
+      "L6",
+      "L7",
+      "L8",
+      "L9",
+      "L10",
+      "L11",
+      "L0H2",
+      "L1H11",
+      "L3H0",
+      "L4H10",
+      "L2H2",
+      "L2H9",
+      "L3H7",
+      "L4H11",
+      "L0-4",
+      "L0-11"
+    ],
+    "null_shape": [
+      3,
+      200,
+      22,
+      2
+    ],
+    "split_shape": [
+      100,
+      22,
+      2
+    ],
+    "cells_with_arrays": 14,
+    "timing_s": {
+      "extract": 362.694584,
+      "tda": 179.534601,
+      "total": 547.044442
+    }
+  },
+  "rows_used": 200,
+  "iterations": [
+    200,
+    100,
+    100
+  ],
+  "hf": {
+    "row_sum_dev": 4.76837158203125e-07,
+    "upper_max": 0.0,
+    "prefix_max": 0.0,
+    "vs_saved_graphs_max": 3.8400292395879276e-07,
+    "wrong_mapping": "France\u2192Tokyo, Germany\u2192Ottawa, Italy\u2192Moscow, Spain\u2192Dublin, Russia\u2192Madrid, Ireland\u2192Cairo, Ukraine\u2192Berlin, Japan\u2192Rome, China\u2192Paris, Egypt\u2192Kiev, Canada\u2192Beijing"
+  },
+  "rederive": {
+    "obs_max_dev": 3.164056316085073e-05,
+    "obs_max_rel_dev": 0.0002988713278794899,
+    "transplant_max_dev": 3.242045640838853e-06,
+    "role_mismatch": [],
+    "n_persistent_mismatch": [],
+    "mpc_outside_bounds": [],
+    "run_mpcs": 62,
+    "run_mpcs_strict": 62,
+    "ambiguous_birth_edges": 0,
+    "graphs": 2464
+  },
+  "verdicts_here": {
+    "G1": "PASS",
+    "G2": "PASS",
+    "G3a": "FAIL",
+    "G3b": "PASS",
+    "B1": "PASS"
+  },
+  "verdicts_run": {
+    "G1": "PASS",
+    "G2": "PASS",
+    "G3a": "FAIL",
+    "G3b": "PASS",
+    "B1": "PASS"
+  },
+  "g2_strict": [
+    [
+      4,
+      24
+    ],
+    [
+      0,
+      16
+    ],
+    [
+      0,
+      8
+    ],
+    [
+      0,
+      1
+    ]
+  ],
+  "g2_lenient": [
+    [
+      4,
+      24
+    ],
+    [
+      0,
+      16
+    ],
+    [
+      0,
+      8
+    ],
+    [
+      0,
+      1
+    ]
+  ],
+  "g2_reverse": [],
+  "no_own_mpc_tau30_28": true,
+  "g3a": {
+    "eligible": 30,
+    "within_null": 10
+  },
+  "g3b": {
+    "eligible": 36,
+    "beyond_null": 34
+  },
+  "b1_found": [],
+  "null_tightness": {
+    "cells": 308,
+    "p_le_alpha": 295,
+    "ratio_quartiles": [
+      5.21965108664964,
+      6.167038048630161,
+      6.925230768227713
+    ]
+  },
+  "timing_s": 178.85952425003052
+}

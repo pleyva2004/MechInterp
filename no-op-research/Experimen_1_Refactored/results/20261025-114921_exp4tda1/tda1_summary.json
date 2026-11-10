@@ -1,0 +1,1216 @@
+{
+  "profile": {
+    "features": [
+      "common: country, random T, d 1\u201331",
+      "common: country, own capital, d 1\u201331",
+      "common: country, wrong capital, d 1\u201331",
+      "common: word, random T, d 1\u201331",
+      "rare: country, random T, d 1\u201331",
+      "rare: country, own capital, d 1\u201331",
+      "rare: country, wrong capital, d 1\u201331",
+      "rare: word, random T, d 1\u201331"
+    ],
+    "n_heads": 144,
+    "n_features": 248
+  },
+  "boot": 500,
+  "null_draws": 500,
+  "seeds": {
+    "boot": 0,
+    "N1": 1,
+    "N2": 2,
+    "mds": 0
+  },
+  "libraries": {
+    "ripser": "0.6.15",
+    "persim": "0.4.1",
+    "gudhi": "3.13.0",
+    "scikit-learn": "1.9.1",
+    "scipy": "1.18.1",
+    "numpy": "2.5.3"
+  },
+  "checks": {
+    "rebuilt per-row means = saved means, Exp 4": "PASS (max |\u0394| 0.0e+00)",
+    "rebuilt per-row means = saved means, Exp 4b (float16)": "PASS (max |\u0394| 2.7e-05)",
+    "ripser H0 deaths = single-linkage heights, raw": "PASS (max |\u0394| 5.8e-08)",
+    "ripser H0 deaths = single-linkage heights, corr": "PASS (max |\u0394| 3.0e-08)",
+    "ripser H0 deaths = single-linkage heights, std": "PASS (max |\u0394| 1.1e-06)",
+    "N1 mean profile \u2248 0": "max |mean over draws| 2.0e-03 vs max |profile| 0.516"
+  },
+  "predictions": {
+    "raw": [
+      {
+        "id": "T1-a",
+        "verdict": "FAIL",
+        "detail": "\u03b5* 0.1894; 32 components: 3 with \u2265 2 heads [110 heads (rec 0.98), 3 heads (rec 0.55), 2 heads (rec 0.92)], 29 isolated heads; stable (rec \u2265 0.75) clusters: 2"
+      },
+      {
+        "id": "T1-b",
+        "verdict": "FAIL",
+        "detail": "L0H2 in a 1-head component, L4H10 in a 1-head component, L3H0 in a 1-head component, L1H11 in a 1-head component; together: False; previous-token heads in their component(s): none; configuration recurs in 0% of resamples"
+      },
+      {
+        "id": "T1-c",
+        "verdict": "FAIL",
+        "detail": "common: ARI +0.123 [+0.083, +0.138] (labels do not match persistent clusters); rare: ARI +0.209 [+0.193, +0.247] (partly)"
+      },
+      {
+        "id": "T1-d",
+        "verdict": "PASS",
+        "detail": "25 H1 features; beyond band 0, beyond N2 ratio 0, beyond N1 ratio 2; band & N2: 0; top ratio feature: birth 0.1542, death 0.1874, ratio 1.215 (N2 q95 1.383, N1 q95 1.179), persistence 0.03314 (2\u00b7c1 0.03559)"
+      }
+    ],
+    "corr": [
+      {
+        "id": "T1-a",
+        "verdict": "FAIL",
+        "detail": "\u03b5* 0.7993; 1 components: 1 with \u2265 2 heads [144 heads (rec 1.00)], 0 isolated heads; stable (rec \u2265 0.75) clusters: 1"
+      },
+      {
+        "id": "T1-b",
+        "verdict": "FAIL",
+        "detail": "L0H2 in a 144-head component, L4H10 in a 144-head component, L3H0 in a 144-head component, L1H11 in a 144-head component; together: True; previous-token heads in their component(s): L1H0, L2H2, L2H3, L2H5, L2H8, L2H9, L3H2, L3H6, L3H7, L3H8, L4H11; configuration recurs in 0% of resamples"
+      },
+      {
+        "id": "T1-c",
+        "verdict": "FAIL",
+        "detail": "common: ARI +0.000 [+0.000, +0.000] (labels do not match persistent clusters); rare: ARI +0.000 [+0.000, +0.000] (labels do not match persistent clusters)"
+      },
+      {
+        "id": "T1-d",
+        "verdict": "PASS",
+        "detail": "61 H1 features; beyond band 1, beyond N2 ratio 0, beyond N1 ratio 0; band & N2: 0; top ratio feature: birth 0.4709, death 0.7685, ratio 1.632 (N2 q95 2.722, N1 q95 1.676), persistence 0.2976 (2\u00b7c1 0.2102)"
+      }
+    ],
+    "std": [
+      {
+        "id": "T1-a",
+        "verdict": "FAIL",
+        "detail": "\u03b5* 8.094; 35 components: 1 with \u2265 2 heads [110 heads (rec 0.96)], 34 isolated heads; stable (rec \u2265 0.75) clusters: 1"
+      },
+      {
+        "id": "T1-b",
+        "verdict": "FAIL",
+        "detail": "L0H2 in a 1-head component, L4H10 in a 1-head component, L3H0 in a 1-head component, L1H11 in a 1-head component; together: False; previous-token heads in their component(s): none; configuration recurs in 0% of resamples"
+      },
+      {
+        "id": "T1-c",
+        "verdict": "FAIL",
+        "detail": "common: ARI +0.055 [+0.015, +0.063] (labels do not match persistent clusters); rare: ARI +0.048 [+0.016, +0.094] (labels do not match persistent clusters)"
+      },
+      {
+        "id": "T1-d",
+        "verdict": "PASS",
+        "detail": "30 H1 features; beyond band 1, beyond N2 ratio 0, beyond N1 ratio 3; band & N2: 0; top ratio feature: birth 8.143, death 10.61, ratio 1.303 (N2 q95 1.323, N1 q95 1.138), persistence 2.466 (2\u00b7c1 2.432)"
+      }
+    ]
+  },
+  "std_self_standardised_null": {
+    "N1_q95_max_death": 47.830862808227536,
+    "eps": 47.830862808227536,
+    "n_components": 1,
+    "n_multi": 1
+  },
+  "variants": {
+    "raw": {
+      "c0": 0.04952290654182434,
+      "c1": 0.01779453866183757,
+      "eps": 0.18944182768464077,
+      "q95": {
+        "N1_max_death": 0.18944182768464077,
+        "N1_max_ratio": 1.1788735765644218,
+        "N1_max_pers": 0.006745444424450397,
+        "N2_max_death": 0.6091656148433685,
+        "N2_max_ratio": 1.3826787141148862,
+        "N2_max_pers": 0.1046381384134292
+      },
+      "h0_beyond": {
+        "N1": 31,
+        "band": 75,
+        "N2": 4
+      },
+      "n_components": 32,
+      "components": [
+        {
+          "members": [
+            "L0H0",
+            "L0H1",
+            "L0H3",
+            "L0H5",
+            "L0H6",
+            "L0H8",
+            "L0H11",
+            "L1H1",
+            "L1H2",
+            "L1H3",
+            "L1H4",
+            "L1H7",
+            "L1H8",
+            "L1H9",
+            "L1H10",
+            "L2H1",
+            "L2H6",
+            "L2H7",
+            "L2H10",
+            "L2H11",
+            "L3H3",
+            "L3H5",
+            "L3H9",
+            "L3H10",
+            "L3H11",
+            "L4H0",
+            "L4H1",
+            "L4H2",
+            "L4H3",
+            "L4H5",
+            "L4H6",
+            "L4H7",
+            "L4H9",
+            "L4H11",
+            "L5H0",
+            "L5H1",
+            "L5H2",
+            "L5H3",
+            "L5H4",
+            "L5H5",
+            "L5H7",
+            "L5H8",
+            "L5H9",
+            "L5H10",
+            "L5H11",
+            "L6H0",
+            "L6H1",
+            "L6H2",
+            "L6H3",
+            "L6H4",
+            "L6H5",
+            "L6H6",
+            "L6H7",
+            "L6H8",
+            "L6H9",
+            "L6H10",
+            "L6H11",
+            "L7H1",
+            "L7H2",
+            "L7H3",
+            "L7H4",
+            "L7H5",
+            "L7H6",
+            "L7H7",
+            "L7H8",
+            "L7H9",
+            "L7H10",
+            "L7H11",
+            "L8H0",
+            "L8H1",
+            "L8H2",
+            "L8H3",
+            "L8H4",
+            "L8H5",
+            "L8H6",
+            "L8H7",
+            "L8H8",
+            "L8H9",
+            "L8H10",
+            "L8H11",
+            "L9H0",
+            "L9H1",
+            "L9H2",
+            "L9H3",
+            "L9H4",
+            "L9H5",
+            "L9H6",
+            "L9H7",
+            "L9H9",
+            "L9H10",
+            "L9H11",
+            "L10H1",
+            "L10H2",
+            "L10H4",
+            "L10H5",
+            "L10H6",
+            "L10H7",
+            "L10H8",
+            "L10H9",
+            "L10H10",
+            "L10H11",
+            "L11H0",
+            "L11H1",
+            "L11H3",
+            "L11H4",
+            "L11H5",
+            "L11H6",
+            "L11H9",
+            "L11H10",
+            "L11H11"
+          ],
+          "recurrence": 0.984209819752577,
+          "gap": 0.19236911428048958,
+          "internal": 0.18467581025513435
+        },
+        {
+          "members": [
+            "L0H7",
+            "L2H0",
+            "L2H4"
+          ],
+          "recurrence": 0.5479923534548188,
+          "gap": 0.19236911428048958,
+          "internal": 0.1813897519373565
+        },
+        {
+          "members": [
+            "L2H5",
+            "L3H8"
+          ],
+          "recurrence": 0.924142258760862,
+          "gap": 0.2203220997529761,
+          "internal": 0.16941727898038642
+        },
+        {
+          "members": [
+            "L0H2"
+          ],
+          "recurrence": 1.0,
+          "gap": 0.8411849362785934,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L0H4"
+          ],
+          "recurrence": 1.0,
+          "gap": 0.20482190915642873,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L0H9"
+          ],
+          "recurrence": 1.0,
+          "gap": 0.2536131468971908,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L0H10"
+          ],
+          "recurrence": 1.0,
+          "gap": 0.27377129791585936,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L1H0"
+          ],
+          "recurrence": 0.9841420954910212,
+          "gap": 0.216705578678622,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L1H5"
+          ],
+          "recurrence": 1.0,
+          "gap": 1.42031485042051,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L1H6"
+          ],
+          "recurrence": 0.9960357171330623,
+          "gap": 0.2005105668528626,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L1H11"
+          ],
+          "recurrence": 1.0,
+          "gap": 0.41027636407402696,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L2H2"
+          ],
+          "recurrence": 0.956,
+          "gap": 0.20380064887398308,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L2H3"
+          ],
+          "recurrence": 1.0,
+          "gap": 0.2412340707103581,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L2H8"
+          ],
+          "recurrence": 1.0,
+          "gap": 0.34268486772464957,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L2H9"
+          ],
+          "recurrence": 1.0,
+          "gap": 0.2412340707103581,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L3H0"
+          ],
+          "recurrence": 1.0,
+          "gap": 0.8542603954905458,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L3H1"
+          ],
+          "recurrence": 0.984108108108108,
+          "gap": 0.21304814158307162,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L3H2"
+          ],
+          "recurrence": 0.9524082449660929,
+          "gap": 0.20184716351424686,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L3H4"
+          ],
+          "recurrence": 1.0,
+          "gap": 0.5904395070568446,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L3H6"
+          ],
+          "recurrence": 1.0,
+          "gap": 0.3443001248704395,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L3H7"
+          ],
+          "recurrence": 0.956,
+          "gap": 0.20380064887398308,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L4H4"
+          ],
+          "recurrence": 1.0,
+          "gap": 0.23091813288261256,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L4H8"
+          ],
+          "recurrence": 1.0,
+          "gap": 0.2872111255695684,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L4H10"
+          ],
+          "recurrence": 1.0,
+          "gap": 0.8411849362785934,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L5H6"
+          ],
+          "recurrence": 1.0,
+          "gap": 0.25205579411495427,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L7H0"
+          ],
+          "recurrence": 0.9960176991150442,
+          "gap": 0.21851725779027822,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L9H8"
+          ],
+          "recurrence": 1.0,
+          "gap": 0.5735121585067081,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L10H0"
+          ],
+          "recurrence": 1.0,
+          "gap": 0.26318656234121585,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L10H3"
+          ],
+          "recurrence": 1.0,
+          "gap": 0.36390924981518363,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L11H2"
+          ],
+          "recurrence": 1.0,
+          "gap": 0.3758216800955394,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L11H7"
+          ],
+          "recurrence": 1.0,
+          "gap": 0.36390924981518363,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L11H8"
+          ],
+          "recurrence": 1.0,
+          "gap": 0.2523555579998387,
+          "internal": 0.0
+        }
+      ],
+      "ari": {
+        "common": 0.12309407447808711,
+        "rare": 0.20898300506675882
+      },
+      "ari_merged": {
+        "common": 0.10903607865931358,
+        "rare": 0.19791881858037483
+      },
+      "ari_k6_single": {
+        "common": -0.009761605902755235,
+        "rare": -0.049137949381691866
+      },
+      "ari_k6_ward": {
+        "common": 0.12659589757878265,
+        "rare": 0.08517586616540017
+      },
+      "mds_stress": 0.09225418588376956,
+      "explore_groups": {
+        "same-country (4)": {
+          "scale": 1.1694340227790145,
+          "size": 143,
+          "gap": 1.42031485042051,
+          "boot_exact": 0.0
+        },
+        "same-country trio L0H2, L4H10, L3H0 (post hoc)": {
+          "scale": 0.8542603954905458,
+          "size": 3,
+          "gap": 1.1694340227790145,
+          "boot_exact": 1.0
+        },
+        "late any-distance (4)": {
+          "scale": 0.5735121585067081,
+          "size": 139,
+          "gap": 0.5904395070568446,
+          "boot_exact": 0.0
+        },
+        "Exp 1 previous-token without L4H11 (10)": {
+          "scale": 0.3443001248704395,
+          "size": 134,
+          "gap": 0.3758216800955394,
+          "boot_exact": 0.0
+        }
+      }
+    },
+    "corr": {
+      "c0": 0.09827140271663665,
+      "c1": 0.10507920086383812,
+      "eps": 0.7993319660425185,
+      "q95": {
+        "N1_max_death": 0.7993319660425185,
+        "N1_max_ratio": 1.6762657287641396,
+        "N1_max_pers": 0.3025009706616401,
+        "N2_max_death": 0.5684358119964599,
+        "N2_max_ratio": 2.721743662927117,
+        "N2_max_pers": 0.3882078185677527
+      },
+      "h0_beyond": {
+        "N1": 0,
+        "band": 34,
+        "N2": 0
+      },
+      "n_components": 1,
+      "components": [
+        {
+          "members": [
+            "L0H0",
+            "L0H1",
+            "L0H2",
+            "L0H3",
+            "L0H4",
+            "L0H5",
+            "L0H6",
+            "L0H7",
+            "L0H8",
+            "L0H9",
+            "L0H10",
+            "L0H11",
+            "L1H0",
+            "L1H1",
+            "L1H2",
+            "L1H3",
+            "L1H4",
+            "L1H5",
+            "L1H6",
+            "L1H7",
+            "L1H8",
+            "L1H9",
+            "L1H10",
+            "L1H11",
+            "L2H0",
+            "L2H1",
+            "L2H2",
+            "L2H3",
+            "L2H4",
+            "L2H5",
+            "L2H6",
+            "L2H7",
+            "L2H8",
+            "L2H9",
+            "L2H10",
+            "L2H11",
+            "L3H0",
+            "L3H1",
+            "L3H2",
+            "L3H3",
+            "L3H4",
+            "L3H5",
+            "L3H6",
+            "L3H7",
+            "L3H8",
+            "L3H9",
+            "L3H10",
+            "L3H11",
+            "L4H0",
+            "L4H1",
+            "L4H2",
+            "L4H3",
+            "L4H4",
+            "L4H5",
+            "L4H6",
+            "L4H7",
+            "L4H8",
+            "L4H9",
+            "L4H10",
+            "L4H11",
+            "L5H0",
+            "L5H1",
+            "L5H2",
+            "L5H3",
+            "L5H4",
+            "L5H5",
+            "L5H6",
+            "L5H7",
+            "L5H8",
+            "L5H9",
+            "L5H10",
+            "L5H11",
+            "L6H0",
+            "L6H1",
+            "L6H2",
+            "L6H3",
+            "L6H4",
+            "L6H5",
+            "L6H6",
+            "L6H7",
+            "L6H8",
+            "L6H9",
+            "L6H10",
+            "L6H11",
+            "L7H0",
+            "L7H1",
+            "L7H2",
+            "L7H3",
+            "L7H4",
+            "L7H5",
+            "L7H6",
+            "L7H7",
+            "L7H8",
+            "L7H9",
+            "L7H10",
+            "L7H11",
+            "L8H0",
+            "L8H1",
+            "L8H2",
+            "L8H3",
+            "L8H4",
+            "L8H5",
+            "L8H6",
+            "L8H7",
+            "L8H8",
+            "L8H9",
+            "L8H10",
+            "L8H11",
+            "L9H0",
+            "L9H1",
+            "L9H2",
+            "L9H3",
+            "L9H4",
+            "L9H5",
+            "L9H6",
+            "L9H7",
+            "L9H8",
+            "L9H9",
+            "L9H10",
+            "L9H11",
+            "L10H0",
+            "L10H1",
+            "L10H2",
+            "L10H3",
+            "L10H4",
+            "L10H5",
+            "L10H6",
+            "L10H7",
+            "L10H8",
+            "L10H9",
+            "L10H10",
+            "L10H11",
+            "L11H0",
+            "L11H1",
+            "L11H2",
+            "L11H3",
+            "L11H4",
+            "L11H5",
+            "L11H6",
+            "L11H7",
+            "L11H8",
+            "L11H9",
+            "L11H10",
+            "L11H11"
+          ],
+          "recurrence": 1.0,
+          "gap": Infinity,
+          "internal": 0.5667791662675781
+        }
+      ],
+      "ari": {
+        "common": 0.0,
+        "rare": 0.0
+      },
+      "ari_merged": {
+        "common": 0.0,
+        "rare": 0.0
+      },
+      "ari_k6_single": {
+        "common": -0.005736360321138328,
+        "rare": 0.00884419459992685
+      },
+      "ari_k6_ward": {
+        "common": 0.05091194954867346,
+        "rare": 0.0304681828273276
+      },
+      "mds_stress": 0.20507698341503622,
+      "explore_groups": {
+        "same-country (4)": {
+          "scale": 0.09592588545416497,
+          "size": 11,
+          "gap": 0.10435258889799043,
+          "boot_exact": 0.0
+        },
+        "same-country trio L0H2, L4H10, L3H0 (post hoc)": {
+          "scale": 0.09592588545416497,
+          "size": 11,
+          "gap": 0.10435258889799043,
+          "boot_exact": 0.0
+        },
+        "late any-distance (4)": {
+          "scale": 0.20403393488115817,
+          "size": 110,
+          "gap": 0.20488997988976265,
+          "boot_exact": 0.0
+        },
+        "Exp 1 previous-token without L4H11 (10)": {
+          "scale": 0.20488997988976265,
+          "size": 115,
+          "gap": 0.20862740801142649,
+          "boot_exact": 0.0
+        }
+      }
+    },
+    "std": {
+      "c0": 3.6863563537597654,
+      "c1": 1.2161606311798094,
+      "eps": 8.093979454040523,
+      "q95": {
+        "N1_max_death": 8.093979454040523,
+        "N1_max_ratio": 1.137966965814239,
+        "N1_max_pers": 0.27831840515136713,
+        "N2_max_death": 21.012318325042724,
+        "N2_max_ratio": 1.3229904646326143,
+        "N2_max_pers": 3.4977537155151364
+      },
+      "h0_beyond": {
+        "N1": 34,
+        "band": 39,
+        "N2": 7
+      },
+      "n_components": 35,
+      "components": [
+        {
+          "members": [
+            "L0H0",
+            "L0H1",
+            "L0H3",
+            "L0H4",
+            "L0H5",
+            "L0H7",
+            "L0H8",
+            "L0H10",
+            "L0H11",
+            "L1H0",
+            "L1H1",
+            "L1H2",
+            "L1H3",
+            "L1H4",
+            "L1H8",
+            "L1H9",
+            "L1H10",
+            "L2H0",
+            "L2H2",
+            "L2H4",
+            "L2H5",
+            "L2H6",
+            "L2H7",
+            "L2H9",
+            "L2H10",
+            "L2H11",
+            "L3H2",
+            "L3H3",
+            "L3H5",
+            "L3H7",
+            "L3H8",
+            "L3H9",
+            "L3H10",
+            "L3H11",
+            "L4H0",
+            "L4H1",
+            "L4H2",
+            "L4H3",
+            "L4H4",
+            "L4H5",
+            "L4H6",
+            "L4H7",
+            "L4H9",
+            "L4H11",
+            "L5H0",
+            "L5H1",
+            "L5H2",
+            "L5H4",
+            "L5H5",
+            "L5H6",
+            "L5H7",
+            "L5H8",
+            "L5H9",
+            "L5H10",
+            "L5H11",
+            "L6H0",
+            "L6H1",
+            "L6H2",
+            "L6H3",
+            "L6H4",
+            "L6H5",
+            "L6H6",
+            "L6H7",
+            "L6H8",
+            "L6H9",
+            "L6H10",
+            "L6H11",
+            "L7H0",
+            "L7H1",
+            "L7H2",
+            "L7H3",
+            "L7H4",
+            "L7H5",
+            "L7H6",
+            "L7H7",
+            "L7H8",
+            "L7H9",
+            "L7H10",
+            "L7H11",
+            "L8H0",
+            "L8H1",
+            "L8H2",
+            "L8H3",
+            "L8H4",
+            "L8H5",
+            "L8H7",
+            "L8H8",
+            "L8H9",
+            "L8H10",
+            "L9H0",
+            "L9H1",
+            "L9H2",
+            "L9H3",
+            "L9H4",
+            "L9H5",
+            "L9H6",
+            "L9H7",
+            "L9H9",
+            "L9H10",
+            "L10H1",
+            "L10H2",
+            "L10H5",
+            "L10H7",
+            "L10H8",
+            "L10H9",
+            "L10H10",
+            "L11H3",
+            "L11H5",
+            "L11H10",
+            "L11H11"
+          ],
+          "recurrence": 0.9561714773905036,
+          "gap": 8.119677454069514,
+          "internal": 8.08769728991908
+        },
+        {
+          "members": [
+            "L0H2"
+          ],
+          "recurrence": 1.0,
+          "gap": 22.839513047986227,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L0H6"
+          ],
+          "recurrence": 0.983,
+          "gap": 9.3432621425238,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L0H9"
+          ],
+          "recurrence": 1.0,
+          "gap": 8.559771016319658,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L1H5"
+          ],
+          "recurrence": 1.0,
+          "gap": 43.61648450868004,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L1H6"
+          ],
+          "recurrence": 0.9861296390698258,
+          "gap": 8.611333605278688,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L1H7"
+          ],
+          "recurrence": 0.9916853582554517,
+          "gap": 8.73282338267999,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L1H11"
+          ],
+          "recurrence": 1.0,
+          "gap": 9.476874308340765,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L2H1"
+          ],
+          "recurrence": 0.9966848484848484,
+          "gap": 8.68566002153212,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L2H3"
+          ],
+          "recurrence": 0.560650430624771,
+          "gap": 8.119677454069514,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L2H8"
+          ],
+          "recurrence": 1.0,
+          "gap": 11.958576887854308,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L3H0"
+          ],
+          "recurrence": 1.0,
+          "gap": 18.67388847348625,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L3H1"
+          ],
+          "recurrence": 0.9980190476190476,
+          "gap": 10.546576705173447,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L3H4"
+          ],
+          "recurrence": 1.0,
+          "gap": 24.138656280740783,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L3H6"
+          ],
+          "recurrence": 1.0,
+          "gap": 10.658467226074997,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L4H8"
+          ],
+          "recurrence": 1.0,
+          "gap": 15.04753326552021,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L4H10"
+          ],
+          "recurrence": 1.0,
+          "gap": 18.67388847348625,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L5H3"
+          ],
+          "recurrence": 0.9980183486238532,
+          "gap": 8.941153161720676,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L8H6"
+          ],
+          "recurrence": 1.0,
+          "gap": 8.883641376269281,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L8H11"
+          ],
+          "recurrence": 0.9306512268461281,
+          "gap": 8.677629862331052,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L9H8"
+          ],
+          "recurrence": 1.0,
+          "gap": 29.49284184430512,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L9H11"
+          ],
+          "recurrence": 1.0,
+          "gap": 11.358490457075224,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L10H0"
+          ],
+          "recurrence": 1.0,
+          "gap": 12.55718354438662,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L10H3"
+          ],
+          "recurrence": 1.0,
+          "gap": 25.38625060675214,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L10H4"
+          ],
+          "recurrence": 1.0,
+          "gap": 14.50277629515932,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L10H6"
+          ],
+          "recurrence": 0.7924323639533114,
+          "gap": 8.26501878078453,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L10H11"
+          ],
+          "recurrence": 0.995,
+          "gap": 8.73282338267999,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L11H0"
+          ],
+          "recurrence": 1.0,
+          "gap": 8.883641376269281,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L11H1"
+          ],
+          "recurrence": 0.999,
+          "gap": 11.44481915199381,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L11H2"
+          ],
+          "recurrence": 1.0,
+          "gap": 19.885042979664007,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L11H4"
+          ],
+          "recurrence": 0.9980190476190476,
+          "gap": 9.431883285053141,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L11H6"
+          ],
+          "recurrence": 1.0,
+          "gap": 12.550325107579482,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L11H7"
+          ],
+          "recurrence": 1.0,
+          "gap": 19.885042979664007,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L11H8"
+          ],
+          "recurrence": 1.0,
+          "gap": 10.045996234052907,
+          "internal": 0.0
+        },
+        {
+          "members": [
+            "L11H9"
+          ],
+          "recurrence": 1.0,
+          "gap": 10.557707931514207,
+          "internal": 0.0
+        }
+      ],
+      "ari": {
+        "common": 0.0551078181219095,
+        "rare": 0.04793361425870933
+      },
+      "ari_merged": {
+        "common": 0.0794293804793138,
+        "rare": 0.08696280696520373
+      },
+      "ari_k6_single": {
+        "common": 0.004880030444820197,
+        "rare": -0.0005768950210068778
+      },
+      "ari_k6_ward": {
+        "common": 0.12049394492490272,
+        "rare": -0.0023126776375152177
+      },
+      "mds_stress": 0.13484039132116687,
+      "explore_groups": {
+        "same-country (4)": {
+          "scale": 24.96702904663164,
+          "size": 141,
+          "gap": 25.38625060675214,
+          "boot_exact": 0.0
+        },
+        "same-country trio L0H2, L4H10, L3H0 (post hoc)": {
+          "scale": 22.839513047986227,
+          "size": 3,
+          "gap": 24.96702904663164,
+          "boot_exact": 0.96
+        },
+        "late any-distance (4)": {
+          "scale": 29.49284184430512,
+          "size": 143,
+          "gap": 43.61648450868004,
+          "boot_exact": 0.0
+        },
+        "Exp 1 previous-token without L4H11 (10)": {
+          "scale": 11.958576887854308,
+          "size": 131,
+          "gap": 12.550325107579482,
+          "boot_exact": 0.0
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,969 @@
+condition,filler,layer,head,name,type,d,persistence,birth_value,death_value,essential,role,threshold,rank,shape
+random,common,0,3,L0H3,peak,23,0.022648,-1e-06,-0.022649,True,baseline,0.022518,,near-peak decay
+random,common,0,3,L0H3,trough,1,0.022648,-0.022649,-1e-06,True,dominant,0.022518,1.0,near-peak decay
+random,common,0,4,L0H4,peak,28,0.038242,-4.8e-05,-0.03829,True,baseline,0.026434,,near-peak decay
+random,common,0,4,L0H4,trough,1,0.038242,-0.03829,-4.8e-05,True,dominant,0.026434,1.0,near-peak decay
+random,common,0,6,L0H6,peak,3,0.024023,0.040475,0.016452,True,dominant,0.012953,1.0,near-peak decay
+random,common,0,6,L0H6,trough,28,0.024023,0.016452,0.040475,True,baseline,0.012953,,near-peak decay
+random,common,0,7,L0H7,peak,24,0.08559,-0.000328,-0.085917,True,baseline,0.037303,,near-peak decay
+random,common,0,7,L0H7,trough,1,0.08559,-0.085917,-0.000328,True,dominant,0.037303,1.0,near-peak decay
+random,common,1,0,L1H0,peak,31,0.103671,0.000217,-0.103453,True,baseline,0.046522,,near-peak decay
+random,common,1,0,L1H0,trough,1,0.103671,-0.103453,0.000217,True,dominant,0.046522,1.0,near-peak decay
+random,common,1,2,L1H2,peak,1,0.020936,0.024837,0.003901,True,dominant,0.004311,1.0,near-peak decay
+random,common,1,2,L1H2,trough,31,0.020936,0.003901,0.024837,True,baseline,0.004311,,near-peak decay
+random,common,2,0,L2H0,peak,29,0.093925,-0.000366,-0.094291,True,baseline,0.032101,,near-peak decay
+random,common,2,0,L2H0,trough,1,0.093925,-0.094291,-0.000366,True,dominant,0.032101,1.0,near-peak decay
+random,common,2,3,L2H3,peak,1,0.156665,0.15673,6.5e-05,True,dominant,0.037829,1.0,near-peak decay
+random,common,2,3,L2H3,trough,29,0.156665,6.5e-05,0.15673,True,baseline,0.037829,,near-peak decay
+random,common,2,4,L2H4,peak,29,0.137931,-9e-06,-0.13794,True,baseline,0.049384,,near-peak decay
+random,common,2,4,L2H4,trough,1,0.137931,-0.13794,-9e-06,True,dominant,0.049384,1.0,near-peak decay
+random,common,2,5,L2H5,peak,1,0.092678,0.092684,6e-06,True,dominant,0.030355,1.0,near-peak decay
+random,common,2,5,L2H5,trough,28,0.092678,6e-06,0.092684,True,baseline,0.030355,,near-peak decay
+random,common,2,7,L2H7,peak,1,0.044708,0.053458,0.00875,True,dominant,0.004691,1.0,near-peak decay
+random,common,2,7,L2H7,trough,31,0.044708,0.00875,0.053458,True,baseline,0.004691,,near-peak decay
+random,common,2,8,L2H8,peak,27,0.153003,-2.8e-05,-0.153031,True,baseline,0.043785,,near-peak decay
+random,common,2,8,L2H8,trough,1,0.153003,-0.153031,-2.8e-05,True,dominant,0.043785,1.0,near-peak decay
+random,common,2,9,L2H9,peak,1,0.17071,0.170743,3.3e-05,True,dominant,0.029955,1.0,near-peak decay
+random,common,2,9,L2H9,trough,29,0.17071,3.3e-05,0.170743,True,baseline,0.029955,,near-peak decay
+random,common,2,10,L2H10,peak,1,0.043797,0.04724,0.003443,True,dominant,0.004882,1.0,near-peak decay
+random,common,2,10,L2H10,trough,29,0.043797,0.003443,0.04724,True,baseline,0.004882,,near-peak decay
+random,common,2,11,L2H11,peak,1,0.022036,0.023421,0.001385,True,dominant,0.002451,1.0,near-peak decay
+random,common,2,11,L2H11,trough,29,0.022036,0.001385,0.023421,True,baseline,0.002451,,near-peak decay
+random,common,3,1,L3H1,peak,1,0.104026,0.103654,-0.000372,True,dominant,0.025557,1.0,near-peak decay
+random,common,3,1,L3H1,trough,28,0.104026,-0.000372,0.103654,True,baseline,0.025557,,near-peak decay
+random,common,3,2,L3H2,peak,1,0.088246,0.086763,-0.001483,True,dominant,0.049542,1.0,near-peak decay
+random,common,3,2,L3H2,trough,6,0.088246,-0.001483,0.086763,True,baseline,0.049542,,near-peak decay
+random,common,3,3,L3H3,peak,14,0.089825,1.2e-05,-0.089813,True,baseline,0.053425,,near-peak decay
+random,common,3,3,L3H3,trough,1,0.089825,-0.089813,1.2e-05,True,dominant,0.053425,1.0,near-peak decay
+random,common,3,5,L3H5,peak,2,0.027115,0.043741,0.016626,True,dominant,0.007413,1.0,near-peak decay
+random,common,3,5,L3H5,trough,29,0.027115,0.016626,0.043741,True,baseline,0.007413,,near-peak decay
+random,common,3,6,L3H6,peak,1,0.243532,0.243599,6.7e-05,True,dominant,0.048155,1.0,near-peak decay
+random,common,3,6,L3H6,trough,29,0.243532,6.7e-05,0.243599,True,baseline,0.048155,,near-peak decay
+random,common,3,7,L3H7,peak,1,0.07367,0.071394,-0.002276,True,dominant,0.046809,1.0,near-peak decay
+random,common,3,7,L3H7,trough,3,0.07367,-0.002276,0.071394,True,baseline,0.046809,,near-peak decay
+random,common,3,9,L3H9,peak,21,0.060594,7.7e-05,-0.060517,True,baseline,0.029967,,near-peak decay
+random,common,3,9,L3H9,trough,1,0.060594,-0.060517,7.7e-05,True,dominant,0.029967,1.0,near-peak decay
+random,common,3,10,L3H10,peak,1,0.02115,0.018966,-0.002184,True,dominant,0.009384,1.0,near-peak decay
+random,common,3,10,L3H10,trough,4,0.02115,-0.002184,0.018966,True,baseline,0.009384,,near-peak decay
+random,common,4,6,L4H6,peak,1,0.032209,0.032405,0.000195,True,dominant,0.009829,1.0,near-peak decay
+random,common,4,6,L4H6,trough,31,0.032209,0.000195,0.032405,True,baseline,0.009829,,near-peak decay
+random,common,5,2,L5H2,peak,1,0.069428,0.04649,-0.022938,True,dominant,0.032956,1.0,multi-modal
+random,common,5,2,L5H2,peak,17,0.023749,0.000811,-0.022938,False,secondary,0.021,2.0,multi-modal
+random,common,5,2,L5H2,trough,2,0.069428,-0.022938,0.04649,True,baseline,0.032956,,multi-modal
+random,common,5,3,L5H3,peak,1,0.090791,0.092441,0.00165,True,dominant,0.021097,1.0,near-peak decay
+random,common,5,3,L5H3,trough,31,0.090791,0.00165,0.092441,True,baseline,0.021097,,near-peak decay
+random,common,5,8,L5H8,peak,1,0.025933,0.026513,0.00058,True,dominant,0.011309,1.0,near-peak decay
+random,common,5,8,L5H8,trough,31,0.025933,0.00058,0.026513,True,baseline,0.011309,,near-peak decay
+random,common,5,10,L5H10,peak,1,0.050284,0.048697,-0.001587,True,dominant,0.016244,1.0,near-peak decay
+random,common,5,10,L5H10,trough,19,0.050284,-0.001587,0.048697,True,baseline,0.016244,,near-peak decay
+random,common,6,0,L6H0,peak,1,0.077436,0.077847,0.00041,True,dominant,0.027996,1.0,near-peak decay
+random,common,6,0,L6H0,trough,31,0.077436,0.00041,0.077847,True,baseline,0.027996,,near-peak decay
+random,common,6,1,L6H1,peak,1,0.025263,0.025621,0.000358,True,dominant,0.012563,1.0,near-peak decay
+random,common,6,1,L6H1,trough,31,0.025263,0.000358,0.025621,True,baseline,0.012563,,near-peak decay
+random,common,6,3,L6H3,peak,1,0.02797,0.033598,0.005627,True,dominant,0.007467,1.0,near-peak decay
+random,common,6,3,L6H3,trough,22,0.02797,0.005627,0.033598,True,baseline,0.007467,,near-peak decay
+random,common,6,4,L6H4,peak,1,0.026249,0.047992,0.021743,True,dominant,0.015761,1.0,near-peak decay
+random,common,6,4,L6H4,trough,30,0.026249,0.021743,0.047992,True,baseline,0.015761,,near-peak decay
+random,common,6,5,L6H5,peak,1,0.02808,0.028042,-3.8e-05,True,dominant,0.008876,1.0,near-peak decay
+random,common,6,5,L6H5,trough,31,0.02808,-3.8e-05,0.028042,True,baseline,0.008876,,near-peak decay
+random,common,6,7,L6H7,peak,1,0.034959,0.035372,0.000413,True,dominant,0.011635,1.0,near-peak decay
+random,common,6,7,L6H7,trough,31,0.034959,0.000413,0.035372,True,baseline,0.011635,,near-peak decay
+random,common,6,8,L6H8,peak,1,0.092767,0.044662,-0.048105,True,baseline,0.04277,,near-peak decay
+random,common,6,8,L6H8,peak,23,0.048145,4.1e-05,-0.048105,False,secondary,0.019718,2.0,near-peak decay
+random,common,6,8,L6H8,trough,2,0.092767,-0.048105,0.044662,True,dominant,0.04277,1.0,near-peak decay
+random,common,6,10,L6H10,peak,1,0.032912,0.034825,0.001913,True,dominant,0.010639,1.0,near-peak decay
+random,common,6,10,L6H10,trough,31,0.032912,0.001913,0.034825,True,baseline,0.010639,,near-peak decay
+random,common,7,0,L7H0,peak,1,0.161811,0.161869,5.8e-05,True,dominant,0.044741,1.0,near-peak decay
+random,common,7,0,L7H0,trough,30,0.161811,5.8e-05,0.161869,True,baseline,0.044741,,near-peak decay
+random,common,7,3,L7H3,peak,1,0.055652,0.057224,0.001571,True,dominant,0.010355,1.0,near-peak decay
+random,common,7,3,L7H3,trough,30,0.055652,0.001571,0.057224,True,baseline,0.010355,,near-peak decay
+random,common,7,7,L7H7,peak,3,0.043861,0.050311,0.006449,True,baseline,0.0166,,far rise
+random,common,7,7,L7H7,trough,31,0.043861,0.006449,0.050311,True,dominant,0.0166,1.0,far rise
+random,common,8,5,L8H5,peak,1,0.041551,0.044315,0.002764,True,dominant,0.015372,1.0,near-peak decay
+random,common,8,5,L8H5,trough,26,0.041551,0.002764,0.044315,True,baseline,0.015372,,near-peak decay
+random,common,8,6,L8H6,peak,1,0.027877,0.027258,-0.00062,True,dominant,0.017275,1.0,near-peak decay
+random,common,8,6,L8H6,trough,28,0.027877,-0.00062,0.027258,True,baseline,0.017275,,near-peak decay
+random,common,8,7,L8H7,peak,1,0.093607,0.093776,0.00017,True,dominant,0.024672,1.0,near-peak decay
+random,common,8,7,L8H7,trough,30,0.093607,0.00017,0.093776,True,baseline,0.024672,,near-peak decay
+random,common,8,8,L8H8,peak,1,0.032421,0.044172,0.011751,True,dominant,0.008178,1.0,near-peak decay
+random,common,8,8,L8H8,trough,30,0.032421,0.011751,0.044172,True,baseline,0.008178,,near-peak decay
+random,common,8,9,L8H9,peak,1,0.026722,0.032171,0.005449,True,dominant,0.004912,1.0,near-peak decay
+random,common,8,9,L8H9,trough,31,0.026722,0.005449,0.032171,True,baseline,0.004912,,near-peak decay
+random,common,8,11,L8H11,peak,1,0.049372,0.078842,0.02947,True,dominant,0.013983,1.0,near-peak decay
+random,common,8,11,L8H11,trough,29,0.049372,0.02947,0.078842,True,baseline,0.013983,,near-peak decay
+random,common,9,2,L9H2,peak,1,0.031527,0.039902,0.008375,True,dominant,0.007255,1.0,near-peak decay
+random,common,9,2,L9H2,trough,31,0.031527,0.008375,0.039902,True,baseline,0.007255,,near-peak decay
+random,common,9,3,L9H3,peak,1,0.163459,0.164966,0.001507,True,dominant,0.024978,1.0,near-peak decay
+random,common,9,3,L9H3,trough,30,0.163459,0.001507,0.164966,True,baseline,0.024978,,near-peak decay
+random,common,9,7,L9H7,peak,1,0.036392,0.041155,0.004763,True,dominant,0.008245,1.0,near-peak decay
+random,common,9,7,L9H7,trough,31,0.036392,0.004763,0.041155,True,baseline,0.008245,,near-peak decay
+random,common,9,8,L9H8,peak,1,0.044243,0.186405,0.142162,True,dominant,0.025793,1.0,plateau
+random,common,9,8,L9H8,peak,31,0.040837,0.183,0.142162,False,secondary,0.016981,2.0,plateau
+random,common,9,8,L9H8,trough,18,0.044243,0.142162,0.186405,True,baseline,0.025793,,plateau
+random,common,10,0,L10H0,peak,1,0.036816,0.091024,0.054208,True,dominant,0.015509,1.0,plateau
+random,common,10,0,L10H0,trough,27,0.036816,0.054208,0.091024,True,baseline,0.015509,,plateau
+random,common,10,3,L10H3,peak,11,0.042608,0.09756,0.054952,True,baseline,0.023714,,plateau
+random,common,10,3,L10H3,trough,31,0.042608,0.054952,0.09756,True,dominant,0.023714,1.0,plateau
+random,common,10,7,L10H7,peak,1,0.032791,0.037576,0.004785,True,dominant,0.012086,1.0,near-peak decay
+random,common,10,7,L10H7,trough,26,0.032791,0.004785,0.037576,True,baseline,0.012086,,near-peak decay
+random,common,10,11,L10H11,peak,1,0.062834,0.071109,0.008274,True,dominant,0.015874,1.0,near-peak decay
+random,common,10,11,L10H11,trough,31,0.062834,0.008274,0.071109,True,baseline,0.015874,,near-peak decay
+random,common,11,1,L11H1,peak,5,0.022118,0.03464,0.012522,True,baseline,0.010047,,far rise
+random,common,11,1,L11H1,trough,31,0.022118,0.012522,0.03464,True,dominant,0.010047,1.0,far rise
+random,common,11,3,L11H3,peak,1,0.070424,0.074747,0.004324,True,dominant,0.010874,1.0,near-peak decay
+random,common,11,3,L11H3,trough,31,0.070424,0.004324,0.074747,True,baseline,0.010874,,near-peak decay
+random,common,11,7,L11H7,peak,3,0.068951,0.097144,0.028193,True,baseline,0.018091,,far rise
+random,common,11,7,L11H7,trough,31,0.068951,0.028193,0.097144,True,dominant,0.018091,1.0,far rise
+random,common,11,8,L11H8,peak,1,0.065375,0.064797,-0.000579,True,dominant,0.018105,1.0,near-peak decay
+random,common,11,8,L11H8,trough,31,0.065375,-0.000579,0.064797,True,baseline,0.018105,,near-peak decay
+own,common,0,2,L0H2,peak,1,0.0759,0.415539,0.339639,True,dominant,0.002331,1.0,plateau
+own,common,0,2,L0H2,trough,31,0.0759,0.339639,0.415539,True,baseline,0.002331,,plateau
+own,common,0,3,L0H3,peak,1,0.030099,0.0301,1e-06,True,dominant,0.000278,1.0,near-peak decay
+own,common,0,3,L0H3,trough,25,0.030099,1e-06,0.0301,True,baseline,0.000278,,near-peak decay
+own,common,0,4,L0H4,peak,1,0.118807,0.120457,0.00165,True,dominant,0.001333,1.0,near-peak decay
+own,common,0,4,L0H4,trough,23,0.118807,0.00165,0.120457,True,baseline,0.001333,,near-peak decay
+own,common,0,5,L0H5,peak,31,0.023774,0.028917,0.005143,True,dominant,2.4e-05,1.0,far rise
+own,common,0,5,L0H5,trough,1,0.023774,0.005143,0.028917,True,baseline,2.4e-05,,far rise
+own,common,0,7,L0H7,peak,21,0.047886,-0.000233,-0.048119,True,baseline,0.028752,,near-peak decay
+own,common,0,7,L0H7,trough,2,0.047886,-0.048119,-0.000233,True,dominant,0.028752,1.0,near-peak decay
+own,common,0,10,L0H10,peak,1,0.049994,0.112577,0.062583,True,dominant,0.002139,1.0,plateau
+own,common,0,10,L0H10,trough,31,0.049994,0.062583,0.112577,True,baseline,0.002139,,plateau
+own,common,1,0,L1H0,peak,1,0.131147,0.133621,0.002474,True,dominant,0.016786,1.0,near-peak decay
+own,common,1,0,L1H0,trough,26,0.131147,0.002474,0.133621,True,baseline,0.016786,,near-peak decay
+own,common,1,1,L1H1,peak,27,0.035074,-0.000209,-0.035283,True,baseline,0.023386,,near-peak decay
+own,common,1,1,L1H1,trough,2,0.035074,-0.035283,-0.000209,True,dominant,0.023386,1.0,near-peak decay
+own,common,1,2,L1H2,peak,1,0.021379,0.025542,0.004162,True,dominant,0.00441,1.0,near-peak decay
+own,common,1,2,L1H2,trough,31,0.021379,0.004162,0.025542,True,baseline,0.00441,,near-peak decay
+own,common,1,5,L1H5,peak,1,0.034151,0.182009,0.147858,True,dominant,0.006231,1.0,plateau
+own,common,1,5,L1H5,trough,24,0.034151,0.147858,0.182009,True,baseline,0.006231,,plateau
+own,common,1,11,L1H11,peak,1,0.168267,0.247193,0.078926,True,dominant,0.00558,1.0,near-peak decay
+own,common,1,11,L1H11,trough,31,0.168267,0.078926,0.247193,True,baseline,0.00558,,near-peak decay
+own,common,2,0,L2H0,peak,29,0.073,-0.000643,-0.073643,True,baseline,0.027321,,near-peak decay
+own,common,2,0,L2H0,trough,2,0.073,-0.073643,-0.000643,True,dominant,0.027321,1.0,near-peak decay
+own,common,2,2,L2H2,peak,27,0.161103,-0.0,-0.161103,True,baseline,0.03383,,near-peak decay
+own,common,2,2,L2H2,trough,1,0.161103,-0.161103,-0.0,True,dominant,0.03383,1.0,near-peak decay
+own,common,2,3,L2H3,peak,23,0.036158,-6e-06,-0.036164,True,baseline,0.033764,,near-peak decay
+own,common,2,3,L2H3,trough,2,0.036158,-0.036164,-6e-06,True,dominant,0.033764,1.0,near-peak decay
+own,common,2,4,L2H4,peak,27,0.031361,-1.2e-05,-0.031373,True,baseline,0.016539,,near-peak decay
+own,common,2,4,L2H4,trough,2,0.031361,-0.031373,-1.2e-05,True,dominant,0.016539,1.0,near-peak decay
+own,common,2,5,L2H5,peak,29,0.153782,-8e-06,-0.15379,True,baseline,0.031343,,near-peak decay
+own,common,2,5,L2H5,trough,1,0.153782,-0.15379,-8e-06,True,dominant,0.031343,1.0,near-peak decay
+own,common,2,6,L2H6,peak,1,0.035431,0.031665,-0.003766,True,dominant,0.020367,1.0,near-peak decay
+own,common,2,6,L2H6,trough,31,0.035431,-0.003766,0.031665,True,baseline,0.020367,,near-peak decay
+own,common,2,7,L2H7,peak,1,0.042549,0.05326,0.010711,True,dominant,0.004574,1.0,near-peak decay
+own,common,2,7,L2H7,trough,29,0.042549,0.010711,0.05326,True,baseline,0.004574,,near-peak decay
+own,common,2,8,L2H8,peak,26,0.183035,-0.000101,-0.183136,True,baseline,0.040286,,near-peak decay
+own,common,2,8,L2H8,trough,1,0.183035,-0.183136,-0.000101,True,dominant,0.040286,1.0,near-peak decay
+own,common,2,9,L2H9,peak,14,0.037422,7.5e-05,-0.037347,True,baseline,0.02207,,near-peak decay
+own,common,2,9,L2H9,trough,1,0.037422,-0.037347,7.5e-05,True,dominant,0.02207,1.0,near-peak decay
+own,common,2,10,L2H10,peak,1,0.074255,0.079572,0.005317,True,dominant,0.004472,1.0,near-peak decay
+own,common,2,10,L2H10,trough,29,0.074255,0.005317,0.079572,True,baseline,0.004472,,near-peak decay
+own,common,2,11,L2H11,peak,1,0.029053,0.030986,0.001932,True,dominant,0.002296,1.0,near-peak decay
+own,common,2,11,L2H11,trough,29,0.029053,0.001932,0.030986,True,baseline,0.002296,,near-peak decay
+own,common,3,0,L3H0,peak,30,0.271591,0.409579,0.137988,True,dominant,0.016241,1.0,far rise
+own,common,3,0,L3H0,trough,1,0.271591,0.137988,0.409579,True,baseline,0.016241,,far rise
+own,common,3,0,L3H0,trough,31,0.100114,0.309465,0.409579,False,secondary,0.012892,2.0,far rise
+own,common,3,1,L3H1,peak,1,0.032566,0.0201,-0.012466,True,dominant,0.029183,1.0,near-peak decay
+own,common,3,1,L3H1,trough,4,0.032566,-0.012466,0.0201,True,baseline,0.029183,,near-peak decay
+own,common,3,2,L3H2,peak,14,0.1003,3e-06,-0.100298,True,baseline,0.049182,,near-peak decay
+own,common,3,2,L3H2,trough,1,0.1003,-0.100298,3e-06,True,dominant,0.049182,1.0,near-peak decay
+own,common,3,3,L3H3,peak,1,0.020714,0.013874,-0.006839,True,dominant,0.01499,1.0,near-peak decay
+own,common,3,3,L3H3,trough,2,0.020714,-0.006839,0.013874,True,baseline,0.01499,,near-peak decay
+own,common,3,6,L3H6,peak,1,0.102997,0.103007,1e-05,True,dominant,0.027431,1.0,near-peak decay
+own,common,3,6,L3H6,trough,29,0.102997,1e-05,0.103007,True,baseline,0.027431,,near-peak decay
+own,common,3,7,L3H7,peak,30,0.261874,-0.0,-0.261874,True,baseline,0.032394,,near-peak decay
+own,common,3,7,L3H7,trough,1,0.261874,-0.261874,-0.0,True,dominant,0.032394,1.0,near-peak decay
+own,common,3,8,L3H8,peak,30,0.170483,-0.0,-0.170483,True,baseline,0.04385,,near-peak decay
+own,common,3,8,L3H8,trough,1,0.170483,-0.170483,-0.0,True,dominant,0.04385,1.0,near-peak decay
+own,common,3,10,L3H10,peak,1,0.128885,0.130047,0.001162,True,dominant,0.007027,1.0,near-peak decay
+own,common,3,10,L3H10,trough,31,0.128885,0.001162,0.130047,True,baseline,0.007027,,near-peak decay
+own,common,3,11,L3H11,peak,30,0.064277,-3.2e-05,-0.064309,True,baseline,0.028758,,near-peak decay
+own,common,3,11,L3H11,trough,1,0.064277,-0.064309,-3.2e-05,True,dominant,0.028758,1.0,near-peak decay
+own,common,4,0,L4H0,peak,30,0.143416,-5e-06,-0.143421,True,baseline,0.043425,,near-peak decay
+own,common,4,0,L4H0,trough,1,0.143416,-0.143421,-5e-06,True,dominant,0.043425,1.0,near-peak decay
+own,common,4,1,L4H1,peak,30,0.10076,-1.7e-05,-0.100777,True,baseline,0.031686,,near-peak decay
+own,common,4,1,L4H1,trough,1,0.10076,-0.100777,-1.7e-05,True,dominant,0.031686,1.0,near-peak decay
+own,common,4,3,L4H3,peak,17,0.024633,0.000237,-0.024396,True,baseline,0.018565,,near-peak decay
+own,common,4,3,L4H3,trough,1,0.024633,-0.024396,0.000237,True,dominant,0.018565,1.0,near-peak decay
+own,common,4,4,L4H4,peak,1,0.026278,0.090868,0.06459,True,dominant,0.00643,1.0,plateau
+own,common,4,4,L4H4,trough,9,0.026278,0.06459,0.090868,True,baseline,0.00643,,plateau
+own,common,4,5,L4H5,peak,27,0.086566,-3.9e-05,-0.086605,True,baseline,0.02531,,near-peak decay
+own,common,4,5,L4H5,trough,1,0.086566,-0.086605,-3.9e-05,True,dominant,0.02531,1.0,near-peak decay
+own,common,4,7,L4H7,peak,1,0.258013,0.258342,0.000329,True,dominant,0.017742,1.0,near-peak decay
+own,common,4,7,L4H7,trough,31,0.258013,0.000329,0.258342,True,baseline,0.017742,,near-peak decay
+own,common,4,10,L4H10,peak,1,0.051461,0.310887,0.259427,False,secondary,0.014201,2.0,plateau
+own,common,4,10,L4H10,peak,31,0.086361,0.345788,0.259427,True,dominant,0.018364,1.0,plateau
+own,common,4,10,L4H10,trough,6,0.086361,0.259427,0.345788,True,baseline,0.018364,,plateau
+own,common,4,11,L4H11,peak,31,0.074991,0.0,-0.074991,True,baseline,0.015342,,near-peak decay
+own,common,4,11,L4H11,trough,1,0.074991,-0.074991,0.0,True,dominant,0.015342,1.0,near-peak decay
+own,common,5,2,L5H2,peak,1,0.058245,0.011332,-0.046913,True,baseline,0.026143,,near-peak decay
+own,common,5,2,L5H2,peak,23,0.046896,-1.7e-05,-0.046913,False,secondary,0.016942,2.0,near-peak decay
+own,common,5,2,L5H2,trough,2,0.058245,-0.046913,0.011332,True,dominant,0.026143,1.0,near-peak decay
+own,common,5,3,L5H3,peak,1,0.045772,0.044266,-0.001506,True,dominant,0.016255,1.0,near-peak decay
+own,common,5,3,L5H3,trough,31,0.045772,-0.001506,0.044266,True,baseline,0.016255,,near-peak decay
+own,common,5,4,L5H4,peak,29,0.135942,-0.000171,-0.136114,True,baseline,0.039786,,near-peak decay
+own,common,5,4,L5H4,trough,1,0.135942,-0.136114,-0.000171,True,dominant,0.039786,1.0,near-peak decay
+own,common,5,6,L5H6,peak,1,0.207682,0.200065,-0.007617,True,dominant,0.035198,1.0,near-peak decay
+own,common,5,6,L5H6,trough,2,0.207682,-0.007617,0.200065,True,baseline,0.035198,,near-peak decay
+own,common,5,7,L5H7,peak,29,0.032059,-0.000169,-0.032228,True,baseline,0.01156,,near-peak decay
+own,common,5,7,L5H7,trough,1,0.032059,-0.032228,-0.000169,True,dominant,0.01156,1.0,near-peak decay
+own,common,5,11,L5H11,peak,1,0.032256,0.064362,0.032106,True,dominant,0.005331,1.0,near-peak decay
+own,common,5,11,L5H11,trough,26,0.032256,0.032106,0.064362,True,baseline,0.005331,,near-peak decay
+own,common,6,0,L6H0,peak,1,0.036963,0.035725,-0.001239,True,dominant,0.02529,1.0,near-peak decay
+own,common,6,0,L6H0,trough,8,0.036963,-0.001239,0.035725,True,baseline,0.02529,,near-peak decay
+own,common,6,3,L6H3,peak,1,0.043245,0.047613,0.004368,True,dominant,0.007784,1.0,near-peak decay
+own,common,6,3,L6H3,trough,31,0.043245,0.004368,0.047613,True,baseline,0.007784,,near-peak decay
+own,common,6,5,L6H5,peak,1,0.020549,0.018172,-0.002378,True,dominant,0.008716,1.0,near-peak decay
+own,common,6,5,L6H5,trough,5,0.020549,-0.002378,0.018172,True,baseline,0.008716,,near-peak decay
+own,common,6,7,L6H7,peak,1,0.062061,0.062814,0.000754,True,dominant,0.008804,1.0,near-peak decay
+own,common,6,7,L6H7,trough,31,0.062061,0.000754,0.062814,True,baseline,0.008804,,near-peak decay
+own,common,6,8,L6H8,peak,1,0.119157,0.08271,-0.036447,True,dominant,0.029838,1.0,multi-modal
+own,common,6,8,L6H8,peak,23,0.036463,1.6e-05,-0.036447,False,secondary,0.013263,2.0,multi-modal
+own,common,6,8,L6H8,trough,2,0.119157,-0.036447,0.08271,True,baseline,0.029838,,multi-modal
+own,common,6,10,L6H10,peak,5,0.028605,0.032927,0.004321,True,baseline,0.008869,,far rise
+own,common,6,10,L6H10,trough,31,0.028605,0.004321,0.032927,True,dominant,0.008869,1.0,far rise
+own,common,6,11,L6H11,peak,28,0.078205,-0.000251,-0.078456,True,baseline,0.019469,,near-peak decay
+own,common,6,11,L6H11,trough,1,0.078205,-0.078456,-0.000251,True,dominant,0.019469,1.0,near-peak decay
+own,common,7,0,L7H0,peak,28,0.164113,-7.3e-05,-0.164185,True,baseline,0.040799,,near-peak decay
+own,common,7,0,L7H0,trough,1,0.164113,-0.164185,-7.3e-05,True,dominant,0.040799,1.0,near-peak decay
+own,common,7,3,L7H3,peak,1,0.044285,0.045811,0.001525,True,dominant,0.006773,1.0,near-peak decay
+own,common,7,3,L7H3,trough,30,0.044285,0.001525,0.045811,True,baseline,0.006773,,near-peak decay
+own,common,7,7,L7H7,peak,6,0.023879,0.03415,0.010271,True,baseline,0.011769,,far rise
+own,common,7,7,L7H7,trough,30,0.023879,0.010271,0.03415,True,dominant,0.011769,1.0,far rise
+own,common,8,0,L8H0,peak,2,0.020712,0.024504,0.003791,True,baseline,0.008255,,far rise
+own,common,8,0,L8H0,trough,31,0.020712,0.003791,0.024504,True,dominant,0.008255,1.0,far rise
+own,common,8,5,L8H5,peak,1,0.046244,0.049219,0.002975,True,dominant,0.011843,1.0,near-peak decay
+own,common,8,5,L8H5,trough,30,0.046244,0.002975,0.049219,True,baseline,0.011843,,near-peak decay
+own,common,8,6,L8H6,peak,1,0.038325,0.04223,0.003905,True,dominant,0.014379,1.0,near-peak decay
+own,common,8,6,L8H6,trough,31,0.038325,0.003905,0.04223,True,baseline,0.014379,,near-peak decay
+own,common,8,7,L8H7,peak,28,0.047231,-3.7e-05,-0.047268,True,baseline,0.022532,,near-peak decay
+own,common,8,7,L8H7,trough,1,0.047231,-0.047268,-3.7e-05,True,dominant,0.022532,1.0,near-peak decay
+own,common,8,8,L8H8,peak,1,0.026655,0.032588,0.005933,True,dominant,0.006237,1.0,near-peak decay
+own,common,8,8,L8H8,trough,31,0.026655,0.005933,0.032588,True,baseline,0.006237,,near-peak decay
+own,common,8,9,L8H9,peak,1,0.059443,0.074497,0.015054,True,dominant,0.006179,1.0,near-peak decay
+own,common,8,9,L8H9,trough,31,0.059443,0.015054,0.074497,True,baseline,0.006179,,near-peak decay
+own,common,8,10,L8H10,peak,1,0.020345,0.024869,0.004524,True,dominant,0.004413,1.0,near-peak decay
+own,common,8,10,L8H10,trough,31,0.020345,0.004524,0.024869,True,baseline,0.004413,,near-peak decay
+own,common,8,11,L8H11,peak,1,0.057115,0.077799,0.020684,True,dominant,0.009809,1.0,near-peak decay
+own,common,8,11,L8H11,trough,26,0.057115,0.020684,0.077799,True,baseline,0.009809,,near-peak decay
+own,common,9,1,L9H1,peak,1,0.038562,0.033448,-0.005113,True,dominant,0.010616,1.0,near-peak decay
+own,common,9,1,L9H1,trough,31,0.038562,-0.005113,0.033448,True,baseline,0.010616,,near-peak decay
+own,common,9,2,L9H2,peak,1,0.029272,0.03815,0.008879,True,dominant,0.004988,1.0,near-peak decay
+own,common,9,2,L9H2,trough,31,0.029272,0.008879,0.03815,True,baseline,0.004988,,near-peak decay
+own,common,9,3,L9H3,peak,1,0.073302,0.073553,0.000251,True,dominant,0.022651,1.0,near-peak decay
+own,common,9,3,L9H3,trough,31,0.073302,0.000251,0.073553,True,baseline,0.022651,,near-peak decay
+own,common,9,4,L9H4,peak,1,0.046265,0.0589,0.012635,True,dominant,0.008824,1.0,near-peak decay
+own,common,9,4,L9H4,trough,31,0.046265,0.012635,0.0589,True,baseline,0.008824,,near-peak decay
+own,common,9,7,L9H7,peak,1,0.031783,0.030034,-0.001749,True,dominant,0.005056,1.0,near-peak decay
+own,common,9,7,L9H7,trough,31,0.031783,-0.001749,0.030034,True,baseline,0.005056,,near-peak decay
+own,common,9,10,L9H10,peak,2,0.022671,0.009991,-0.012679,True,baseline,0.011204,,near-peak decay
+own,common,9,10,L9H10,trough,1,0.022671,-0.012679,0.009991,True,dominant,0.011204,1.0,near-peak decay
+own,common,9,11,L9H11,peak,2,0.040789,0.03695,-0.003839,True,dominant,0.019454,1.0,near-peak decay
+own,common,9,11,L9H11,trough,31,0.040789,-0.003839,0.03695,True,baseline,0.019454,,near-peak decay
+own,common,10,0,L10H0,peak,1,0.075361,0.119208,0.043847,True,dominant,0.010464,1.0,near-peak decay
+own,common,10,0,L10H0,trough,18,0.075361,0.043847,0.119208,True,baseline,0.010464,,near-peak decay
+own,common,10,1,L10H1,peak,1,0.027756,0.01321,-0.014547,True,baseline,0.007309,,far rise
+own,common,10,1,L10H1,trough,31,0.027756,-0.014547,0.01321,True,dominant,0.007309,1.0,far rise
+own,common,10,3,L10H3,peak,1,0.10106,0.132638,0.031578,True,dominant,0.022533,1.0,near-peak decay
+own,common,10,3,L10H3,trough,31,0.10106,0.031578,0.132638,True,baseline,0.022533,,near-peak decay
+own,common,10,4,L10H4,peak,1,0.06036,0.039631,-0.020729,True,dominant,0.023062,1.0,near-peak decay
+own,common,10,4,L10H4,trough,31,0.06036,-0.020729,0.039631,True,baseline,0.023062,,near-peak decay
+own,common,10,5,L10H5,peak,1,0.041811,0.041894,8.3e-05,True,dominant,0.010813,1.0,near-peak decay
+own,common,10,5,L10H5,trough,22,0.041811,8.3e-05,0.041894,True,baseline,0.010813,,near-peak decay
+own,common,10,6,L10H6,peak,1,0.027804,0.036516,0.008712,True,dominant,0.005964,1.0,near-peak decay
+own,common,10,6,L10H6,trough,31,0.027804,0.008712,0.036516,True,baseline,0.005964,,near-peak decay
+own,common,10,7,L10H7,peak,1,0.13148,0.158167,0.026687,True,dominant,0.016182,1.0,near-peak decay
+own,common,10,7,L10H7,trough,31,0.13148,0.026687,0.158167,True,baseline,0.016182,,near-peak decay
+own,common,10,10,L10H10,peak,1,0.023503,0.036411,0.012908,True,dominant,0.007671,1.0,near-peak decay
+own,common,10,10,L10H10,trough,31,0.023503,0.012908,0.036411,True,baseline,0.007671,,near-peak decay
+own,common,10,11,L10H11,peak,1,0.070064,0.065834,-0.00423,True,dominant,0.015046,1.0,near-peak decay
+own,common,10,11,L10H11,trough,31,0.070064,-0.00423,0.065834,True,baseline,0.015046,,near-peak decay
+own,common,11,0,L11H0,peak,1,0.023063,0.059863,0.0368,False,secondary,0.010376,2.0,plateau
+own,common,11,0,L11H0,peak,31,0.024466,0.061266,0.0368,True,dominant,0.012417,1.0,plateau
+own,common,11,0,L11H0,trough,4,0.024466,0.0368,0.061266,True,baseline,0.012417,,plateau
+own,common,11,1,L11H1,peak,1,0.039224,0.046578,0.007354,True,dominant,0.008655,1.0,near-peak decay
+own,common,11,1,L11H1,trough,31,0.039224,0.007354,0.046578,True,baseline,0.008655,,near-peak decay
+own,common,11,3,L11H3,peak,1,0.086258,0.094786,0.008528,True,dominant,0.008815,1.0,near-peak decay
+own,common,11,3,L11H3,trough,31,0.086258,0.008528,0.094786,True,baseline,0.008815,,near-peak decay
+own,common,11,7,L11H7,peak,1,0.086174,0.122627,0.036453,True,dominant,0.015221,1.0,near-peak decay
+own,common,11,7,L11H7,trough,31,0.086174,0.036453,0.122627,True,baseline,0.015221,,near-peak decay
+own,common,11,8,L11H8,peak,1,0.150795,0.159895,0.0091,True,dominant,0.017411,1.0,near-peak decay
+own,common,11,8,L11H8,trough,31,0.150795,0.0091,0.159895,True,baseline,0.017411,,near-peak decay
+own,common,11,9,L11H9,peak,1,0.032153,0.008087,-0.024066,True,baseline,0.011263,,far rise
+own,common,11,9,L11H9,trough,31,0.032153,-0.024066,0.008087,True,dominant,0.011263,1.0,far rise
+own,common,11,10,L11H10,peak,1,0.074625,0.07438,-0.000245,True,dominant,0.010302,1.0,near-peak decay
+own,common,11,10,L11H10,trough,31,0.074625,-0.000245,0.07438,True,baseline,0.010302,,near-peak decay
+own,common,11,11,L11H11,peak,1,0.030441,0.024032,-0.006408,True,dominant,0.008373,1.0,near-peak decay
+own,common,11,11,L11H11,trough,31,0.030441,-0.006408,0.024032,True,baseline,0.008373,,near-peak decay
+wrong,common,0,4,L0H4,peak,1,0.037213,0.037724,0.00051,True,dominant,0.001377,1.0,near-peak decay
+wrong,common,0,4,L0H4,trough,23,0.037213,0.00051,0.037724,True,baseline,0.001377,,near-peak decay
+wrong,common,0,7,L0H7,peak,21,0.08598,-0.000482,-0.086462,True,baseline,0.028476,,near-peak decay
+wrong,common,0,7,L0H7,trough,2,0.08598,-0.086462,-0.000482,True,dominant,0.028476,1.0,near-peak decay
+wrong,common,0,9,L0H9,peak,1,0.038703,0.083821,0.045118,True,dominant,0.003015,1.0,plateau
+wrong,common,0,9,L0H9,trough,31,0.038703,0.045118,0.083821,True,baseline,0.003015,,plateau
+wrong,common,1,0,L1H0,peak,1,0.135631,0.139356,0.003725,True,dominant,0.016536,1.0,near-peak decay
+wrong,common,1,0,L1H0,trough,26,0.135631,0.003725,0.139356,True,baseline,0.016536,,near-peak decay
+wrong,common,1,2,L1H2,peak,1,0.021036,0.024965,0.003929,True,dominant,0.004436,1.0,near-peak decay
+wrong,common,1,2,L1H2,trough,31,0.021036,0.003929,0.024965,True,baseline,0.004436,,near-peak decay
+wrong,common,1,5,L1H5,peak,1,0.052685,0.34994,0.297255,True,dominant,0.006883,1.0,plateau
+wrong,common,1,5,L1H5,peak,31,0.022515,0.319769,0.297255,False,secondary,0.005469,2.0,plateau
+wrong,common,1,5,L1H5,trough,26,0.052685,0.297255,0.34994,True,baseline,0.006883,,plateau
+wrong,common,2,0,L2H0,peak,1,0.024821,-0.009894,-0.034715,False,secondary,0.02007,2.0,near-peak decay
+wrong,common,2,0,L2H0,peak,20,0.035091,0.000376,-0.034715,True,baseline,0.026464,,near-peak decay
+wrong,common,2,0,L2H0,trough,2,0.035091,-0.034715,0.000376,True,dominant,0.026464,1.0,near-peak decay
+wrong,common,2,2,L2H2,peak,1,0.049905,0.026308,-0.023598,True,dominant,0.02907,1.0,multi-modal
+wrong,common,2,2,L2H2,peak,6,0.024252,0.000655,-0.023598,False,secondary,0.016197,2.0,multi-modal
+wrong,common,2,2,L2H2,trough,2,0.049905,-0.023598,0.026308,True,baseline,0.02907,,multi-modal
+wrong,common,2,4,L2H4,peak,27,0.02794,-9e-06,-0.027949,True,baseline,0.016126,,near-peak decay
+wrong,common,2,4,L2H4,trough,2,0.02794,-0.027949,-9e-06,True,dominant,0.016126,1.0,near-peak decay
+wrong,common,2,5,L2H5,peak,20,0.035182,1.8e-05,-0.035164,True,baseline,0.028805,,near-peak decay
+wrong,common,2,5,L2H5,trough,2,0.035182,-0.035164,1.8e-05,True,dominant,0.028805,1.0,near-peak decay
+wrong,common,2,6,L2H6,peak,1,0.026767,0.022924,-0.003842,True,dominant,0.020292,1.0,near-peak decay
+wrong,common,2,6,L2H6,trough,31,0.026767,-0.003842,0.022924,True,baseline,0.020292,,near-peak decay
+wrong,common,2,7,L2H7,peak,1,0.04255,0.053541,0.010991,True,dominant,0.004537,1.0,near-peak decay
+wrong,common,2,7,L2H7,trough,31,0.04255,0.010991,0.053541,True,baseline,0.004537,,near-peak decay
+wrong,common,2,8,L2H8,peak,26,0.153862,-8.1e-05,-0.153943,True,baseline,0.037534,,near-peak decay
+wrong,common,2,8,L2H8,trough,1,0.153862,-0.153943,-8.1e-05,True,dominant,0.037534,1.0,near-peak decay
+wrong,common,2,9,L2H9,peak,1,0.12761,0.127663,5.3e-05,True,dominant,0.020655,1.0,near-peak decay
+wrong,common,2,9,L2H9,trough,27,0.12761,5.3e-05,0.127663,True,baseline,0.020655,,near-peak decay
+wrong,common,2,10,L2H10,peak,1,0.068877,0.074509,0.005632,True,dominant,0.004349,1.0,near-peak decay
+wrong,common,2,10,L2H10,trough,29,0.068877,0.005632,0.074509,True,baseline,0.004349,,near-peak decay
+wrong,common,2,11,L2H11,peak,1,0.025683,0.027671,0.001987,True,dominant,0.002242,1.0,near-peak decay
+wrong,common,2,11,L2H11,trough,29,0.025683,0.001987,0.027671,True,baseline,0.002242,,near-peak decay
+wrong,common,3,1,L3H1,peak,1,0.034426,0.026263,-0.008162,True,dominant,0.028163,1.0,near-peak decay
+wrong,common,3,1,L3H1,trough,11,0.034426,-0.008162,0.026263,True,baseline,0.028163,,near-peak decay
+wrong,common,3,2,L3H2,peak,14,0.074735,7.3e-05,-0.074662,True,baseline,0.048005,,near-peak decay
+wrong,common,3,2,L3H2,trough,1,0.074735,-0.074662,7.3e-05,True,dominant,0.048005,1.0,near-peak decay
+wrong,common,3,3,L3H3,peak,1,0.084421,0.084421,0.0,True,dominant,0.015297,1.0,near-peak decay
+wrong,common,3,3,L3H3,trough,30,0.084421,0.0,0.084421,True,baseline,0.015297,,near-peak decay
+wrong,common,3,4,L3H4,peak,30,0.065872,0.201668,0.135796,True,baseline,0.013291,,plateau
+wrong,common,3,4,L3H4,trough,1,0.065872,0.135796,0.201668,True,dominant,0.013291,1.0,plateau
+wrong,common,3,6,L3H6,peak,1,0.10233,0.102348,1.8e-05,True,dominant,0.028641,1.0,near-peak decay
+wrong,common,3,6,L3H6,trough,29,0.10233,1.8e-05,0.102348,True,baseline,0.028641,,near-peak decay
+wrong,common,3,8,L3H8,peak,30,0.094908,0.0,-0.094908,True,baseline,0.041617,,near-peak decay
+wrong,common,3,8,L3H8,trough,1,0.094908,-0.094908,0.0,True,dominant,0.041617,1.0,near-peak decay
+wrong,common,3,10,L3H10,peak,1,0.138309,0.139779,0.00147,True,dominant,0.006948,1.0,near-peak decay
+wrong,common,3,10,L3H10,trough,31,0.138309,0.00147,0.139779,True,baseline,0.006948,,near-peak decay
+wrong,common,3,11,L3H11,peak,30,0.043807,-1.9e-05,-0.043826,True,baseline,0.028617,,near-peak decay
+wrong,common,3,11,L3H11,trough,1,0.043807,-0.043826,-1.9e-05,True,dominant,0.028617,1.0,near-peak decay
+wrong,common,4,0,L4H0,peak,30,0.141018,-4e-06,-0.141022,True,baseline,0.043384,,near-peak decay
+wrong,common,4,0,L4H0,trough,1,0.141018,-0.141022,-4e-06,True,dominant,0.043384,1.0,near-peak decay
+wrong,common,4,1,L4H1,peak,30,0.101845,-1.5e-05,-0.10186,True,baseline,0.035601,,near-peak decay
+wrong,common,4,1,L4H1,trough,1,0.101845,-0.10186,-1.5e-05,True,dominant,0.035601,1.0,near-peak decay
+wrong,common,4,3,L4H3,peak,11,0.033531,0.001193,-0.032338,True,baseline,0.018657,,near-peak decay
+wrong,common,4,3,L4H3,trough,1,0.033531,-0.032338,0.001193,True,dominant,0.018657,1.0,near-peak decay
+wrong,common,4,4,L4H4,peak,1,0.023609,0.05877,0.035161,True,dominant,0.004609,1.0,plateau
+wrong,common,4,4,L4H4,trough,17,0.023609,0.035161,0.05877,True,baseline,0.004609,,plateau
+wrong,common,4,5,L4H5,peak,27,0.089066,-3e-05,-0.089097,True,baseline,0.026684,,near-peak decay
+wrong,common,4,5,L4H5,trough,1,0.089066,-0.089097,-3e-05,True,dominant,0.026684,1.0,near-peak decay
+wrong,common,4,6,L4H6,peak,1,0.039089,0.039672,0.000584,True,dominant,0.007138,1.0,near-peak decay
+wrong,common,4,6,L4H6,trough,31,0.039089,0.000584,0.039672,True,baseline,0.007138,,near-peak decay
+wrong,common,4,7,L4H7,peak,1,0.182737,0.182941,0.000204,True,dominant,0.017825,1.0,near-peak decay
+wrong,common,4,7,L4H7,trough,31,0.182737,0.000204,0.182941,True,baseline,0.017825,,near-peak decay
+wrong,common,4,8,L4H8,peak,11,0.02301,0.072076,0.049066,True,baseline,0.008332,,plateau
+wrong,common,4,8,L4H8,trough,30,0.02301,0.049066,0.072076,True,dominant,0.008332,1.0,plateau
+wrong,common,5,2,L5H2,peak,1,0.080551,0.043818,-0.036733,True,dominant,0.029413,1.0,multi-modal
+wrong,common,5,2,L5H2,peak,23,0.036793,6e-05,-0.036733,False,secondary,0.016686,2.0,multi-modal
+wrong,common,5,2,L5H2,trough,2,0.080551,-0.036733,0.043818,True,baseline,0.029413,,multi-modal
+wrong,common,5,3,L5H3,peak,1,0.040367,0.040862,0.000495,True,dominant,0.016833,1.0,near-peak decay
+wrong,common,5,3,L5H3,trough,31,0.040367,0.000495,0.040862,True,baseline,0.016833,,near-peak decay
+wrong,common,5,4,L5H4,peak,29,0.121753,-0.000144,-0.121897,True,baseline,0.040554,,near-peak decay
+wrong,common,5,4,L5H4,trough,1,0.121753,-0.121897,-0.000144,True,dominant,0.040554,1.0,near-peak decay
+wrong,common,5,6,L5H6,peak,1,0.149178,0.145981,-0.003197,True,dominant,0.037705,1.0,near-peak decay
+wrong,common,5,6,L5H6,trough,3,0.149178,-0.003197,0.145981,True,baseline,0.037705,,near-peak decay
+wrong,common,5,7,L5H7,peak,29,0.033339,-0.00017,-0.033509,True,baseline,0.012317,,near-peak decay
+wrong,common,5,7,L5H7,trough,1,0.033339,-0.033509,-0.00017,True,dominant,0.012317,1.0,near-peak decay
+wrong,common,6,1,L6H1,peak,1,0.023724,0.024203,0.000479,True,dominant,0.007315,1.0,near-peak decay
+wrong,common,6,1,L6H1,trough,31,0.023724,0.000479,0.024203,True,baseline,0.007315,,near-peak decay
+wrong,common,6,3,L6H3,peak,1,0.042522,0.051611,0.009089,True,dominant,0.007863,1.0,near-peak decay
+wrong,common,6,3,L6H3,trough,26,0.042522,0.009089,0.051611,True,baseline,0.007863,,near-peak decay
+wrong,common,6,7,L6H7,peak,1,0.052241,0.05295,0.000709,True,dominant,0.00897,1.0,near-peak decay
+wrong,common,6,7,L6H7,trough,31,0.052241,0.000709,0.05295,True,baseline,0.00897,,near-peak decay
+wrong,common,6,8,L6H8,peak,1,0.084794,0.054458,-0.030336,True,dominant,0.028872,1.0,multi-modal
+wrong,common,6,8,L6H8,peak,23,0.030354,1.8e-05,-0.030336,False,secondary,0.013336,2.0,multi-modal
+wrong,common,6,8,L6H8,trough,2,0.084794,-0.030336,0.054458,True,baseline,0.028872,,multi-modal
+wrong,common,6,10,L6H10,peak,5,0.027573,0.031929,0.004356,True,baseline,0.008224,,far rise
+wrong,common,6,10,L6H10,trough,30,0.027573,0.004356,0.031929,True,dominant,0.008224,1.0,far rise
+wrong,common,6,11,L6H11,peak,28,0.083554,-0.000206,-0.083759,True,baseline,0.021995,,near-peak decay
+wrong,common,6,11,L6H11,trough,1,0.083554,-0.083759,-0.000206,True,dominant,0.021995,1.0,near-peak decay
+wrong,common,7,0,L7H0,peak,28,0.129255,-3.9e-05,-0.129294,True,baseline,0.039637,,near-peak decay
+wrong,common,7,0,L7H0,trough,1,0.129255,-0.129294,-3.9e-05,True,dominant,0.039637,1.0,near-peak decay
+wrong,common,7,3,L7H3,peak,1,0.04498,0.046303,0.001323,True,dominant,0.00672,1.0,near-peak decay
+wrong,common,7,3,L7H3,trough,30,0.04498,0.001323,0.046303,True,baseline,0.00672,,near-peak decay
+wrong,common,7,6,L7H6,peak,1,0.027748,0.054139,0.026392,True,baseline,0.007546,,far rise
+wrong,common,7,6,L7H6,trough,31,0.027748,0.026392,0.054139,True,dominant,0.007546,1.0,far rise
+wrong,common,7,7,L7H7,peak,13,0.026067,0.03793,0.011863,True,baseline,0.012604,,U-shape
+wrong,common,7,7,L7H7,trough,1,0.022837,0.015093,0.03793,False,secondary,0.010593,2.0,U-shape
+wrong,common,7,7,L7H7,trough,30,0.026067,0.011863,0.03793,True,dominant,0.012604,1.0,U-shape
+wrong,common,8,5,L8H5,peak,2,0.038599,0.040828,0.00223,True,dominant,0.012225,1.0,near-peak decay
+wrong,common,8,5,L8H5,trough,26,0.038599,0.00223,0.040828,True,baseline,0.012225,,near-peak decay
+wrong,common,8,6,L8H6,peak,1,0.039121,0.046842,0.007721,True,dominant,0.0145,1.0,near-peak decay
+wrong,common,8,6,L8H6,trough,31,0.039121,0.007721,0.046842,True,baseline,0.0145,,near-peak decay
+wrong,common,8,7,L8H7,peak,28,0.027385,1.2e-05,-0.027373,True,baseline,0.022152,,near-peak decay
+wrong,common,8,7,L8H7,trough,1,0.027385,-0.027373,1.2e-05,True,dominant,0.022152,1.0,near-peak decay
+wrong,common,8,8,L8H8,peak,1,0.027752,0.033116,0.005364,True,dominant,0.006008,1.0,near-peak decay
+wrong,common,8,8,L8H8,trough,30,0.027752,0.005364,0.033116,True,baseline,0.006008,,near-peak decay
+wrong,common,8,9,L8H9,peak,1,0.049451,0.060372,0.010921,True,dominant,0.005028,1.0,near-peak decay
+wrong,common,8,9,L8H9,trough,31,0.049451,0.010921,0.060372,True,baseline,0.005028,,near-peak decay
+wrong,common,8,11,L8H11,peak,1,0.034422,0.045793,0.011371,True,dominant,0.007701,1.0,near-peak decay
+wrong,common,8,11,L8H11,trough,29,0.034422,0.011371,0.045793,True,baseline,0.007701,,near-peak decay
+wrong,common,9,1,L9H1,peak,1,0.034334,0.028756,-0.005578,True,dominant,0.010631,1.0,near-peak decay
+wrong,common,9,1,L9H1,trough,31,0.034334,-0.005578,0.028756,True,baseline,0.010631,,near-peak decay
+wrong,common,9,2,L9H2,peak,1,0.027746,0.033648,0.005902,True,dominant,0.004473,1.0,near-peak decay
+wrong,common,9,2,L9H2,trough,31,0.027746,0.005902,0.033648,True,baseline,0.004473,,near-peak decay
+wrong,common,9,3,L9H3,peak,1,0.052082,0.052033,-4.9e-05,True,dominant,0.021753,1.0,near-peak decay
+wrong,common,9,3,L9H3,trough,31,0.052082,-4.9e-05,0.052033,True,baseline,0.021753,,near-peak decay
+wrong,common,9,4,L9H4,peak,1,0.027634,0.041402,0.013768,True,dominant,0.006697,1.0,near-peak decay
+wrong,common,9,4,L9H4,trough,31,0.027634,0.013768,0.041402,True,baseline,0.006697,,near-peak decay
+wrong,common,9,7,L9H7,peak,1,0.035732,0.035843,0.000111,True,dominant,0.005214,1.0,near-peak decay
+wrong,common,9,7,L9H7,trough,31,0.035732,0.000111,0.035843,True,baseline,0.005214,,near-peak decay
+wrong,common,9,10,L9H10,peak,2,0.022626,0.010999,-0.011627,True,baseline,0.011023,,near-peak decay
+wrong,common,9,10,L9H10,trough,1,0.022626,-0.011627,0.010999,True,dominant,0.011023,1.0,near-peak decay
+wrong,common,9,11,L9H11,peak,2,0.033318,0.030178,-0.003141,True,dominant,0.018084,1.0,near-peak decay
+wrong,common,9,11,L9H11,trough,31,0.033318,-0.003141,0.030178,True,baseline,0.018084,,near-peak decay
+wrong,common,10,0,L10H0,peak,1,0.027711,0.06627,0.038559,True,dominant,0.009717,1.0,plateau
+wrong,common,10,0,L10H0,trough,18,0.027711,0.038559,0.06627,True,baseline,0.009717,,plateau
+wrong,common,10,1,L10H1,peak,1,0.022281,0.005327,-0.016954,True,baseline,0.007199,,far rise
+wrong,common,10,1,L10H1,trough,31,0.022281,-0.016954,0.005327,True,dominant,0.007199,1.0,far rise
+wrong,common,10,3,L10H3,peak,1,0.071795,0.126512,0.054717,True,dominant,0.023982,1.0,near-peak decay
+wrong,common,10,3,L10H3,trough,31,0.071795,0.054717,0.126512,True,baseline,0.023982,,near-peak decay
+wrong,common,10,4,L10H4,peak,1,0.060653,0.042166,-0.018488,True,dominant,0.022574,1.0,near-peak decay
+wrong,common,10,4,L10H4,trough,31,0.060653,-0.018488,0.042166,True,baseline,0.022574,,near-peak decay
+wrong,common,10,5,L10H5,peak,1,0.040407,0.040338,-7e-05,True,dominant,0.011385,1.0,near-peak decay
+wrong,common,10,5,L10H5,trough,22,0.040407,-7e-05,0.040338,True,baseline,0.011385,,near-peak decay
+wrong,common,10,7,L10H7,peak,1,0.039732,0.052459,0.012727,True,dominant,0.00924,1.0,near-peak decay
+wrong,common,10,7,L10H7,trough,31,0.039732,0.012727,0.052459,True,baseline,0.00924,,near-peak decay
+wrong,common,10,11,L10H11,peak,1,0.066816,0.065585,-0.00123,True,dominant,0.014927,1.0,near-peak decay
+wrong,common,10,11,L10H11,trough,31,0.066816,-0.00123,0.065585,True,baseline,0.014927,,near-peak decay
+wrong,common,11,0,L11H0,peak,31,0.020436,0.05384,0.033404,True,dominant,0.012562,1.0,plateau
+wrong,common,11,0,L11H0,trough,30,0.020436,0.033404,0.05384,True,baseline,0.012562,,plateau
+wrong,common,11,1,L11H1,peak,1,0.03479,0.040264,0.005474,True,baseline,0.0087,,far rise
+wrong,common,11,1,L11H1,trough,31,0.03479,0.005474,0.040264,True,dominant,0.0087,1.0,far rise
+wrong,common,11,2,L11H2,peak,28,0.040157,0.099466,0.05931,True,baseline,0.016217,,plateau
+wrong,common,11,2,L11H2,trough,31,0.040157,0.05931,0.099466,True,dominant,0.016217,1.0,plateau
+wrong,common,11,3,L11H3,peak,1,0.099317,0.106606,0.007289,True,dominant,0.008587,1.0,near-peak decay
+wrong,common,11,3,L11H3,trough,31,0.099317,0.007289,0.106606,True,baseline,0.008587,,near-peak decay
+wrong,common,11,5,L11H5,peak,1,0.020673,0.001623,-0.01905,True,baseline,0.013262,,far rise
+wrong,common,11,5,L11H5,trough,31,0.020673,-0.01905,0.001623,True,dominant,0.013262,1.0,far rise
+wrong,common,11,7,L11H7,peak,1,0.077391,0.111714,0.034324,True,baseline,0.015903,,far rise
+wrong,common,11,7,L11H7,trough,31,0.077391,0.034324,0.111714,True,dominant,0.015903,1.0,far rise
+wrong,common,11,8,L11H8,peak,1,0.151921,0.160574,0.008653,True,dominant,0.016808,1.0,near-peak decay
+wrong,common,11,8,L11H8,trough,31,0.151921,0.008653,0.160574,True,baseline,0.016808,,near-peak decay
+wrong,common,11,9,L11H9,peak,1,0.030634,0.007244,-0.023391,True,baseline,0.011527,,far rise
+wrong,common,11,9,L11H9,trough,31,0.030634,-0.023391,0.007244,True,dominant,0.011527,1.0,far rise
+wrong,common,11,10,L11H10,peak,1,0.041549,0.039341,-0.002208,True,dominant,0.008228,1.0,near-peak decay
+wrong,common,11,10,L11H10,trough,31,0.041549,-0.002208,0.039341,True,baseline,0.008228,,near-peak decay
+wrong,common,11,11,L11H11,peak,1,0.028006,0.020996,-0.00701,True,dominant,0.008292,1.0,near-peak decay
+wrong,common,11,11,L11H11,trough,31,0.028006,-0.00701,0.020996,True,baseline,0.008292,,near-peak decay
+fact,common,0,2,L0H2,peak,1,0.073411,0.401173,0.327762,True,dominant,0.000652,1.0,plateau
+fact,common,0,2,L0H2,trough,31,0.073411,0.327762,0.401173,True,baseline,0.000652,,plateau
+fact,common,0,3,L0H3,peak,1,0.027299,0.0273,1e-06,True,dominant,7e-06,1.0,near-peak decay
+fact,common,0,3,L0H3,trough,31,0.027299,1e-06,0.0273,True,baseline,7e-06,,near-peak decay
+fact,common,0,4,L0H4,peak,1,0.081594,0.082733,0.001139,True,dominant,0.000128,1.0,near-peak decay
+fact,common,0,4,L0H4,trough,23,0.081594,0.001139,0.082733,True,baseline,0.000128,,near-peak decay
+fact,common,0,5,L0H5,peak,31,0.023148,0.028239,0.005091,True,dominant,2e-06,1.0,far rise
+fact,common,0,5,L0H5,trough,1,0.023148,0.005091,0.028239,True,baseline,2e-06,,far rise
+fact,common,0,7,L0H7,peak,1,0.050882,0.051114,0.000231,True,dominant,0.00137,1.0,near-peak decay
+fact,common,0,7,L0H7,trough,23,0.050882,0.000231,0.051114,True,baseline,0.00137,,near-peak decay
+fact,common,0,9,L0H9,peak,31,0.044153,-0.058029,-0.102182,True,baseline,0.000323,,plateau
+fact,common,0,9,L0H9,trough,1,0.044153,-0.102182,-0.058029,True,dominant,0.000323,1.0,plateau
+fact,common,0,10,L0H10,peak,1,0.033319,0.07186,0.038541,True,baseline,0.000165,,plateau
+fact,common,0,10,L0H10,trough,31,0.033319,0.038541,0.07186,True,dominant,0.000165,1.0,plateau
+fact,common,1,1,L1H1,peak,28,0.021033,-0.000273,-0.021306,True,baseline,0.000637,,near-peak decay
+fact,common,1,1,L1H1,trough,1,0.021033,-0.021306,-0.000273,True,dominant,0.000637,1.0,near-peak decay
+fact,common,1,5,L1H5,peak,27,0.02038,-0.147551,-0.167931,True,dominant,0.002342,1.0,plateau
+fact,common,1,5,L1H5,trough,1,0.02038,-0.167931,-0.147551,True,baseline,0.002342,,plateau
+fact,common,1,11,L1H11,peak,1,0.165703,0.232087,0.066384,True,dominant,0.005235,1.0,near-peak decay
+fact,common,1,11,L1H11,trough,31,0.165703,0.066384,0.232087,True,baseline,0.005235,,near-peak decay
+fact,common,2,0,L2H0,peak,27,0.046537,-0.000837,-0.047373,True,baseline,0.002064,,near-peak decay
+fact,common,2,0,L2H0,trough,1,0.046537,-0.047373,-0.000837,True,dominant,0.002064,1.0,near-peak decay
+fact,common,2,2,L2H2,peak,28,0.187411,-0.0,-0.187411,True,baseline,0.006226,,near-peak decay
+fact,common,2,2,L2H2,trough,1,0.187411,-0.187411,-0.0,True,dominant,0.006226,1.0,near-peak decay
+fact,common,2,3,L2H3,peak,27,0.037204,-3.1e-05,-0.037235,True,baseline,0.001468,,near-peak decay
+fact,common,2,3,L2H3,trough,1,0.037204,-0.037235,-3.1e-05,True,dominant,0.001468,1.0,near-peak decay
+fact,common,2,5,L2H5,peak,29,0.124851,-1.4e-05,-0.124864,True,baseline,0.003535,,near-peak decay
+fact,common,2,5,L2H5,trough,1,0.124851,-0.124864,-1.4e-05,True,dominant,0.003535,1.0,near-peak decay
+fact,common,2,8,L2H8,peak,27,0.029174,-1.9e-05,-0.029193,True,baseline,0.001328,,near-peak decay
+fact,common,2,8,L2H8,trough,1,0.029174,-0.029193,-1.9e-05,True,dominant,0.001328,1.0,near-peak decay
+fact,common,2,9,L2H9,peak,27,0.164958,-5.1e-05,-0.16501,True,baseline,0.003487,,near-peak decay
+fact,common,2,9,L2H9,trough,1,0.164958,-0.16501,-5.1e-05,True,dominant,0.003487,1.0,near-peak decay
+fact,common,3,0,L3H0,peak,30,0.257901,0.393415,0.135513,True,dominant,0.014679,1.0,far rise
+fact,common,3,0,L3H0,trough,1,0.257901,0.135513,0.393415,True,baseline,0.014679,,far rise
+fact,common,3,0,L3H0,trough,31,0.088462,0.304952,0.393415,False,secondary,0.011148,2.0,far rise
+fact,common,3,2,L3H2,peak,30,0.025635,-0.0,-0.025636,True,baseline,0.002309,,near-peak decay
+fact,common,3,2,L3H2,trough,1,0.025635,-0.025636,-0.0,True,dominant,0.002309,1.0,near-peak decay
+fact,common,3,3,L3H3,peak,30,0.070546,-0.0,-0.070546,True,baseline,0.004528,,near-peak decay
+fact,common,3,3,L3H3,trough,1,0.070546,-0.070546,-0.0,True,dominant,0.004528,1.0,near-peak decay
+fact,common,3,4,L3H4,peak,1,0.070059,-0.133443,-0.203501,True,dominant,0.012778,1.0,plateau
+fact,common,3,4,L3H4,trough,30,0.070059,-0.203501,-0.133443,True,baseline,0.012778,,plateau
+fact,common,3,7,L3H7,peak,30,0.265318,-0.0,-0.265318,True,baseline,0.006287,,near-peak decay
+fact,common,3,7,L3H7,trough,1,0.265318,-0.265318,-0.0,True,dominant,0.006287,1.0,near-peak decay
+fact,common,3,8,L3H8,peak,30,0.075575,-0.0,-0.075576,True,baseline,0.003785,,near-peak decay
+fact,common,3,8,L3H8,trough,1,0.075575,-0.075576,-0.0,True,dominant,0.003785,1.0,near-peak decay
+fact,common,3,11,L3H11,peak,30,0.02047,-1.3e-05,-0.020483,True,baseline,0.001549,,near-peak decay
+fact,common,3,11,L3H11,trough,1,0.02047,-0.020483,-1.3e-05,True,dominant,0.001549,1.0,near-peak decay
+fact,common,4,6,L4H6,peak,30,0.050625,-0.000615,-0.05124,True,baseline,0.001898,,near-peak decay
+fact,common,4,6,L4H6,trough,1,0.050625,-0.05124,-0.000615,True,dominant,0.001898,1.0,near-peak decay
+fact,common,4,7,L4H7,peak,1,0.079044,0.075401,-0.003643,True,dominant,0.005244,1.0,near-peak decay
+fact,common,4,7,L4H7,trough,3,0.079044,-0.003643,0.075401,True,baseline,0.005244,,near-peak decay
+fact,common,4,10,L4H10,peak,1,0.042345,0.277376,0.23503,False,secondary,0.012236,2.0,plateau
+fact,common,4,10,L4H10,peak,31,0.067031,0.302061,0.23503,True,dominant,0.015491,1.0,plateau
+fact,common,4,10,L4H10,trough,6,0.067031,0.23503,0.302061,True,baseline,0.015491,,plateau
+fact,common,4,11,L4H11,peak,27,0.06904,-0.0,-0.06904,True,baseline,0.010969,,near-peak decay
+fact,common,4,11,L4H11,trough,1,0.06904,-0.06904,-0.0,True,dominant,0.010969,1.0,near-peak decay
+fact,common,5,2,L5H2,peak,25,0.032442,-4.4e-05,-0.032486,True,baseline,0.004916,,near-peak decay
+fact,common,5,2,L5H2,trough,1,0.032442,-0.032486,-4.4e-05,True,dominant,0.004916,1.0,near-peak decay
+fact,common,5,6,L5H6,peak,1,0.066021,0.054085,-0.011936,True,dominant,0.009249,1.0,near-peak decay
+fact,common,5,6,L5H6,trough,2,0.066021,-0.011936,0.054085,True,baseline,0.009249,,near-peak decay
+fact,common,5,11,L5H11,peak,1,0.020852,0.035984,0.015132,True,dominant,0.002974,1.0,near-peak decay
+fact,common,5,11,L5H11,trough,26,0.020852,0.015132,0.035984,True,baseline,0.002974,,near-peak decay
+fact,common,6,0,L6H0,peak,1,0.032104,0.03226,0.000155,True,dominant,0.005031,1.0,near-peak decay
+fact,common,6,0,L6H0,trough,29,0.032104,0.000155,0.03226,True,baseline,0.005031,,near-peak decay
+fact,common,6,8,L6H8,peak,1,0.034363,0.028251,-0.006111,True,dominant,0.00617,1.0,near-peak decay
+fact,common,6,8,L6H8,trough,2,0.034363,-0.006111,0.028251,True,baseline,0.00617,,near-peak decay
+fact,common,7,0,L7H0,peak,30,0.034868,-2.3e-05,-0.034891,True,baseline,0.006368,,near-peak decay
+fact,common,7,0,L7H0,trough,1,0.034868,-0.034891,-2.3e-05,True,dominant,0.006368,1.0,near-peak decay
+fact,common,8,11,L8H11,peak,1,0.023326,0.032006,0.00868,True,dominant,0.003275,1.0,near-peak decay
+fact,common,8,11,L8H11,trough,24,0.023326,0.00868,0.032006,True,baseline,0.003275,,near-peak decay
+fact,common,9,3,L9H3,peak,1,0.02142,0.02152,0.0001,True,dominant,0.003705,1.0,near-peak decay
+fact,common,9,3,L9H3,trough,29,0.02142,0.0001,0.02152,True,baseline,0.003705,,near-peak decay
+fact,common,10,0,L10H0,peak,1,0.048965,0.052938,0.003973,True,dominant,0.004806,1.0,near-peak decay
+fact,common,10,0,L10H0,trough,31,0.048965,0.003973,0.052938,True,baseline,0.004806,,near-peak decay
+fact,common,10,3,L10H3,peak,1,0.034426,0.006127,-0.028299,True,dominant,0.005943,1.0,near-peak decay
+fact,common,10,3,L10H3,trough,19,0.034426,-0.028299,0.006127,True,baseline,0.005943,,near-peak decay
+fact,common,10,7,L10H7,peak,1,0.091748,0.105708,0.013959,True,dominant,0.009907,1.0,near-peak decay
+fact,common,10,7,L10H7,trough,31,0.091748,0.013959,0.105708,True,baseline,0.009907,,near-peak decay
+fact,common,11,2,L11H2,peak,31,0.023362,-0.045917,-0.069279,True,dominant,0.006716,1.0,plateau
+fact,common,11,2,L11H2,trough,28,0.023362,-0.069279,-0.045917,True,baseline,0.006716,,plateau
+fact,common,11,10,L11H10,peak,1,0.033349,0.035039,0.001691,True,dominant,0.003404,1.0,near-peak decay
+fact,common,11,10,L11H10,trough,24,0.033349,0.001691,0.035039,True,baseline,0.003404,,near-peak decay
+random,rare,2,0,L2H0,peak,26,0.029224,-0.000106,-0.029329,True,baseline,0.023201,,near-peak decay
+random,rare,2,0,L2H0,trough,1,0.029224,-0.029329,-0.000106,True,dominant,0.023201,1.0,near-peak decay
+random,rare,2,2,L2H2,peak,1,0.084097,0.084097,0.0,True,dominant,0.033815,1.0,near-peak decay
+random,rare,2,2,L2H2,trough,27,0.084097,0.0,0.084097,True,baseline,0.033815,,near-peak decay
+random,rare,2,3,L2H3,peak,1,0.07139,0.071403,1.3e-05,True,dominant,0.026831,1.0,near-peak decay
+random,rare,2,3,L2H3,trough,24,0.07139,1.3e-05,0.071403,True,baseline,0.026831,,near-peak decay
+random,rare,2,5,L2H5,peak,1,0.069449,0.069451,2e-06,True,dominant,0.028453,1.0,near-peak decay
+random,rare,2,5,L2H5,trough,27,0.069449,2e-06,0.069451,True,baseline,0.028453,,near-peak decay
+random,rare,2,6,L2H6,peak,1,0.026254,0.023356,-0.002898,True,dominant,0.018833,1.0,near-peak decay
+random,rare,2,6,L2H6,trough,12,0.026254,-0.002898,0.023356,True,baseline,0.018833,,near-peak decay
+random,rare,2,7,L2H7,peak,1,0.025121,0.028773,0.003652,True,dominant,0.004538,1.0,near-peak decay
+random,rare,2,7,L2H7,trough,30,0.025121,0.003652,0.028773,True,baseline,0.004538,,near-peak decay
+random,rare,2,8,L2H8,peak,26,0.11742,-2.5e-05,-0.117445,True,baseline,0.041939,,near-peak decay
+random,rare,2,8,L2H8,trough,1,0.11742,-0.117445,-2.5e-05,True,dominant,0.041939,1.0,near-peak decay
+random,rare,2,9,L2H9,peak,1,0.088878,0.088883,5e-06,True,dominant,0.024828,1.0,near-peak decay
+random,rare,2,9,L2H9,trough,27,0.088878,5e-06,0.088883,True,baseline,0.024828,,near-peak decay
+random,rare,2,10,L2H10,peak,1,0.027553,0.028301,0.000748,True,dominant,0.006316,1.0,near-peak decay
+random,rare,2,10,L2H10,trough,28,0.027553,0.000748,0.028301,True,baseline,0.006316,,near-peak decay
+random,rare,3,1,L3H1,peak,1,0.166176,0.165565,-0.000611,True,dominant,0.027436,1.0,near-peak decay
+random,rare,3,1,L3H1,trough,25,0.166176,-0.000611,0.165565,True,baseline,0.027436,,near-peak decay
+random,rare,3,3,L3H3,peak,1,0.057607,0.057607,0.0,True,dominant,0.034493,1.0,near-peak decay
+random,rare,3,3,L3H3,trough,30,0.057607,0.0,0.057607,True,baseline,0.034493,,near-peak decay
+random,rare,3,6,L3H6,peak,1,0.144038,0.14404,1e-06,True,dominant,0.042364,1.0,near-peak decay
+random,rare,3,6,L3H6,trough,30,0.144038,1e-06,0.14404,True,baseline,0.042364,,near-peak decay
+random,rare,3,8,L3H8,peak,1,0.106409,0.106409,0.0,True,dominant,0.034237,1.0,near-peak decay
+random,rare,3,8,L3H8,trough,25,0.106409,0.0,0.106409,True,baseline,0.034237,,near-peak decay
+random,rare,4,0,L4H0,peak,30,0.030928,-0.0,-0.030928,True,baseline,0.023834,,near-peak decay
+random,rare,4,0,L4H0,trough,1,0.030928,-0.030928,-0.0,True,dominant,0.023834,1.0,near-peak decay
+random,rare,5,2,L5H2,peak,31,0.023268,9e-06,-0.023258,True,baseline,0.013384,,near-peak decay
+random,rare,5,2,L5H2,trough,1,0.023268,-0.023258,9e-06,True,dominant,0.013384,1.0,near-peak decay
+random,rare,5,3,L5H3,peak,1,0.070873,0.071445,0.000571,True,dominant,0.017141,1.0,near-peak decay
+random,rare,5,3,L5H3,trough,29,0.070873,0.000571,0.071445,True,baseline,0.017141,,near-peak decay
+random,rare,5,4,L5H4,peak,28,0.046078,-7e-06,-0.046085,True,baseline,0.022144,,near-peak decay
+random,rare,5,4,L5H4,trough,1,0.046078,-0.046085,-7e-06,True,dominant,0.022144,1.0,near-peak decay
+random,rare,5,6,L5H6,peak,6,0.051261,0.000217,-0.051045,True,baseline,0.034814,,near-peak decay
+random,rare,5,6,L5H6,trough,1,0.051261,-0.051045,0.000217,True,dominant,0.034814,1.0,near-peak decay
+random,rare,6,0,L6H0,peak,1,0.04357,0.043582,1.2e-05,True,dominant,0.02269,1.0,near-peak decay
+random,rare,6,0,L6H0,trough,28,0.04357,1.2e-05,0.043582,True,baseline,0.02269,,near-peak decay
+random,rare,6,8,L6H8,peak,1,0.078627,0.066203,-0.012424,True,dominant,0.029582,1.0,near-peak decay
+random,rare,6,8,L6H8,trough,2,0.078627,-0.012424,0.066203,True,baseline,0.029582,,near-peak decay
+random,rare,6,11,L6H11,peak,2,0.027111,0.010843,-0.016268,True,baseline,0.017332,,near-peak decay
+random,rare,6,11,L6H11,trough,1,0.027111,-0.016268,0.010843,True,dominant,0.017332,1.0,near-peak decay
+random,rare,7,0,L7H0,peak,1,0.078466,0.078468,2e-06,True,dominant,0.036953,1.0,near-peak decay
+random,rare,7,0,L7H0,trough,28,0.078466,2e-06,0.078468,True,baseline,0.036953,,near-peak decay
+random,rare,7,3,L7H3,peak,1,0.028341,0.028423,8.3e-05,True,dominant,0.00706,1.0,near-peak decay
+random,rare,7,3,L7H3,trough,30,0.028341,8.3e-05,0.028423,True,baseline,0.00706,,near-peak decay
+random,rare,7,7,L7H7,peak,2,0.032999,0.035425,0.002425,True,dominant,0.015243,1.0,near-peak decay
+random,rare,7,7,L7H7,trough,31,0.032999,0.002425,0.035425,True,baseline,0.015243,,near-peak decay
+random,rare,8,4,L8H4,peak,27,0.021003,-1.4e-05,-0.021017,True,baseline,0.014994,,near-peak decay
+random,rare,8,4,L8H4,trough,1,0.021003,-0.021017,-1.4e-05,True,dominant,0.014994,1.0,near-peak decay
+random,rare,8,7,L8H7,peak,1,0.047442,0.047443,1e-06,True,dominant,0.027628,1.0,near-peak decay
+random,rare,8,7,L8H7,trough,30,0.047442,1e-06,0.047443,True,baseline,0.027628,,near-peak decay
+random,rare,8,11,L8H11,peak,1,0.036909,0.039424,0.002514,True,dominant,0.015491,1.0,near-peak decay
+random,rare,8,11,L8H11,trough,25,0.036909,0.002514,0.039424,True,baseline,0.015491,,near-peak decay
+random,rare,9,3,L9H3,peak,1,0.10418,0.104234,5.4e-05,True,dominant,0.022311,1.0,near-peak decay
+random,rare,9,3,L9H3,trough,30,0.10418,5.4e-05,0.104234,True,baseline,0.022311,,near-peak decay
+random,rare,9,7,L9H7,peak,1,0.032687,0.035774,0.003086,True,dominant,0.006751,1.0,near-peak decay
+random,rare,9,7,L9H7,trough,27,0.032687,0.003086,0.035774,True,baseline,0.006751,,near-peak decay
+random,rare,9,8,L9H8,peak,1,0.057564,0.089159,0.031596,True,dominant,0.01467,1.0,U-shape
+random,rare,9,8,L9H8,peak,31,0.024095,0.055691,0.031596,False,secondary,0.009037,2.0,U-shape
+random,rare,9,8,L9H8,trough,16,0.057564,0.031596,0.089159,True,baseline,0.01467,,U-shape
+random,rare,10,3,L10H3,peak,2,0.069346,0.140995,0.071648,True,dominant,0.025452,1.0,plateau
+random,rare,10,3,L10H3,trough,29,0.069346,0.071648,0.140995,True,baseline,0.025452,,plateau
+random,rare,10,4,L10H4,peak,26,0.028896,-0.005539,-0.034436,True,baseline,0.024029,,near-peak decay
+random,rare,10,4,L10H4,trough,3,0.028896,-0.034436,-0.005539,True,dominant,0.024029,1.0,near-peak decay
+random,rare,11,3,L11H3,peak,1,0.034294,0.037352,0.003058,True,dominant,0.010105,1.0,near-peak decay
+random,rare,11,3,L11H3,trough,31,0.034294,0.003058,0.037352,True,baseline,0.010105,,near-peak decay
+random,rare,11,7,L11H7,peak,3,0.032123,0.061029,0.028906,True,baseline,0.015032,,far rise
+random,rare,11,7,L11H7,trough,31,0.032123,0.028906,0.061029,True,dominant,0.015032,1.0,far rise
+random,rare,11,8,L11H8,peak,1,0.041332,0.039057,-0.002275,True,dominant,0.013928,1.0,near-peak decay
+random,rare,11,8,L11H8,trough,31,0.041332,-0.002275,0.039057,True,baseline,0.013928,,near-peak decay
+own,rare,0,2,L0H2,peak,1,0.071112,0.382804,0.311692,True,dominant,0.003704,1.0,plateau
+own,rare,0,2,L0H2,trough,31,0.071112,0.311692,0.382804,True,baseline,0.003704,,plateau
+own,rare,0,3,L0H3,peak,1,0.027511,0.027512,1e-06,True,dominant,0.001109,1.0,near-peak decay
+own,rare,0,3,L0H3,trough,26,0.027511,1e-06,0.027512,True,baseline,0.001109,,near-peak decay
+own,rare,0,4,L0H4,peak,1,0.108614,0.110087,0.001472,True,dominant,0.00277,1.0,near-peak decay
+own,rare,0,4,L0H4,trough,23,0.108614,0.001472,0.110087,True,baseline,0.00277,,near-peak decay
+own,rare,0,5,L0H5,peak,31,0.023651,0.028775,0.005123,True,dominant,6.4e-05,1.0,far rise
+own,rare,0,5,L0H5,trough,1,0.023651,0.005123,0.028775,True,baseline,6.4e-05,,far rise
+own,rare,0,7,L0H7,peak,24,0.032393,-0.000517,-0.032911,True,baseline,0.018032,,near-peak decay
+own,rare,0,7,L0H7,trough,1,0.032393,-0.032911,-0.000517,True,dominant,0.018032,1.0,near-peak decay
+own,rare,0,10,L0H10,peak,1,0.043827,0.100394,0.056568,True,baseline,0.002744,,plateau
+own,rare,0,10,L0H10,trough,31,0.043827,0.056568,0.100394,True,dominant,0.002744,1.0,plateau
+own,rare,1,0,L1H0,peak,1,0.0514,0.051533,0.000133,True,dominant,0.015872,1.0,near-peak decay
+own,rare,1,0,L1H0,trough,28,0.0514,0.000133,0.051533,True,baseline,0.015872,,near-peak decay
+own,rare,1,1,L1H1,peak,26,0.058159,-0.00048,-0.058639,True,baseline,0.020975,,near-peak decay
+own,rare,1,1,L1H1,trough,1,0.058159,-0.058639,-0.00048,True,dominant,0.020975,1.0,near-peak decay
+own,rare,1,5,L1H5,peak,2,0.02135,0.083887,0.062537,True,dominant,0.011978,1.0,plateau
+own,rare,1,5,L1H5,trough,23,0.02135,0.062537,0.083887,True,baseline,0.011978,,plateau
+own,rare,1,11,L1H11,peak,1,0.102509,0.177767,0.075258,True,dominant,0.00442,1.0,near-peak decay
+own,rare,1,11,L1H11,trough,31,0.102509,0.075258,0.177767,True,baseline,0.00442,,near-peak decay
+own,rare,2,0,L2H0,peak,26,0.04202,-0.000323,-0.042343,True,baseline,0.023132,,near-peak decay
+own,rare,2,0,L2H0,trough,1,0.04202,-0.042343,-0.000323,True,dominant,0.023132,1.0,near-peak decay
+own,rare,2,2,L2H2,peak,27,0.19837,-0.0,-0.19837,True,baseline,0.026448,,near-peak decay
+own,rare,2,2,L2H2,trough,1,0.19837,-0.19837,-0.0,True,dominant,0.026448,1.0,near-peak decay
+own,rare,2,3,L2H3,peak,26,0.058281,-1.1e-05,-0.058293,True,baseline,0.025573,,near-peak decay
+own,rare,2,3,L2H3,trough,1,0.058281,-0.058293,-1.1e-05,True,dominant,0.025573,1.0,near-peak decay
+own,rare,2,4,L2H4,peak,21,0.02406,-4e-06,-0.024065,True,baseline,0.009719,,near-peak decay
+own,rare,2,4,L2H4,trough,1,0.02406,-0.024065,-4e-06,True,dominant,0.009719,1.0,near-peak decay
+own,rare,2,5,L2H5,peak,26,0.178009,-7e-06,-0.178016,True,baseline,0.030556,,near-peak decay
+own,rare,2,5,L2H5,trough,1,0.178009,-0.178016,-7e-06,True,dominant,0.030556,1.0,near-peak decay
+own,rare,2,6,L2H6,peak,1,0.053262,0.051563,-0.001699,True,dominant,0.01865,1.0,near-peak decay
+own,rare,2,6,L2H6,trough,25,0.053262,-0.001699,0.051563,True,baseline,0.01865,,near-peak decay
+own,rare,2,7,L2H7,peak,1,0.024552,0.028202,0.003649,True,dominant,0.00422,1.0,near-peak decay
+own,rare,2,7,L2H7,trough,28,0.024552,0.003649,0.028202,True,baseline,0.00422,,near-peak decay
+own,rare,2,8,L2H8,peak,26,0.196513,-4.3e-05,-0.196556,True,baseline,0.042329,,near-peak decay
+own,rare,2,8,L2H8,trough,1,0.196513,-0.196556,-4.3e-05,True,dominant,0.042329,1.0,near-peak decay
+own,rare,2,9,L2H9,peak,25,0.116195,-5e-06,-0.1162,True,baseline,0.021381,,near-peak decay
+own,rare,2,9,L2H9,trough,1,0.116195,-0.1162,-5e-06,True,dominant,0.021381,1.0,near-peak decay
+own,rare,2,10,L2H10,peak,1,0.043701,0.044764,0.001064,True,dominant,0.006206,1.0,near-peak decay
+own,rare,2,10,L2H10,trough,28,0.043701,0.001064,0.044764,True,baseline,0.006206,,near-peak decay
+own,rare,2,11,L2H11,peak,1,0.020136,0.020658,0.000522,True,dominant,0.002881,1.0,near-peak decay
+own,rare,2,11,L2H11,trough,28,0.020136,0.000522,0.020658,True,baseline,0.002881,,near-peak decay
+own,rare,3,0,L3H0,peak,30,0.379384,0.515852,0.136467,True,dominant,0.01769,1.0,far rise
+own,rare,3,0,L3H0,trough,1,0.379384,0.136467,0.515852,True,baseline,0.01769,,far rise
+own,rare,3,0,L3H0,trough,31,0.13152,0.384332,0.515852,False,secondary,0.014302,2.0,far rise
+own,rare,3,1,L3H1,peak,1,0.053603,0.051044,-0.002559,True,dominant,0.024297,1.0,near-peak decay
+own,rare,3,1,L3H1,trough,10,0.053603,-0.002559,0.051044,True,baseline,0.024297,,near-peak decay
+own,rare,3,2,L3H2,peak,30,0.10495,-0.0,-0.10495,True,baseline,0.030997,,near-peak decay
+own,rare,3,2,L3H2,trough,1,0.10495,-0.10495,-0.0,True,dominant,0.030997,1.0,near-peak decay
+own,rare,3,6,L3H6,peak,1,0.039775,0.039774,-1e-06,True,dominant,0.029552,1.0,near-peak decay
+own,rare,3,6,L3H6,trough,19,0.039775,-1e-06,0.039774,True,baseline,0.029552,,near-peak decay
+own,rare,3,7,L3H7,peak,30,0.315755,-0.0,-0.315755,True,baseline,0.02771,,near-peak decay
+own,rare,3,7,L3H7,trough,1,0.315755,-0.315755,-0.0,True,dominant,0.02771,1.0,near-peak decay
+own,rare,3,8,L3H8,peak,30,0.119015,-0.0,-0.119015,True,baseline,0.031247,,near-peak decay
+own,rare,3,8,L3H8,trough,1,0.119015,-0.119015,-0.0,True,dominant,0.031247,1.0,near-peak decay
+own,rare,3,9,L3H9,peak,29,0.026381,-3e-06,-0.026384,True,baseline,0.012887,,near-peak decay
+own,rare,3,9,L3H9,trough,1,0.026381,-0.026384,-3e-06,True,dominant,0.012887,1.0,near-peak decay
+own,rare,3,10,L3H10,peak,1,0.080336,0.080656,0.000321,True,dominant,0.00916,1.0,near-peak decay
+own,rare,3,10,L3H10,trough,29,0.080336,0.000321,0.080656,True,baseline,0.00916,,near-peak decay
+own,rare,3,11,L3H11,peak,30,0.060411,-3e-06,-0.060414,True,baseline,0.024987,,near-peak decay
+own,rare,3,11,L3H11,trough,1,0.060411,-0.060414,-3e-06,True,dominant,0.024987,1.0,near-peak decay
+own,rare,4,0,L4H0,peak,30,0.080125,-0.0,-0.080126,True,baseline,0.029474,,near-peak decay
+own,rare,4,0,L4H0,trough,1,0.080125,-0.080126,-0.0,True,dominant,0.029474,1.0,near-peak decay
+own,rare,4,1,L4H1,peak,31,0.039045,-1e-06,-0.039045,True,baseline,0.018442,,near-peak decay
+own,rare,4,1,L4H1,trough,1,0.039045,-0.039045,-1e-06,True,dominant,0.018442,1.0,near-peak decay
+own,rare,4,3,L4H3,peak,23,0.050421,1e-06,-0.050421,True,baseline,0.01643,,near-peak decay
+own,rare,4,3,L4H3,trough,1,0.050421,-0.050421,1e-06,True,dominant,0.01643,1.0,near-peak decay
+own,rare,4,4,L4H4,peak,1,0.033714,0.068701,0.034987,True,dominant,0.005962,1.0,plateau
+own,rare,4,4,L4H4,trough,13,0.033714,0.034987,0.068701,True,baseline,0.005962,,plateau
+own,rare,4,5,L4H5,peak,30,0.038642,-2e-06,-0.038644,True,baseline,0.012561,,near-peak decay
+own,rare,4,5,L4H5,trough,1,0.038642,-0.038644,-2e-06,True,dominant,0.012561,1.0,near-peak decay
+own,rare,4,6,L4H6,peak,30,0.075583,-6.4e-05,-0.075647,True,baseline,0.011156,,near-peak decay
+own,rare,4,6,L4H6,trough,1,0.075583,-0.075647,-6.4e-05,True,dominant,0.011156,1.0,near-peak decay
+own,rare,4,7,L4H7,peak,1,0.158424,0.158563,0.00014,True,dominant,0.017522,1.0,near-peak decay
+own,rare,4,7,L4H7,trough,31,0.158424,0.00014,0.158563,True,baseline,0.017522,,near-peak decay
+own,rare,4,10,L4H10,peak,1,0.073524,0.302533,0.229009,False,secondary,0.016463,2.0,plateau
+own,rare,4,10,L4H10,peak,31,0.074366,0.303375,0.229009,True,dominant,0.020173,1.0,plateau
+own,rare,4,10,L4H10,trough,24,0.074366,0.229009,0.303375,True,baseline,0.020173,,plateau
+own,rare,4,11,L4H11,peak,24,0.130704,0.0,-0.130704,True,baseline,0.028235,,near-peak decay
+own,rare,4,11,L4H11,trough,1,0.130704,-0.130704,0.0,True,dominant,0.028235,1.0,near-peak decay
+own,rare,5,2,L5H2,peak,30,0.030772,2e-06,-0.03077,True,baseline,0.011938,,near-peak decay
+own,rare,5,2,L5H2,trough,1,0.030772,-0.03077,2e-06,True,dominant,0.011938,1.0,near-peak decay
+own,rare,5,3,L5H3,peak,2,0.040162,0.039924,-0.000238,True,dominant,0.017318,1.0,near-peak decay
+own,rare,5,3,L5H3,trough,25,0.040162,-0.000238,0.039924,True,baseline,0.017318,,near-peak decay
+own,rare,5,4,L5H4,peak,30,0.121727,-1.1e-05,-0.121737,True,baseline,0.028852,,near-peak decay
+own,rare,5,4,L5H4,trough,1,0.121727,-0.121737,-1.1e-05,True,dominant,0.028852,1.0,near-peak decay
+own,rare,5,6,L5H6,peak,1,0.199274,0.193144,-0.00613,True,dominant,0.029287,1.0,near-peak decay
+own,rare,5,6,L5H6,trough,2,0.199274,-0.00613,0.193144,True,baseline,0.029287,,near-peak decay
+own,rare,5,7,L5H7,peak,31,0.026893,-2.5e-05,-0.026917,True,baseline,0.008025,,near-peak decay
+own,rare,5,7,L5H7,trough,1,0.026893,-0.026917,-2.5e-05,True,dominant,0.008025,1.0,near-peak decay
+own,rare,5,8,L5H8,peak,30,0.025709,-9.5e-05,-0.025804,True,baseline,0.012776,,near-peak decay
+own,rare,5,8,L5H8,trough,1,0.025709,-0.025804,-9.5e-05,True,dominant,0.012776,1.0,near-peak decay
+own,rare,5,11,L5H11,peak,1,0.04148,0.053422,0.011942,True,dominant,0.004847,1.0,near-peak decay
+own,rare,5,11,L5H11,trough,29,0.04148,0.011942,0.053422,True,baseline,0.004847,,near-peak decay
+own,rare,6,0,L6H0,peak,1,0.036756,0.036753,-3e-06,True,dominant,0.023026,1.0,near-peak decay
+own,rare,6,0,L6H0,trough,30,0.036756,-3e-06,0.036753,True,baseline,0.023026,,near-peak decay
+own,rare,6,8,L6H8,peak,1,0.073018,0.056419,-0.016599,True,dominant,0.02603,1.0,near-peak decay
+own,rare,6,8,L6H8,trough,2,0.073018,-0.016599,0.056419,True,baseline,0.02603,,near-peak decay
+own,rare,6,11,L6H11,peak,29,0.04377,-1.7e-05,-0.043786,True,baseline,0.02246,,near-peak decay
+own,rare,6,11,L6H11,trough,1,0.04377,-0.043786,-1.7e-05,True,dominant,0.02246,1.0,near-peak decay
+own,rare,7,0,L7H0,peak,30,0.121737,-2e-06,-0.12174,True,baseline,0.036582,,near-peak decay
+own,rare,7,0,L7H0,trough,1,0.121737,-0.12174,-2e-06,True,dominant,0.036582,1.0,near-peak decay
+own,rare,7,3,L7H3,peak,1,0.044381,0.044512,0.000131,True,dominant,0.007673,1.0,near-peak decay
+own,rare,7,3,L7H3,trough,30,0.044381,0.000131,0.044512,True,baseline,0.007673,,near-peak decay
+own,rare,7,6,L7H6,peak,1,0.028271,0.035706,0.007434,True,dominant,0.006712,1.0,near-peak decay
+own,rare,7,6,L7H6,trough,30,0.028271,0.007434,0.035706,True,baseline,0.006712,,near-peak decay
+own,rare,8,4,L8H4,peak,31,0.036515,-1.6e-05,-0.03653,True,baseline,0.018858,,near-peak decay
+own,rare,8,4,L8H4,trough,1,0.036515,-0.03653,-1.6e-05,True,dominant,0.018858,1.0,near-peak decay
+own,rare,8,6,L8H6,peak,1,0.02306,0.01922,-0.00384,True,dominant,0.015688,1.0,near-peak decay
+own,rare,8,6,L8H6,trough,3,0.02306,-0.00384,0.01922,True,baseline,0.015688,,near-peak decay
+own,rare,8,7,L8H7,peak,31,0.035252,-1e-06,-0.035254,True,baseline,0.027066,,near-peak decay
+own,rare,8,7,L8H7,trough,1,0.035252,-0.035254,-1e-06,True,dominant,0.027066,1.0,near-peak decay
+own,rare,8,9,L8H9,peak,1,0.031604,0.037687,0.006084,True,dominant,0.006075,1.0,near-peak decay
+own,rare,8,9,L8H9,trough,30,0.031604,0.006084,0.037687,True,baseline,0.006075,,near-peak decay
+own,rare,8,11,L8H11,peak,1,0.057777,0.059928,0.00215,True,dominant,0.015662,1.0,near-peak decay
+own,rare,8,11,L8H11,trough,23,0.057777,0.00215,0.059928,True,baseline,0.015662,,near-peak decay
+own,rare,9,0,L9H0,peak,30,0.022687,0.003785,-0.018902,True,baseline,0.010313,,near-peak decay
+own,rare,9,0,L9H0,trough,1,0.022687,-0.018902,0.003785,True,dominant,0.010313,1.0,near-peak decay
+own,rare,9,1,L9H1,peak,1,0.048242,0.043766,-0.004476,True,dominant,0.013116,1.0,near-peak decay
+own,rare,9,1,L9H1,trough,19,0.048242,-0.004476,0.043766,True,baseline,0.013116,,near-peak decay
+own,rare,9,3,L9H3,peak,1,0.05782,0.057805,-1.5e-05,True,dominant,0.020196,1.0,near-peak decay
+own,rare,9,3,L9H3,trough,25,0.05782,-1.5e-05,0.057805,True,baseline,0.020196,,near-peak decay
+own,rare,9,4,L9H4,peak,1,0.026594,0.030315,0.003721,True,dominant,0.006927,1.0,near-peak decay
+own,rare,9,4,L9H4,trough,31,0.026594,0.003721,0.030315,True,baseline,0.006927,,near-peak decay
+own,rare,9,8,L9H8,peak,1,0.053419,0.089183,0.035763,True,dominant,0.009342,1.0,near-peak decay
+own,rare,9,8,L9H8,trough,20,0.053419,0.035763,0.089183,True,baseline,0.009342,,near-peak decay
+own,rare,9,10,L9H10,peak,30,0.04348,-1.8e-05,-0.043499,True,baseline,0.014931,,near-peak decay
+own,rare,9,10,L9H10,trough,1,0.04348,-0.043499,-1.8e-05,True,dominant,0.014931,1.0,near-peak decay
+own,rare,9,11,L9H11,peak,2,0.031573,0.030068,-0.001506,True,dominant,0.016897,1.0,near-peak decay
+own,rare,9,11,L9H11,trough,29,0.031573,-0.001506,0.030068,True,baseline,0.016897,,near-peak decay
+own,rare,10,0,L10H0,peak,1,0.030202,0.032822,0.00262,True,dominant,0.013326,1.0,near-peak decay
+own,rare,10,0,L10H0,trough,13,0.030202,0.00262,0.032822,True,baseline,0.013326,,near-peak decay
+own,rare,10,1,L10H1,peak,26,0.020074,-0.007481,-0.027555,True,baseline,0.01531,,mid-peak
+own,rare,10,1,L10H1,trough,4,0.020074,-0.027555,-0.007481,True,dominant,0.01531,1.0,mid-peak
+own,rare,10,3,L10H3,peak,1,0.095038,0.126204,0.031165,True,dominant,0.022191,1.0,near-peak decay
+own,rare,10,3,L10H3,trough,27,0.095038,0.031165,0.126204,True,baseline,0.022191,,near-peak decay
+own,rare,10,4,L10H4,peak,1,0.025654,-0.016624,-0.042277,False,secondary,0.022361,2.0,mid-peak
+own,rare,10,4,L10H4,peak,30,0.035798,-0.006479,-0.042277,True,baseline,0.026206,,mid-peak
+own,rare,10,4,L10H4,trough,5,0.035798,-0.042277,-0.006479,True,dominant,0.026206,1.0,mid-peak
+own,rare,10,7,L10H7,peak,1,0.097596,0.123195,0.025599,True,dominant,0.014696,1.0,near-peak decay
+own,rare,10,7,L10H7,trough,30,0.097596,0.025599,0.123195,True,baseline,0.014696,,near-peak decay
+own,rare,10,11,L10H11,peak,30,0.024786,-0.002967,-0.027752,True,baseline,0.019408,,mid-peak
+own,rare,10,11,L10H11,trough,4,0.024786,-0.027752,-0.002967,True,dominant,0.019408,1.0,mid-peak
+own,rare,11,0,L11H0,peak,1,0.0263,0.032716,0.006415,True,dominant,0.009151,1.0,near-peak decay
+own,rare,11,0,L11H0,trough,30,0.0263,0.006415,0.032716,True,baseline,0.009151,,near-peak decay
+own,rare,11,3,L11H3,peak,1,0.031196,0.03146,0.000265,True,dominant,0.010917,1.0,near-peak decay
+own,rare,11,3,L11H3,trough,24,0.031196,0.000265,0.03146,True,baseline,0.010917,,near-peak decay
+own,rare,11,7,L11H7,peak,1,0.045618,0.080439,0.034822,True,dominant,0.014014,1.0,near-peak decay
+own,rare,11,7,L11H7,trough,31,0.045618,0.034822,0.080439,True,baseline,0.014014,,near-peak decay
+own,rare,11,8,L11H8,peak,1,0.06595,0.071335,0.005385,True,dominant,0.01266,1.0,near-peak decay
+own,rare,11,8,L11H8,trough,31,0.06595,0.005385,0.071335,True,baseline,0.01266,,near-peak decay
+own,rare,11,10,L11H10,peak,1,0.056835,0.069219,0.012385,True,dominant,0.008717,1.0,near-peak decay
+own,rare,11,10,L11H10,trough,19,0.056835,0.012385,0.069219,True,baseline,0.008717,,near-peak decay
+wrong,rare,0,4,L0H4,peak,1,0.029144,0.029522,0.000378,True,dominant,0.002817,1.0,near-peak decay
+wrong,rare,0,4,L0H4,trough,23,0.029144,0.000378,0.029522,True,baseline,0.002817,,near-peak decay
+wrong,rare,0,7,L0H7,peak,24,0.08634,-0.000794,-0.087134,True,baseline,0.018549,,near-peak decay
+wrong,rare,0,7,L0H7,trough,1,0.08634,-0.087134,-0.000794,True,dominant,0.018549,1.0,near-peak decay
+wrong,rare,0,9,L0H9,peak,2,0.021951,0.047356,0.025405,True,dominant,0.005755,1.0,plateau
+wrong,rare,0,9,L0H9,trough,31,0.021951,0.025405,0.047356,True,baseline,0.005755,,plateau
+wrong,rare,1,0,L1H0,peak,1,0.076178,0.076846,0.000668,True,dominant,0.015343,1.0,near-peak decay
+wrong,rare,1,0,L1H0,trough,24,0.076178,0.000668,0.076846,True,baseline,0.015343,,near-peak decay
+wrong,rare,1,1,L1H1,peak,26,0.037649,-0.000348,-0.037997,True,baseline,0.020267,,near-peak decay
+wrong,rare,1,1,L1H1,trough,1,0.037649,-0.037997,-0.000348,True,dominant,0.020267,1.0,near-peak decay
+wrong,rare,1,5,L1H5,peak,2,0.031269,0.187978,0.156708,True,dominant,0.011411,1.0,plateau
+wrong,rare,1,5,L1H5,peak,30,0.022763,0.179471,0.156708,False,secondary,0.009802,2.0,plateau
+wrong,rare,1,5,L1H5,trough,23,0.031269,0.156708,0.187978,True,baseline,0.011411,,plateau
+wrong,rare,2,0,L2H0,peak,1,0.029036,0.029085,4.9e-05,True,dominant,0.022399,1.0,near-peak decay
+wrong,rare,2,0,L2H0,trough,27,0.029036,4.9e-05,0.029085,True,baseline,0.022399,,near-peak decay
+wrong,rare,2,2,L2H2,peak,15,0.026445,0.0,-0.026445,True,baseline,0.024482,,near-peak decay
+wrong,rare,2,2,L2H2,trough,2,0.026445,-0.026445,0.0,True,dominant,0.024482,1.0,near-peak decay
+wrong,rare,2,5,L2H5,peak,31,0.061546,-2e-06,-0.061547,True,baseline,0.029497,,near-peak decay
+wrong,rare,2,5,L2H5,trough,1,0.061546,-0.061547,-2e-06,True,dominant,0.029497,1.0,near-peak decay
+wrong,rare,2,6,L2H6,peak,1,0.046087,0.044387,-0.001701,True,dominant,0.019474,1.0,near-peak decay
+wrong,rare,2,6,L2H6,trough,25,0.046087,-0.001701,0.044387,True,baseline,0.019474,,near-peak decay
+wrong,rare,2,7,L2H7,peak,1,0.024549,0.02837,0.003821,True,dominant,0.004222,1.0,near-peak decay
+wrong,rare,2,7,L2H7,trough,29,0.024549,0.003821,0.02837,True,baseline,0.004222,,near-peak decay
+wrong,rare,2,8,L2H8,peak,26,0.169959,-3.9e-05,-0.169997,True,baseline,0.04185,,near-peak decay
+wrong,rare,2,8,L2H8,trough,1,0.169959,-0.169997,-3.9e-05,True,dominant,0.04185,1.0,near-peak decay
+wrong,rare,2,9,L2H9,peak,1,0.035522,0.035525,3e-06,True,dominant,0.020657,1.0,near-peak decay
+wrong,rare,2,9,L2H9,trough,27,0.035522,3e-06,0.035525,True,baseline,0.020657,,near-peak decay
+wrong,rare,2,10,L2H10,peak,1,0.039321,0.040547,0.001226,True,dominant,0.00624,1.0,near-peak decay
+wrong,rare,2,10,L2H10,trough,28,0.039321,0.001226,0.040547,True,baseline,0.00624,,near-peak decay
+wrong,rare,3,0,L3H0,peak,30,0.034066,0.036661,0.002594,True,dominant,0.008172,1.0,far rise
+wrong,rare,3,0,L3H0,trough,1,0.034066,0.002594,0.036661,True,baseline,0.008172,,far rise
+wrong,rare,3,1,L3H1,peak,1,0.057988,0.056468,-0.00152,True,dominant,0.022845,1.0,near-peak decay
+wrong,rare,3,1,L3H1,trough,12,0.057988,-0.00152,0.056468,True,baseline,0.022845,,near-peak decay
+wrong,rare,3,2,L3H2,peak,15,0.086276,0.0,-0.086276,True,baseline,0.030205,,near-peak decay
+wrong,rare,3,2,L3H2,trough,1,0.086276,-0.086276,0.0,True,dominant,0.030205,1.0,near-peak decay
+wrong,rare,3,3,L3H3,peak,1,0.074027,0.074027,-0.0,True,dominant,0.01848,1.0,near-peak decay
+wrong,rare,3,3,L3H3,trough,30,0.074027,-0.0,0.074027,True,baseline,0.01848,,near-peak decay
+wrong,rare,3,4,L3H4,peak,31,0.024524,0.088181,0.063657,True,baseline,0.009786,,plateau
+wrong,rare,3,4,L3H4,trough,3,0.024524,0.063657,0.088181,True,dominant,0.009786,1.0,plateau
+wrong,rare,3,6,L3H6,peak,1,0.043681,0.043681,0.0,True,dominant,0.031614,1.0,near-peak decay
+wrong,rare,3,6,L3H6,trough,29,0.043681,0.0,0.043681,True,baseline,0.031614,,near-peak decay
+wrong,rare,3,7,L3H7,peak,15,0.050769,1e-06,-0.050769,True,baseline,0.02453,,near-peak decay
+wrong,rare,3,7,L3H7,trough,1,0.050769,-0.050769,1e-06,True,dominant,0.02453,1.0,near-peak decay
+wrong,rare,3,8,L3H8,peak,30,0.036258,-0.0,-0.036258,True,baseline,0.029342,,near-peak decay
+wrong,rare,3,8,L3H8,trough,1,0.036258,-0.036258,-0.0,True,dominant,0.029342,1.0,near-peak decay
+wrong,rare,3,10,L3H10,peak,1,0.086473,0.086861,0.000388,True,dominant,0.009209,1.0,near-peak decay
+wrong,rare,3,10,L3H10,trough,30,0.086473,0.000388,0.086861,True,baseline,0.009209,,near-peak decay
+wrong,rare,3,11,L3H11,peak,30,0.029813,-2e-06,-0.029816,True,baseline,0.024396,,near-peak decay
+wrong,rare,3,11,L3H11,trough,2,0.029813,-0.029816,-2e-06,True,dominant,0.024396,1.0,near-peak decay
+wrong,rare,4,0,L4H0,peak,30,0.074864,-0.0,-0.074864,True,baseline,0.028192,,near-peak decay
+wrong,rare,4,0,L4H0,trough,1,0.074864,-0.074864,-0.0,True,dominant,0.028192,1.0,near-peak decay
+wrong,rare,4,1,L4H1,peak,5,0.033313,0.000118,-0.033195,True,baseline,0.017373,,near-peak decay
+wrong,rare,4,1,L4H1,trough,1,0.033313,-0.033195,0.000118,True,dominant,0.017373,1.0,near-peak decay
+wrong,rare,4,3,L4H3,peak,23,0.046538,8e-06,-0.04653,True,baseline,0.017189,,near-peak decay
+wrong,rare,4,3,L4H3,trough,1,0.046538,-0.04653,8e-06,True,dominant,0.017189,1.0,near-peak decay
+wrong,rare,4,4,L4H4,peak,1,0.029441,0.049932,0.020491,True,dominant,0.005058,1.0,near-peak decay
+wrong,rare,4,4,L4H4,trough,23,0.029441,0.020491,0.049932,True,baseline,0.005058,,near-peak decay
+wrong,rare,4,5,L4H5,peak,30,0.03623,-2e-06,-0.036232,True,baseline,0.012662,,near-peak decay
+wrong,rare,4,5,L4H5,trough,1,0.03623,-0.036232,-2e-06,True,dominant,0.012662,1.0,near-peak decay
+wrong,rare,4,6,L4H6,peak,20,0.024269,-1.1e-05,-0.02428,True,baseline,0.010301,,near-peak decay
+wrong,rare,4,6,L4H6,trough,1,0.024269,-0.02428,-1.1e-05,True,dominant,0.010301,1.0,near-peak decay
+wrong,rare,4,7,L4H7,peak,1,0.11513,0.115216,8.6e-05,True,dominant,0.018253,1.0,near-peak decay
+wrong,rare,4,7,L4H7,trough,31,0.11513,8.6e-05,0.115216,True,baseline,0.018253,,near-peak decay
+wrong,rare,4,8,L4H8,peak,1,0.043458,0.07096,0.027502,True,baseline,0.009202,,far rise
+wrong,rare,4,8,L4H8,trough,30,0.043458,0.027502,0.07096,True,dominant,0.009202,1.0,far rise
+wrong,rare,4,10,L4H10,peak,31,0.021417,0.054391,0.032974,True,dominant,0.005986,1.0,plateau
+wrong,rare,4,10,L4H10,trough,12,0.021417,0.032974,0.054391,True,baseline,0.005986,,plateau
+wrong,rare,5,2,L5H2,peak,30,0.025563,-3e-06,-0.025566,True,baseline,0.011883,,near-peak decay
+wrong,rare,5,2,L5H2,trough,1,0.025563,-0.025566,-3e-06,True,dominant,0.011883,1.0,near-peak decay
+wrong,rare,5,3,L5H3,peak,2,0.040516,0.040317,-0.000199,True,dominant,0.016713,1.0,near-peak decay
+wrong,rare,5,3,L5H3,trough,25,0.040516,-0.000199,0.040317,True,baseline,0.016713,,near-peak decay
+wrong,rare,5,4,L5H4,peak,30,0.123628,-1e-05,-0.123639,True,baseline,0.028501,,near-peak decay
+wrong,rare,5,4,L5H4,trough,1,0.123628,-0.123639,-1e-05,True,dominant,0.028501,1.0,near-peak decay
+wrong,rare,5,6,L5H6,peak,1,0.098948,0.09627,-0.002678,True,dominant,0.031004,1.0,near-peak decay
+wrong,rare,5,6,L5H6,trough,2,0.098948,-0.002678,0.09627,True,baseline,0.031004,,near-peak decay
+wrong,rare,5,7,L5H7,peak,31,0.027462,-2.4e-05,-0.027486,True,baseline,0.008647,,near-peak decay
+wrong,rare,5,7,L5H7,trough,1,0.027462,-0.027486,-2.4e-05,True,dominant,0.008647,1.0,near-peak decay
+wrong,rare,5,11,L5H11,peak,1,0.025167,0.032619,0.007452,True,dominant,0.003572,1.0,near-peak decay
+wrong,rare,5,11,L5H11,trough,30,0.025167,0.007452,0.032619,True,baseline,0.003572,,near-peak decay
+wrong,rare,6,3,L6H3,peak,1,0.022172,0.022901,0.000729,True,dominant,0.007306,1.0,near-peak decay
+wrong,rare,6,3,L6H3,trough,29,0.022172,0.000729,0.022901,True,baseline,0.007306,,near-peak decay
+wrong,rare,6,5,L6H5,peak,31,0.024126,-8.6e-05,-0.024212,True,baseline,0.008026,,near-peak decay
+wrong,rare,6,5,L6H5,trough,1,0.024126,-0.024212,-8.6e-05,True,dominant,0.008026,1.0,near-peak decay
+wrong,rare,6,8,L6H8,peak,1,0.085949,0.074866,-0.011084,True,dominant,0.027145,1.0,near-peak decay
+wrong,rare,6,8,L6H8,trough,2,0.085949,-0.011084,0.074866,True,baseline,0.027145,,near-peak decay
+wrong,rare,6,10,L6H10,peak,8,0.022011,0.022474,0.000464,True,baseline,0.008689,,far rise
+wrong,rare,6,10,L6H10,trough,30,0.022011,0.000464,0.022474,True,dominant,0.008689,1.0,far rise
+wrong,rare,6,11,L6H11,peak,29,0.048177,-1.7e-05,-0.048194,True,baseline,0.021818,,near-peak decay
+wrong,rare,6,11,L6H11,trough,1,0.048177,-0.048194,-1.7e-05,True,dominant,0.021818,1.0,near-peak decay
+wrong,rare,7,0,L7H0,peak,31,0.045192,-2e-06,-0.045194,True,baseline,0.035771,,near-peak decay
+wrong,rare,7,0,L7H0,trough,1,0.045192,-0.045194,-2e-06,True,dominant,0.035771,1.0,near-peak decay
+wrong,rare,7,3,L7H3,peak,1,0.049763,0.049856,9.3e-05,True,dominant,0.00759,1.0,near-peak decay
+wrong,rare,7,3,L7H3,trough,30,0.049763,9.3e-05,0.049856,True,baseline,0.00759,,near-peak decay
+wrong,rare,7,6,L7H6,peak,1,0.038,0.047431,0.009431,True,dominant,0.006787,1.0,near-peak decay
+wrong,rare,7,6,L7H6,trough,30,0.038,0.009431,0.047431,True,baseline,0.006787,,near-peak decay
+wrong,rare,8,4,L8H4,peak,31,0.036114,-2.4e-05,-0.036138,True,baseline,0.020444,,near-peak decay
+wrong,rare,8,4,L8H4,trough,1,0.036114,-0.036138,-2.4e-05,True,dominant,0.020444,1.0,near-peak decay
+wrong,rare,8,6,L8H6,peak,1,0.020772,0.019082,-0.00169,True,dominant,0.015855,1.0,near-peak decay
+wrong,rare,8,6,L8H6,trough,3,0.020772,-0.00169,0.019082,True,baseline,0.015855,,near-peak decay
+wrong,rare,8,9,L8H9,peak,1,0.027684,0.031273,0.003589,True,dominant,0.005861,1.0,near-peak decay
+wrong,rare,8,9,L8H9,trough,30,0.027684,0.003589,0.031273,True,baseline,0.005861,,near-peak decay
+wrong,rare,8,11,L8H11,peak,1,0.037811,0.039092,0.001281,True,dominant,0.014621,1.0,near-peak decay
+wrong,rare,8,11,L8H11,trough,25,0.037811,0.001281,0.039092,True,baseline,0.014621,,near-peak decay
+wrong,rare,9,0,L9H0,peak,30,0.026106,-0.00027,-0.026375,True,baseline,0.010502,,near-peak decay
+wrong,rare,9,0,L9H0,trough,1,0.026106,-0.026375,-0.00027,True,dominant,0.010502,1.0,near-peak decay
+wrong,rare,9,1,L9H1,peak,1,0.037404,0.032259,-0.005145,True,dominant,0.012351,1.0,near-peak decay
+wrong,rare,9,1,L9H1,trough,6,0.037404,-0.005145,0.032259,True,baseline,0.012351,,near-peak decay
+wrong,rare,9,3,L9H3,peak,1,0.051943,0.051915,-2.8e-05,True,dominant,0.019774,1.0,near-peak decay
+wrong,rare,9,3,L9H3,trough,25,0.051943,-2.8e-05,0.051915,True,baseline,0.019774,,near-peak decay
+wrong,rare,9,7,L9H7,peak,1,0.021791,0.022441,0.000649,True,dominant,0.004767,1.0,near-peak decay
+wrong,rare,9,7,L9H7,trough,27,0.021791,0.000649,0.022441,True,baseline,0.004767,,near-peak decay
+wrong,rare,9,10,L9H10,peak,30,0.04014,-2.2e-05,-0.040162,True,baseline,0.015544,,near-peak decay
+wrong,rare,9,10,L9H10,trough,1,0.04014,-0.040162,-2.2e-05,True,dominant,0.015544,1.0,near-peak decay
+wrong,rare,9,11,L9H11,peak,2,0.027376,0.025677,-0.001698,True,dominant,0.016234,1.0,near-peak decay
+wrong,rare,9,11,L9H11,trough,29,0.027376,-0.001698,0.025677,True,baseline,0.016234,,near-peak decay
+wrong,rare,10,3,L10H3,peak,1,0.088572,0.128903,0.040331,True,dominant,0.022213,1.0,near-peak decay
+wrong,rare,10,3,L10H3,trough,29,0.088572,0.040331,0.128903,True,baseline,0.022213,,near-peak decay
+wrong,rare,10,4,L10H4,peak,1,0.026638,-0.015226,-0.041864,False,secondary,0.022576,2.0,mid-peak
+wrong,rare,10,4,L10H4,peak,30,0.035503,-0.006361,-0.041864,True,baseline,0.026116,,mid-peak
+wrong,rare,10,4,L10H4,trough,5,0.035503,-0.041864,-0.006361,True,dominant,0.026116,1.0,mid-peak
+wrong,rare,10,7,L10H7,peak,1,0.027263,0.035917,0.008655,True,dominant,0.00941,1.0,near-peak decay
+wrong,rare,10,7,L10H7,trough,30,0.027263,0.008655,0.035917,True,baseline,0.00941,,near-peak decay
+wrong,rare,10,11,L10H11,peak,30,0.021325,-0.0032,-0.024525,True,baseline,0.018927,,mid-peak
+wrong,rare,10,11,L10H11,trough,4,0.021325,-0.024525,-0.0032,True,dominant,0.018927,1.0,mid-peak
+wrong,rare,11,0,L11H0,peak,1,0.024995,0.027576,0.00258,True,dominant,0.009108,1.0,near-peak decay
+wrong,rare,11,0,L11H0,trough,30,0.024995,0.00258,0.027576,True,baseline,0.009108,,near-peak decay
+wrong,rare,11,3,L11H3,peak,1,0.044623,0.046008,0.001385,True,dominant,0.010884,1.0,near-peak decay
+wrong,rare,11,3,L11H3,trough,24,0.044623,0.001385,0.046008,True,baseline,0.010884,,near-peak decay
+wrong,rare,11,7,L11H7,peak,1,0.044369,0.072468,0.028099,True,dominant,0.013702,1.0,near-peak decay
+wrong,rare,11,7,L11H7,trough,31,0.044369,0.028099,0.072468,True,baseline,0.013702,,near-peak decay
+wrong,rare,11,8,L11H8,peak,1,0.06568,0.068338,0.002658,True,dominant,0.012211,1.0,near-peak decay
+wrong,rare,11,8,L11H8,trough,31,0.06568,0.002658,0.068338,True,baseline,0.012211,,near-peak decay
+wrong,rare,11,10,L11H10,peak,1,0.033301,0.040226,0.006926,True,dominant,0.007846,1.0,near-peak decay
+wrong,rare,11,10,L11H10,trough,27,0.033301,0.006926,0.040226,True,baseline,0.007846,,near-peak decay
+fact,rare,0,2,L0H2,peak,1,0.071309,0.374969,0.30366,True,dominant,0.000991,1.0,plateau
+fact,rare,0,2,L0H2,trough,31,0.071309,0.30366,0.374969,True,baseline,0.000991,,plateau
+fact,rare,0,3,L0H3,peak,1,0.027203,0.027204,1e-06,True,dominant,2.8e-05,1.0,near-peak decay
+fact,rare,0,3,L0H3,trough,31,0.027203,1e-06,0.027204,True,baseline,2.8e-05,,near-peak decay
+fact,rare,0,4,L0H4,peak,1,0.07947,0.080565,0.001094,True,dominant,0.000217,1.0,near-peak decay
+fact,rare,0,4,L0H4,trough,23,0.07947,0.001094,0.080565,True,baseline,0.000217,,near-peak decay
+fact,rare,0,5,L0H5,peak,31,0.023122,0.028204,0.005082,True,dominant,5e-06,1.0,far rise
+fact,rare,0,5,L0H5,trough,1,0.023122,0.005082,0.028204,True,baseline,5e-06,,far rise
+fact,rare,0,7,L0H7,peak,1,0.05397,0.054223,0.000253,True,dominant,0.00098,1.0,near-peak decay
+fact,rare,0,7,L0H7,trough,23,0.05397,0.000253,0.054223,True,baseline,0.00098,,near-peak decay
+fact,rare,0,9,L0H9,peak,31,0.033535,-0.04202,-0.075555,True,baseline,0.000489,,plateau
+fact,rare,0,9,L0H9,trough,1,0.033535,-0.075555,-0.04202,True,dominant,0.000489,1.0,plateau
+fact,rare,0,10,L0H10,peak,1,0.031507,0.067361,0.035855,True,baseline,0.00019,,plateau
+fact,rare,0,10,L0H10,trough,31,0.031507,0.035855,0.067361,True,dominant,0.00019,1.0,plateau
+fact,rare,1,0,L1H0,peak,25,0.024802,-0.000511,-0.025313,True,baseline,0.001031,,near-peak decay
+fact,rare,1,0,L1H0,trough,1,0.024802,-0.025313,-0.000511,True,dominant,0.001031,1.0,near-peak decay
+fact,rare,1,1,L1H1,peak,31,0.020526,-0.000116,-0.020642,True,baseline,0.000488,,near-peak decay
+fact,rare,1,1,L1H1,trough,1,0.020526,-0.020642,-0.000116,True,dominant,0.000488,1.0,near-peak decay
+fact,rare,1,11,L1H11,peak,1,0.096435,0.158879,0.062444,True,dominant,0.003645,1.0,near-peak decay
+fact,rare,1,11,L1H11,trough,31,0.096435,0.062444,0.158879,True,baseline,0.003645,,near-peak decay
+fact,rare,2,0,L2H0,peak,27,0.070866,-0.000561,-0.071428,True,baseline,0.00234,,near-peak decay
+fact,rare,2,0,L2H0,trough,1,0.070866,-0.071428,-0.000561,True,dominant,0.00234,1.0,near-peak decay
+fact,rare,2,2,L2H2,peak,27,0.179687,-0.0,-0.179687,True,baseline,0.00441,,near-peak decay
+fact,rare,2,2,L2H2,trough,1,0.179687,-0.179687,-0.0,True,dominant,0.00441,1.0,near-peak decay
+fact,rare,2,3,L2H3,peak,27,0.036905,-1e-05,-0.036915,True,baseline,0.000969,,near-peak decay
+fact,rare,2,3,L2H3,trough,1,0.036905,-0.036915,-1e-05,True,dominant,0.000969,1.0,near-peak decay
+fact,rare,2,5,L2H5,peak,27,0.116465,-4e-06,-0.116469,True,baseline,0.003087,,near-peak decay
+fact,rare,2,5,L2H5,trough,1,0.116465,-0.116469,-4e-06,True,dominant,0.003087,1.0,near-peak decay
+fact,rare,2,8,L2H8,peak,27,0.026554,-5e-06,-0.026559,True,baseline,0.001223,,near-peak decay
+fact,rare,2,8,L2H8,trough,1,0.026554,-0.026559,-5e-06,True,dominant,0.001223,1.0,near-peak decay
+fact,rare,2,9,L2H9,peak,27,0.151716,-8e-06,-0.151725,True,baseline,0.002801,,near-peak decay
+fact,rare,2,9,L2H9,trough,1,0.151716,-0.151725,-8e-06,True,dominant,0.002801,1.0,near-peak decay
+fact,rare,3,0,L3H0,peak,30,0.345318,0.479191,0.133873,True,dominant,0.015692,1.0,far rise
+fact,rare,3,0,L3H0,trough,1,0.345318,0.133873,0.479191,True,baseline,0.015692,,far rise
+fact,rare,3,0,L3H0,trough,31,0.112441,0.36675,0.479191,False,secondary,0.012061,2.0,far rise
+fact,rare,3,3,L3H3,peak,30,0.073389,-0.0,-0.073389,True,baseline,0.003743,,near-peak decay
+fact,rare,3,3,L3H3,trough,1,0.073389,-0.073389,-0.0,True,dominant,0.003743,1.0,near-peak decay
+fact,rare,3,4,L3H4,peak,3,0.034054,-0.068905,-0.102959,True,dominant,0.007374,1.0,plateau
+fact,rare,3,4,L3H4,trough,31,0.034054,-0.102959,-0.068905,True,baseline,0.007374,,plateau
+fact,rare,3,7,L3H7,peak,30,0.264986,-0.0,-0.264986,True,baseline,0.006534,,near-peak decay
+fact,rare,3,7,L3H7,trough,1,0.264986,-0.264986,-0.0,True,dominant,0.006534,1.0,near-peak decay
+fact,rare,3,8,L3H8,peak,30,0.082757,-0.0,-0.082757,True,baseline,0.003289,,near-peak decay
+fact,rare,3,8,L3H8,trough,1,0.082757,-0.082757,-0.0,True,dominant,0.003289,1.0,near-peak decay
+fact,rare,3,11,L3H11,peak,30,0.030657,-1e-06,-0.030658,True,baseline,0.001553,,near-peak decay
+fact,rare,3,11,L3H11,trough,1,0.030657,-0.030658,-1e-06,True,dominant,0.001553,1.0,near-peak decay
+fact,rare,4,6,L4H6,peak,30,0.051324,-4.4e-05,-0.051367,True,baseline,0.001457,,near-peak decay
+fact,rare,4,6,L4H6,trough,1,0.051324,-0.051367,-4.4e-05,True,dominant,0.001457,1.0,near-peak decay
+fact,rare,4,7,L4H7,peak,1,0.049787,0.043347,-0.00644,True,dominant,0.00427,1.0,near-peak decay
+fact,rare,4,7,L4H7,trough,2,0.049787,-0.00644,0.043347,True,baseline,0.00427,,near-peak decay
+fact,rare,4,8,L4H8,peak,31,0.031921,-0.017731,-0.049652,True,dominant,0.004338,1.0,far rise
+fact,rare,4,8,L4H8,trough,1,0.031921,-0.049652,-0.017731,True,baseline,0.004338,,far rise
+fact,rare,4,10,L4H10,peak,1,0.061933,0.256258,0.194325,True,dominant,0.015559,1.0,plateau
+fact,rare,4,10,L4H10,peak,31,0.054659,0.248984,0.194325,False,secondary,0.012907,2.0,plateau
+fact,rare,4,10,L4H10,trough,24,0.061933,0.194325,0.256258,True,baseline,0.015559,,plateau
+fact,rare,4,11,L4H11,peak,31,0.127122,-0.0,-0.127122,True,baseline,0.024331,,near-peak decay
+fact,rare,4,11,L4H11,trough,1,0.127122,-0.127122,-0.0,True,dominant,0.024331,1.0,near-peak decay
+fact,rare,5,6,L5H6,peak,1,0.100326,0.096874,-0.003452,True,dominant,0.011707,1.0,near-peak decay
+fact,rare,5,6,L5H6,trough,2,0.100326,-0.003452,0.096874,True,baseline,0.011707,,near-peak decay
+fact,rare,6,0,L6H0,peak,1,0.020239,0.020248,9e-06,True,dominant,0.003474,1.0,near-peak decay
+fact,rare,6,0,L6H0,trough,31,0.020239,9e-06,0.020248,True,baseline,0.003474,,near-peak decay
+fact,rare,7,0,L7H0,peak,30,0.076545,-0.0,-0.076546,True,baseline,0.005509,,near-peak decay
+fact,rare,7,0,L7H0,trough,1,0.076545,-0.076546,-0.0,True,dominant,0.005509,1.0,near-peak decay
+fact,rare,8,7,L8H7,peak,30,0.02721,-0.0,-0.02721,True,baseline,0.003789,,near-peak decay
+fact,rare,8,7,L8H7,trough,1,0.02721,-0.02721,-0.0,True,dominant,0.003789,1.0,near-peak decay
+fact,rare,9,8,L9H8,peak,1,0.036627,0.05797,0.021344,True,dominant,0.004809,1.0,near-peak decay
+fact,rare,9,8,L9H8,trough,30,0.036627,0.021344,0.05797,True,baseline,0.004809,,near-peak decay
+fact,rare,10,3,L10H3,peak,1,0.022277,-0.002699,-0.024976,True,dominant,0.005058,1.0,near-peak decay
+fact,rare,10,3,L10H3,trough,2,0.022277,-0.024976,-0.002699,True,baseline,0.005058,,near-peak decay
+fact,rare,10,7,L10H7,peak,1,0.070986,0.087278,0.016292,True,dominant,0.008526,1.0,near-peak decay
+fact,rare,10,7,L10H7,trough,17,0.070986,0.016292,0.087278,True,baseline,0.008526,,near-peak decay
+fact,rare,11,10,L11H10,peak,1,0.02404,0.028993,0.004953,True,dominant,0.003044,1.0,near-peak decay
+fact,rare,11,10,L11H10,trough,13,0.02404,0.004953,0.028993,True,baseline,0.003044,,near-peak decay

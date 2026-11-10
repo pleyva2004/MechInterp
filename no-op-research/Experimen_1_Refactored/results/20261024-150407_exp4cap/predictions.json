@@ -1,0 +1,32 @@
+[
+  {
+    "id": "F1",
+    "verdict": "PASS",
+    "detail": "common: -0.0314 [-0.0330, -0.0297]; rare: -0.0172 [-0.0186, -0.0159]"
+  },
+  {
+    "id": "F2",
+    "verdict": "PASS",
+    "detail": "common: -0.0333 [-0.0348, -0.0318]; rare: -0.0278 [-0.0290, -0.0267]"
+  },
+  {
+    "id": "F3",
+    "verdict": "FAIL",
+    "detail": "common: -0.0007 [-0.0026, +0.0012], q 0.29; rare: +0.0030 [+0.0017, +0.0043], q 1.1e-05"
+  },
+  {
+    "id": "F4",
+    "verdict": "FAIL",
+    "detail": "common: L9H8 30/30, L10H3 0/30, L11H7 0/30, L11H2 0/30; rare: L9H8 30/30, L10H3 0/30, L11H7 0/30, L11H2 0/30"
+  },
+  {
+    "id": "F5",
+    "verdict": "PASS",
+    "detail": "common: meaningful at d \u2265 2 in: none; rare: meaningful at d \u2265 2 in: none"
+  },
+  {
+    "id": "F6",
+    "verdict": "FAIL",
+    "detail": "common: beyond d = 8: L1H0 (d 9); rare: beyond d = 8: none"
+  }
+]

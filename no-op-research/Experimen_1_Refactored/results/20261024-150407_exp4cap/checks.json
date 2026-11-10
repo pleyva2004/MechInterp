@@ -1,0 +1,11 @@
+{
+  "design (ids at \u03c4 and 32, control row elsewhere, no repeats/BOS/stimulus ids)": "PASS (asserted per \u03c4, arm, condition)",
+  "attention rows sum to 1": "PASS (atol 0.0001, asserted per batch)",
+  "wrong-capital derangement has no fixed point": "PASS",
+  "determinism, common": "PASS (max |\u0394| 0.0e+00)",
+  "TL vs HF, common": "PASS (max |\u0394| 1.2e-05)",
+  "controls identical own vs wrong, common": "PASS (max |\u0394| 3.0e-07)",
+  "determinism, rare": "PASS (max |\u0394| 0.0e+00)",
+  "TL vs HF, rare": "PASS (max |\u0394| 4.3e-05)",
+  "controls identical own vs wrong, rare": "PASS (max |\u0394| 2.4e-07)"
+}
