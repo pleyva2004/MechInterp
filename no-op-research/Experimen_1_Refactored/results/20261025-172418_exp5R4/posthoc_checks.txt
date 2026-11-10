@@ -1,0 +1,164 @@
+=== common, tau = 16
+(a) main, window 11-12: 1 mixed nodes, 2724 points; share from layer 12: 0.788; own share of their layer-12 points 0.500, of their layer-11 points 0.500
+(b) single-layer windows, m = 0.8: x_10: 94 nodes, mixed 0.000; x_11: 100 nodes, mixed 0.000; x_12: 98 nodes, mixed 0.000
+(b) single-layer windows, m = 0.9: x_10: 70 nodes, mixed 0.000; x_11: 68 nodes, mixed 0.000; x_12: 70 nodes, mixed 0.000
+(b) single-layer windows, m = 1.0: x_10: 40 nodes, mixed 0.000; x_11: 48 nodes, mixed 0.000; x_12: 46 nodes, mixed 0.000
+(b) single-layer windows, m = 1.1: x_10: 28 nodes, mixed 0.000; x_11: 30 nodes, mixed 0.000; x_12: 22 nodes, mixed 0.000
+(b) single-layer windows, m = 1.2: x_10: 19 nodes, mixed 0.963; x_11: 23 nodes, mixed 0.965; x_12: 19 nodes, mixed 0.945
+(c) (2, 1, 0.8): unclean windows 11-12
+(c) (2, 1, 0.9): unclean windows 11-12
+(c) (2, 1, 1.0): unclean windows 11-12
+(c) (2, 1, 1.1): unclean windows 11-12
+(c) (2, 1, 1.2): unclean windows 10-11,11-12
+(c) (3, 1, 0.8): unclean windows 10-12
+(c) (3, 1, 0.9): unclean windows 10-12
+(c) (3, 1, 1.0): unclean windows 10-12
+(c) (3, 1, 1.1): unclean windows 10-12
+(c) (3, 1, 1.2): unclean windows 9-11,10-12
+(c) (4, 1, 0.8): unclean windows 9-12
+(c) (4, 1, 0.9): unclean windows 9-12
+(c) (4, 1, 1.0): unclean windows 9-12
+(c) (4, 1, 1.1): unclean windows 9-12
+(c) (4, 1, 1.2): unclean windows 9-12
+(c) (4, 2, 0.8): unclean windows 9-12
+(c) (4, 2, 0.9): unclean windows 9-12
+(c) (4, 2, 1.0): unclean windows 9-12
+(c) (4, 2, 1.1): unclean windows 9-12
+(c) (4, 2, 1.2): unclean windows 9-12
+(c) global scale m = 0.8: unclean windows 11-12
+(c) global scale m = 0.9: unclean windows 11-12
+(c) global scale m = 1.0: unclean windows 11-12
+(c) global scale m = 1.1: unclean windows 10-11,11-12
+(c) global scale m = 1.2: unclean windows 1-2,2-3,10-11,11-12
+(d) PCA 768 m = 0.8: unclean windows 11-12; mixed share per window [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.46]
+(d) PCA 768 m = 0.9: unclean windows 11-12; mixed share per window [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.54]
+(d) PCA 768 m = 1.0: unclean windows 11-12; mixed share per window [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.64]
+(d) PCA 768 m = 1.1: unclean windows 11-12; mixed share per window [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.78]
+(d) PCA 768 m = 1.2: unclean windows 8-9,9-10,10-11,11-12; mixed share per window [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.99, 0.97, 0.94, 0.88]
+(e) x_8: minority cluster 1 points, own share 0.00, cells 9:1
+(e) x_10: minority cluster 4 points, own share 1.00, cells 4:2, 6:2
+(e) x_12: minority cluster 2 points, own share 0.00, cells 4:1, 6:1
+(f) leave-one-cell-out centroid accuracy x_1..x_12: 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000
+
+=== common, tau = 1
+(a) main, window 11-12: 1 mixed nodes, 2833 points; share from layer 12: 0.695; own share of their layer-12 points 0.505, of their layer-11 points 0.830
+(b) single-layer windows, m = 0.8: x_10: 148 nodes, mixed 0.000; x_11: 184 nodes, mixed 0.000; x_12: 192 nodes, mixed 0.000
+(b) single-layer windows, m = 0.9: x_10: 94 nodes, mixed 0.000; x_11: 122 nodes, mixed 0.000; x_12: 128 nodes, mixed 0.000
+(b) single-layer windows, m = 1.0: x_10: 66 nodes, mixed 0.000; x_11: 86 nodes, mixed 0.000; x_12: 81 nodes, mixed 0.763
+(b) single-layer windows, m = 1.1: x_10: 48 nodes, mixed 0.000; x_11: 63 nodes, mixed 0.842; x_12: 61 nodes, mixed 0.763
+(b) single-layer windows, m = 1.2: x_10: 43 nodes, mixed 0.886; x_11: 53 nodes, mixed 0.842; x_12: 41 nodes, mixed 0.898
+(c) (2, 1, 0.8): unclean windows 11-12
+(c) (2, 1, 0.9): unclean windows 11-12
+(c) (2, 1, 1.0): unclean windows 11-12
+(c) (2, 1, 1.1): unclean windows 11-12
+(c) (2, 1, 1.2): unclean windows 9-10,10-11,11-12
+(c) (3, 1, 0.8): unclean windows 10-12
+(c) (3, 1, 0.9): unclean windows 10-12
+(c) (3, 1, 1.0): unclean windows 10-12
+(c) (3, 1, 1.1): unclean windows 10-12
+(c) (3, 1, 1.2): unclean windows 9-11,10-12
+(c) (4, 1, 0.8): unclean windows 9-12
+(c) (4, 1, 0.9): unclean windows 9-12
+(c) (4, 1, 1.0): unclean windows 9-12
+(c) (4, 1, 1.1): unclean windows 9-12
+(c) (4, 1, 1.2): unclean windows 8-11,9-12
+(c) (4, 2, 0.8): unclean windows 9-12
+(c) (4, 2, 0.9): unclean windows 9-12
+(c) (4, 2, 1.0): unclean windows 9-12
+(c) (4, 2, 1.1): unclean windows 9-12
+(c) (4, 2, 1.2): unclean windows 9-12
+(c) global scale m = 0.8: unclean windows 11-12
+(c) global scale m = 0.9: unclean windows 11-12
+(c) global scale m = 1.0: unclean windows 1-2,2-3,11-12
+(c) global scale m = 1.1: unclean windows 1-2,2-3,11-12
+(c) global scale m = 1.2: unclean windows 1-2,2-3,3-4,10-11,11-12
+(d) PCA 768 m = 0.8: unclean windows 11-12; mixed share per window [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.44]
+(d) PCA 768 m = 0.9: unclean windows 11-12; mixed share per window [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.51]
+(d) PCA 768 m = 1.0: unclean windows 11-12; mixed share per window [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.69]
+(d) PCA 768 m = 1.1: unclean windows 10-11,11-12; mixed share per window [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.84, 0.78]
+(d) PCA 768 m = 1.2: unclean windows 9-10,10-11,11-12; mixed share per window [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.93, 0.84, 0.85]
+(e) x_8: minority cluster 1100 points, own share 1.00, cells 0:100, 1:100, 2:100, 3:100, 4:100, 5:100, 6:100, 7:100, 8:100, 9:100, 10:100
+(e) x_10: minority cluster 4 points, own share 1.00, cells 4:1, 6:1, 8:1, 9:1
+(e) x_12: minority cluster 2 points, own share 0.00, cells 4:1, 6:1
+(f) leave-one-cell-out centroid accuracy x_1..x_12: 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 0.999
+
+=== rare, tau = 16
+(a) main, window 11-12: 1 mixed nodes, 2721 points; share from layer 12: 0.755; own share of their layer-12 points 0.509, of their layer-11 points 0.945
+(b) single-layer windows, m = 0.8: x_10: 200 nodes, mixed 0.000; x_11: 226 nodes, mixed 0.000; x_12: 224 nodes, mixed 0.000
+(b) single-layer windows, m = 0.9: x_10: 136 nodes, mixed 0.000; x_11: 162 nodes, mixed 0.000; x_12: 170 nodes, mixed 0.000
+(b) single-layer windows, m = 1.0: x_10: 100 nodes, mixed 0.000; x_11: 116 nodes, mixed 0.000; x_12: 124 nodes, mixed 0.000
+(b) single-layer windows, m = 1.1: x_10: 78 nodes, mixed 0.000; x_11: 82 nodes, mixed 0.000; x_12: 82 nodes, mixed 0.000
+(b) single-layer windows, m = 1.2: x_10: 65 nodes, mixed 0.909; x_11: 77 nodes, mixed 0.900; x_12: 69 nodes, mixed 0.909
+(c) (2, 1, 0.8): unclean windows 11-12
+(c) (2, 1, 0.9): unclean windows 11-12
+(c) (2, 1, 1.0): unclean windows 11-12
+(c) (2, 1, 1.1): unclean windows 11-12
+(c) (2, 1, 1.2): unclean windows 8-9,9-10,10-11,11-12
+(c) (3, 1, 0.8): unclean windows 10-12
+(c) (3, 1, 0.9): unclean windows 10-12
+(c) (3, 1, 1.0): unclean windows 10-12
+(c) (3, 1, 1.1): unclean windows 10-12
+(c) (3, 1, 1.2): unclean windows 8-10,9-11,10-12
+(c) (4, 1, 0.8): unclean windows 9-12
+(c) (4, 1, 0.9): unclean windows 9-12
+(c) (4, 1, 1.0): unclean windows 9-12
+(c) (4, 1, 1.1): unclean windows 9-12
+(c) (4, 1, 1.2): unclean windows 8-11,9-12
+(c) (4, 2, 0.8): unclean windows 9-12
+(c) (4, 2, 0.9): unclean windows 9-12
+(c) (4, 2, 1.0): unclean windows 9-12
+(c) (4, 2, 1.1): unclean windows 9-12
+(c) (4, 2, 1.2): unclean windows 9-12
+(c) global scale m = 0.8: unclean windows 11-12
+(c) global scale m = 0.9: unclean windows 11-12
+(c) global scale m = 1.0: unclean windows 2-3,11-12
+(c) global scale m = 1.1: unclean windows 1-2,2-3,10-11,11-12
+(c) global scale m = 1.2: unclean windows 1-2,2-3,3-4,10-11,11-12
+(d) PCA 768 m = 0.8: unclean windows 11-12; mixed share per window [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.44]
+(d) PCA 768 m = 0.9: unclean windows 11-12; mixed share per window [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.58]
+(d) PCA 768 m = 1.0: unclean windows 11-12; mixed share per window [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.73]
+(d) PCA 768 m = 1.1: unclean windows 9-10,10-11,11-12; mixed share per window [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.9, 0.86, 0.78]
+(d) PCA 768 m = 1.2: unclean windows 7-8,8-9,9-10,10-11,11-12; mixed share per window [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.97, 0.95, 0.9, 0.87, 0.85]
+(e) x_8: minority cluster 1 points, own share 1.00, cells 6:1
+(e) x_10: minority cluster 1 points, own share 0.00, cells 6:1
+(e) x_12: minority cluster 1 points, own share 0.00, cells 6:1
+(f) leave-one-cell-out centroid accuracy x_1..x_12: 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 0.998
+
+=== rare, tau = 1
+(b) single-layer windows, m = 0.8: x_10: 164 nodes, mixed 0.000; x_11: 188 nodes, mixed 0.000; x_12: 208 nodes, mixed 0.000
+(b) single-layer windows, m = 0.9: x_10: 102 nodes, mixed 0.000; x_11: 108 nodes, mixed 0.000; x_12: 150 nodes, mixed 0.000
+(b) single-layer windows, m = 1.0: x_10: 68 nodes, mixed 0.000; x_11: 82 nodes, mixed 0.000; x_12: 100 nodes, mixed 0.000
+(b) single-layer windows, m = 1.1: x_10: 56 nodes, mixed 0.000; x_11: 70 nodes, mixed 0.000; x_12: 76 nodes, mixed 0.000
+(b) single-layer windows, m = 1.2: x_10: 45 nodes, mixed 0.936; x_11: 55 nodes, mixed 0.921; x_12: 63 nodes, mixed 0.905
+(c) (2, 1, 1.1): unclean windows 11-12
+(c) (2, 1, 1.2): unclean windows 10-11,11-12
+(c) (3, 1, 0.8): unclean windows 3-5,10-12
+(c) (3, 1, 0.9): unclean windows 3-5,10-12
+(c) (3, 1, 1.0): unclean windows 3-5,10-12
+(c) (3, 1, 1.1): unclean windows 3-5,10-12
+(c) (3, 1, 1.2): unclean windows 3-5,10-12
+(c) (4, 1, 0.8): unclean windows 9-12
+(c) (4, 1, 0.9): unclean windows 2-5,9-12
+(c) (4, 1, 1.0): unclean windows 2-5,9-12
+(c) (4, 1, 1.1): unclean windows 2-5,9-12
+(c) (4, 1, 1.2): unclean windows 2-5,9-12
+(c) (4, 2, 0.8): unclean windows 9-12
+(c) (4, 2, 0.9): unclean windows 9-12
+(c) (4, 2, 1.0): unclean windows 9-12
+(c) (4, 2, 1.1): unclean windows 9-12
+(c) (4, 2, 1.2): unclean windows 9-12
+(c) global scale m = 0.8: unclean windows 1-2,2-3,11-12
+(c) global scale m = 0.9: unclean windows 1-2,2-3,11-12
+(c) global scale m = 1.0: unclean windows 1-2,2-3,11-12
+(c) global scale m = 1.1: unclean windows 1-2,2-3,11-12
+(c) global scale m = 1.2: unclean windows 1-2,2-3,3-4,10-11,11-12
+(d) PCA 768 m = 0.8: unclean windows 11-12; mixed share per window [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.46]
+(d) PCA 768 m = 0.9: unclean windows 11-12; mixed share per window [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.58]
+(d) PCA 768 m = 1.0: unclean windows 11-12; mixed share per window [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.69]
+(d) PCA 768 m = 1.1: unclean windows 10-11,11-12; mixed share per window [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.88, 0.77]
+(d) PCA 768 m = 1.2: unclean windows 9-10,10-11,11-12; mixed share per window [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.94, 0.88, 0.84]
+(e) x_8: minority cluster 12 points, own share 1.00, cells 0:1, 4:2, 6:3, 7:1, 8:2, 9:3
+(e) x_10: minority cluster 8 points, own share 0.00, cells 0:1, 1:1, 4:1, 5:1, 6:1, 7:1, 8:1, 9:1
+(e) x_12: minority cluster 8 points, own share 1.00, cells 0:1, 1:1, 4:1, 5:1, 6:1, 7:1, 8:1, 9:1
+(f) leave-one-cell-out centroid accuracy x_1..x_12: 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000
+

@@ -1,0 +1,2417 @@
+{
+ "verdicts": {
+  "R4-a": {
+   "main": false,
+   "s_grid": 0.0,
+   "s_boot": 0.0,
+   "main_boot": 0.0,
+   "per_setting_boot": {
+    "w2s1m0.8": 0.0,
+    "w2s1m0.9": 0.0,
+    "w2s1m1.0": 0.0,
+    "w2s1m1.1": 0.0,
+    "w2s1m1.2": 0.0,
+    "w3s1m0.8": 0.0,
+    "w3s1m0.9": 0.0,
+    "w3s1m1.0": 0.0,
+    "w3s1m1.1": 0.0,
+    "w3s1m1.2": 0.0,
+    "w4s1m0.8": 0.0,
+    "w4s1m0.9": 0.0,
+    "w4s1m1.0": 0.0,
+    "w4s1m1.1": 0.0,
+    "w4s1m1.2": 0.0,
+    "w4s2m0.8": 0.0,
+    "w4s2m0.9": 0.0,
+    "w4s2m1.0": 0.0,
+    "w4s2m1.1": 0.0,
+    "w4s2m1.2": 0.0
+   },
+   "stability": "stable"
+  },
+  "R4-b": {
+   "main": false,
+   "s_grid": 0.0,
+   "s_boot": 0.0,
+   "main_boot": 0.0,
+   "per_setting_boot": {
+    "w2s1m0.8": 0.0,
+    "w2s1m0.9": 0.0,
+    "w2s1m1.0": 0.0,
+    "w2s1m1.1": 0.0,
+    "w2s1m1.2": 0.0,
+    "w3s1m0.8": 0.0,
+    "w3s1m0.9": 0.0,
+    "w3s1m1.0": 0.0,
+    "w3s1m1.1": 0.0,
+    "w3s1m1.2": 0.0,
+    "w4s1m0.8": 0.0,
+    "w4s1m0.9": 0.0,
+    "w4s1m1.0": 0.0,
+    "w4s1m1.1": 0.0,
+    "w4s1m1.2": 0.0,
+    "w4s2m0.8": 0.0,
+    "w4s2m0.9": 0.0,
+    "w4s2m1.0": 0.0,
+    "w4s2m1.1": 0.0,
+    "w4s2m1.2": 0.0
+   },
+   "stability": "stable"
+  }
+ },
+ "R": 100,
+ "n_boot": 100,
+ "main_setting": {
+  "w": 2,
+  "s": 1,
+  "m": 1.0
+ },
+ "lstar_main_full": {
+  "common_tau16": null,
+  "rare_tau16": null,
+  "common_tau1": null,
+  "rare_tau1": 1,
+  "common_tau31": null,
+  "rare_tau31": null
+ },
+ "lstar_grid_full": {
+  "w2s1m0.8": {
+   "common_tau16": null,
+   "rare_tau16": null,
+   "common_tau1": null,
+   "rare_tau1": 1,
+   "common_tau31": null,
+   "rare_tau31": null
+  },
+  "w2s1m0.9": {
+   "common_tau16": null,
+   "rare_tau16": null,
+   "common_tau1": null,
+   "rare_tau1": 1,
+   "common_tau31": null,
+   "rare_tau31": null
+  },
+  "w2s1m1.0": {
+   "common_tau16": null,
+   "rare_tau16": null,
+   "common_tau1": null,
+   "rare_tau1": 1,
+   "common_tau31": null,
+   "rare_tau31": null
+  },
+  "w2s1m1.1": {
+   "common_tau16": null,
+   "rare_tau16": null,
+   "common_tau1": null,
+   "rare_tau1": null,
+   "common_tau31": null,
+   "rare_tau31": null
+  },
+  "w2s1m1.2": {
+   "common_tau16": null,
+   "rare_tau16": null,
+   "common_tau1": null,
+   "rare_tau1": null,
+   "common_tau31": null,
+   "rare_tau31": null
+  },
+  "w3s1m0.8": {
+   "common_tau16": null,
+   "rare_tau16": null,
+   "common_tau1": null,
+   "rare_tau1": null,
+   "common_tau31": null,
+   "rare_tau31": null
+  },
+  "w3s1m0.9": {
+   "common_tau16": null,
+   "rare_tau16": null,
+   "common_tau1": null,
+   "rare_tau1": null,
+   "common_tau31": null,
+   "rare_tau31": null
+  },
+  "w3s1m1.0": {
+   "common_tau16": null,
+   "rare_tau16": null,
+   "common_tau1": null,
+   "rare_tau1": null,
+   "common_tau31": null,
+   "rare_tau31": null
+  },
+  "w3s1m1.1": {
+   "common_tau16": null,
+   "rare_tau16": null,
+   "common_tau1": null,
+   "rare_tau1": null,
+   "common_tau31": null,
+   "rare_tau31": null
+  },
+  "w3s1m1.2": {
+   "common_tau16": null,
+   "rare_tau16": null,
+   "common_tau1": null,
+   "rare_tau1": null,
+   "common_tau31": null,
+   "rare_tau31": null
+  },
+  "w4s1m0.8": {
+   "common_tau16": null,
+   "rare_tau16": null,
+   "common_tau1": null,
+   "rare_tau1": null,
+   "common_tau31": null,
+   "rare_tau31": null
+  },
+  "w4s1m0.9": {
+   "common_tau16": null,
+   "rare_tau16": null,
+   "common_tau1": null,
+   "rare_tau1": null,
+   "common_tau31": null,
+   "rare_tau31": null
+  },
+  "w4s1m1.0": {
+   "common_tau16": null,
+   "rare_tau16": null,
+   "common_tau1": null,
+   "rare_tau1": null,
+   "common_tau31": null,
+   "rare_tau31": null
+  },
+  "w4s1m1.1": {
+   "common_tau16": null,
+   "rare_tau16": null,
+   "common_tau1": null,
+   "rare_tau1": null,
+   "common_tau31": null,
+   "rare_tau31": null
+  },
+  "w4s1m1.2": {
+   "common_tau16": null,
+   "rare_tau16": null,
+   "common_tau1": null,
+   "rare_tau1": null,
+   "common_tau31": null,
+   "rare_tau31": null
+  },
+  "w4s2m0.8": {
+   "common_tau16": null,
+   "rare_tau16": null,
+   "common_tau1": null,
+   "rare_tau1": null,
+   "common_tau31": null,
+   "rare_tau31": null
+  },
+  "w4s2m0.9": {
+   "common_tau16": null,
+   "rare_tau16": null,
+   "common_tau1": null,
+   "rare_tau1": null,
+   "common_tau31": null,
+   "rare_tau31": null
+  },
+  "w4s2m1.0": {
+   "common_tau16": null,
+   "rare_tau16": null,
+   "common_tau1": null,
+   "rare_tau1": null,
+   "common_tau31": null,
+   "rare_tau31": null
+  },
+  "w4s2m1.1": {
+   "common_tau16": null,
+   "rare_tau16": null,
+   "common_tau1": null,
+   "rare_tau1": null,
+   "common_tau31": null,
+   "rare_tau31": null
+  },
+  "w4s2m1.2": {
+   "common_tau16": null,
+   "rare_tau16": null,
+   "common_tau1": null,
+   "rare_tau1": null,
+   "common_tau31": null,
+   "rare_tau31": null
+  }
+ },
+ "lstar_boot_main": {
+  "common_tau16": [
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null
+  ],
+  "rare_tau16": [
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null
+  ],
+  "common_tau1": [
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null
+  ],
+  "rare_tau1": [
+   null,
+   1,
+   null,
+   null,
+   1,
+   1,
+   1,
+   null,
+   null,
+   null,
+   null,
+   1,
+   null,
+   null,
+   1,
+   1,
+   null,
+   1,
+   1,
+   null,
+   1,
+   null,
+   null,
+   1,
+   1,
+   1,
+   null,
+   1,
+   1,
+   1,
+   1,
+   1,
+   null,
+   null,
+   1,
+   null,
+   1,
+   null,
+   1,
+   1,
+   1,
+   null,
+   null,
+   null,
+   1,
+   1,
+   null,
+   1,
+   null,
+   1,
+   null,
+   null,
+   null,
+   1,
+   null,
+   null,
+   null,
+   1,
+   1,
+   1,
+   1,
+   1,
+   null,
+   1,
+   1,
+   null,
+   1,
+   null,
+   1,
+   1,
+   1,
+   1,
+   null,
+   null,
+   1,
+   null,
+   null,
+   null,
+   1,
+   null,
+   1,
+   null,
+   null,
+   null,
+   null,
+   1,
+   1,
+   1,
+   1,
+   null,
+   null,
+   null,
+   1,
+   1,
+   null,
+   null,
+   1,
+   1,
+   null,
+   1
+  ]
+ },
+ "sensitivity": {
+  "PCA 20, m = 0.8": {
+   "common_tau31": null,
+   "common_tau16": null,
+   "common_tau1": 1,
+   "rare_tau31": null,
+   "rare_tau16": null,
+   "rare_tau1": 1
+  },
+  "PCA 20, m = 0.9": {
+   "common_tau31": null,
+   "common_tau16": null,
+   "common_tau1": 1,
+   "rare_tau31": null,
+   "rare_tau16": null,
+   "rare_tau1": 1
+  },
+  "PCA 20, m = 1.0 (main m)": {
+   "common_tau31": null,
+   "common_tau16": null,
+   "common_tau1": 1,
+   "rare_tau31": null,
+   "rare_tau16": null,
+   "rare_tau1": 1
+  },
+  "PCA 20, m = 1.1": {
+   "common_tau31": null,
+   "common_tau16": null,
+   "common_tau1": null,
+   "rare_tau31": null,
+   "rare_tau16": null,
+   "rare_tau1": 1
+  },
+  "PCA 20, m = 1.2": {
+   "common_tau31": null,
+   "common_tau16": null,
+   "common_tau1": null,
+   "rare_tau31": null,
+   "rare_tau16": null,
+   "rare_tau1": null
+  },
+  "PCA 100, m = 0.8": {
+   "common_tau31": null,
+   "common_tau16": null,
+   "common_tau1": 1,
+   "rare_tau31": null,
+   "rare_tau16": null,
+   "rare_tau1": 1
+  },
+  "PCA 100, m = 0.9": {
+   "common_tau31": null,
+   "common_tau16": null,
+   "common_tau1": 1,
+   "rare_tau31": null,
+   "rare_tau16": null,
+   "rare_tau1": 1
+  },
+  "PCA 100, m = 1.0 (main m)": {
+   "common_tau31": null,
+   "common_tau16": null,
+   "common_tau1": null,
+   "rare_tau31": null,
+   "rare_tau16": null,
+   "rare_tau1": null
+  },
+  "PCA 100, m = 1.1": {
+   "common_tau31": null,
+   "common_tau16": null,
+   "common_tau1": null,
+   "rare_tau31": null,
+   "rare_tau16": null,
+   "rare_tau1": null
+  },
+  "PCA 100, m = 1.2": {
+   "common_tau31": null,
+   "common_tau16": null,
+   "common_tau1": null,
+   "rare_tau31": null,
+   "rare_tau16": null,
+   "rare_tau1": null
+  },
+  "PCA 768, m = 0.8": {
+   "common_tau31": null,
+   "common_tau16": null,
+   "common_tau1": null,
+   "rare_tau31": null,
+   "rare_tau16": null,
+   "rare_tau1": null
+  },
+  "PCA 768, m = 0.9": {
+   "common_tau31": null,
+   "common_tau16": null,
+   "common_tau1": null,
+   "rare_tau31": null,
+   "rare_tau16": null,
+   "rare_tau1": null
+  },
+  "PCA 768, m = 1.0 (main m)": {
+   "common_tau31": null,
+   "common_tau16": null,
+   "common_tau1": null,
+   "rare_tau31": null,
+   "rare_tau16": null,
+   "rare_tau1": null
+  },
+  "PCA 768, m = 1.1": {
+   "common_tau31": null,
+   "common_tau16": null,
+   "common_tau1": null,
+   "rare_tau31": null,
+   "rare_tau16": null,
+   "rare_tau1": null
+  },
+  "PCA 768, m = 1.2": {
+   "common_tau31": null,
+   "common_tau16": null,
+   "common_tau1": null,
+   "rare_tau31": null,
+   "rare_tau16": null,
+   "rare_tau1": null
+  },
+  "global scale, m = 0.8": {
+   "common_tau31": null,
+   "common_tau16": null,
+   "common_tau1": null,
+   "rare_tau31": null,
+   "rare_tau16": null,
+   "rare_tau1": null
+  },
+  "global scale, m = 0.9": {
+   "common_tau31": null,
+   "common_tau16": null,
+   "common_tau1": null,
+   "rare_tau31": null,
+   "rare_tau16": null,
+   "rare_tau1": null
+  },
+  "global scale, m = 1.0 (main m)": {
+   "common_tau31": null,
+   "common_tau16": null,
+   "common_tau1": null,
+   "rare_tau31": null,
+   "rare_tau16": null,
+   "rare_tau1": null
+  },
+  "global scale, m = 1.1": {
+   "common_tau31": null,
+   "common_tau16": null,
+   "common_tau1": null,
+   "rare_tau31": null,
+   "rare_tau16": null,
+   "rare_tau1": null
+  },
+  "global scale, m = 1.2": {
+   "common_tau31": null,
+   "common_tau16": null,
+   "common_tau1": null,
+   "rare_tau31": null,
+   "rare_tau16": null,
+   "rare_tau1": null
+  }
+ },
+ "windows_main": {
+  "common_tau16": {
+   "pure_own_pts": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.49818181818181817,
+    0.49772727272727274,
+    0.49318181818181817,
+    0.49227272727272725,
+    0.16772727272727272
+   ],
+   "pure_wrong_pts": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.49818181818181817,
+    0.49772727272727274,
+    0.49318181818181817,
+    0.49227272727272725,
+    0.16772727272727272
+   ],
+   "mixed_pts": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.6190909090909091
+   ],
+   "small_pts": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0036363636363636364,
+    0.004545454545454545,
+    0.013636363636363636,
+    0.015454545454545455,
+    0.045454545454545456
+   ],
+   "n_nodes": [
+    2,
+    2,
+    4,
+    2,
+    2,
+    2,
+    8,
+    16,
+    36,
+    52,
+    137
+   ],
+   "n_checked": [
+    2,
+    2,
+    4,
+    2,
+    2,
+    2,
+    4,
+    8,
+    20,
+    32,
+    23
+   ]
+  },
+  "rare_tau16": {
+   "pure_own_pts": [
+    0.5,
+    0.5,
+    0.49977272727272726,
+    0.49977272727272726,
+    0.5,
+    0.49863636363636366,
+    0.49227272727272725,
+    0.4913636363636364,
+    0.4802272727272727,
+    0.4752272727272727,
+    0.07090909090909091
+   ],
+   "pure_wrong_pts": [
+    0.5,
+    0.5,
+    0.49977272727272726,
+    0.49977272727272726,
+    0.5,
+    0.49863636363636366,
+    0.49227272727272725,
+    0.4913636363636364,
+    0.4802272727272727,
+    0.4752272727272727,
+    0.21409090909090908
+   ],
+   "mixed_pts": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.6184090909090909
+   ],
+   "small_pts": [
+    0.0,
+    0.0,
+    0.00045454545454545455,
+    0.00045454545454545455,
+    0.0,
+    0.0027272727272727275,
+    0.015454545454545455,
+    0.017272727272727273,
+    0.03954545454545454,
+    0.049545454545454545,
+    0.09659090909090909
+   ],
+   "n_nodes": [
+    4,
+    2,
+    4,
+    4,
+    2,
+    8,
+    44,
+    62,
+    98,
+    130,
+    295
+   ],
+   "n_checked": [
+    4,
+    2,
+    2,
+    2,
+    2,
+    2,
+    18,
+    36,
+    34,
+    46,
+    31
+   ]
+  },
+  "common_tau1": {
+   "pure_own_pts": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.49272727272727274,
+    0.4954545454545455,
+    0.06795454545454545
+   ],
+   "pure_wrong_pts": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.49272727272727274,
+    0.4954545454545455,
+    0.2015909090909091
+   ],
+   "mixed_pts": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.6438636363636364
+   ],
+   "small_pts": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.014545454545454545,
+    0.00909090909090909,
+    0.0865909090909091
+   ],
+   "n_nodes": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    4,
+    16,
+    60,
+    78,
+    243
+   ],
+   "n_checked": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    4,
+    16,
+    34,
+    62,
+    51
+   ]
+  },
+  "rare_tau1": {
+   "pure_own_pts": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.49977272727272726,
+    0.49613636363636365,
+    0.49636363636363634,
+    0.4893181818181818,
+    0.48772727272727273,
+    0.4590909090909091
+   ],
+   "pure_wrong_pts": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.49977272727272726,
+    0.49613636363636365,
+    0.49636363636363634,
+    0.4893181818181818,
+    0.48772727272727273,
+    0.4590909090909091
+   ],
+   "mixed_pts": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "small_pts": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.00045454545454545455,
+    0.007727272727272728,
+    0.007272727272727273,
+    0.021363636363636362,
+    0.024545454545454544,
+    0.08181818181818182
+   ],
+   "n_nodes": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    4,
+    26,
+    36,
+    78,
+    96,
+    254
+   ],
+   "n_checked": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    10,
+    24,
+    38,
+    50,
+    48
+   ]
+  },
+  "common_tau31": {
+   "pure_own_pts": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.49886363636363634,
+    0.18227272727272728
+   ],
+   "pure_wrong_pts": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.49886363636363634,
+    0.18227272727272728
+   ],
+   "mixed_pts": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.634090909090909
+   ],
+   "small_pts": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0022727272727272726,
+    0.0013636363636363637
+   ],
+   "n_nodes": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    6,
+    23
+   ],
+   "n_checked": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    19
+   ]
+  },
+  "rare_tau31": {
+   "pure_own_pts": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.49977272727272726,
+    0.1925
+   ],
+   "pure_wrong_pts": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.49977272727272726,
+    0.1925
+   ],
+   "mixed_pts": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.6125
+   ],
+   "small_pts": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.00045454545454545455,
+    0.0025
+   ],
+   "n_nodes": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    4,
+    4,
+    4,
+    2,
+    6,
+    24
+   ],
+   "n_checked": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    4,
+    4,
+    4,
+    2,
+    4,
+    19
+   ]
+  }
+ },
+ "describe_main": {
+  "common_tau31": {
+   "n_nodes": 47,
+   "n_edges": 46,
+   "cross_pure_edges": 0,
+   "cross_majority_edges": 1,
+   "cross_majority_shared_pts": 295,
+   "cells_per_pure_node_median": 11.0,
+   "pure_nodes_single_cell_share": 0.47368421052631576
+  },
+  "common_tau16": {
+   "n_nodes": 263,
+   "n_edges": 302,
+   "cross_pure_edges": 0,
+   "cross_majority_edges": 2,
+   "cross_majority_shared_pts": 289,
+   "cells_per_pure_node_median": 4.0,
+   "pure_nodes_single_cell_share": 0.1
+  },
+  "common_tau1": {
+   "n_nodes": 413,
+   "n_edges": 476,
+   "cross_pure_edges": 0,
+   "cross_majority_edges": 1,
+   "cross_majority_shared_pts": 147,
+   "cells_per_pure_node_median": 5.0,
+   "pure_nodes_single_cell_share": 0.011235955056179775
+  },
+  "rare_tau31": {
+   "n_nodes": 54,
+   "n_edges": 61,
+   "cross_pure_edges": 0,
+   "cross_majority_edges": 1,
+   "cross_majority_shared_pts": 254,
+   "cells_per_pure_node_median": 3.0,
+   "pure_nodes_single_cell_share": 0.391304347826087
+  },
+  "rare_tau16": {
+   "n_nodes": 653,
+   "n_edges": 664,
+   "cross_pure_edges": 0,
+   "cross_majority_edges": 1,
+   "cross_majority_shared_pts": 37,
+   "cells_per_pure_node_median": 4.0,
+   "pure_nodes_single_cell_share": 0.06741573033707865
+  },
+  "rare_tau1": {
+   "n_nodes": 504,
+   "n_edges": 526,
+   "cross_pure_edges": 0,
+   "cross_majority_edges": 0,
+   "cross_majority_shared_pts": 0,
+   "cells_per_pure_node_median": 5.0,
+   "pure_nodes_single_cell_share": 0.03296703296703297,
+   "post_components": 34,
+   "post_components_with_both": 0
+  }
+ },
+ "nulls_main": {
+  "common_tau16": {
+   "pair": {
+    "n": 1000,
+    "share_defined": 0.0,
+    "pure_pts_mean": 0.0024415702479338845,
+    "pure_pts_q95": 0.004588842975206609
+   },
+   "cell": {
+    "n": 1023,
+    "share_defined": 0.0,
+    "pure_pts_mean": 0.08149523763360074,
+    "pure_pts_q95": 0.916095041322314
+   }
+  },
+  "common_tau1": {
+   "pair": {
+    "n": 1000,
+    "share_defined": 0.0,
+    "pure_pts_mean": 0.004494111570247934,
+    "pure_pts_q95": 0.007603305785123967
+   },
+   "cell": {
+    "n": 1023,
+    "share_defined": 0.0,
+    "pure_pts_mean": 0.06619192457768837,
+    "pure_pts_q95": 0.8866818181818173
+   }
+  },
+  "rare_tau16": {
+   "pair": {
+    "n": 1000,
+    "share_defined": 0.0,
+    "pure_pts_mean": 0.005039462809917355,
+    "pure_pts_q95": 0.008223140495867769
+   },
+   "cell": {
+    "n": 1023,
+    "share_defined": 0.0,
+    "pure_pts_mean": 0.08329233416543468,
+    "pure_pts_q95": 0.8992479338842976
+   }
+  },
+  "rare_tau1": {
+   "pair": {
+    "n": 1000,
+    "share_defined": 0.0,
+    "pure_pts_mean": 0.00513892561983471,
+    "pure_pts_q95": 0.008101239669421487
+   },
+   "cell": {
+    "n": 1023,
+    "share_defined": 0.009775171065493646,
+    "pure_pts_mean": 0.06990479306528359,
+    "pure_pts_q95": 0.9609586776859493
+   }
+  }
+ },
+ "split2_full": {
+  "common_tau31": [
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ]
+  ],
+  "common_tau16": [
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    0.5004545454545455,
+    0.00045454545454545455
+   ],
+   [
+    0.5040909090909091,
+    0.004090909090909091
+   ],
+   [
+    0.5018181818181818,
+    0.0018181818181818182
+   ],
+   [
+    0.5027272727272727,
+    0.0027272727272727275
+   ],
+   [
+    0.5009090909090909,
+    0.0009090909090909091
+   ]
+  ],
+  "common_tau1": [
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    0.5009090909090909,
+    0.0009090909090909091
+   ],
+   [
+    0.5018181818181818,
+    0.0018181818181818182
+   ],
+   [
+    0.5022727272727273,
+    0.0022727272727272726
+   ],
+   [
+    0.5009090909090909,
+    0.0009090909090909091
+   ]
+  ],
+  "rare_tau31": [
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    0.5004545454545455,
+    0.00045454545454545455
+   ]
+  ],
+  "rare_tau16": [
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    0.5004545454545455,
+    0.00045454545454545455
+   ],
+   [
+    0.5004545454545455,
+    0.00045454545454545455
+   ],
+   [
+    0.5004545454545455,
+    0.00045454545454545455
+   ],
+   [
+    0.5004545454545455,
+    0.00045454545454545455
+   ],
+   [
+    0.5004545454545455,
+    0.00045454545454545455
+   ],
+   [
+    0.5004545454545455,
+    0.00045454545454545455
+   ]
+  ],
+  "rare_tau1": [
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    1.0,
+    0.5
+   ],
+   [
+    0.5054545454545455,
+    0.005454545454545455
+   ],
+   [
+    0.5036363636363637,
+    0.0036363636363636364
+   ],
+   [
+    0.5036363636363637,
+    0.0036363636363636364
+   ],
+   [
+    0.5031818181818182,
+    0.003181818181818182
+   ],
+   [
+    0.5036363636363637,
+    0.0036363636363636364
+   ]
+  ]
+ },
+ "rescaled_variant": {
+  "main": [
+   true,
+   true
+  ],
+  "s_grid": [
+   0.7,
+   0.7
+  ],
+  "main_cover_boot": {
+   "m=0.8": [
+    1.0,
+    1.0
+   ],
+   "m=0.9": [
+    1.0,
+    1.0
+   ],
+   "m=1.0": [
+    0.86,
+    0.86
+   ],
+   "m=1.1": [
+    0.0,
+    0.0
+   ],
+   "m=1.2": [
+    0.0,
+    0.0
+   ]
+  },
+  "lstar_main_full": {
+   "common_tau31": 1,
+   "common_tau16": 1,
+   "common_tau1": 1,
+   "rare_tau31": 1,
+   "rare_tau16": 1,
+   "rare_tau1": 1
+  },
+  "lstar_grid_full": {
+   "w2s1m0.8": {
+    "common_tau16": 1,
+    "rare_tau16": 1,
+    "common_tau1": 1,
+    "rare_tau1": 1,
+    "common_tau31": 1,
+    "rare_tau31": 1
+   },
+   "w2s1m0.9": {
+    "common_tau16": 1,
+    "rare_tau16": 1,
+    "common_tau1": 1,
+    "rare_tau1": 1,
+    "common_tau31": 1,
+    "rare_tau31": 1
+   },
+   "w2s1m1.0": {
+    "common_tau16": 1,
+    "rare_tau16": 1,
+    "common_tau1": 1,
+    "rare_tau1": 1,
+    "common_tau31": 1,
+    "rare_tau31": 1
+   },
+   "w2s1m1.1": {
+    "common_tau16": 1,
+    "rare_tau16": null,
+    "common_tau1": null,
+    "rare_tau1": 1,
+    "common_tau31": 1,
+    "rare_tau31": 1
+   },
+   "w2s1m1.2": {
+    "common_tau16": null,
+    "rare_tau16": null,
+    "common_tau1": null,
+    "rare_tau1": null,
+    "common_tau31": null,
+    "rare_tau31": null
+   },
+   "w3s1m0.8": {
+    "common_tau16": 1,
+    "rare_tau16": 1,
+    "common_tau1": 1,
+    "rare_tau1": 1,
+    "common_tau31": 1,
+    "rare_tau31": 1
+   },
+   "w3s1m0.9": {
+    "common_tau16": 1,
+    "rare_tau16": 1,
+    "common_tau1": 1,
+    "rare_tau1": 1,
+    "common_tau31": 1,
+    "rare_tau31": 1
+   },
+   "w3s1m1.0": {
+    "common_tau16": 1,
+    "rare_tau16": 1,
+    "common_tau1": 1,
+    "rare_tau1": 1,
+    "common_tau31": 1,
+    "rare_tau31": 1
+   },
+   "w3s1m1.1": {
+    "common_tau16": 1,
+    "rare_tau16": 1,
+    "common_tau1": null,
+    "rare_tau1": 1,
+    "common_tau31": 1,
+    "rare_tau31": 1
+   },
+   "w3s1m1.2": {
+    "common_tau16": null,
+    "rare_tau16": null,
+    "common_tau1": null,
+    "rare_tau1": null,
+    "common_tau31": null,
+    "rare_tau31": null
+   },
+   "w4s1m0.8": {
+    "common_tau16": 1,
+    "rare_tau16": 1,
+    "common_tau1": 1,
+    "rare_tau1": 1,
+    "common_tau31": 1,
+    "rare_tau31": 1
+   },
+   "w4s1m0.9": {
+    "common_tau16": 1,
+    "rare_tau16": 1,
+    "common_tau1": 1,
+    "rare_tau1": 1,
+    "common_tau31": 1,
+    "rare_tau31": 1
+   },
+   "w4s1m1.0": {
+    "common_tau16": 1,
+    "rare_tau16": 1,
+    "common_tau1": 1,
+    "rare_tau1": 1,
+    "common_tau31": 1,
+    "rare_tau31": 1
+   },
+   "w4s1m1.1": {
+    "common_tau16": 1,
+    "rare_tau16": 1,
+    "common_tau1": 1,
+    "rare_tau1": 1,
+    "common_tau31": 1,
+    "rare_tau31": 1
+   },
+   "w4s1m1.2": {
+    "common_tau16": null,
+    "rare_tau16": null,
+    "common_tau1": null,
+    "rare_tau1": null,
+    "common_tau31": null,
+    "rare_tau31": null
+   },
+   "w4s2m0.8": {
+    "common_tau16": 1,
+    "rare_tau16": 1,
+    "common_tau1": 1,
+    "rare_tau1": 1,
+    "common_tau31": 1,
+    "rare_tau31": 1
+   },
+   "w4s2m0.9": {
+    "common_tau16": 1,
+    "rare_tau16": 1,
+    "common_tau1": 1,
+    "rare_tau1": 1,
+    "common_tau31": 1,
+    "rare_tau31": 1
+   },
+   "w4s2m1.0": {
+    "common_tau16": 1,
+    "rare_tau16": 1,
+    "common_tau1": 1,
+    "rare_tau1": 1,
+    "common_tau31": 1,
+    "rare_tau31": 1
+   },
+   "w4s2m1.1": {
+    "common_tau16": 1,
+    "rare_tau16": 1,
+    "common_tau1": 1,
+    "rare_tau1": 1,
+    "common_tau31": 1,
+    "rare_tau31": 1
+   },
+   "w4s2m1.2": {
+    "common_tau16": null,
+    "rare_tau16": null,
+    "common_tau1": null,
+    "rare_tau1": null,
+    "common_tau31": null,
+    "rare_tau31": null
+   }
+  },
+  "lstar_boot_main": {
+   "common_tau16": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "rare_tau16": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    null,
+    1,
+    null,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    null,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "common_tau1": [
+    1,
+    1,
+    1,
+    1,
+    null,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    null,
+    null,
+    1,
+    1,
+    null,
+    null,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    null,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    null,
+    1,
+    1,
+    null,
+    1,
+    1,
+    1,
+    1,
+    null,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    null,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    null,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "rare_tau1": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "mixed_pts_main": {
+   "common_tau31": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "common_tau16": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "common_tau1": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rare_tau31": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rare_tau16": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "rare_tau1": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  }
+ },
+ "checks": {
+  "built-in null: normalised own vs wrong x_0(T) identical": "PASS (max |\u0394| common 0.0e+00, rare 0.0e+00)",
+  "cover windows = kmapper intervals (lens = layer \u2212 1)": "PASS",
+  "cloud symmetric (own = \u2212wrong), common \u03c4=31": "PASS (0.0e+00)",
+  "cloud symmetric (own = \u2212wrong), common \u03c4=16": "PASS (0.0e+00)",
+  "cloud symmetric (own = \u2212wrong), common \u03c4=1": "PASS (0.0e+00)",
+  "cloud symmetric (own = \u2212wrong), rare \u03c4=31": "PASS (0.0e+00)",
+  "cloud symmetric (own = \u2212wrong), rare \u03c4=16": "PASS (0.0e+00)",
+  "cloud symmetric (own = \u2212wrong), rare \u03c4=1": "PASS (0.0e+00)",
+  "hand-rolled Mapper = kmapper 2.1.0 (main setting), common \u03c4=16": "PASS (263 nodes / 302 edges (kmapper) vs 263 / 302 (ours))",
+  "hand-rolled Mapper = kmapper 2.1.0 (main setting), common \u03c4=1": "PASS (413 nodes / 476 edges (kmapper) vs 413 / 476 (ours))",
+  "hand-rolled Mapper = kmapper 2.1.0 (main setting), rare \u03c4=16": "PASS (653 nodes / 664 edges (kmapper) vs 653 / 664 (ours))",
+  "hand-rolled Mapper = kmapper 2.1.0 (main setting), rare \u03c4=1": "PASS (504 nodes / 526 edges (kmapper) vs 504 / 526 (ours))"
+ }
+}

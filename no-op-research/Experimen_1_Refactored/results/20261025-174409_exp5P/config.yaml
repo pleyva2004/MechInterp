@@ -1,0 +1,51 @@
+# Experiment 5: residual-stream extraction for the topology analyses (exp5/PREDICTIONS.md). Capital-paired cells:
+# capital k at T in both conditions; own = country k at tau, wrong = the country whose deranged capital is k (seed 5);
+# control = the row's own token at tau with capital k at T. Random final token = Exp 4's condition. Positions: BOS 0.
+model: gpt2-small
+seq_len: 32
+bos_token_id: 50256
+query_position: -1
+batch_size: 330
+seed: 0
+device: cpu
+dtype: float32
+
+backends:
+  transformer_lens: {model_name: gpt2-small}
+  huggingface:      {model_name: gpt2, attn_implementation: eager}
+
+paths:
+  sequences_dir: data/sequences/exp3
+  results_dir: results
+
+bases:
+  common: [256, 999]
+  rare:   [1000, 39999]
+base_cache_n: 200
+n_rows: 100
+
+stimuli:
+  - {country: " France",  country_id: 4881, capital: " Paris",   capital_id: 6342,  city: " Lyon",       city_id: 35193}
+  - {country: " Germany", country_id: 4486, capital: " Berlin",  capital_id: 11307, city: " Munich",     city_id: 22418}
+  - {country: " Italy",   country_id: 8031, capital: " Rome",    capital_id: 10598, city: " Milan",      city_id: 21574}
+  - {country: " Spain",   country_id: 8602, capital: " Madrid",  capital_id: 14708, city: " Barcelona",  city_id: 15142}
+  - {country: " Russia",  country_id: 3284, capital: " Moscow",  capital_id: 9070,  city: " Petersburg", city_id: 27051}
+  - {country: " Ireland", country_id: 7517, capital: " Dublin",  capital_id: 18220, city: " Cork",       city_id: 25567}
+  - {country: " Ukraine", country_id: 7049, capital: " Kiev",    capital_id: 22761, city: " Donetsk",    city_id: 31819}
+  - {country: " Japan",   country_id: 2869, capital: " Tokyo",   capital_id: 11790, city: " Kyoto",      city_id: 36298}
+  - {country: " China",   country_id: 2807, capital: " Beijing", capital_id: 11618, city: " Shanghai",   city_id: 21865}
+  - {country: " Egypt",   country_id: 6365, capital: " Cairo",   capital_id: 23732, city: " Alexandria", city_id: 27872}
+  - {country: " Canada",  country_id: 3340, capital: " Ottawa",  capital_id: 14074, city: " Montreal",   city_id: 12871}
+
+demonstration_ids: [12671, 24377, 10710, 29679, 16490, 31104, 10315, 21891, 12873, 32955, 7648, 36878,
+                    8037, 34753, 4068, 20882, 16952, 35007, 13316, 31721, 17456, 34802]
+
+wrong_capital_seed: 5           # the Exp 4b derangement (France→Tokyo, ...)
+seq_taus: [31, 16, 1]           # per-sequence point clouds (R1, R2, R4)
+graph_taus: [31, 30, 28, 24, 16, 8, 1]   # attention graphs (R5), as in Exp 4 TDA 4
+
+checks:
+  hf_rows: 2
+  hf_rtol: 1.0e-3
+  determinism_rows: 2
+  row_sum_atol: 1.0e-4

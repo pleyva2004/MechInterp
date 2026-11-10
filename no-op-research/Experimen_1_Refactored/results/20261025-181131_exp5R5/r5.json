@@ -1,0 +1,9435 @@
+{
+ "verdicts": {
+  "vw": {
+   "verdict": "FAIL",
+   "detail": "f_own/f_wrong per cell: common \u03c4 16: 0.000/0.000; common \u03c4 8: 0.170/0.000; common \u03c4 1: 0.159/0.000; rare \u03c4 16: 0.997/0.000; rare \u03c4 8: 1.000/0.000; rare \u03c4 1: 0.999/0.000. Failing cells: common \u03c4 16, common \u03c4 8, common \u03c4 1. TDA 4's stricter rule (full-sample MPC in own, none in wrong, too) holds in 3/6 cells.",
+   "failing": [
+    "common \u03c4 16",
+    "common \u03c4 8",
+    "common \u03c4 1"
+   ]
+  },
+  "vwM": {
+   "verdict": "FAIL",
+   "detail": "f_own/f_wrong per cell: common \u03c4 16: 0.000/0.000; common \u03c4 8: 0.170/0.000; common \u03c4 1: 0.157/0.000; rare \u03c4 16: 0.997/0.000; rare \u03c4 8: 1.000/0.000; rare \u03c4 1: 1.000/0.000. Failing cells: common \u03c4 16, common \u03c4 8, common \u03c4 1. TDA 4's stricter rule (full-sample MPC in own, none in wrong, too) holds in 3/6 cells.",
+   "failing": [
+    "common \u03c4 16",
+    "common \u03c4 8",
+    "common \u03c4 1"
+   ]
+  },
+  "vwU": {
+   "verdict": "FAIL",
+   "detail": "f_own/f_wrong per cell: common \u03c4 16: 0.000/0.000; common \u03c4 8: 0.375/0.000; common \u03c4 1: 0.321/0.000; rare \u03c4 16: 0.997/0.000; rare \u03c4 8: 1.000/0.000; rare \u03c4 1: 1.000/0.000. Failing cells: common \u03c4 16, common \u03c4 8, common \u03c4 1. TDA 4's stricter rule (full-sample MPC in own, none in wrong, too) holds in 3/6 cells.",
+   "failing": [
+    "common \u03c4 16",
+    "common \u03c4 8",
+    "common \u03c4 1"
+   ]
+  },
+  "raw": {
+   "verdict": "PASS",
+   "detail": "f_own/f_wrong per cell: common \u03c4 16: 0.983/0.000; common \u03c4 8: 1.000/0.000; common \u03c4 1: 1.000/0.000; rare \u03c4 16: 1.000/0.000; rare \u03c4 8: 1.000/0.000; rare \u03c4 1: 1.000/0.000. TDA 4's stricter rule (full-sample MPC in own, none in wrong, too) holds in 6/6 cells.",
+   "failing": []
+  }
+ },
+ "sanity": {
+  "identity": 0.000346,
+  "mean_delta": 0.029578,
+  "agree": 167,
+  "n": 168,
+  "disagree": [
+   "common L10 \u03c4 31: TDA 4 O (0.91/0.00) vs here o (0.66/0.03)"
+  ],
+  "l0_reproduced": true,
+  "l0_summary": "reproduced: own-only (O) in all 6 cells, as in TDA 4."
+ },
+ "checks": {
+  "causal: upper triangle of every per-row graph is 0 (raw, vw)": "PASS (max 0.0e+00)",
+  "prefix identity: wrong / random query rows 0..31 equal own's (per row, up to one fp16 rounding step)": "PASS (max relative |\u0394| raw 9.7e-04, vw 9.8e-04; tol 2^-10)",
+  "raw rows sum to 1 (fp16 storage)": "PASS (max |sum \u2212 1| 3.8e-04)",
+  "Exp 5 raw query-32 weights (\u03c4, BOS, 31) = Exp 4b saved arrays (first rows; both fp16)": "PASS (max |\u0394| 3.5e-04, atol 2e-3)",
+  "vwU: non-BOS off-diagonal per-row weights clipped at 1": "common 0, rare 0",
+  "vwU scale constants c (per layer)": "common: 119, 127, 96, 74, 78, 87, 92, 81, 109, 113, 164, 634; rare: 127, 126, 99, 80, 78, 91, 94, 88, 112, 128, 191, 665",
+  "tie fallback in rep_cycle (H1 representatives whose birth edge ties the connecting edges)": "full sample 0 (of 2688 graphs), bootstrap 0 (of 1344000 graphs) (bootstrap persistences reused from `20261025-173403_exp5R5`: identical row indices, data and n_boot)"
+ },
+ "n_rows": 100,
+ "n_boot": 1000,
+ "tda": {
+  "persist_min": 0.002,
+  "persist_ratio": 0.75,
+  "n_swap": 200,
+  "n_split": 100,
+  "n_boot": 100,
+  "boot_stable": 0.8,
+  "boot_absent": 0.2,
+  "alpha": 0.05,
+  "seed": 0,
+  "g1_tau": 31,
+  "early_layers": [
+   0,
+   4
+  ],
+  "late_layers": [
+   6,
+   11
+  ],
+  "far_taus": [
+   16,
+   8,
+   1
+  ],
+  "workers": 6
+ },
+ "data": "results/20261025-170021_exp5res",
+ "survival": [
+  "common L4 \u03c4 28: \u00b7 \u2192 O (new under vw; f own/wrong raw 0.00/0.00, vw 1.00/0.00)",
+  "common L4 \u03c4 24: O \u2192 ~ (changes to ~; f own/wrong raw 1.00/0.00, vw 1.00/0.45)",
+  "common L0 \u03c4 16: O \u2192 \u00b7 (lost; f own/wrong raw 0.98/0.00, vw 0.00/0.00)",
+  "common L1 \u03c4 16: B \u2192 B (survives; f own/wrong raw 1.00/1.00, vw 1.00/1.00)",
+  "common L3 \u03c4 16: B \u2192 B (survives; f own/wrong raw 1.00/1.00, vw 1.00/1.00)",
+  "common L4 \u03c4 16: B \u2192 B (survives; f own/wrong raw 1.00/1.00, vw 1.00/1.00)",
+  "common L0 \u03c4 8: O \u2192 \u00b7 (lost; f own/wrong raw 1.00/0.00, vw 0.17/0.00)",
+  "common L1 \u03c4 8: B \u2192 B (survives; f own/wrong raw 1.00/1.00, vw 1.00/1.00)",
+  "common L3 \u03c4 8: B \u2192 B (survives; f own/wrong raw 1.00/1.00, vw 1.00/1.00)",
+  "common L4 \u03c4 8: B \u2192 B (survives; f own/wrong raw 1.00/1.00, vw 1.00/1.00)",
+  "common L0 \u03c4 1: O \u2192 \u00b7 (lost; f own/wrong raw 1.00/0.00, vw 0.16/0.00)",
+  "common L1 \u03c4 1: B \u2192 B (survives; f own/wrong raw 1.00/1.00, vw 1.00/1.00)",
+  "common L3 \u03c4 1: B \u2192 B (survives; f own/wrong raw 1.00/1.00, vw 1.00/1.00)",
+  "common L4 \u03c4 1: B \u2192 B (survives; f own/wrong raw 1.00/1.00, vw 1.00/1.00)",
+  "rare L4 \u03c4 28: \u00b7 \u2192 O (new under vw; f own/wrong raw 0.00/0.00, vw 1.00/0.00)",
+  "rare L0 \u03c4 24: O \u2192 \u00b7 (lost; f own/wrong raw 0.84/0.00, vw 0.01/0.00)",
+  "rare L4 \u03c4 24: O \u2192 ~ (changes to ~; f own/wrong raw 1.00/0.00, vw 1.00/0.60)",
+  "rare L0 \u03c4 16: O \u2192 O (survives; f own/wrong raw 1.00/0.00, vw 1.00/0.00)",
+  "rare L3 \u03c4 16: O \u2192 B (changes to B; f own/wrong raw 1.00/0.00, vw 1.00/0.83)",
+  "rare L4 \u03c4 16: B \u2192 B (survives; f own/wrong raw 1.00/1.00, vw 1.00/1.00)",
+  "rare L0 \u03c4 8: O \u2192 O (survives; f own/wrong raw 1.00/0.00, vw 1.00/0.00)",
+  "rare L3 \u03c4 8: B \u2192 B (survives; f own/wrong raw 1.00/1.00, vw 1.00/1.00)",
+  "rare L4 \u03c4 8: B \u2192 B (survives; f own/wrong raw 1.00/1.00, vw 1.00/1.00)",
+  "rare L0 \u03c4 1: O \u2192 O (survives; f own/wrong raw 1.00/0.00, vw 1.00/0.00)",
+  "rare L1 \u03c4 1: B \u2192 \u00b7 (lost; f own/wrong raw 0.94/0.98, vw 0.00/0.19)",
+  "rare L3 \u03c4 1: B \u2192 B (survives; f own/wrong raw 1.00/1.00, vw 1.00/1.00)",
+  "rare L4 \u03c4 1: B \u2192 B (survives; f own/wrong raw 1.00/1.00, vw 1.00/1.00)"
+ ],
+ "runtime_s": 18.588553,
+ "ties_boot": 0,
+ "bootstrap_reused_from": "results/20261025-173403_exp5R5",
+ "loop_life_L0_4": {
+  "common/t31/raw/own/L0": null,
+  "common/t31/raw/own/L1": null,
+  "common/t31/raw/own/L2": null,
+  "common/t31/raw/own/L3": null,
+  "common/t31/raw/own/L4": null,
+  "common/t31/raw/wrong/L0": null,
+  "common/t31/raw/wrong/L1": null,
+  "common/t31/raw/wrong/L2": null,
+  "common/t31/raw/wrong/L3": null,
+  "common/t31/raw/wrong/L4": null,
+  "common/t31/vw/own/L0": null,
+  "common/t31/vw/own/L1": null,
+  "common/t31/vw/own/L2": null,
+  "common/t31/vw/own/L3": null,
+  "common/t31/vw/own/L4": null,
+  "common/t31/vw/wrong/L0": null,
+  "common/t31/vw/wrong/L1": null,
+  "common/t31/vw/wrong/L2": null,
+  "common/t31/vw/wrong/L3": null,
+  "common/t31/vw/wrong/L4": null,
+  "common/t30/raw/own/L0": null,
+  "common/t30/raw/own/L1": null,
+  "common/t30/raw/own/L2": null,
+  "common/t30/raw/own/L3": null,
+  "common/t30/raw/own/L4": null,
+  "common/t30/raw/wrong/L0": null,
+  "common/t30/raw/wrong/L1": null,
+  "common/t30/raw/wrong/L2": null,
+  "common/t30/raw/wrong/L3": null,
+  "common/t30/raw/wrong/L4": null,
+  "common/t30/vw/own/L0": null,
+  "common/t30/vw/own/L1": null,
+  "common/t30/vw/own/L2": null,
+  "common/t30/vw/own/L3": null,
+  "common/t30/vw/own/L4": null,
+  "common/t30/vw/wrong/L0": null,
+  "common/t30/vw/wrong/L1": null,
+  "common/t30/vw/wrong/L2": null,
+  "common/t30/vw/wrong/L3": null,
+  "common/t30/vw/wrong/L4": null,
+  "common/t28/raw/own/L0": null,
+  "common/t28/raw/own/L1": {
+   "birth_w": 0.053416,
+   "death_w": 0.051768,
+   "persistence": 0.001648,
+   "ratio": 0.969149,
+   "cycle": [
+    32,
+    28,
+    29,
+    31
+   ],
+   "death_triangle": [
+    32,
+    31,
+    28
+   ]
+  },
+  "common/t28/raw/own/L2": null,
+  "common/t28/raw/own/L3": null,
+  "common/t28/raw/own/L4": {
+   "birth_w": 0.05354,
+   "death_w": 0.047904,
+   "persistence": 0.005635,
+   "ratio": 0.894743,
+   "cycle": [
+    32,
+    30,
+    29,
+    28
+   ],
+   "death_triangle": [
+    32,
+    30,
+    28
+   ]
+  },
+  "common/t28/raw/wrong/L0": null,
+  "common/t28/raw/wrong/L1": null,
+  "common/t28/raw/wrong/L2": null,
+  "common/t28/raw/wrong/L3": null,
+  "common/t28/raw/wrong/L4": null,
+  "common/t28/vw/own/L0": null,
+  "common/t28/vw/own/L1": null,
+  "common/t28/vw/own/L2": null,
+  "common/t28/vw/own/L3": null,
+  "common/t28/vw/own/L4": {
+   "birth_w": 0.119707,
+   "death_w": 0.070998,
+   "persistence": 0.048709,
+   "ratio": 0.5931,
+   "cycle": [
+    32,
+    31,
+    30,
+    29,
+    28
+   ],
+   "death_triangle": [
+    32,
+    31,
+    30
+   ]
+  },
+  "common/t28/vw/wrong/L0": null,
+  "common/t28/vw/wrong/L1": null,
+  "common/t28/vw/wrong/L2": null,
+  "common/t28/vw/wrong/L3": null,
+  "common/t28/vw/wrong/L4": {
+   "birth_w": 0.075242,
+   "death_w": 0.071105,
+   "persistence": 0.004136,
+   "ratio": 0.945025,
+   "cycle": [
+    32,
+    31,
+    29,
+    28
+   ],
+   "death_triangle": [
+    32,
+    31,
+    30
+   ]
+  },
+  "common/t24/raw/own/L0": {
+   "birth_w": 0.032106,
+   "death_w": 0.028899,
+   "persistence": 0.003207,
+   "ratio": 0.900102,
+   "cycle": [
+    32,
+    24,
+    25,
+    28,
+    31
+   ],
+   "death_triangle": [
+    32,
+    30,
+    24
+   ]
+  },
+  "common/t24/raw/own/L1": {
+   "birth_w": 0.052525,
+   "death_w": 0.0416,
+   "persistence": 0.010925,
+   "ratio": 0.792,
+   "cycle": [
+    32,
+    24,
+    27,
+    29,
+    31
+   ],
+   "death_triangle": [
+    32,
+    30,
+    29
+   ]
+  },
+  "common/t24/raw/own/L2": null,
+  "common/t24/raw/own/L3": null,
+  "common/t24/raw/own/L4": {
+   "birth_w": 0.041355,
+   "death_w": 0.024947,
+   "persistence": 0.016408,
+   "ratio": 0.603241,
+   "cycle": [
+    32,
+    30,
+    28,
+    26,
+    24
+   ],
+   "death_triangle": [
+    32,
+    28,
+    24
+   ]
+  },
+  "common/t24/raw/wrong/L0": null,
+  "common/t24/raw/wrong/L1": {
+   "birth_w": 0.050947,
+   "death_w": 0.040235,
+   "persistence": 0.010712,
+   "ratio": 0.78975,
+   "cycle": [
+    32,
+    24,
+    26,
+    28,
+    31
+   ],
+   "death_triangle": [
+    32,
+    30,
+    29
+   ]
+  },
+  "common/t24/raw/wrong/L2": null,
+  "common/t24/raw/wrong/L3": null,
+  "common/t24/raw/wrong/L4": null,
+  "common/t24/vw/own/L0": {
+   "birth_w": 0.032578,
+   "death_w": 0.032384,
+   "persistence": 0.000195,
+   "ratio": 0.994025,
+   "cycle": [
+    32,
+    24,
+    28,
+    31
+   ],
+   "death_triangle": [
+    32,
+    31,
+    24
+   ]
+  },
+  "common/t24/vw/own/L1": {
+   "birth_w": 0.05689,
+   "death_w": 0.046392,
+   "persistence": 0.010499,
+   "ratio": 0.815459,
+   "cycle": [
+    32,
+    24,
+    27,
+    29,
+    31
+   ],
+   "death_triangle": [
+    32,
+    30,
+    24
+   ]
+  },
+  "common/t24/vw/own/L2": null,
+  "common/t24/vw/own/L3": {
+   "birth_w": 0.050708,
+   "death_w": 0.050093,
+   "persistence": 0.000615,
+   "ratio": 0.987867,
+   "cycle": [
+    32,
+    29,
+    26,
+    24
+   ],
+   "death_triangle": [
+    32,
+    29,
+    24
+   ]
+  },
+  "common/t24/vw/own/L4": {
+   "birth_w": 0.100027,
+   "death_w": 0.040394,
+   "persistence": 0.059633,
+   "ratio": 0.403828,
+   "cycle": [
+    32,
+    31,
+    30,
+    29,
+    28,
+    27,
+    26,
+    25,
+    24
+   ],
+   "death_triangle": [
+    32,
+    29,
+    28
+   ]
+  },
+  "common/t24/vw/wrong/L0": {
+   "birth_w": 0.033156,
+   "death_w": 0.032384,
+   "persistence": 0.000772,
+   "ratio": 0.976719,
+   "cycle": [
+    32,
+    24,
+    28,
+    31
+   ],
+   "death_triangle": [
+    32,
+    31,
+    24
+   ]
+  },
+  "common/t24/vw/wrong/L1": {
+   "birth_w": 0.055528,
+   "death_w": 0.046392,
+   "persistence": 0.009136,
+   "ratio": 0.835467,
+   "cycle": [
+    32,
+    24,
+    26,
+    28,
+    31
+   ],
+   "death_triangle": [
+    32,
+    30,
+    24
+   ]
+  },
+  "common/t24/vw/wrong/L2": null,
+  "common/t24/vw/wrong/L3": {
+   "birth_w": 0.058777,
+   "death_w": 0.050093,
+   "persistence": 0.008685,
+   "ratio": 0.852244,
+   "cycle": [
+    32,
+    29,
+    26,
+    24
+   ],
+   "death_triangle": [
+    32,
+    29,
+    24
+   ]
+  },
+  "common/t24/vw/wrong/L4": {
+   "birth_w": 0.053844,
+   "death_w": 0.040845,
+   "persistence": 0.012998,
+   "ratio": 0.758593,
+   "cycle": [
+    32,
+    30,
+    28,
+    25,
+    24
+   ],
+   "death_triangle": [
+    32,
+    29,
+    28
+   ]
+  },
+  "common/t16/raw/own/L0": {
+   "birth_w": 0.032049,
+   "death_w": 0.022279,
+   "persistence": 0.00977,
+   "ratio": 0.695157,
+   "cycle": [
+    32,
+    16,
+    22,
+    25,
+    28,
+    31
+   ],
+   "death_triangle": [
+    32,
+    28,
+    16
+   ]
+  },
+  "common/t16/raw/own/L1": {
+   "birth_w": 0.048095,
+   "death_w": 0.029349,
+   "persistence": 0.018747,
+   "ratio": 0.610218,
+   "cycle": [
+    32,
+    31,
+    28,
+    25,
+    22,
+    18,
+    16
+   ],
+   "death_triangle": [
+    32,
+    27,
+    26
+   ]
+  },
+  "common/t16/raw/own/L2": null,
+  "common/t16/raw/own/L3": {
+   "birth_w": 0.024674,
+   "death_w": 0.012851,
+   "persistence": 0.011823,
+   "ratio": 0.520839,
+   "cycle": [
+    32,
+    27,
+    23,
+    18,
+    16
+   ],
+   "death_triangle": [
+    32,
+    26,
+    25
+   ]
+  },
+  "common/t16/raw/own/L4": {
+   "birth_w": 0.036543,
+   "death_w": 0.011273,
+   "persistence": 0.02527,
+   "ratio": 0.308479,
+   "cycle": [
+    32,
+    29,
+    27,
+    24,
+    21,
+    18,
+    16
+   ],
+   "death_triangle": [
+    32,
+    24,
+    16
+   ]
+  },
+  "common/t16/raw/wrong/L0": null,
+  "common/t16/raw/wrong/L1": {
+   "birth_w": 0.050901,
+   "death_w": 0.028756,
+   "persistence": 0.022145,
+   "ratio": 0.564939,
+   "cycle": [
+    32,
+    31,
+    28,
+    26,
+    23,
+    20,
+    16
+   ],
+   "death_triangle": [
+    32,
+    27,
+    26
+   ]
+  },
+  "common/t16/raw/wrong/L2": null,
+  "common/t16/raw/wrong/L3": {
+   "birth_w": 0.019864,
+   "death_w": 0.012567,
+   "persistence": 0.007297,
+   "ratio": 0.632674,
+   "cycle": [
+    32,
+    27,
+    22,
+    16
+   ],
+   "death_triangle": [
+    32,
+    26,
+    25
+   ]
+  },
+  "common/t16/raw/wrong/L4": {
+   "birth_w": 0.016512,
+   "death_w": 0.011273,
+   "persistence": 0.005239,
+   "ratio": 0.682697,
+   "cycle": [
+    32,
+    27,
+    21,
+    16
+   ],
+   "death_triangle": [
+    32,
+    24,
+    16
+   ]
+  },
+  "common/t16/vw/own/L0": {
+   "birth_w": 0.032573,
+   "death_w": 0.028931,
+   "persistence": 0.003642,
+   "ratio": 0.888202,
+   "cycle": [
+    32,
+    16,
+    25,
+    28,
+    31
+   ],
+   "death_triangle": [
+    32,
+    30,
+    16
+   ]
+  },
+  "common/t16/vw/own/L1": {
+   "birth_w": 0.050791,
+   "death_w": 0.034858,
+   "persistence": 0.015933,
+   "ratio": 0.686304,
+   "cycle": [
+    32,
+    30,
+    27,
+    24,
+    21,
+    16
+   ],
+   "death_triangle": [
+    32,
+    27,
+    16
+   ]
+  },
+  "common/t16/vw/own/L2": null,
+  "common/t16/vw/own/L3": {
+   "birth_w": 0.051391,
+   "death_w": 0.022859,
+   "persistence": 0.028532,
+   "ratio": 0.4448,
+   "cycle": [
+    32,
+    29,
+    26,
+    23,
+    20,
+    16
+   ],
+   "death_triangle": [
+    32,
+    27,
+    26
+   ]
+  },
+  "common/t16/vw/own/L4": {
+   "birth_w": 0.095579,
+   "death_w": 0.019811,
+   "persistence": 0.075768,
+   "ratio": 0.207275,
+   "cycle": [
+    32,
+    31,
+    30,
+    29,
+    28,
+    27,
+    26,
+    25,
+    24,
+    23,
+    22,
+    21,
+    20,
+    19,
+    18,
+    17,
+    16
+   ],
+   "death_triangle": [
+    32,
+    25,
+    16
+   ]
+  },
+  "common/t16/vw/wrong/L0": {
+   "birth_w": 0.031843,
+   "death_w": 0.028931,
+   "persistence": 0.002912,
+   "ratio": 0.908547,
+   "cycle": [
+    32,
+    30,
+    26,
+    16
+   ],
+   "death_triangle": [
+    32,
+    30,
+    16
+   ]
+  },
+  "common/t16/vw/wrong/L1": {
+   "birth_w": 0.055874,
+   "death_w": 0.034858,
+   "persistence": 0.021016,
+   "ratio": 0.623864,
+   "cycle": [
+    32,
+    16,
+    20,
+    23,
+    26,
+    28,
+    31
+   ],
+   "death_triangle": [
+    32,
+    27,
+    16
+   ]
+  },
+  "common/t16/vw/wrong/L2": null,
+  "common/t16/vw/wrong/L3": {
+   "birth_w": 0.053677,
+   "death_w": 0.022665,
+   "persistence": 0.031012,
+   "ratio": 0.422252,
+   "cycle": [
+    32,
+    29,
+    26,
+    23,
+    20,
+    16
+   ],
+   "death_triangle": [
+    32,
+    27,
+    16
+   ]
+  },
+  "common/t16/vw/wrong/L4": {
+   "birth_w": 0.041624,
+   "death_w": 0.019811,
+   "persistence": 0.021813,
+   "ratio": 0.475955,
+   "cycle": [
+    32,
+    29,
+    26,
+    22,
+    18,
+    16
+   ],
+   "death_triangle": [
+    32,
+    25,
+    16
+   ]
+  },
+  "common/t8/raw/own/L0": {
+   "birth_w": 0.032072,
+   "death_w": 0.019372,
+   "persistence": 0.0127,
+   "ratio": 0.604014,
+   "cycle": [
+    32,
+    8,
+    17,
+    22,
+    25,
+    28,
+    31
+   ],
+   "death_triangle": [
+    32,
+    27,
+    8
+   ]
+  },
+  "common/t8/raw/own/L1": {
+   "birth_w": 0.041723,
+   "death_w": 0.024181,
+   "persistence": 0.017542,
+   "ratio": 0.579554,
+   "cycle": [
+    32,
+    30,
+    26,
+    22,
+    18,
+    12,
+    8
+   ],
+   "death_triangle": [
+    32,
+    24,
+    8
+   ]
+  },
+  "common/t8/raw/own/L2": null,
+  "common/t8/raw/own/L3": {
+   "birth_w": 0.031455,
+   "death_w": 0.00773,
+   "persistence": 0.023725,
+   "ratio": 0.245759,
+   "cycle": [
+    32,
+    28,
+    24,
+    20,
+    16,
+    12,
+    8
+   ],
+   "death_triangle": [
+    32,
+    24,
+    8
+   ]
+  },
+  "common/t8/raw/own/L4": {
+   "birth_w": 0.037086,
+   "death_w": 0.006666,
+   "persistence": 0.030419,
+   "ratio": 0.17976,
+   "cycle": [
+    32,
+    29,
+    27,
+    25,
+    22,
+    20,
+    17,
+    14,
+    11,
+    9,
+    8
+   ],
+   "death_triangle": [
+    32,
+    21,
+    9
+   ]
+  },
+  "common/t8/raw/wrong/L0": {
+   "birth_w": 0.019563,
+   "death_w": 0.019372,
+   "persistence": 0.000191,
+   "ratio": 0.990215,
+   "cycle": [
+    32,
+    27,
+    17,
+    8
+   ],
+   "death_triangle": [
+    32,
+    27,
+    8
+   ]
+  },
+  "common/t8/raw/wrong/L1": {
+   "birth_w": 0.045695,
+   "death_w": 0.024181,
+   "persistence": 0.021514,
+   "ratio": 0.529185,
+   "cycle": [
+    32,
+    30,
+    27,
+    24,
+    21,
+    17,
+    12,
+    8
+   ],
+   "death_triangle": [
+    32,
+    24,
+    8
+   ]
+  },
+  "common/t8/raw/wrong/L2": null,
+  "common/t8/raw/wrong/L3": {
+   "birth_w": 0.020917,
+   "death_w": 0.00773,
+   "persistence": 0.013187,
+   "ratio": 0.369571,
+   "cycle": [
+    32,
+    27,
+    22,
+    17,
+    12,
+    8
+   ],
+   "death_triangle": [
+    32,
+    24,
+    8
+   ]
+  },
+  "common/t8/raw/wrong/L4": {
+   "birth_w": 0.015321,
+   "death_w": 0.006427,
+   "persistence": 0.008893,
+   "ratio": 0.419516,
+   "cycle": [
+    32,
+    26,
+    20,
+    14,
+    8
+   ],
+   "death_triangle": [
+    32,
+    21,
+    8
+   ]
+  },
+  "common/t8/vw/own/L0": {
+   "birth_w": 0.032632,
+   "death_w": 0.025773,
+   "persistence": 0.006859,
+   "ratio": 0.789808,
+   "cycle": [
+    32,
+    8,
+    21,
+    25,
+    28,
+    31
+   ],
+   "death_triangle": [
+    32,
+    28,
+    8
+   ]
+  },
+  "common/t8/vw/own/L1": {
+   "birth_w": 0.044625,
+   "death_w": 0.029199,
+   "persistence": 0.015426,
+   "ratio": 0.654326,
+   "cycle": [
+    32,
+    29,
+    25,
+    21,
+    15,
+    8
+   ],
+   "death_triangle": [
+    32,
+    25,
+    8
+   ]
+  },
+  "common/t8/vw/own/L2": null,
+  "common/t8/vw/own/L3": {
+   "birth_w": 0.066661,
+   "death_w": 0.017709,
+   "persistence": 0.048952,
+   "ratio": 0.265651,
+   "cycle": [
+    32,
+    30,
+    28,
+    26,
+    24,
+    21,
+    18,
+    15,
+    12,
+    8
+   ],
+   "death_triangle": [
+    32,
+    26,
+    8
+   ]
+  },
+  "common/t8/vw/own/L4": {
+   "birth_w": 0.098643,
+   "death_w": 0.014451,
+   "persistence": 0.084191,
+   "ratio": 0.146503,
+   "cycle": [
+    32,
+    31,
+    30,
+    29,
+    28,
+    27,
+    26,
+    25,
+    24,
+    23,
+    22,
+    21,
+    20,
+    19,
+    18,
+    17,
+    16,
+    15,
+    14,
+    13,
+    12,
+    11,
+    10,
+    8
+   ],
+   "death_triangle": [
+    32,
+    23,
+    22
+   ]
+  },
+  "common/t8/vw/wrong/L0": {
+   "birth_w": 0.028224,
+   "death_w": 0.025773,
+   "persistence": 0.002451,
+   "ratio": 0.913161,
+   "cycle": [
+    32,
+    30,
+    24,
+    8
+   ],
+   "death_triangle": [
+    32,
+    28,
+    8
+   ]
+  },
+  "common/t8/vw/wrong/L1": {
+   "birth_w": 0.052568,
+   "death_w": 0.029199,
+   "persistence": 0.023368,
+   "ratio": 0.555461,
+   "cycle": [
+    32,
+    31,
+    28,
+    25,
+    21,
+    18,
+    14,
+    8
+   ],
+   "death_triangle": [
+    32,
+    25,
+    8
+   ]
+  },
+  "common/t8/vw/wrong/L2": null,
+  "common/t8/vw/wrong/L3": {
+   "birth_w": 0.058462,
+   "death_w": 0.017709,
+   "persistence": 0.040753,
+   "ratio": 0.302908,
+   "cycle": [
+    32,
+    29,
+    26,
+    23,
+    20,
+    17,
+    14,
+    11,
+    8
+   ],
+   "death_triangle": [
+    32,
+    26,
+    8
+   ]
+  },
+  "common/t8/vw/wrong/L4": {
+   "birth_w": 0.040702,
+   "death_w": 0.015186,
+   "persistence": 0.025515,
+   "ratio": 0.373114,
+   "cycle": [
+    32,
+    29,
+    26,
+    22,
+    18,
+    14,
+    9,
+    8
+   ],
+   "death_triangle": [
+    32,
+    23,
+    22
+   ]
+  },
+  "common/t1/raw/own/L0": {
+   "birth_w": 0.032145,
+   "death_w": 0.019918,
+   "persistence": 0.012227,
+   "ratio": 0.619621,
+   "cycle": [
+    32,
+    1,
+    17,
+    22,
+    25,
+    28,
+    31
+   ],
+   "death_triangle": [
+    32,
+    27,
+    1
+   ]
+  },
+  "common/t1/raw/own/L1": {
+   "birth_w": 0.04563,
+   "death_w": 0.023307,
+   "persistence": 0.022323,
+   "ratio": 0.510788,
+   "cycle": [
+    32,
+    30,
+    27,
+    24,
+    21,
+    17,
+    12,
+    6,
+    1
+   ],
+   "death_triangle": [
+    32,
+    24,
+    1
+   ]
+  },
+  "common/t1/raw/own/L2": null,
+  "common/t1/raw/own/L3": {
+   "birth_w": 0.030127,
+   "death_w": 0.007512,
+   "persistence": 0.022615,
+   "ratio": 0.249335,
+   "cycle": [
+    32,
+    28,
+    24,
+    20,
+    16,
+    12,
+    8,
+    4,
+    1
+   ],
+   "death_triangle": [
+    32,
+    23,
+    1
+   ]
+  },
+  "common/t1/raw/own/L4": {
+   "birth_w": 0.041406,
+   "death_w": 0.005162,
+   "persistence": 0.036243,
+   "ratio": 0.124679,
+   "cycle": [
+    32,
+    30,
+    28,
+    26,
+    24,
+    22,
+    20,
+    18,
+    16,
+    14,
+    12,
+    9,
+    7,
+    5,
+    2,
+    1
+   ],
+   "death_triangle": [
+    32,
+    17,
+    1
+   ]
+  },
+  "common/t1/raw/wrong/L0": {
+   "birth_w": 0.022971,
+   "death_w": 0.019918,
+   "persistence": 0.003053,
+   "ratio": 0.867087,
+   "cycle": [
+    32,
+    28,
+    21,
+    1
+   ],
+   "death_triangle": [
+    32,
+    27,
+    1
+   ]
+  },
+  "common/t1/raw/wrong/L1": {
+   "birth_w": 0.050622,
+   "death_w": 0.023307,
+   "persistence": 0.027315,
+   "ratio": 0.460417,
+   "cycle": [
+    32,
+    31,
+    28,
+    26,
+    23,
+    20,
+    17,
+    13,
+    9,
+    3,
+    1
+   ],
+   "death_triangle": [
+    32,
+    24,
+    1
+   ]
+  },
+  "common/t1/raw/wrong/L2": null,
+  "common/t1/raw/wrong/L3": {
+   "birth_w": 0.021047,
+   "death_w": 0.007431,
+   "persistence": 0.013616,
+   "ratio": 0.35305,
+   "cycle": [
+    32,
+    27,
+    22,
+    17,
+    12,
+    7,
+    1
+   ],
+   "death_triangle": [
+    32,
+    24,
+    23
+   ]
+  },
+  "common/t1/raw/wrong/L4": {
+   "birth_w": 0.014977,
+   "death_w": 0.005131,
+   "persistence": 0.009846,
+   "ratio": 0.342602,
+   "cycle": [
+    32,
+    26,
+    20,
+    14,
+    8,
+    2,
+    1
+   ],
+   "death_triangle": [
+    32,
+    18,
+    17
+   ]
+  },
+  "common/t1/vw/own/L0": {
+   "birth_w": 0.032776,
+   "death_w": 0.025994,
+   "persistence": 0.006781,
+   "ratio": 0.793099,
+   "cycle": [
+    32,
+    1,
+    21,
+    25,
+    28,
+    31
+   ],
+   "death_triangle": [
+    32,
+    29,
+    28
+   ]
+  },
+  "common/t1/vw/own/L1": {
+   "birth_w": 0.049573,
+   "death_w": 0.029584,
+   "persistence": 0.019989,
+   "ratio": 0.596775,
+   "cycle": [
+    32,
+    30,
+    27,
+    24,
+    20,
+    16,
+    10,
+    1
+   ],
+   "death_triangle": [
+    32,
+    25,
+    1
+   ]
+  },
+  "common/t1/vw/own/L2": null,
+  "common/t1/vw/own/L3": {
+   "birth_w": 0.066034,
+   "death_w": 0.018399,
+   "persistence": 0.047635,
+   "ratio": 0.278628,
+   "cycle": [
+    32,
+    30,
+    28,
+    25,
+    22,
+    20,
+    17,
+    14,
+    11,
+    8,
+    5,
+    1
+   ],
+   "death_triangle": [
+    32,
+    26,
+    1
+   ]
+  },
+  "common/t1/vw/own/L4": {
+   "birth_w": 0.113846,
+   "death_w": 0.011346,
+   "persistence": 0.1025,
+   "ratio": 0.099662,
+   "cycle": [
+    32,
+    31,
+    30,
+    29,
+    28,
+    27,
+    26,
+    25,
+    24,
+    23,
+    22,
+    21,
+    20,
+    19,
+    18,
+    17,
+    16,
+    15,
+    14,
+    13,
+    12,
+    11,
+    10,
+    9,
+    8,
+    7,
+    6,
+    4,
+    2,
+    1
+   ],
+   "death_triangle": [
+    32,
+    21,
+    18
+   ]
+  },
+  "common/t1/vw/wrong/L0": {
+   "birth_w": 0.031685,
+   "death_w": 0.02617,
+   "persistence": 0.005516,
+   "ratio": 0.825923,
+   "cycle": [
+    32,
+    30,
+    26,
+    21,
+    1
+   ],
+   "death_triangle": [
+    32,
+    28,
+    1
+   ]
+  },
+  "common/t1/vw/wrong/L1": {
+   "birth_w": 0.056139,
+   "death_w": 0.029584,
+   "persistence": 0.026555,
+   "ratio": 0.526979,
+   "cycle": [
+    32,
+    1,
+    8,
+    13,
+    17,
+    20,
+    23,
+    26,
+    28,
+    31
+   ],
+   "death_triangle": [
+    32,
+    25,
+    1
+   ]
+  },
+  "common/t1/vw/wrong/L2": null,
+  "common/t1/vw/wrong/L3": {
+   "birth_w": 0.057761,
+   "death_w": 0.018399,
+   "persistence": 0.039362,
+   "ratio": 0.318535,
+   "cycle": [
+    32,
+    29,
+    26,
+    23,
+    20,
+    17,
+    14,
+    11,
+    8,
+    5,
+    1
+   ],
+   "death_triangle": [
+    32,
+    26,
+    1
+   ]
+  },
+  "common/t1/vw/wrong/L4": {
+   "birth_w": 0.041375,
+   "death_w": 0.011394,
+   "persistence": 0.029981,
+   "ratio": 0.275379,
+   "cycle": [
+    32,
+    29,
+    26,
+    22,
+    18,
+    14,
+    9,
+    4,
+    1
+   ],
+   "death_triangle": [
+    32,
+    18,
+    2
+   ]
+  },
+  "rare/t31/raw/own/L0": null,
+  "rare/t31/raw/own/L1": null,
+  "rare/t31/raw/own/L2": null,
+  "rare/t31/raw/own/L3": null,
+  "rare/t31/raw/own/L4": null,
+  "rare/t31/raw/wrong/L0": null,
+  "rare/t31/raw/wrong/L1": null,
+  "rare/t31/raw/wrong/L2": null,
+  "rare/t31/raw/wrong/L3": null,
+  "rare/t31/raw/wrong/L4": null,
+  "rare/t31/vw/own/L0": null,
+  "rare/t31/vw/own/L1": null,
+  "rare/t31/vw/own/L2": null,
+  "rare/t31/vw/own/L3": null,
+  "rare/t31/vw/own/L4": null,
+  "rare/t31/vw/wrong/L0": null,
+  "rare/t31/vw/wrong/L1": null,
+  "rare/t31/vw/wrong/L2": null,
+  "rare/t31/vw/wrong/L3": null,
+  "rare/t31/vw/wrong/L4": null,
+  "rare/t30/raw/own/L0": null,
+  "rare/t30/raw/own/L1": null,
+  "rare/t30/raw/own/L2": null,
+  "rare/t30/raw/own/L3": null,
+  "rare/t30/raw/own/L4": null,
+  "rare/t30/raw/wrong/L0": null,
+  "rare/t30/raw/wrong/L1": null,
+  "rare/t30/raw/wrong/L2": null,
+  "rare/t30/raw/wrong/L3": null,
+  "rare/t30/raw/wrong/L4": null,
+  "rare/t30/vw/own/L0": null,
+  "rare/t30/vw/own/L1": null,
+  "rare/t30/vw/own/L2": null,
+  "rare/t30/vw/own/L3": null,
+  "rare/t30/vw/own/L4": null,
+  "rare/t30/vw/wrong/L0": null,
+  "rare/t30/vw/wrong/L1": null,
+  "rare/t30/vw/wrong/L2": null,
+  "rare/t30/vw/wrong/L3": null,
+  "rare/t30/vw/wrong/L4": null,
+  "rare/t28/raw/own/L0": {
+   "birth_w": 0.035731,
+   "death_w": 0.031411,
+   "persistence": 0.00432,
+   "ratio": 0.879087,
+   "cycle": [
+    32,
+    28,
+    29,
+    31
+   ],
+   "death_triangle": [
+    32,
+    31,
+    30
+   ]
+  },
+  "rare/t28/raw/own/L1": {
+   "birth_w": 0.062467,
+   "death_w": 0.053949,
+   "persistence": 0.008518,
+   "ratio": 0.863639,
+   "cycle": [
+    32,
+    31,
+    30,
+    29,
+    28
+   ],
+   "death_triangle": [
+    32,
+    31,
+    30
+   ]
+  },
+  "rare/t28/raw/own/L2": null,
+  "rare/t28/raw/own/L3": null,
+  "rare/t28/raw/own/L4": null,
+  "rare/t28/raw/wrong/L0": null,
+  "rare/t28/raw/wrong/L1": {
+   "birth_w": 0.059905,
+   "death_w": 0.052797,
+   "persistence": 0.007108,
+   "ratio": 0.881348,
+   "cycle": [
+    32,
+    31,
+    30,
+    29,
+    28
+   ],
+   "death_triangle": [
+    32,
+    31,
+    30
+   ]
+  },
+  "rare/t28/raw/wrong/L2": null,
+  "rare/t28/raw/wrong/L3": null,
+  "rare/t28/raw/wrong/L4": null,
+  "rare/t28/vw/own/L0": {
+   "birth_w": 0.036334,
+   "death_w": 0.034408,
+   "persistence": 0.001926,
+   "ratio": 0.947001,
+   "cycle": [
+    32,
+    28,
+    29,
+    31
+   ],
+   "death_triangle": [
+    32,
+    31,
+    28
+   ]
+  },
+  "rare/t28/vw/own/L1": {
+   "birth_w": 0.062726,
+   "death_w": 0.056388,
+   "persistence": 0.006339,
+   "ratio": 0.898949,
+   "cycle": [
+    32,
+    31,
+    30,
+    29,
+    28
+   ],
+   "death_triangle": [
+    32,
+    31,
+    30
+   ]
+  },
+  "rare/t28/vw/own/L2": null,
+  "rare/t28/vw/own/L3": null,
+  "rare/t28/vw/own/L4": {
+   "birth_w": 0.106511,
+   "death_w": 0.069395,
+   "persistence": 0.037116,
+   "ratio": 0.651527,
+   "cycle": [
+    32,
+    31,
+    30,
+    29,
+    28
+   ],
+   "death_triangle": [
+    32,
+    31,
+    30
+   ]
+  },
+  "rare/t28/vw/wrong/L0": null,
+  "rare/t28/vw/wrong/L1": {
+   "birth_w": 0.062774,
+   "death_w": 0.055456,
+   "persistence": 0.007318,
+   "ratio": 0.88343,
+   "cycle": [
+    32,
+    28,
+    29,
+    30,
+    31
+   ],
+   "death_triangle": [
+    32,
+    31,
+    30
+   ]
+  },
+  "rare/t28/vw/wrong/L2": null,
+  "rare/t28/vw/wrong/L3": null,
+  "rare/t28/vw/wrong/L4": null,
+  "rare/t24/raw/own/L0": {
+   "birth_w": 0.035466,
+   "death_w": 0.025881,
+   "persistence": 0.009584,
+   "ratio": 0.729762,
+   "cycle": [
+    32,
+    24,
+    26,
+    28,
+    29,
+    31
+   ],
+   "death_triangle": [
+    32,
+    29,
+    24
+   ]
+  },
+  "rare/t24/raw/own/L1": {
+   "birth_w": 0.046522,
+   "death_w": 0.042335,
+   "persistence": 0.004187,
+   "ratio": 0.909999,
+   "cycle": [
+    32,
+    30,
+    27,
+    24
+   ],
+   "death_triangle": [
+    32,
+    29,
+    28
+   ]
+  },
+  "rare/t24/raw/own/L2": null,
+  "rare/t24/raw/own/L3": null,
+  "rare/t24/raw/own/L4": {
+   "birth_w": 0.03298,
+   "death_w": 0.021546,
+   "persistence": 0.011433,
+   "ratio": 0.653322,
+   "cycle": [
+    32,
+    30,
+    28,
+    25,
+    24
+   ],
+   "death_triangle": [
+    32,
+    29,
+    28
+   ]
+  },
+  "rare/t24/raw/wrong/L0": null,
+  "rare/t24/raw/wrong/L1": {
+   "birth_w": 0.044383,
+   "death_w": 0.041739,
+   "persistence": 0.002644,
+   "ratio": 0.940427,
+   "cycle": [
+    32,
+    29,
+    26,
+    24
+   ],
+   "death_triangle": [
+    32,
+    29,
+    28
+   ]
+  },
+  "rare/t24/raw/wrong/L2": null,
+  "rare/t24/raw/wrong/L3": null,
+  "rare/t24/raw/wrong/L4": null,
+  "rare/t24/vw/own/L0": {
+   "birth_w": 0.036121,
+   "death_w": 0.029299,
+   "persistence": 0.006821,
+   "ratio": 0.811149,
+   "cycle": [
+    32,
+    24,
+    26,
+    28,
+    29,
+    31
+   ],
+   "death_triangle": [
+    32,
+    30,
+    29
+   ]
+  },
+  "rare/t24/vw/own/L1": {
+   "birth_w": 0.047823,
+   "death_w": 0.045037,
+   "persistence": 0.002786,
+   "ratio": 0.941743,
+   "cycle": [
+    32,
+    29,
+    26,
+    24
+   ],
+   "death_triangle": [
+    32,
+    29,
+    28
+   ]
+  },
+  "rare/t24/vw/own/L2": null,
+  "rare/t24/vw/own/L3": null,
+  "rare/t24/vw/own/L4": {
+   "birth_w": 0.090416,
+   "death_w": 0.035631,
+   "persistence": 0.054785,
+   "ratio": 0.394079,
+   "cycle": [
+    32,
+    31,
+    30,
+    29,
+    28,
+    27,
+    26,
+    25,
+    24
+   ],
+   "death_triangle": [
+    32,
+    29,
+    24
+   ]
+  },
+  "rare/t24/vw/wrong/L0": null,
+  "rare/t24/vw/wrong/L1": {
+   "birth_w": 0.049197,
+   "death_w": 0.044556,
+   "persistence": 0.004641,
+   "ratio": 0.905657,
+   "cycle": [
+    32,
+    30,
+    27,
+    24
+   ],
+   "death_triangle": [
+    32,
+    29,
+    28
+   ]
+  },
+  "rare/t24/vw/wrong/L2": null,
+  "rare/t24/vw/wrong/L3": null,
+  "rare/t24/vw/wrong/L4": {
+   "birth_w": 0.049137,
+   "death_w": 0.036169,
+   "persistence": 0.012968,
+   "ratio": 0.736083,
+   "cycle": [
+    32,
+    30,
+    27,
+    24
+   ],
+   "death_triangle": [
+    32,
+    29,
+    28
+   ]
+  },
+  "rare/t16/raw/own/L0": {
+   "birth_w": 0.03544,
+   "death_w": 0.020209,
+   "persistence": 0.015231,
+   "ratio": 0.57023,
+   "cycle": [
+    32,
+    16,
+    17,
+    20,
+    22,
+    24,
+    26,
+    28,
+    29,
+    31
+   ],
+   "death_triangle": [
+    32,
+    27,
+    26
+   ]
+  },
+  "rare/t16/raw/own/L1": {
+   "birth_w": 0.033057,
+   "death_w": 0.028832,
+   "persistence": 0.004226,
+   "ratio": 0.872169,
+   "cycle": [
+    32,
+    27,
+    20,
+    16
+   ],
+   "death_triangle": [
+    32,
+    26,
+    25
+   ]
+  },
+  "rare/t16/raw/own/L2": null,
+  "rare/t16/raw/own/L3": {
+   "birth_w": 0.024325,
+   "death_w": 0.010042,
+   "persistence": 0.014283,
+   "ratio": 0.412827,
+   "cycle": [
+    32,
+    28,
+    24,
+    20,
+    16
+   ],
+   "death_triangle": [
+    32,
+    26,
+    25
+   ]
+  },
+  "rare/t16/raw/own/L4": {
+   "birth_w": 0.028228,
+   "death_w": 0.008987,
+   "persistence": 0.019241,
+   "ratio": 0.318382,
+   "cycle": [
+    32,
+    29,
+    26,
+    23,
+    20,
+    17,
+    16
+   ],
+   "death_triangle": [
+    32,
+    25,
+    24
+   ]
+  },
+  "rare/t16/raw/wrong/L0": null,
+  "rare/t16/raw/wrong/L1": {
+   "birth_w": 0.03226,
+   "death_w": 0.028447,
+   "persistence": 0.003812,
+   "ratio": 0.881821,
+   "cycle": [
+    32,
+    27,
+    20,
+    16
+   ],
+   "death_triangle": [
+    32,
+    26,
+    25
+   ]
+  },
+  "rare/t16/raw/wrong/L2": null,
+  "rare/t16/raw/wrong/L3": {
+   "birth_w": 0.010257,
+   "death_w": 0.009636,
+   "persistence": 0.000621,
+   "ratio": 0.939454,
+   "cycle": [
+    32,
+    26,
+    19,
+    16
+   ],
+   "death_triangle": [
+    32,
+    26,
+    25
+   ]
+  },
+  "rare/t16/raw/wrong/L4": {
+   "birth_w": 0.013517,
+   "death_w": 0.008932,
+   "persistence": 0.004585,
+   "ratio": 0.660784,
+   "cycle": [
+    32,
+    26,
+    20,
+    16
+   ],
+   "death_triangle": [
+    32,
+    25,
+    16
+   ]
+  },
+  "rare/t16/vw/own/L0": {
+   "birth_w": 0.036143,
+   "death_w": 0.02456,
+   "persistence": 0.011583,
+   "ratio": 0.679527,
+   "cycle": [
+    32,
+    16,
+    19,
+    23,
+    26,
+    28,
+    29,
+    31
+   ],
+   "death_triangle": [
+    32,
+    27,
+    16
+   ]
+  },
+  "rare/t16/vw/own/L1": {
+   "birth_w": 0.03445,
+   "death_w": 0.03254,
+   "persistence": 0.00191,
+   "ratio": 0.944547,
+   "cycle": [
+    32,
+    26,
+    19,
+    16
+   ],
+   "death_triangle": [
+    32,
+    26,
+    16
+   ]
+  },
+  "rare/t16/vw/own/L2": null,
+  "rare/t16/vw/own/L3": {
+   "birth_w": 0.046017,
+   "death_w": 0.018151,
+   "persistence": 0.027866,
+   "ratio": 0.394435,
+   "cycle": [
+    32,
+    29,
+    26,
+    22,
+    18,
+    16
+   ],
+   "death_triangle": [
+    32,
+    26,
+    16
+   ]
+  },
+  "rare/t16/vw/own/L4": {
+   "birth_w": 0.08281,
+   "death_w": 0.019573,
+   "persistence": 0.063237,
+   "ratio": 0.236355,
+   "cycle": [
+    32,
+    31,
+    30,
+    29,
+    28,
+    27,
+    26,
+    25,
+    24,
+    23,
+    22,
+    21,
+    20,
+    18,
+    16
+   ],
+   "death_triangle": [
+    32,
+    26,
+    25
+   ]
+  },
+  "rare/t16/vw/wrong/L0": null,
+  "rare/t16/vw/wrong/L1": {
+   "birth_w": 0.036334,
+   "death_w": 0.03254,
+   "persistence": 0.003794,
+   "ratio": 0.895582,
+   "cycle": [
+    32,
+    27,
+    20,
+    16
+   ],
+   "death_triangle": [
+    32,
+    26,
+    16
+   ]
+  },
+  "rare/t16/vw/wrong/L2": null,
+  "rare/t16/vw/wrong/L3": {
+   "birth_w": 0.025533,
+   "death_w": 0.018151,
+   "persistence": 0.007382,
+   "ratio": 0.710879,
+   "cycle": [
+    32,
+    27,
+    22,
+    16
+   ],
+   "death_triangle": [
+    32,
+    26,
+    16
+   ]
+  },
+  "rare/t16/vw/wrong/L4": {
+   "birth_w": 0.038748,
+   "death_w": 0.019712,
+   "persistence": 0.019036,
+   "ratio": 0.50873,
+   "cycle": [
+    32,
+    29,
+    25,
+    21,
+    16
+   ],
+   "death_triangle": [
+    32,
+    25,
+    16
+   ]
+  },
+  "rare/t8/raw/own/L0": {
+   "birth_w": 0.035439,
+   "death_w": 0.01844,
+   "persistence": 0.016998,
+   "ratio": 0.520342,
+   "cycle": [
+    32,
+    8,
+    9,
+    14,
+    17,
+    20,
+    22,
+    24,
+    26,
+    28,
+    29,
+    31
+   ],
+   "death_triangle": [
+    32,
+    26,
+    25
+   ]
+  },
+  "rare/t8/raw/own/L1": {
+   "birth_w": 0.02917,
+   "death_w": 0.023497,
+   "persistence": 0.005673,
+   "ratio": 0.805512,
+   "cycle": [
+    32,
+    26,
+    18,
+    8
+   ],
+   "death_triangle": [
+    32,
+    23,
+    8
+   ]
+  },
+  "rare/t8/raw/own/L2": null,
+  "rare/t8/raw/own/L3": {
+   "birth_w": 0.034922,
+   "death_w": 0.006009,
+   "persistence": 0.028913,
+   "ratio": 0.172058,
+   "cycle": [
+    32,
+    29,
+    26,
+    22,
+    19,
+    15,
+    11,
+    8
+   ],
+   "death_triangle": [
+    32,
+    23,
+    22
+   ]
+  },
+  "rare/t8/raw/own/L4": {
+   "birth_w": 0.026182,
+   "death_w": 0.005435,
+   "persistence": 0.020747,
+   "ratio": 0.207583,
+   "cycle": [
+    32,
+    29,
+    26,
+    23,
+    20,
+    17,
+    14,
+    10,
+    8
+   ],
+   "death_triangle": [
+    32,
+    21,
+    20
+   ]
+  },
+  "rare/t8/raw/wrong/L0": null,
+  "rare/t8/raw/wrong/L1": {
+   "birth_w": 0.028868,
+   "death_w": 0.023497,
+   "persistence": 0.005371,
+   "ratio": 0.813947,
+   "cycle": [
+    32,
+    26,
+    18,
+    8
+   ],
+   "death_triangle": [
+    32,
+    23,
+    8
+   ]
+  },
+  "rare/t8/raw/wrong/L2": null,
+  "rare/t8/raw/wrong/L3": {
+   "birth_w": 0.010723,
+   "death_w": 0.005867,
+   "persistence": 0.004856,
+   "ratio": 0.547178,
+   "cycle": [
+    32,
+    26,
+    19,
+    12,
+    8
+   ],
+   "death_triangle": [
+    32,
+    23,
+    8
+   ]
+  },
+  "rare/t8/raw/wrong/L4": {
+   "birth_w": 0.011581,
+   "death_w": 0.005306,
+   "persistence": 0.006275,
+   "ratio": 0.458146,
+   "cycle": [
+    32,
+    26,
+    19,
+    12,
+    8
+   ],
+   "death_triangle": [
+    32,
+    21,
+    20
+   ]
+  },
+  "rare/t8/vw/own/L0": {
+   "birth_w": 0.036159,
+   "death_w": 0.022977,
+   "persistence": 0.013181,
+   "ratio": 0.635457,
+   "cycle": [
+    32,
+    8,
+    14,
+    19,
+    23,
+    26,
+    28,
+    29,
+    31
+   ],
+   "death_triangle": [
+    32,
+    26,
+    8
+   ]
+  },
+  "rare/t8/vw/own/L1": {
+   "birth_w": 0.030578,
+   "death_w": 0.027764,
+   "persistence": 0.002813,
+   "ratio": 0.908001,
+   "cycle": [
+    32,
+    25,
+    16,
+    8
+   ],
+   "death_triangle": [
+    32,
+    24,
+    23
+   ]
+  },
+  "rare/t8/vw/own/L2": null,
+  "rare/t8/vw/own/L3": {
+   "birth_w": 0.069551,
+   "death_w": 0.011921,
+   "persistence": 0.05763,
+   "ratio": 0.171404,
+   "cycle": [
+    32,
+    30,
+    28,
+    26,
+    24,
+    22,
+    20,
+    18,
+    15,
+    13,
+    10,
+    8
+   ],
+   "death_triangle": [
+    32,
+    25,
+    8
+   ]
+  },
+  "rare/t8/vw/own/L4": {
+   "birth_w": 0.076846,
+   "death_w": 0.014019,
+   "persistence": 0.062827,
+   "ratio": 0.182427,
+   "cycle": [
+    32,
+    31,
+    29,
+    28,
+    26,
+    24,
+    22,
+    20,
+    18,
+    16,
+    14,
+    12,
+    9,
+    8
+   ],
+   "death_triangle": [
+    32,
+    22,
+    8
+   ]
+  },
+  "rare/t8/vw/wrong/L0": null,
+  "rare/t8/vw/wrong/L1": {
+   "birth_w": 0.032411,
+   "death_w": 0.027537,
+   "persistence": 0.004874,
+   "ratio": 0.849607,
+   "cycle": [
+    32,
+    26,
+    18,
+    8
+   ],
+   "death_triangle": [
+    32,
+    24,
+    23
+   ]
+  },
+  "rare/t8/vw/wrong/L2": null,
+  "rare/t8/vw/wrong/L3": {
+   "birth_w": 0.027494,
+   "death_w": 0.011921,
+   "persistence": 0.015573,
+   "ratio": 0.433591,
+   "cycle": [
+    32,
+    28,
+    23,
+    18,
+    13,
+    8
+   ],
+   "death_triangle": [
+    32,
+    25,
+    8
+   ]
+  },
+  "rare/t8/vw/wrong/L4": {
+   "birth_w": 0.03427,
+   "death_w": 0.014019,
+   "persistence": 0.020251,
+   "ratio": 0.409067,
+   "cycle": [
+    32,
+    28,
+    24,
+    19,
+    14,
+    9,
+    8
+   ],
+   "death_triangle": [
+    32,
+    22,
+    8
+   ]
+  },
+  "rare/t1/raw/own/L0": {
+   "birth_w": 0.03551,
+   "death_w": 0.020022,
+   "persistence": 0.015488,
+   "ratio": 0.563852,
+   "cycle": [
+    32,
+    1,
+    14,
+    17,
+    20,
+    22,
+    24,
+    26,
+    28,
+    29,
+    31
+   ],
+   "death_triangle": [
+    32,
+    26,
+    1
+   ]
+  },
+  "rare/t1/raw/own/L1": {
+   "birth_w": 0.03317,
+   "death_w": 0.023819,
+   "persistence": 0.009351,
+   "ratio": 0.718083,
+   "cycle": [
+    32,
+    27,
+    20,
+    13,
+    1
+   ],
+   "death_triangle": [
+    32,
+    23,
+    1
+   ]
+  },
+  "rare/t1/raw/own/L2": null,
+  "rare/t1/raw/own/L3": {
+   "birth_w": 0.035269,
+   "death_w": 0.006066,
+   "persistence": 0.029203,
+   "ratio": 0.172003,
+   "cycle": [
+    32,
+    29,
+    26,
+    22,
+    19,
+    15,
+    11,
+    7,
+    3,
+    1
+   ],
+   "death_triangle": [
+    32,
+    23,
+    22
+   ]
+  },
+  "rare/t1/raw/own/L4": {
+   "birth_w": 0.03237,
+   "death_w": 0.004042,
+   "persistence": 0.028328,
+   "ratio": 0.124878,
+   "cycle": [
+    32,
+    30,
+    28,
+    26,
+    23,
+    20,
+    17,
+    14,
+    11,
+    8,
+    5,
+    2,
+    1
+   ],
+   "death_triangle": [
+    32,
+    18,
+    16
+   ]
+  },
+  "rare/t1/raw/wrong/L0": null,
+  "rare/t1/raw/wrong/L1": {
+   "birth_w": 0.033298,
+   "death_w": 0.023819,
+   "persistence": 0.009479,
+   "ratio": 0.715322,
+   "cycle": [
+    32,
+    27,
+    21,
+    14,
+    1
+   ],
+   "death_triangle": [
+    32,
+    23,
+    1
+   ]
+  },
+  "rare/t1/raw/wrong/L2": null,
+  "rare/t1/raw/wrong/L3": {
+   "birth_w": 0.01299,
+   "death_w": 0.006002,
+   "persistence": 0.006988,
+   "ratio": 0.462033,
+   "cycle": [
+    32,
+    26,
+    20,
+    14,
+    7,
+    1
+   ],
+   "death_triangle": [
+    32,
+    24,
+    23
+   ]
+  },
+  "rare/t1/raw/wrong/L4": {
+   "birth_w": 0.011529,
+   "death_w": 0.003976,
+   "persistence": 0.007553,
+   "ratio": 0.344856,
+   "cycle": [
+    32,
+    26,
+    19,
+    12,
+    5,
+    1
+   ],
+   "death_triangle": [
+    32,
+    19,
+    1
+   ]
+  },
+  "rare/t1/vw/own/L0": {
+   "birth_w": 0.036336,
+   "death_w": 0.024273,
+   "persistence": 0.012063,
+   "ratio": 0.668019,
+   "cycle": [
+    32,
+    1,
+    14,
+    19,
+    23,
+    26,
+    28,
+    29,
+    31
+   ],
+   "death_triangle": [
+    32,
+    27,
+    26
+   ]
+  },
+  "rare/t1/vw/own/L1": {
+   "birth_w": 0.035897,
+   "death_w": 0.029141,
+   "persistence": 0.006756,
+   "ratio": 0.811806,
+   "cycle": [
+    32,
+    27,
+    20,
+    12,
+    1
+   ],
+   "death_triangle": [
+    32,
+    24,
+    1
+   ]
+  },
+  "rare/t1/vw/own/L2": null,
+  "rare/t1/vw/own/L3": {
+   "birth_w": 0.072833,
+   "death_w": 0.012404,
+   "persistence": 0.060429,
+   "ratio": 0.170307,
+   "cycle": [
+    32,
+    30,
+    28,
+    26,
+    24,
+    22,
+    20,
+    18,
+    15,
+    13,
+    10,
+    7,
+    4,
+    1
+   ],
+   "death_triangle": [
+    32,
+    25,
+    1
+   ]
+  },
+  "rare/t1/vw/own/L4": {
+   "birth_w": 0.096984,
+   "death_w": 0.011475,
+   "persistence": 0.085509,
+   "ratio": 0.118321,
+   "cycle": [
+    32,
+    31,
+    30,
+    29,
+    28,
+    27,
+    26,
+    25,
+    24,
+    23,
+    22,
+    21,
+    20,
+    19,
+    18,
+    17,
+    16,
+    15,
+    14,
+    13,
+    12,
+    10,
+    8,
+    6,
+    4,
+    2,
+    1
+   ],
+   "death_triangle": [
+    32,
+    19,
+    1
+   ]
+  },
+  "rare/t1/vw/wrong/L0": null,
+  "rare/t1/vw/wrong/L1": {
+   "birth_w": 0.038254,
+   "death_w": 0.029141,
+   "persistence": 0.009113,
+   "ratio": 0.761787,
+   "cycle": [
+    32,
+    27,
+    21,
+    14,
+    1
+   ],
+   "death_triangle": [
+    32,
+    24,
+    1
+   ]
+  },
+  "rare/t1/vw/wrong/L2": null,
+  "rare/t1/vw/wrong/L3": {
+   "birth_w": 0.03356,
+   "death_w": 0.012404,
+   "persistence": 0.021156,
+   "ratio": 0.369612,
+   "cycle": [
+    32,
+    28,
+    24,
+    20,
+    16,
+    11,
+    6,
+    1
+   ],
+   "death_triangle": [
+    32,
+    25,
+    1
+   ]
+  },
+  "rare/t1/vw/wrong/L4": {
+   "birth_w": 0.034801,
+   "death_w": 0.011475,
+   "persistence": 0.023326,
+   "ratio": 0.329739,
+   "cycle": [
+    32,
+    28,
+    24,
+    19,
+    14,
+    9,
+    3,
+    1
+   ],
+   "death_triangle": [
+    32,
+    19,
+    1
+   ]
+  }
+ },
+ "hub_L0": {
+  "common/t31/raw/own": null,
+  "common/t31/raw/other": null,
+  "common/t31/raw/control": null,
+  "common/t31/vw/own": null,
+  "common/t31/vw/other": null,
+  "common/t31/vw/control": null,
+  "common/t30/raw/own": 0.04053,
+  "common/t30/raw/other": 0.018607,
+  "common/t30/raw/control": 0.049764,
+  "common/t30/vw/own": 0.047158,
+  "common/t30/vw/other": 0.021325,
+  "common/t30/vw/control": 0.047692,
+  "common/t28/raw/own": 0.039313,
+  "common/t28/raw/other": 0.019169,
+  "common/t28/raw/control": 0.040495,
+  "common/t28/vw/own": 0.046883,
+  "common/t28/vw/other": 0.021937,
+  "common/t28/vw/control": 0.041295,
+  "common/t24/raw/own": 0.034682,
+  "common/t24/raw/other": 0.020559,
+  "common/t24/raw/control": 0.033363,
+  "common/t24/vw/own": 0.043083,
+  "common/t24/vw/other": 0.023449,
+  "common/t24/vw/control": 0.03554,
+  "common/t16/raw/own": 0.031106,
+  "common/t16/raw/other": 0.023681,
+  "common/t16/raw/control": 0.027531,
+  "common/t16/vw/own": 0.040412,
+  "common/t16/vw/other": 0.026921,
+  "common/t16/vw/control": 0.030881,
+  "common/t8/raw/own": 0.032216,
+  "common/t8/raw/other": 0.027347,
+  "common/t8/raw/control": 0.028158,
+  "common/t8/vw/own": 0.042324,
+  "common/t8/vw/other": 0.031017,
+  "common/t8/vw/control": 0.032996,
+  "common/t1/raw/own": 0.044487,
+  "common/t1/raw/other": 0.029315,
+  "common/t1/raw/control": 0.040786,
+  "common/t1/vw/own": 0.05908,
+  "common/t1/vw/other": 0.033105,
+  "common/t1/vw/control": 0.047798,
+  "rare/t31/raw/own": null,
+  "rare/t31/raw/other": null,
+  "rare/t31/raw/control": null,
+  "rare/t31/vw/own": null,
+  "rare/t31/vw/other": null,
+  "rare/t31/vw/control": null,
+  "rare/t30/raw/own": 0.037889,
+  "rare/t30/raw/other": 0.018172,
+  "rare/t30/raw/control": 0.037341,
+  "rare/t30/vw/own": 0.040571,
+  "rare/t30/vw/other": 0.021597,
+  "rare/t30/vw/control": 0.038879,
+  "rare/t28/raw/own": 0.034887,
+  "rare/t28/raw/other": 0.018833,
+  "rare/t28/raw/control": 0.036668,
+  "rare/t28/vw/own": 0.038106,
+  "rare/t28/vw/other": 0.022318,
+  "rare/t28/vw/control": 0.03813,
+  "rare/t24/raw/own": 0.029466,
+  "rare/t24/raw/other": 0.020322,
+  "rare/t24/raw/control": 0.029989,
+  "rare/t24/vw/own": 0.034007,
+  "rare/t24/vw/other": 0.023981,
+  "rare/t24/vw/control": 0.032821,
+  "rare/t16/raw/own": 0.026487,
+  "rare/t16/raw/other": 0.023318,
+  "rare/t16/raw/control": 0.026995,
+  "rare/t16/vw/own": 0.032132,
+  "rare/t16/vw/other": 0.027489,
+  "rare/t16/vw/control": 0.03137,
+  "rare/t8/raw/own": 0.028069,
+  "rare/t8/raw/other": 0.02683,
+  "rare/t8/raw/control": 0.026474,
+  "rare/t8/vw/own": 0.034622,
+  "rare/t8/vw/other": 0.031702,
+  "rare/t8/vw/control": 0.031423,
+  "rare/t1/raw/own": 0.042177,
+  "rare/t1/raw/other": 0.028509,
+  "rare/t1/raw/control": 0.039382,
+  "rare/t1/vw/own": 0.053778,
+  "rare/t1/vw/other": 0.033632,
+  "rare/t1/vw/control": 0.050015
+ },
+ "full_sample_mpc": {
+  "common/t31/raw/own/L0": null,
+  "common/t31/raw/own/L1": null,
+  "common/t31/raw/own/L2": null,
+  "common/t31/raw/own/L3": null,
+  "common/t31/raw/own/L4": null,
+  "common/t31/raw/own/L5": null,
+  "common/t31/raw/own/L6": null,
+  "common/t31/raw/own/L7": null,
+  "common/t31/raw/own/L8": null,
+  "common/t31/raw/own/L9": null,
+  "common/t31/raw/own/L10": {
+   "birth": 0.977798,
+   "death": 0.984692,
+   "persistence": 0.006894,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    18,
+    24,
+    31
+   ],
+   "cycle": [
+    1,
+    9,
+    14,
+    18,
+    21,
+    24,
+    27,
+    30,
+    31,
+    32
+   ]
+  },
+  "common/t31/raw/own/L11": null,
+  "common/t31/raw/wrong/L0": null,
+  "common/t31/raw/wrong/L1": null,
+  "common/t31/raw/wrong/L2": null,
+  "common/t31/raw/wrong/L3": null,
+  "common/t31/raw/wrong/L4": null,
+  "common/t31/raw/wrong/L5": null,
+  "common/t31/raw/wrong/L6": null,
+  "common/t31/raw/wrong/L7": null,
+  "common/t31/raw/wrong/L8": null,
+  "common/t31/raw/wrong/L9": null,
+  "common/t31/raw/wrong/L10": null,
+  "common/t31/raw/wrong/L11": null,
+  "common/t31/raw/random/L0": null,
+  "common/t31/raw/random/L1": null,
+  "common/t31/raw/random/L2": null,
+  "common/t31/raw/random/L3": null,
+  "common/t31/raw/random/L4": null,
+  "common/t31/raw/random/L5": null,
+  "common/t31/raw/random/L6": null,
+  "common/t31/raw/random/L7": null,
+  "common/t31/raw/random/L8": null,
+  "common/t31/raw/random/L9": null,
+  "common/t31/raw/random/L10": null,
+  "common/t31/raw/random/L11": null,
+  "common/t31/raw/control/L0": null,
+  "common/t31/raw/control/L1": null,
+  "common/t31/raw/control/L2": null,
+  "common/t31/raw/control/L3": null,
+  "common/t31/raw/control/L4": null,
+  "common/t31/raw/control/L5": null,
+  "common/t31/raw/control/L6": null,
+  "common/t31/raw/control/L7": null,
+  "common/t31/raw/control/L8": null,
+  "common/t31/raw/control/L9": null,
+  "common/t31/raw/control/L10": null,
+  "common/t31/raw/control/L11": null,
+  "common/t31/vw/own/L0": null,
+  "common/t31/vw/own/L1": null,
+  "common/t31/vw/own/L2": null,
+  "common/t31/vw/own/L3": null,
+  "common/t31/vw/own/L4": null,
+  "common/t31/vw/own/L5": null,
+  "common/t31/vw/own/L6": null,
+  "common/t31/vw/own/L7": null,
+  "common/t31/vw/own/L8": null,
+  "common/t31/vw/own/L9": null,
+  "common/t31/vw/own/L10": {
+   "birth": 0.960107,
+   "death": 0.971259,
+   "persistence": 0.011153,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    18,
+    24,
+    31
+   ],
+   "cycle": [
+    1,
+    9,
+    18,
+    25,
+    30,
+    31,
+    32
+   ]
+  },
+  "common/t31/vw/own/L11": null,
+  "common/t31/vw/wrong/L0": null,
+  "common/t31/vw/wrong/L1": null,
+  "common/t31/vw/wrong/L2": null,
+  "common/t31/vw/wrong/L3": null,
+  "common/t31/vw/wrong/L4": null,
+  "common/t31/vw/wrong/L5": null,
+  "common/t31/vw/wrong/L6": null,
+  "common/t31/vw/wrong/L7": null,
+  "common/t31/vw/wrong/L8": null,
+  "common/t31/vw/wrong/L9": null,
+  "common/t31/vw/wrong/L10": null,
+  "common/t31/vw/wrong/L11": null,
+  "common/t31/vw/random/L0": null,
+  "common/t31/vw/random/L1": null,
+  "common/t31/vw/random/L2": null,
+  "common/t31/vw/random/L3": null,
+  "common/t31/vw/random/L4": null,
+  "common/t31/vw/random/L5": null,
+  "common/t31/vw/random/L6": null,
+  "common/t31/vw/random/L7": null,
+  "common/t31/vw/random/L8": null,
+  "common/t31/vw/random/L9": null,
+  "common/t31/vw/random/L10": null,
+  "common/t31/vw/random/L11": null,
+  "common/t31/vw/control/L0": null,
+  "common/t31/vw/control/L1": null,
+  "common/t31/vw/control/L2": null,
+  "common/t31/vw/control/L3": null,
+  "common/t31/vw/control/L4": null,
+  "common/t31/vw/control/L5": null,
+  "common/t31/vw/control/L6": null,
+  "common/t31/vw/control/L7": null,
+  "common/t31/vw/control/L8": null,
+  "common/t31/vw/control/L9": null,
+  "common/t31/vw/control/L10": null,
+  "common/t31/vw/control/L11": null,
+  "common/t31/vwM/own/L0": null,
+  "common/t31/vwM/own/L1": null,
+  "common/t31/vwM/own/L2": null,
+  "common/t31/vwM/own/L3": null,
+  "common/t31/vwM/own/L4": null,
+  "common/t31/vwM/own/L5": null,
+  "common/t31/vwM/own/L6": null,
+  "common/t31/vwM/own/L7": null,
+  "common/t31/vwM/own/L8": null,
+  "common/t31/vwM/own/L9": null,
+  "common/t31/vwM/own/L10": {
+   "birth": 0.960009,
+   "death": 0.97065,
+   "persistence": 0.010641,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    18,
+    24,
+    31
+   ],
+   "cycle": [
+    1,
+    18,
+    25,
+    30,
+    31,
+    32
+   ]
+  },
+  "common/t31/vwM/own/L11": null,
+  "common/t31/vwM/wrong/L0": null,
+  "common/t31/vwM/wrong/L1": null,
+  "common/t31/vwM/wrong/L2": null,
+  "common/t31/vwM/wrong/L3": null,
+  "common/t31/vwM/wrong/L4": null,
+  "common/t31/vwM/wrong/L5": null,
+  "common/t31/vwM/wrong/L6": null,
+  "common/t31/vwM/wrong/L7": null,
+  "common/t31/vwM/wrong/L8": null,
+  "common/t31/vwM/wrong/L9": null,
+  "common/t31/vwM/wrong/L10": null,
+  "common/t31/vwM/wrong/L11": null,
+  "common/t31/vwM/random/L0": null,
+  "common/t31/vwM/random/L1": null,
+  "common/t31/vwM/random/L2": null,
+  "common/t31/vwM/random/L3": null,
+  "common/t31/vwM/random/L4": null,
+  "common/t31/vwM/random/L5": null,
+  "common/t31/vwM/random/L6": null,
+  "common/t31/vwM/random/L7": null,
+  "common/t31/vwM/random/L8": null,
+  "common/t31/vwM/random/L9": null,
+  "common/t31/vwM/random/L10": null,
+  "common/t31/vwM/random/L11": null,
+  "common/t31/vwM/control/L0": null,
+  "common/t31/vwM/control/L1": null,
+  "common/t31/vwM/control/L2": null,
+  "common/t31/vwM/control/L3": null,
+  "common/t31/vwM/control/L4": null,
+  "common/t31/vwM/control/L5": null,
+  "common/t31/vwM/control/L6": null,
+  "common/t31/vwM/control/L7": null,
+  "common/t31/vwM/control/L8": null,
+  "common/t31/vwM/control/L9": null,
+  "common/t31/vwM/control/L10": null,
+  "common/t31/vwM/control/L11": null,
+  "common/t31/vwU/own/L0": null,
+  "common/t31/vwU/own/L1": null,
+  "common/t31/vwU/own/L2": null,
+  "common/t31/vwU/own/L3": null,
+  "common/t31/vwU/own/L4": null,
+  "common/t31/vwU/own/L5": null,
+  "common/t31/vwU/own/L6": null,
+  "common/t31/vwU/own/L7": null,
+  "common/t31/vwU/own/L8": null,
+  "common/t31/vwU/own/L9": null,
+  "common/t31/vwU/own/L10": {
+   "birth": 0.935006,
+   "death": 0.956587,
+   "persistence": 0.021581,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    18,
+    24,
+    31
+   ],
+   "cycle": [
+    1,
+    9,
+    11,
+    12,
+    16,
+    18,
+    21,
+    23,
+    24,
+    25,
+    27,
+    29,
+    30,
+    31,
+    32
+   ]
+  },
+  "common/t31/vwU/own/L11": null,
+  "common/t31/vwU/wrong/L0": null,
+  "common/t31/vwU/wrong/L1": null,
+  "common/t31/vwU/wrong/L2": null,
+  "common/t31/vwU/wrong/L3": null,
+  "common/t31/vwU/wrong/L4": null,
+  "common/t31/vwU/wrong/L5": null,
+  "common/t31/vwU/wrong/L6": null,
+  "common/t31/vwU/wrong/L7": null,
+  "common/t31/vwU/wrong/L8": null,
+  "common/t31/vwU/wrong/L9": null,
+  "common/t31/vwU/wrong/L10": null,
+  "common/t31/vwU/wrong/L11": null,
+  "common/t31/vwU/random/L0": null,
+  "common/t31/vwU/random/L1": null,
+  "common/t31/vwU/random/L2": null,
+  "common/t31/vwU/random/L3": null,
+  "common/t31/vwU/random/L4": null,
+  "common/t31/vwU/random/L5": null,
+  "common/t31/vwU/random/L6": null,
+  "common/t31/vwU/random/L7": null,
+  "common/t31/vwU/random/L8": null,
+  "common/t31/vwU/random/L9": null,
+  "common/t31/vwU/random/L10": null,
+  "common/t31/vwU/random/L11": null,
+  "common/t31/vwU/control/L0": null,
+  "common/t31/vwU/control/L1": null,
+  "common/t31/vwU/control/L2": null,
+  "common/t31/vwU/control/L3": null,
+  "common/t31/vwU/control/L4": null,
+  "common/t31/vwU/control/L5": null,
+  "common/t31/vwU/control/L6": null,
+  "common/t31/vwU/control/L7": null,
+  "common/t31/vwU/control/L8": null,
+  "common/t31/vwU/control/L9": null,
+  "common/t31/vwU/control/L10": null,
+  "common/t31/vwU/control/L11": null,
+  "common/t30/raw/own/L0": null,
+  "common/t30/raw/own/L1": null,
+  "common/t30/raw/own/L2": null,
+  "common/t30/raw/own/L3": null,
+  "common/t30/raw/own/L4": null,
+  "common/t30/raw/own/L5": null,
+  "common/t30/raw/own/L6": null,
+  "common/t30/raw/own/L7": null,
+  "common/t30/raw/own/L8": null,
+  "common/t30/raw/own/L9": null,
+  "common/t30/raw/own/L10": null,
+  "common/t30/raw/own/L11": null,
+  "common/t30/raw/wrong/L0": null,
+  "common/t30/raw/wrong/L1": null,
+  "common/t30/raw/wrong/L2": null,
+  "common/t30/raw/wrong/L3": null,
+  "common/t30/raw/wrong/L4": null,
+  "common/t30/raw/wrong/L5": null,
+  "common/t30/raw/wrong/L6": null,
+  "common/t30/raw/wrong/L7": null,
+  "common/t30/raw/wrong/L8": null,
+  "common/t30/raw/wrong/L9": null,
+  "common/t30/raw/wrong/L10": null,
+  "common/t30/raw/wrong/L11": null,
+  "common/t30/raw/random/L0": null,
+  "common/t30/raw/random/L1": null,
+  "common/t30/raw/random/L2": null,
+  "common/t30/raw/random/L3": null,
+  "common/t30/raw/random/L4": null,
+  "common/t30/raw/random/L5": null,
+  "common/t30/raw/random/L6": null,
+  "common/t30/raw/random/L7": null,
+  "common/t30/raw/random/L8": null,
+  "common/t30/raw/random/L9": null,
+  "common/t30/raw/random/L10": null,
+  "common/t30/raw/random/L11": null,
+  "common/t30/raw/control/L0": null,
+  "common/t30/raw/control/L1": null,
+  "common/t30/raw/control/L2": null,
+  "common/t30/raw/control/L3": null,
+  "common/t30/raw/control/L4": null,
+  "common/t30/raw/control/L5": null,
+  "common/t30/raw/control/L6": null,
+  "common/t30/raw/control/L7": null,
+  "common/t30/raw/control/L8": null,
+  "common/t30/raw/control/L9": null,
+  "common/t30/raw/control/L10": null,
+  "common/t30/raw/control/L11": null,
+  "common/t30/vw/own/L0": null,
+  "common/t30/vw/own/L1": null,
+  "common/t30/vw/own/L2": null,
+  "common/t30/vw/own/L3": null,
+  "common/t30/vw/own/L4": null,
+  "common/t30/vw/own/L5": null,
+  "common/t30/vw/own/L6": null,
+  "common/t30/vw/own/L7": null,
+  "common/t30/vw/own/L8": null,
+  "common/t30/vw/own/L9": null,
+  "common/t30/vw/own/L10": null,
+  "common/t30/vw/own/L11": null,
+  "common/t30/vw/wrong/L0": null,
+  "common/t30/vw/wrong/L1": null,
+  "common/t30/vw/wrong/L2": null,
+  "common/t30/vw/wrong/L3": null,
+  "common/t30/vw/wrong/L4": null,
+  "common/t30/vw/wrong/L5": null,
+  "common/t30/vw/wrong/L6": null,
+  "common/t30/vw/wrong/L7": null,
+  "common/t30/vw/wrong/L8": null,
+  "common/t30/vw/wrong/L9": null,
+  "common/t30/vw/wrong/L10": null,
+  "common/t30/vw/wrong/L11": null,
+  "common/t30/vw/random/L0": null,
+  "common/t30/vw/random/L1": null,
+  "common/t30/vw/random/L2": null,
+  "common/t30/vw/random/L3": null,
+  "common/t30/vw/random/L4": null,
+  "common/t30/vw/random/L5": null,
+  "common/t30/vw/random/L6": null,
+  "common/t30/vw/random/L7": null,
+  "common/t30/vw/random/L8": null,
+  "common/t30/vw/random/L9": null,
+  "common/t30/vw/random/L10": null,
+  "common/t30/vw/random/L11": null,
+  "common/t30/vw/control/L0": null,
+  "common/t30/vw/control/L1": null,
+  "common/t30/vw/control/L2": null,
+  "common/t30/vw/control/L3": null,
+  "common/t30/vw/control/L4": null,
+  "common/t30/vw/control/L5": null,
+  "common/t30/vw/control/L6": null,
+  "common/t30/vw/control/L7": null,
+  "common/t30/vw/control/L8": null,
+  "common/t30/vw/control/L9": null,
+  "common/t30/vw/control/L10": null,
+  "common/t30/vw/control/L11": null,
+  "common/t30/vwM/own/L0": null,
+  "common/t30/vwM/own/L1": null,
+  "common/t30/vwM/own/L2": null,
+  "common/t30/vwM/own/L3": null,
+  "common/t30/vwM/own/L4": null,
+  "common/t30/vwM/own/L5": null,
+  "common/t30/vwM/own/L6": null,
+  "common/t30/vwM/own/L7": null,
+  "common/t30/vwM/own/L8": null,
+  "common/t30/vwM/own/L9": null,
+  "common/t30/vwM/own/L10": null,
+  "common/t30/vwM/own/L11": null,
+  "common/t30/vwM/wrong/L0": null,
+  "common/t30/vwM/wrong/L1": null,
+  "common/t30/vwM/wrong/L2": null,
+  "common/t30/vwM/wrong/L3": null,
+  "common/t30/vwM/wrong/L4": null,
+  "common/t30/vwM/wrong/L5": null,
+  "common/t30/vwM/wrong/L6": null,
+  "common/t30/vwM/wrong/L7": null,
+  "common/t30/vwM/wrong/L8": null,
+  "common/t30/vwM/wrong/L9": null,
+  "common/t30/vwM/wrong/L10": null,
+  "common/t30/vwM/wrong/L11": null,
+  "common/t30/vwM/random/L0": null,
+  "common/t30/vwM/random/L1": null,
+  "common/t30/vwM/random/L2": null,
+  "common/t30/vwM/random/L3": null,
+  "common/t30/vwM/random/L4": null,
+  "common/t30/vwM/random/L5": null,
+  "common/t30/vwM/random/L6": null,
+  "common/t30/vwM/random/L7": null,
+  "common/t30/vwM/random/L8": null,
+  "common/t30/vwM/random/L9": null,
+  "common/t30/vwM/random/L10": null,
+  "common/t30/vwM/random/L11": null,
+  "common/t30/vwM/control/L0": null,
+  "common/t30/vwM/control/L1": null,
+  "common/t30/vwM/control/L2": null,
+  "common/t30/vwM/control/L3": null,
+  "common/t30/vwM/control/L4": null,
+  "common/t30/vwM/control/L5": null,
+  "common/t30/vwM/control/L6": null,
+  "common/t30/vwM/control/L7": null,
+  "common/t30/vwM/control/L8": null,
+  "common/t30/vwM/control/L9": null,
+  "common/t30/vwM/control/L10": null,
+  "common/t30/vwM/control/L11": null,
+  "common/t30/vwU/own/L0": null,
+  "common/t30/vwU/own/L1": null,
+  "common/t30/vwU/own/L2": null,
+  "common/t30/vwU/own/L3": null,
+  "common/t30/vwU/own/L4": null,
+  "common/t30/vwU/own/L5": null,
+  "common/t30/vwU/own/L6": null,
+  "common/t30/vwU/own/L7": null,
+  "common/t30/vwU/own/L8": null,
+  "common/t30/vwU/own/L9": null,
+  "common/t30/vwU/own/L10": null,
+  "common/t30/vwU/own/L11": null,
+  "common/t30/vwU/wrong/L0": null,
+  "common/t30/vwU/wrong/L1": null,
+  "common/t30/vwU/wrong/L2": null,
+  "common/t30/vwU/wrong/L3": null,
+  "common/t30/vwU/wrong/L4": null,
+  "common/t30/vwU/wrong/L5": null,
+  "common/t30/vwU/wrong/L6": null,
+  "common/t30/vwU/wrong/L7": null,
+  "common/t30/vwU/wrong/L8": null,
+  "common/t30/vwU/wrong/L9": null,
+  "common/t30/vwU/wrong/L10": null,
+  "common/t30/vwU/wrong/L11": null,
+  "common/t30/vwU/random/L0": null,
+  "common/t30/vwU/random/L1": null,
+  "common/t30/vwU/random/L2": null,
+  "common/t30/vwU/random/L3": null,
+  "common/t30/vwU/random/L4": null,
+  "common/t30/vwU/random/L5": null,
+  "common/t30/vwU/random/L6": null,
+  "common/t30/vwU/random/L7": null,
+  "common/t30/vwU/random/L8": null,
+  "common/t30/vwU/random/L9": null,
+  "common/t30/vwU/random/L10": null,
+  "common/t30/vwU/random/L11": null,
+  "common/t30/vwU/control/L0": null,
+  "common/t30/vwU/control/L1": null,
+  "common/t30/vwU/control/L2": null,
+  "common/t30/vwU/control/L3": null,
+  "common/t30/vwU/control/L4": null,
+  "common/t30/vwU/control/L5": null,
+  "common/t30/vwU/control/L6": null,
+  "common/t30/vwU/control/L7": null,
+  "common/t30/vwU/control/L8": null,
+  "common/t30/vwU/control/L9": null,
+  "common/t30/vwU/control/L10": null,
+  "common/t30/vwU/control/L11": null,
+  "common/t28/raw/own/L0": null,
+  "common/t28/raw/own/L1": null,
+  "common/t28/raw/own/L2": null,
+  "common/t28/raw/own/L3": null,
+  "common/t28/raw/own/L4": null,
+  "common/t28/raw/own/L5": null,
+  "common/t28/raw/own/L6": null,
+  "common/t28/raw/own/L7": null,
+  "common/t28/raw/own/L8": null,
+  "common/t28/raw/own/L9": null,
+  "common/t28/raw/own/L10": null,
+  "common/t28/raw/own/L11": null,
+  "common/t28/raw/wrong/L0": null,
+  "common/t28/raw/wrong/L1": null,
+  "common/t28/raw/wrong/L2": null,
+  "common/t28/raw/wrong/L3": null,
+  "common/t28/raw/wrong/L4": null,
+  "common/t28/raw/wrong/L5": null,
+  "common/t28/raw/wrong/L6": null,
+  "common/t28/raw/wrong/L7": null,
+  "common/t28/raw/wrong/L8": null,
+  "common/t28/raw/wrong/L9": null,
+  "common/t28/raw/wrong/L10": null,
+  "common/t28/raw/wrong/L11": null,
+  "common/t28/raw/random/L0": null,
+  "common/t28/raw/random/L1": null,
+  "common/t28/raw/random/L2": null,
+  "common/t28/raw/random/L3": null,
+  "common/t28/raw/random/L4": null,
+  "common/t28/raw/random/L5": null,
+  "common/t28/raw/random/L6": null,
+  "common/t28/raw/random/L7": null,
+  "common/t28/raw/random/L8": null,
+  "common/t28/raw/random/L9": null,
+  "common/t28/raw/random/L10": null,
+  "common/t28/raw/random/L11": null,
+  "common/t28/raw/control/L0": null,
+  "common/t28/raw/control/L1": null,
+  "common/t28/raw/control/L2": null,
+  "common/t28/raw/control/L3": null,
+  "common/t28/raw/control/L4": null,
+  "common/t28/raw/control/L5": null,
+  "common/t28/raw/control/L6": null,
+  "common/t28/raw/control/L7": null,
+  "common/t28/raw/control/L8": null,
+  "common/t28/raw/control/L9": null,
+  "common/t28/raw/control/L10": null,
+  "common/t28/raw/control/L11": null,
+  "common/t28/vw/own/L0": null,
+  "common/t28/vw/own/L1": null,
+  "common/t28/vw/own/L2": null,
+  "common/t28/vw/own/L3": null,
+  "common/t28/vw/own/L4": {
+   "birth": 0.880293,
+   "death": 0.929002,
+   "persistence": 0.048709,
+   "birth_edge": [
+    28,
+    32
+   ],
+   "death_triangle": [
+    30,
+    31,
+    32
+   ],
+   "cycle": [
+    28,
+    29,
+    30,
+    31,
+    32
+   ]
+  },
+  "common/t28/vw/own/L5": null,
+  "common/t28/vw/own/L6": null,
+  "common/t28/vw/own/L7": null,
+  "common/t28/vw/own/L8": null,
+  "common/t28/vw/own/L9": null,
+  "common/t28/vw/own/L10": null,
+  "common/t28/vw/own/L11": null,
+  "common/t28/vw/wrong/L0": null,
+  "common/t28/vw/wrong/L1": null,
+  "common/t28/vw/wrong/L2": null,
+  "common/t28/vw/wrong/L3": null,
+  "common/t28/vw/wrong/L4": null,
+  "common/t28/vw/wrong/L5": null,
+  "common/t28/vw/wrong/L6": null,
+  "common/t28/vw/wrong/L7": null,
+  "common/t28/vw/wrong/L8": null,
+  "common/t28/vw/wrong/L9": null,
+  "common/t28/vw/wrong/L10": null,
+  "common/t28/vw/wrong/L11": null,
+  "common/t28/vw/random/L0": null,
+  "common/t28/vw/random/L1": null,
+  "common/t28/vw/random/L2": null,
+  "common/t28/vw/random/L3": null,
+  "common/t28/vw/random/L4": null,
+  "common/t28/vw/random/L5": null,
+  "common/t28/vw/random/L6": null,
+  "common/t28/vw/random/L7": null,
+  "common/t28/vw/random/L8": null,
+  "common/t28/vw/random/L9": null,
+  "common/t28/vw/random/L10": null,
+  "common/t28/vw/random/L11": null,
+  "common/t28/vw/control/L0": null,
+  "common/t28/vw/control/L1": null,
+  "common/t28/vw/control/L2": null,
+  "common/t28/vw/control/L3": null,
+  "common/t28/vw/control/L4": null,
+  "common/t28/vw/control/L5": null,
+  "common/t28/vw/control/L6": null,
+  "common/t28/vw/control/L7": null,
+  "common/t28/vw/control/L8": null,
+  "common/t28/vw/control/L9": null,
+  "common/t28/vw/control/L10": null,
+  "common/t28/vw/control/L11": null,
+  "common/t28/vwM/own/L0": null,
+  "common/t28/vwM/own/L1": null,
+  "common/t28/vwM/own/L2": null,
+  "common/t28/vwM/own/L3": null,
+  "common/t28/vwM/own/L4": {
+   "birth": 0.879972,
+   "death": 0.928777,
+   "persistence": 0.048805,
+   "birth_edge": [
+    28,
+    32
+   ],
+   "death_triangle": [
+    30,
+    31,
+    32
+   ],
+   "cycle": [
+    28,
+    29,
+    30,
+    31,
+    32
+   ]
+  },
+  "common/t28/vwM/own/L5": null,
+  "common/t28/vwM/own/L6": null,
+  "common/t28/vwM/own/L7": null,
+  "common/t28/vwM/own/L8": null,
+  "common/t28/vwM/own/L9": null,
+  "common/t28/vwM/own/L10": null,
+  "common/t28/vwM/own/L11": null,
+  "common/t28/vwM/wrong/L0": null,
+  "common/t28/vwM/wrong/L1": null,
+  "common/t28/vwM/wrong/L2": null,
+  "common/t28/vwM/wrong/L3": null,
+  "common/t28/vwM/wrong/L4": null,
+  "common/t28/vwM/wrong/L5": null,
+  "common/t28/vwM/wrong/L6": null,
+  "common/t28/vwM/wrong/L7": null,
+  "common/t28/vwM/wrong/L8": null,
+  "common/t28/vwM/wrong/L9": null,
+  "common/t28/vwM/wrong/L10": null,
+  "common/t28/vwM/wrong/L11": null,
+  "common/t28/vwM/random/L0": null,
+  "common/t28/vwM/random/L1": null,
+  "common/t28/vwM/random/L2": null,
+  "common/t28/vwM/random/L3": null,
+  "common/t28/vwM/random/L4": null,
+  "common/t28/vwM/random/L5": null,
+  "common/t28/vwM/random/L6": null,
+  "common/t28/vwM/random/L7": null,
+  "common/t28/vwM/random/L8": null,
+  "common/t28/vwM/random/L9": null,
+  "common/t28/vwM/random/L10": null,
+  "common/t28/vwM/random/L11": null,
+  "common/t28/vwM/control/L0": null,
+  "common/t28/vwM/control/L1": null,
+  "common/t28/vwM/control/L2": null,
+  "common/t28/vwM/control/L3": null,
+  "common/t28/vwM/control/L4": null,
+  "common/t28/vwM/control/L5": null,
+  "common/t28/vwM/control/L6": null,
+  "common/t28/vwM/control/L7": null,
+  "common/t28/vwM/control/L8": null,
+  "common/t28/vwM/control/L9": null,
+  "common/t28/vwM/control/L10": null,
+  "common/t28/vwM/control/L11": null,
+  "common/t28/vwU/own/L0": null,
+  "common/t28/vwU/own/L1": null,
+  "common/t28/vwU/own/L2": null,
+  "common/t28/vwU/own/L3": null,
+  "common/t28/vwU/own/L4": {
+   "birth": 0.849238,
+   "death": 0.9153,
+   "persistence": 0.066062,
+   "birth_edge": [
+    28,
+    32
+   ],
+   "death_triangle": [
+    28,
+    30,
+    32
+   ],
+   "cycle": [
+    28,
+    29,
+    30,
+    31,
+    32
+   ]
+  },
+  "common/t28/vwU/own/L5": null,
+  "common/t28/vwU/own/L6": null,
+  "common/t28/vwU/own/L7": null,
+  "common/t28/vwU/own/L8": null,
+  "common/t28/vwU/own/L9": null,
+  "common/t28/vwU/own/L10": null,
+  "common/t28/vwU/own/L11": null,
+  "common/t28/vwU/wrong/L0": null,
+  "common/t28/vwU/wrong/L1": null,
+  "common/t28/vwU/wrong/L2": null,
+  "common/t28/vwU/wrong/L3": null,
+  "common/t28/vwU/wrong/L4": null,
+  "common/t28/vwU/wrong/L5": null,
+  "common/t28/vwU/wrong/L6": null,
+  "common/t28/vwU/wrong/L7": null,
+  "common/t28/vwU/wrong/L8": null,
+  "common/t28/vwU/wrong/L9": null,
+  "common/t28/vwU/wrong/L10": null,
+  "common/t28/vwU/wrong/L11": null,
+  "common/t28/vwU/random/L0": null,
+  "common/t28/vwU/random/L1": null,
+  "common/t28/vwU/random/L2": null,
+  "common/t28/vwU/random/L3": null,
+  "common/t28/vwU/random/L4": null,
+  "common/t28/vwU/random/L5": null,
+  "common/t28/vwU/random/L6": null,
+  "common/t28/vwU/random/L7": null,
+  "common/t28/vwU/random/L8": null,
+  "common/t28/vwU/random/L9": null,
+  "common/t28/vwU/random/L10": null,
+  "common/t28/vwU/random/L11": null,
+  "common/t28/vwU/control/L0": null,
+  "common/t28/vwU/control/L1": null,
+  "common/t28/vwU/control/L2": null,
+  "common/t28/vwU/control/L3": null,
+  "common/t28/vwU/control/L4": null,
+  "common/t28/vwU/control/L5": null,
+  "common/t28/vwU/control/L6": null,
+  "common/t28/vwU/control/L7": null,
+  "common/t28/vwU/control/L8": null,
+  "common/t28/vwU/control/L9": null,
+  "common/t28/vwU/control/L10": null,
+  "common/t28/vwU/control/L11": null,
+  "common/t24/raw/own/L0": null,
+  "common/t24/raw/own/L1": null,
+  "common/t24/raw/own/L2": null,
+  "common/t24/raw/own/L3": null,
+  "common/t24/raw/own/L4": {
+   "birth": 0.958645,
+   "death": 0.975053,
+   "persistence": 0.016408,
+   "birth_edge": [
+    24,
+    32
+   ],
+   "death_triangle": [
+    24,
+    28,
+    32
+   ],
+   "cycle": [
+    24,
+    26,
+    28,
+    30,
+    32
+   ]
+  },
+  "common/t24/raw/own/L5": null,
+  "common/t24/raw/own/L6": null,
+  "common/t24/raw/own/L7": null,
+  "common/t24/raw/own/L8": null,
+  "common/t24/raw/own/L9": null,
+  "common/t24/raw/own/L10": null,
+  "common/t24/raw/own/L11": null,
+  "common/t24/raw/wrong/L0": null,
+  "common/t24/raw/wrong/L1": null,
+  "common/t24/raw/wrong/L2": null,
+  "common/t24/raw/wrong/L3": null,
+  "common/t24/raw/wrong/L4": null,
+  "common/t24/raw/wrong/L5": null,
+  "common/t24/raw/wrong/L6": null,
+  "common/t24/raw/wrong/L7": null,
+  "common/t24/raw/wrong/L8": null,
+  "common/t24/raw/wrong/L9": null,
+  "common/t24/raw/wrong/L10": null,
+  "common/t24/raw/wrong/L11": null,
+  "common/t24/raw/random/L0": null,
+  "common/t24/raw/random/L1": null,
+  "common/t24/raw/random/L2": null,
+  "common/t24/raw/random/L3": null,
+  "common/t24/raw/random/L4": null,
+  "common/t24/raw/random/L5": null,
+  "common/t24/raw/random/L6": null,
+  "common/t24/raw/random/L7": null,
+  "common/t24/raw/random/L8": null,
+  "common/t24/raw/random/L9": null,
+  "common/t24/raw/random/L10": null,
+  "common/t24/raw/random/L11": null,
+  "common/t24/raw/control/L0": null,
+  "common/t24/raw/control/L1": null,
+  "common/t24/raw/control/L2": null,
+  "common/t24/raw/control/L3": null,
+  "common/t24/raw/control/L4": null,
+  "common/t24/raw/control/L5": null,
+  "common/t24/raw/control/L6": null,
+  "common/t24/raw/control/L7": null,
+  "common/t24/raw/control/L8": null,
+  "common/t24/raw/control/L9": null,
+  "common/t24/raw/control/L10": null,
+  "common/t24/raw/control/L11": null,
+  "common/t24/vw/own/L0": null,
+  "common/t24/vw/own/L1": null,
+  "common/t24/vw/own/L2": null,
+  "common/t24/vw/own/L3": null,
+  "common/t24/vw/own/L4": {
+   "birth": 0.899973,
+   "death": 0.959606,
+   "persistence": 0.059633,
+   "birth_edge": [
+    24,
+    32
+   ],
+   "death_triangle": [
+    28,
+    29,
+    32
+   ],
+   "cycle": [
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32
+   ]
+  },
+  "common/t24/vw/own/L5": null,
+  "common/t24/vw/own/L6": null,
+  "common/t24/vw/own/L7": null,
+  "common/t24/vw/own/L8": null,
+  "common/t24/vw/own/L9": null,
+  "common/t24/vw/own/L10": null,
+  "common/t24/vw/own/L11": null,
+  "common/t24/vw/wrong/L0": null,
+  "common/t24/vw/wrong/L1": null,
+  "common/t24/vw/wrong/L2": null,
+  "common/t24/vw/wrong/L3": null,
+  "common/t24/vw/wrong/L4": null,
+  "common/t24/vw/wrong/L5": null,
+  "common/t24/vw/wrong/L6": null,
+  "common/t24/vw/wrong/L7": null,
+  "common/t24/vw/wrong/L8": null,
+  "common/t24/vw/wrong/L9": null,
+  "common/t24/vw/wrong/L10": null,
+  "common/t24/vw/wrong/L11": null,
+  "common/t24/vw/random/L0": null,
+  "common/t24/vw/random/L1": null,
+  "common/t24/vw/random/L2": null,
+  "common/t24/vw/random/L3": null,
+  "common/t24/vw/random/L4": null,
+  "common/t24/vw/random/L5": null,
+  "common/t24/vw/random/L6": null,
+  "common/t24/vw/random/L7": null,
+  "common/t24/vw/random/L8": null,
+  "common/t24/vw/random/L9": null,
+  "common/t24/vw/random/L10": null,
+  "common/t24/vw/random/L11": null,
+  "common/t24/vw/control/L0": null,
+  "common/t24/vw/control/L1": null,
+  "common/t24/vw/control/L2": null,
+  "common/t24/vw/control/L3": null,
+  "common/t24/vw/control/L4": null,
+  "common/t24/vw/control/L5": null,
+  "common/t24/vw/control/L6": null,
+  "common/t24/vw/control/L7": null,
+  "common/t24/vw/control/L8": null,
+  "common/t24/vw/control/L9": null,
+  "common/t24/vw/control/L10": null,
+  "common/t24/vw/control/L11": null,
+  "common/t24/vwM/own/L0": null,
+  "common/t24/vwM/own/L1": null,
+  "common/t24/vwM/own/L2": null,
+  "common/t24/vwM/own/L3": null,
+  "common/t24/vwM/own/L4": {
+   "birth": 0.899801,
+   "death": 0.959379,
+   "persistence": 0.059578,
+   "birth_edge": [
+    24,
+    32
+   ],
+   "death_triangle": [
+    28,
+    29,
+    32
+   ],
+   "cycle": [
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32
+   ]
+  },
+  "common/t24/vwM/own/L5": null,
+  "common/t24/vwM/own/L6": null,
+  "common/t24/vwM/own/L7": null,
+  "common/t24/vwM/own/L8": null,
+  "common/t24/vwM/own/L9": null,
+  "common/t24/vwM/own/L10": null,
+  "common/t24/vwM/own/L11": null,
+  "common/t24/vwM/wrong/L0": null,
+  "common/t24/vwM/wrong/L1": null,
+  "common/t24/vwM/wrong/L2": null,
+  "common/t24/vwM/wrong/L3": null,
+  "common/t24/vwM/wrong/L4": null,
+  "common/t24/vwM/wrong/L5": null,
+  "common/t24/vwM/wrong/L6": null,
+  "common/t24/vwM/wrong/L7": null,
+  "common/t24/vwM/wrong/L8": null,
+  "common/t24/vwM/wrong/L9": null,
+  "common/t24/vwM/wrong/L10": null,
+  "common/t24/vwM/wrong/L11": null,
+  "common/t24/vwM/random/L0": null,
+  "common/t24/vwM/random/L1": null,
+  "common/t24/vwM/random/L2": null,
+  "common/t24/vwM/random/L3": null,
+  "common/t24/vwM/random/L4": null,
+  "common/t24/vwM/random/L5": null,
+  "common/t24/vwM/random/L6": null,
+  "common/t24/vwM/random/L7": null,
+  "common/t24/vwM/random/L8": null,
+  "common/t24/vwM/random/L9": null,
+  "common/t24/vwM/random/L10": null,
+  "common/t24/vwM/random/L11": null,
+  "common/t24/vwM/control/L0": null,
+  "common/t24/vwM/control/L1": null,
+  "common/t24/vwM/control/L2": null,
+  "common/t24/vwM/control/L3": null,
+  "common/t24/vwM/control/L4": null,
+  "common/t24/vwM/control/L5": null,
+  "common/t24/vwM/control/L6": null,
+  "common/t24/vwM/control/L7": null,
+  "common/t24/vwM/control/L8": null,
+  "common/t24/vwM/control/L9": null,
+  "common/t24/vwM/control/L10": null,
+  "common/t24/vwM/control/L11": null,
+  "common/t24/vwU/own/L0": null,
+  "common/t24/vwU/own/L1": null,
+  "common/t24/vwU/own/L2": null,
+  "common/t24/vwU/own/L3": null,
+  "common/t24/vwU/own/L4": {
+   "birth": 0.873784,
+   "death": 0.95255,
+   "persistence": 0.078766,
+   "birth_edge": [
+    24,
+    32
+   ],
+   "death_triangle": [
+    24,
+    28,
+    32
+   ],
+   "cycle": [
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32
+   ]
+  },
+  "common/t24/vwU/own/L5": null,
+  "common/t24/vwU/own/L6": null,
+  "common/t24/vwU/own/L7": null,
+  "common/t24/vwU/own/L8": null,
+  "common/t24/vwU/own/L9": null,
+  "common/t24/vwU/own/L10": null,
+  "common/t24/vwU/own/L11": null,
+  "common/t24/vwU/wrong/L0": null,
+  "common/t24/vwU/wrong/L1": null,
+  "common/t24/vwU/wrong/L2": null,
+  "common/t24/vwU/wrong/L3": null,
+  "common/t24/vwU/wrong/L4": {
+   "birth": 0.936557,
+   "death": 0.95255,
+   "persistence": 0.015993,
+   "birth_edge": [
+    24,
+    32
+   ],
+   "death_triangle": [
+    24,
+    28,
+    32
+   ],
+   "cycle": [
+    24,
+    25,
+    28,
+    30,
+    32
+   ]
+  },
+  "common/t24/vwU/wrong/L5": null,
+  "common/t24/vwU/wrong/L6": null,
+  "common/t24/vwU/wrong/L7": null,
+  "common/t24/vwU/wrong/L8": null,
+  "common/t24/vwU/wrong/L9": null,
+  "common/t24/vwU/wrong/L10": null,
+  "common/t24/vwU/wrong/L11": null,
+  "common/t24/vwU/random/L0": null,
+  "common/t24/vwU/random/L1": null,
+  "common/t24/vwU/random/L2": null,
+  "common/t24/vwU/random/L3": null,
+  "common/t24/vwU/random/L4": null,
+  "common/t24/vwU/random/L5": null,
+  "common/t24/vwU/random/L6": null,
+  "common/t24/vwU/random/L7": null,
+  "common/t24/vwU/random/L8": null,
+  "common/t24/vwU/random/L9": null,
+  "common/t24/vwU/random/L10": null,
+  "common/t24/vwU/random/L11": null,
+  "common/t24/vwU/control/L0": null,
+  "common/t24/vwU/control/L1": null,
+  "common/t24/vwU/control/L2": null,
+  "common/t24/vwU/control/L3": null,
+  "common/t24/vwU/control/L4": null,
+  "common/t24/vwU/control/L5": null,
+  "common/t24/vwU/control/L6": null,
+  "common/t24/vwU/control/L7": null,
+  "common/t24/vwU/control/L8": null,
+  "common/t24/vwU/control/L9": null,
+  "common/t24/vwU/control/L10": null,
+  "common/t24/vwU/control/L11": null,
+  "common/t16/raw/own/L0": {
+   "birth": 0.967951,
+   "death": 0.977721,
+   "persistence": 0.00977,
+   "birth_edge": [
+    31,
+    32
+   ],
+   "death_triangle": [
+    16,
+    28,
+    32
+   ],
+   "cycle": [
+    31,
+    28,
+    25,
+    22,
+    16,
+    32
+   ]
+  },
+  "common/t16/raw/own/L1": {
+   "birth": 0.951905,
+   "death": 0.970651,
+   "persistence": 0.018747,
+   "birth_edge": [
+    16,
+    32
+   ],
+   "death_triangle": [
+    26,
+    27,
+    32
+   ],
+   "cycle": [
+    16,
+    18,
+    22,
+    25,
+    28,
+    31,
+    32
+   ]
+  },
+  "common/t16/raw/own/L2": null,
+  "common/t16/raw/own/L3": {
+   "birth": 0.975326,
+   "death": 0.987149,
+   "persistence": 0.011823,
+   "birth_edge": [
+    16,
+    32
+   ],
+   "death_triangle": [
+    25,
+    26,
+    32
+   ],
+   "cycle": [
+    16,
+    18,
+    23,
+    27,
+    32
+   ]
+  },
+  "common/t16/raw/own/L4": {
+   "birth": 0.963457,
+   "death": 0.988727,
+   "persistence": 0.02527,
+   "birth_edge": [
+    16,
+    32
+   ],
+   "death_triangle": [
+    16,
+    24,
+    32
+   ],
+   "cycle": [
+    16,
+    18,
+    21,
+    24,
+    27,
+    29,
+    32
+   ]
+  },
+  "common/t16/raw/own/L5": null,
+  "common/t16/raw/own/L6": null,
+  "common/t16/raw/own/L7": null,
+  "common/t16/raw/own/L8": null,
+  "common/t16/raw/own/L9": null,
+  "common/t16/raw/own/L10": null,
+  "common/t16/raw/own/L11": null,
+  "common/t16/raw/wrong/L0": null,
+  "common/t16/raw/wrong/L1": {
+   "birth": 0.949099,
+   "death": 0.971244,
+   "persistence": 0.022145,
+   "birth_edge": [
+    16,
+    32
+   ],
+   "death_triangle": [
+    26,
+    27,
+    32
+   ],
+   "cycle": [
+    16,
+    20,
+    23,
+    26,
+    28,
+    31,
+    32
+   ]
+  },
+  "common/t16/raw/wrong/L2": null,
+  "common/t16/raw/wrong/L3": {
+   "birth": 0.980136,
+   "death": 0.987433,
+   "persistence": 0.007297,
+   "birth_edge": [
+    16,
+    32
+   ],
+   "death_triangle": [
+    25,
+    26,
+    32
+   ],
+   "cycle": [
+    16,
+    22,
+    27,
+    32
+   ]
+  },
+  "common/t16/raw/wrong/L4": {
+   "birth": 0.983488,
+   "death": 0.988727,
+   "persistence": 0.005239,
+   "birth_edge": [
+    16,
+    32
+   ],
+   "death_triangle": [
+    16,
+    24,
+    32
+   ],
+   "cycle": [
+    16,
+    21,
+    27,
+    32
+   ]
+  },
+  "common/t16/raw/wrong/L5": null,
+  "common/t16/raw/wrong/L6": null,
+  "common/t16/raw/wrong/L7": null,
+  "common/t16/raw/wrong/L8": null,
+  "common/t16/raw/wrong/L9": null,
+  "common/t16/raw/wrong/L10": null,
+  "common/t16/raw/wrong/L11": null,
+  "common/t16/raw/random/L0": null,
+  "common/t16/raw/random/L1": null,
+  "common/t16/raw/random/L2": null,
+  "common/t16/raw/random/L3": null,
+  "common/t16/raw/random/L4": null,
+  "common/t16/raw/random/L5": null,
+  "common/t16/raw/random/L6": null,
+  "common/t16/raw/random/L7": null,
+  "common/t16/raw/random/L8": null,
+  "common/t16/raw/random/L9": null,
+  "common/t16/raw/random/L10": null,
+  "common/t16/raw/random/L11": null,
+  "common/t16/raw/control/L0": null,
+  "common/t16/raw/control/L1": null,
+  "common/t16/raw/control/L2": null,
+  "common/t16/raw/control/L3": null,
+  "common/t16/raw/control/L4": null,
+  "common/t16/raw/control/L5": null,
+  "common/t16/raw/control/L6": null,
+  "common/t16/raw/control/L7": null,
+  "common/t16/raw/control/L8": null,
+  "common/t16/raw/control/L9": null,
+  "common/t16/raw/control/L10": null,
+  "common/t16/raw/control/L11": null,
+  "common/t16/vw/own/L0": null,
+  "common/t16/vw/own/L1": {
+   "birth": 0.949209,
+   "death": 0.965142,
+   "persistence": 0.015933,
+   "birth_edge": [
+    16,
+    32
+   ],
+   "death_triangle": [
+    16,
+    27,
+    32
+   ],
+   "cycle": [
+    16,
+    21,
+    24,
+    27,
+    30,
+    32
+   ]
+  },
+  "common/t16/vw/own/L2": null,
+  "common/t16/vw/own/L3": {
+   "birth": 0.948609,
+   "death": 0.977141,
+   "persistence": 0.028532,
+   "birth_edge": [
+    16,
+    32
+   ],
+   "death_triangle": [
+    26,
+    27,
+    32
+   ],
+   "cycle": [
+    16,
+    20,
+    23,
+    26,
+    29,
+    32
+   ]
+  },
+  "common/t16/vw/own/L4": {
+   "birth": 0.904421,
+   "death": 0.980189,
+   "persistence": 0.075768,
+   "birth_edge": [
+    16,
+    32
+   ],
+   "death_triangle": [
+    16,
+    25,
+    32
+   ],
+   "cycle": [
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32
+   ]
+  },
+  "common/t16/vw/own/L5": null,
+  "common/t16/vw/own/L6": null,
+  "common/t16/vw/own/L7": null,
+  "common/t16/vw/own/L8": null,
+  "common/t16/vw/own/L9": null,
+  "common/t16/vw/own/L10": null,
+  "common/t16/vw/own/L11": null,
+  "common/t16/vw/wrong/L0": null,
+  "common/t16/vw/wrong/L1": {
+   "birth": 0.944126,
+   "death": 0.965142,
+   "persistence": 0.021016,
+   "birth_edge": [
+    31,
+    32
+   ],
+   "death_triangle": [
+    16,
+    27,
+    32
+   ],
+   "cycle": [
+    31,
+    28,
+    26,
+    23,
+    20,
+    16,
+    32
+   ]
+  },
+  "common/t16/vw/wrong/L2": null,
+  "common/t16/vw/wrong/L3": {
+   "birth": 0.946323,
+   "death": 0.977335,
+   "persistence": 0.031012,
+   "birth_edge": [
+    16,
+    32
+   ],
+   "death_triangle": [
+    16,
+    27,
+    32
+   ],
+   "cycle": [
+    16,
+    20,
+    23,
+    26,
+    29,
+    32
+   ]
+  },
+  "common/t16/vw/wrong/L4": {
+   "birth": 0.958376,
+   "death": 0.980189,
+   "persistence": 0.021813,
+   "birth_edge": [
+    16,
+    32
+   ],
+   "death_triangle": [
+    16,
+    25,
+    32
+   ],
+   "cycle": [
+    16,
+    18,
+    22,
+    26,
+    29,
+    32
+   ]
+  },
+  "common/t16/vw/wrong/L5": null,
+  "common/t16/vw/wrong/L6": null,
+  "common/t16/vw/wrong/L7": null,
+  "common/t16/vw/wrong/L8": null,
+  "common/t16/vw/wrong/L9": null,
+  "common/t16/vw/wrong/L10": null,
+  "common/t16/vw/wrong/L11": null,
+  "common/t16/vw/random/L0": null,
+  "common/t16/vw/random/L1": null,
+  "common/t16/vw/random/L2": null,
+  "common/t16/vw/random/L3": null,
+  "common/t16/vw/random/L4": null,
+  "common/t16/vw/random/L5": null,
+  "common/t16/vw/random/L6": null,
+  "common/t16/vw/random/L7": null,
+  "common/t16/vw/random/L8": null,
+  "common/t16/vw/random/L9": null,
+  "common/t16/vw/random/L10": null,
+  "common/t16/vw/random/L11": null,
+  "common/t16/vw/control/L0": null,
+  "common/t16/vw/control/L1": null,
+  "common/t16/vw/control/L2": null,
+  "common/t16/vw/control/L3": null,
+  "common/t16/vw/control/L4": null,
+  "common/t16/vw/control/L5": null,
+  "common/t16/vw/control/L6": null,
+  "common/t16/vw/control/L7": null,
+  "common/t16/vw/control/L8": null,
+  "common/t16/vw/control/L9": null,
+  "common/t16/vw/control/L10": null,
+  "common/t16/vw/control/L11": null,
+  "common/t16/vwM/own/L0": null,
+  "common/t16/vwM/own/L1": {
+   "birth": 0.94921,
+   "death": 0.965164,
+   "persistence": 0.015954,
+   "birth_edge": [
+    16,
+    32
+   ],
+   "death_triangle": [
+    16,
+    27,
+    32
+   ],
+   "cycle": [
+    16,
+    21,
+    24,
+    27,
+    30,
+    32
+   ]
+  },
+  "common/t16/vwM/own/L2": null,
+  "common/t16/vwM/own/L3": {
+   "birth": 0.948577,
+   "death": 0.977167,
+   "persistence": 0.02859,
+   "birth_edge": [
+    16,
+    32
+   ],
+   "death_triangle": [
+    26,
+    27,
+    32
+   ],
+   "cycle": [
+    16,
+    20,
+    23,
+    26,
+    29,
+    32
+   ]
+  },
+  "common/t16/vwM/own/L4": {
+   "birth": 0.904272,
+   "death": 0.980026,
+   "persistence": 0.075754,
+   "birth_edge": [
+    16,
+    32
+   ],
+   "death_triangle": [
+    16,
+    25,
+    32
+   ],
+   "cycle": [
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32
+   ]
+  },
+  "common/t16/vwM/own/L5": null,
+  "common/t16/vwM/own/L6": null,
+  "common/t16/vwM/own/L7": null,
+  "common/t16/vwM/own/L8": null,
+  "common/t16/vwM/own/L9": null,
+  "common/t16/vwM/own/L10": null,
+  "common/t16/vwM/own/L11": null,
+  "common/t16/vwM/wrong/L0": null,
+  "common/t16/vwM/wrong/L1": {
+   "birth": 0.944128,
+   "death": 0.965164,
+   "persistence": 0.021037,
+   "birth_edge": [
+    31,
+    32
+   ],
+   "death_triangle": [
+    16,
+    27,
+    32
+   ],
+   "cycle": [
+    31,
+    28,
+    26,
+    23,
+    20,
+    16,
+    32
+   ]
+  },
+  "common/t16/vwM/wrong/L2": null,
+  "common/t16/vwM/wrong/L3": {
+   "birth": 0.946294,
+   "death": 0.977213,
+   "persistence": 0.030919,
+   "birth_edge": [
+    16,
+    32
+   ],
+   "death_triangle": [
+    16,
+    27,
+    32
+   ],
+   "cycle": [
+    16,
+    20,
+    23,
+    26,
+    29,
+    32
+   ]
+  },
+  "common/t16/vwM/wrong/L4": {
+   "birth": 0.958336,
+   "death": 0.980026,
+   "persistence": 0.021689,
+   "birth_edge": [
+    16,
+    32
+   ],
+   "death_triangle": [
+    16,
+    25,
+    32
+   ],
+   "cycle": [
+    16,
+    18,
+    22,
+    26,
+    29,
+    32
+   ]
+  },
+  "common/t16/vwM/wrong/L5": null,
+  "common/t16/vwM/wrong/L6": null,
+  "common/t16/vwM/wrong/L7": null,
+  "common/t16/vwM/wrong/L8": null,
+  "common/t16/vwM/wrong/L9": null,
+  "common/t16/vwM/wrong/L10": null,
+  "common/t16/vwM/wrong/L11": null,
+  "common/t16/vwM/random/L0": null,
+  "common/t16/vwM/random/L1": null,
+  "common/t16/vwM/random/L2": null,
+  "common/t16/vwM/random/L3": null,
+  "common/t16/vwM/random/L4": null,
+  "common/t16/vwM/random/L5": null,
+  "common/t16/vwM/random/L6": null,
+  "common/t16/vwM/random/L7": null,
+  "common/t16/vwM/random/L8": null,
+  "common/t16/vwM/random/L9": null,
+  "common/t16/vwM/random/L10": null,
+  "common/t16/vwM/random/L11": null,
+  "common/t16/vwM/control/L0": null,
+  "common/t16/vwM/control/L1": null,
+  "common/t16/vwM/control/L2": null,
+  "common/t16/vwM/control/L3": null,
+  "common/t16/vwM/control/L4": null,
+  "common/t16/vwM/control/L5": null,
+  "common/t16/vwM/control/L6": null,
+  "common/t16/vwM/control/L7": null,
+  "common/t16/vwM/control/L8": null,
+  "common/t16/vwM/control/L9": null,
+  "common/t16/vwM/control/L10": null,
+  "common/t16/vwM/control/L11": null,
+  "common/t16/vwU/own/L0": null,
+  "common/t16/vwU/own/L1": {
+   "birth": 0.946697,
+   "death": 0.963517,
+   "persistence": 0.01682,
+   "birth_edge": [
+    16,
+    32
+   ],
+   "death_triangle": [
+    16,
+    27,
+    32
+   ],
+   "cycle": [
+    16,
+    21,
+    24,
+    27,
+    30,
+    32
+   ]
+  },
+  "common/t16/vwU/own/L2": null,
+  "common/t16/vwU/own/L3": {
+   "birth": 0.941265,
+   "death": 0.97392,
+   "persistence": 0.032655,
+   "birth_edge": [
+    16,
+    32
+   ],
+   "death_triangle": [
+    26,
+    27,
+    32
+   ],
+   "cycle": [
+    16,
+    20,
+    23,
+    26,
+    29,
+    32
+   ]
+  },
+  "common/t16/vwU/own/L4": {
+   "birth": 0.878979,
+   "death": 0.976376,
+   "persistence": 0.097397,
+   "birth_edge": [
+    16,
+    32
+   ],
+   "death_triangle": [
+    24,
+    25,
+    32
+   ],
+   "cycle": [
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32
+   ]
+  },
+  "common/t16/vwU/own/L5": null,
+  "common/t16/vwU/own/L6": null,
+  "common/t16/vwU/own/L7": null,
+  "common/t16/vwU/own/L8": null,
+  "common/t16/vwU/own/L9": null,
+  "common/t16/vwU/own/L10": null,
+  "common/t16/vwU/own/L11": null,
+  "common/t16/vwU/wrong/L0": null,
+  "common/t16/vwU/wrong/L1": {
+   "birth": 0.94139,
+   "death": 0.963517,
+   "persistence": 0.022127,
+   "birth_edge": [
+    31,
+    32
+   ],
+   "death_triangle": [
+    16,
+    27,
+    32
+   ],
+   "cycle": [
+    31,
+    28,
+    26,
+    23,
+    20,
+    16,
+    32
+   ]
+  },
+  "common/t16/vwU/wrong/L2": null,
+  "common/t16/vwU/wrong/L3": {
+   "birth": 0.9396,
+   "death": 0.974908,
+   "persistence": 0.035308,
+   "birth_edge": [
+    16,
+    32
+   ],
+   "death_triangle": [
+    26,
+    27,
+    32
+   ],
+   "cycle": [
+    16,
+    20,
+    23,
+    26,
+    29,
+    32
+   ]
+  },
+  "common/t16/vwU/wrong/L4": {
+   "birth": 0.95117,
+   "death": 0.977048,
+   "persistence": 0.025877,
+   "birth_edge": [
+    16,
+    32
+   ],
+   "death_triangle": [
+    24,
+    25,
+    32
+   ],
+   "cycle": [
+    16,
+    20,
+    23,
+    26,
+    29,
+    32
+   ]
+  },
+  "common/t16/vwU/wrong/L5": null,
+  "common/t16/vwU/wrong/L6": null,
+  "common/t16/vwU/wrong/L7": null,
+  "common/t16/vwU/wrong/L8": null,
+  "common/t16/vwU/wrong/L9": null,
+  "common/t16/vwU/wrong/L10": null,
+  "common/t16/vwU/wrong/L11": null,
+  "common/t16/vwU/random/L0": null,
+  "common/t16/vwU/random/L1": null,
+  "common/t16/vwU/random/L2": null,
+  "common/t16/vwU/random/L3": null,
+  "common/t16/vwU/random/L4": null,
+  "common/t16/vwU/random/L5": null,
+  "common/t16/vwU/random/L6": null,
+  "common/t16/vwU/random/L7": null,
+  "common/t16/vwU/random/L8": null,
+  "common/t16/vwU/random/L9": null,
+  "common/t16/vwU/random/L10": null,
+  "common/t16/vwU/random/L11": null,
+  "common/t16/vwU/control/L0": null,
+  "common/t16/vwU/control/L1": null,
+  "common/t16/vwU/control/L2": null,
+  "common/t16/vwU/control/L3": null,
+  "common/t16/vwU/control/L4": null,
+  "common/t16/vwU/control/L5": null,
+  "common/t16/vwU/control/L6": null,
+  "common/t16/vwU/control/L7": null,
+  "common/t16/vwU/control/L8": null,
+  "common/t16/vwU/control/L9": null,
+  "common/t16/vwU/control/L10": null,
+  "common/t16/vwU/control/L11": null,
+  "common/t8/raw/own/L0": {
+   "birth": 0.967928,
+   "death": 0.980628,
+   "persistence": 0.0127,
+   "birth_edge": [
+    31,
+    32
+   ],
+   "death_triangle": [
+    8,
+    27,
+    32
+   ],
+   "cycle": [
+    31,
+    28,
+    25,
+    22,
+    17,
+    8,
+    32
+   ]
+  },
+  "common/t8/raw/own/L1": {
+   "birth": 0.958277,
+   "death": 0.975819,
+   "persistence": 0.017542,
+   "birth_edge": [
+    8,
+    32
+   ],
+   "death_triangle": [
+    8,
+    24,
+    32
+   ],
+   "cycle": [
+    8,
+    12,
+    18,
+    22,
+    26,
+    30,
+    32
+   ]
+  },
+  "common/t8/raw/own/L2": null,
+  "common/t8/raw/own/L3": {
+   "birth": 0.968545,
+   "death": 0.99227,
+   "persistence": 0.023725,
+   "birth_edge": [
+    8,
+    32
+   ],
+   "death_triangle": [
+    8,
+    24,
+    32
+   ],
+   "cycle": [
+    8,
+    12,
+    16,
+    20,
+    24,
+    28,
+    32
+   ]
+  },
+  "common/t8/raw/own/L4": {
+   "birth": 0.962914,
+   "death": 0.993334,
+   "persistence": 0.030419,
+   "birth_edge": [
+    8,
+    32
+   ],
+   "death_triangle": [
+    9,
+    21,
+    32
+   ],
+   "cycle": [
+    8,
+    9,
+    11,
+    14,
+    17,
+    20,
+    22,
+    25,
+    27,
+    29,
+    32
+   ]
+  },
+  "common/t8/raw/own/L5": null,
+  "common/t8/raw/own/L6": null,
+  "common/t8/raw/own/L7": null,
+  "common/t8/raw/own/L8": null,
+  "common/t8/raw/own/L9": null,
+  "common/t8/raw/own/L10": null,
+  "common/t8/raw/own/L11": null,
+  "common/t8/raw/wrong/L0": null,
+  "common/t8/raw/wrong/L1": {
+   "birth": 0.954305,
+   "death": 0.975819,
+   "persistence": 0.021514,
+   "birth_edge": [
+    8,
+    32
+   ],
+   "death_triangle": [
+    8,
+    24,
+    32
+   ],
+   "cycle": [
+    8,
+    12,
+    17,
+    21,
+    24,
+    27,
+    30,
+    32
+   ]
+  },
+  "common/t8/raw/wrong/L2": null,
+  "common/t8/raw/wrong/L3": {
+   "birth": 0.979083,
+   "death": 0.99227,
+   "persistence": 0.013187,
+   "birth_edge": [
+    8,
+    32
+   ],
+   "death_triangle": [
+    8,
+    24,
+    32
+   ],
+   "cycle": [
+    8,
+    12,
+    17,
+    22,
+    27,
+    32
+   ]
+  },
+  "common/t8/raw/wrong/L4": {
+   "birth": 0.984679,
+   "death": 0.993573,
+   "persistence": 0.008893,
+   "birth_edge": [
+    8,
+    32
+   ],
+   "death_triangle": [
+    8,
+    21,
+    32
+   ],
+   "cycle": [
+    8,
+    14,
+    20,
+    26,
+    32
+   ]
+  },
+  "common/t8/raw/wrong/L5": null,
+  "common/t8/raw/wrong/L6": null,
+  "common/t8/raw/wrong/L7": null,
+  "common/t8/raw/wrong/L8": null,
+  "common/t8/raw/wrong/L9": null,
+  "common/t8/raw/wrong/L10": null,
+  "common/t8/raw/wrong/L11": null,
+  "common/t8/raw/random/L0": null,
+  "common/t8/raw/random/L1": null,
+  "common/t8/raw/random/L2": null,
+  "common/t8/raw/random/L3": null,
+  "common/t8/raw/random/L4": null,
+  "common/t8/raw/random/L5": null,
+  "common/t8/raw/random/L6": null,
+  "common/t8/raw/random/L7": null,
+  "common/t8/raw/random/L8": null,
+  "common/t8/raw/random/L9": null,
+  "common/t8/raw/random/L10": null,
+  "common/t8/raw/random/L11": null,
+  "common/t8/raw/control/L0": null,
+  "common/t8/raw/control/L1": null,
+  "common/t8/raw/control/L2": null,
+  "common/t8/raw/control/L3": null,
+  "common/t8/raw/control/L4": null,
+  "common/t8/raw/control/L5": null,
+  "common/t8/raw/control/L6": null,
+  "common/t8/raw/control/L7": null,
+  "common/t8/raw/control/L8": null,
+  "common/t8/raw/control/L9": null,
+  "common/t8/raw/control/L10": null,
+  "common/t8/raw/control/L11": null,
+  "common/t8/vw/own/L0": null,
+  "common/t8/vw/own/L1": {
+   "birth": 0.955375,
+   "death": 0.970801,
+   "persistence": 0.015426,
+   "birth_edge": [
+    8,
+    32
+   ],
+   "death_triangle": [
+    8,
+    25,
+    32
+   ],
+   "cycle": [
+    8,
+    15,
+    21,
+    25,
+    29,
+    32
+   ]
+  },
+  "common/t8/vw/own/L2": null,
+  "common/t8/vw/own/L3": {
+   "birth": 0.933339,
+   "death": 0.982291,
+   "persistence": 0.048952,
+   "birth_edge": [
+    8,
+    32
+   ],
+   "death_triangle": [
+    8,
+    26,
+    32
+   ],
+   "cycle": [
+    8,
+    12,
+    15,
+    18,
+    21,
+    24,
+    26,
+    28,
+    30,
+    32
+   ]
+  },
+  "common/t8/vw/own/L4": {
+   "birth": 0.901357,
+   "death": 0.985549,
+   "persistence": 0.084191,
+   "birth_edge": [
+    8,
+    32
+   ],
+   "death_triangle": [
+    22,
+    23,
+    32
+   ],
+   "cycle": [
+    8,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32
+   ]
+  },
+  "common/t8/vw/own/L5": null,
+  "common/t8/vw/own/L6": null,
+  "common/t8/vw/own/L7": null,
+  "common/t8/vw/own/L8": null,
+  "common/t8/vw/own/L9": null,
+  "common/t8/vw/own/L10": null,
+  "common/t8/vw/own/L11": null,
+  "common/t8/vw/wrong/L0": null,
+  "common/t8/vw/wrong/L1": {
+   "birth": 0.947432,
+   "death": 0.970801,
+   "persistence": 0.023368,
+   "birth_edge": [
+    8,
+    32
+   ],
+   "death_triangle": [
+    8,
+    25,
+    32
+   ],
+   "cycle": [
+    8,
+    14,
+    18,
+    21,
+    25,
+    28,
+    31,
+    32
+   ]
+  },
+  "common/t8/vw/wrong/L2": null,
+  "common/t8/vw/wrong/L3": {
+   "birth": 0.941538,
+   "death": 0.982291,
+   "persistence": 0.040753,
+   "birth_edge": [
+    8,
+    32
+   ],
+   "death_triangle": [
+    8,
+    26,
+    32
+   ],
+   "cycle": [
+    8,
+    11,
+    14,
+    17,
+    20,
+    23,
+    26,
+    29,
+    32
+   ]
+  },
+  "common/t8/vw/wrong/L4": {
+   "birth": 0.959298,
+   "death": 0.984814,
+   "persistence": 0.025515,
+   "birth_edge": [
+    8,
+    32
+   ],
+   "death_triangle": [
+    22,
+    23,
+    32
+   ],
+   "cycle": [
+    8,
+    9,
+    14,
+    18,
+    22,
+    26,
+    29,
+    32
+   ]
+  },
+  "common/t8/vw/wrong/L5": null,
+  "common/t8/vw/wrong/L6": null,
+  "common/t8/vw/wrong/L7": null,
+  "common/t8/vw/wrong/L8": null,
+  "common/t8/vw/wrong/L9": null,
+  "common/t8/vw/wrong/L10": null,
+  "common/t8/vw/wrong/L11": null,
+  "common/t8/vw/random/L0": null,
+  "common/t8/vw/random/L1": null,
+  "common/t8/vw/random/L2": null,
+  "common/t8/vw/random/L3": null,
+  "common/t8/vw/random/L4": null,
+  "common/t8/vw/random/L5": null,
+  "common/t8/vw/random/L6": null,
+  "common/t8/vw/random/L7": null,
+  "common/t8/vw/random/L8": null,
+  "common/t8/vw/random/L9": null,
+  "common/t8/vw/random/L10": null,
+  "common/t8/vw/random/L11": null,
+  "common/t8/vw/control/L0": null,
+  "common/t8/vw/control/L1": null,
+  "common/t8/vw/control/L2": null,
+  "common/t8/vw/control/L3": null,
+  "common/t8/vw/control/L4": null,
+  "common/t8/vw/control/L5": null,
+  "common/t8/vw/control/L6": null,
+  "common/t8/vw/control/L7": null,
+  "common/t8/vw/control/L8": null,
+  "common/t8/vw/control/L9": null,
+  "common/t8/vw/control/L10": null,
+  "common/t8/vw/control/L11": null,
+  "common/t8/vwM/own/L0": null,
+  "common/t8/vwM/own/L1": {
+   "birth": 0.955379,
+   "death": 0.970805,
+   "persistence": 0.015426,
+   "birth_edge": [
+    8,
+    32
+   ],
+   "death_triangle": [
+    8,
+    25,
+    32
+   ],
+   "cycle": [
+    8,
+    16,
+    21,
+    25,
+    29,
+    32
+   ]
+  },
+  "common/t8/vwM/own/L2": null,
+  "common/t8/vwM/own/L3": {
+   "birth": 0.933394,
+   "death": 0.982169,
+   "persistence": 0.048775,
+   "birth_edge": [
+    8,
+    32
+   ],
+   "death_triangle": [
+    8,
+    26,
+    32
+   ],
+   "cycle": [
+    8,
+    12,
+    15,
+    18,
+    21,
+    24,
+    26,
+    28,
+    30,
+    32
+   ]
+  },
+  "common/t8/vwM/own/L4": {
+   "birth": 0.90125,
+   "death": 0.985493,
+   "persistence": 0.084243,
+   "birth_edge": [
+    8,
+    32
+   ],
+   "death_triangle": [
+    22,
+    23,
+    32
+   ],
+   "cycle": [
+    8,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32
+   ]
+  },
+  "common/t8/vwM/own/L5": null,
+  "common/t8/vwM/own/L6": null,
+  "common/t8/vwM/own/L7": null,
+  "common/t8/vwM/own/L8": null,
+  "common/t8/vwM/own/L9": null,
+  "common/t8/vwM/own/L10": null,
+  "common/t8/vwM/own/L11": null,
+  "common/t8/vwM/wrong/L0": null,
+  "common/t8/vwM/wrong/L1": {
+   "birth": 0.947435,
+   "death": 0.970805,
+   "persistence": 0.02337,
+   "birth_edge": [
+    8,
+    32
+   ],
+   "death_triangle": [
+    8,
+    25,
+    32
+   ],
+   "cycle": [
+    8,
+    14,
+    18,
+    21,
+    25,
+    28,
+    31,
+    32
+   ]
+  },
+  "common/t8/vwM/wrong/L2": null,
+  "common/t8/vwM/wrong/L3": {
+   "birth": 0.9416,
+   "death": 0.982169,
+   "persistence": 0.04057,
+   "birth_edge": [
+    8,
+    32
+   ],
+   "death_triangle": [
+    8,
+    26,
+    32
+   ],
+   "cycle": [
+    8,
+    11,
+    14,
+    17,
+    20,
+    23,
+    26,
+    29,
+    32
+   ]
+  },
+  "common/t8/vwM/wrong/L4": {
+   "birth": 0.959271,
+   "death": 0.984757,
+   "persistence": 0.025487,
+   "birth_edge": [
+    8,
+    32
+   ],
+   "death_triangle": [
+    22,
+    23,
+    32
+   ],
+   "cycle": [
+    8,
+    9,
+    14,
+    18,
+    22,
+    26,
+    29,
+    32
+   ]
+  },
+  "common/t8/vwM/wrong/L5": null,
+  "common/t8/vwM/wrong/L6": null,
+  "common/t8/vwM/wrong/L7": null,
+  "common/t8/vwM/wrong/L8": null,
+  "common/t8/vwM/wrong/L9": null,
+  "common/t8/vwM/wrong/L10": null,
+  "common/t8/vwM/wrong/L11": null,
+  "common/t8/vwM/random/L0": null,
+  "common/t8/vwM/random/L1": null,
+  "common/t8/vwM/random/L2": null,
+  "common/t8/vwM/random/L3": null,
+  "common/t8/vwM/random/L4": null,
+  "common/t8/vwM/random/L5": null,
+  "common/t8/vwM/random/L6": null,
+  "common/t8/vwM/random/L7": null,
+  "common/t8/vwM/random/L8": null,
+  "common/t8/vwM/random/L9": null,
+  "common/t8/vwM/random/L10": null,
+  "common/t8/vwM/random/L11": null,
+  "common/t8/vwM/control/L0": null,
+  "common/t8/vwM/control/L1": null,
+  "common/t8/vwM/control/L2": null,
+  "common/t8/vwM/control/L3": null,
+  "common/t8/vwM/control/L4": null,
+  "common/t8/vwM/control/L5": null,
+  "common/t8/vwM/control/L6": null,
+  "common/t8/vwM/control/L7": null,
+  "common/t8/vwM/control/L8": null,
+  "common/t8/vwM/control/L9": null,
+  "common/t8/vwM/control/L10": null,
+  "common/t8/vwM/control/L11": null,
+  "common/t8/vwU/own/L0": null,
+  "common/t8/vwU/own/L1": {
+   "birth": 0.953205,
+   "death": 0.969587,
+   "persistence": 0.016382,
+   "birth_edge": [
+    8,
+    32
+   ],
+   "death_triangle": [
+    8,
+    25,
+    32
+   ],
+   "cycle": [
+    8,
+    16,
+    21,
+    25,
+    29,
+    32
+   ]
+  },
+  "common/t8/vwU/own/L2": null,
+  "common/t8/vwU/own/L3": {
+   "birth": 0.923228,
+   "death": 0.980171,
+   "persistence": 0.056942,
+   "birth_edge": [
+    8,
+    32
+   ],
+   "death_triangle": [
+    8,
+    25,
+    32
+   ],
+   "cycle": [
+    8,
+    10,
+    13,
+    15,
+    17,
+    19,
+    21,
+    24,
+    26,
+    28,
+    30,
+    32
+   ]
+  },
+  "common/t8/vwU/own/L4": {
+   "birth": 0.874194,
+   "death": 0.982285,
+   "persistence": 0.10809,
+   "birth_edge": [
+    8,
+    32
+   ],
+   "death_triangle": [
+    21,
+    22,
+    32
+   ],
+   "cycle": [
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32
+   ]
+  },
+  "common/t8/vwU/own/L5": null,
+  "common/t8/vwU/own/L6": null,
+  "common/t8/vwU/own/L7": null,
+  "common/t8/vwU/own/L8": null,
+  "common/t8/vwU/own/L9": null,
+  "common/t8/vwU/own/L10": null,
+  "common/t8/vwU/own/L11": null,
+  "common/t8/vwU/wrong/L0": null,
+  "common/t8/vwU/wrong/L1": {
+   "birth": 0.944877,
+   "death": 0.969587,
+   "persistence": 0.02471,
+   "birth_edge": [
+    8,
+    32
+   ],
+   "death_triangle": [
+    8,
+    25,
+    32
+   ],
+   "cycle": [
+    8,
+    14,
+    18,
+    22,
+    25,
+    28,
+    31,
+    32
+   ]
+  },
+  "common/t8/vwU/wrong/L2": null,
+  "common/t8/vwU/wrong/L3": {
+   "birth": 0.934027,
+   "death": 0.980478,
+   "persistence": 0.046451,
+   "birth_edge": [
+    8,
+    32
+   ],
+   "death_triangle": [
+    25,
+    26,
+    32
+   ],
+   "cycle": [
+    8,
+    12,
+    15,
+    18,
+    21,
+    24,
+    26,
+    29,
+    32
+   ]
+  },
+  "common/t8/vwU/wrong/L4": {
+   "birth": 0.952115,
+   "death": 0.982505,
+   "persistence": 0.03039,
+   "birth_edge": [
+    8,
+    32
+   ],
+   "death_triangle": [
+    21,
+    22,
+    32
+   ],
+   "cycle": [
+    8,
+    12,
+    16,
+    20,
+    23,
+    26,
+    29,
+    32
+   ]
+  },
+  "common/t8/vwU/wrong/L5": null,
+  "common/t8/vwU/wrong/L6": null,
+  "common/t8/vwU/wrong/L7": null,
+  "common/t8/vwU/wrong/L8": null,
+  "common/t8/vwU/wrong/L9": null,
+  "common/t8/vwU/wrong/L10": null,
+  "common/t8/vwU/wrong/L11": null,
+  "common/t8/vwU/random/L0": null,
+  "common/t8/vwU/random/L1": null,
+  "common/t8/vwU/random/L2": null,
+  "common/t8/vwU/random/L3": null,
+  "common/t8/vwU/random/L4": null,
+  "common/t8/vwU/random/L5": null,
+  "common/t8/vwU/random/L6": null,
+  "common/t8/vwU/random/L7": null,
+  "common/t8/vwU/random/L8": null,
+  "common/t8/vwU/random/L9": null,
+  "common/t8/vwU/random/L10": null,
+  "common/t8/vwU/random/L11": null,
+  "common/t8/vwU/control/L0": null,
+  "common/t8/vwU/control/L1": null,
+  "common/t8/vwU/control/L2": null,
+  "common/t8/vwU/control/L3": null,
+  "common/t8/vwU/control/L4": null,
+  "common/t8/vwU/control/L5": null,
+  "common/t8/vwU/control/L6": null,
+  "common/t8/vwU/control/L7": null,
+  "common/t8/vwU/control/L8": null,
+  "common/t8/vwU/control/L9": null,
+  "common/t8/vwU/control/L10": null,
+  "common/t8/vwU/control/L11": null,
+  "common/t1/raw/own/L0": {
+   "birth": 0.967855,
+   "death": 0.980082,
+   "persistence": 0.012227,
+   "birth_edge": [
+    31,
+    32
+   ],
+   "death_triangle": [
+    1,
+    27,
+    32
+   ],
+   "cycle": [
+    31,
+    28,
+    25,
+    22,
+    17,
+    1,
+    32
+   ]
+  },
+  "common/t1/raw/own/L1": {
+   "birth": 0.95437,
+   "death": 0.976693,
+   "persistence": 0.022323,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    1,
+    24,
+    32
+   ],
+   "cycle": [
+    1,
+    6,
+    12,
+    17,
+    21,
+    24,
+    27,
+    30,
+    32
+   ]
+  },
+  "common/t1/raw/own/L2": null,
+  "common/t1/raw/own/L3": {
+   "birth": 0.969873,
+   "death": 0.992488,
+   "persistence": 0.022615,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    1,
+    23,
+    32
+   ],
+   "cycle": [
+    1,
+    4,
+    8,
+    12,
+    16,
+    20,
+    24,
+    28,
+    32
+   ]
+  },
+  "common/t1/raw/own/L4": {
+   "birth": 0.958594,
+   "death": 0.994838,
+   "persistence": 0.036243,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    1,
+    17,
+    32
+   ],
+   "cycle": [
+    1,
+    2,
+    5,
+    7,
+    9,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32
+   ]
+  },
+  "common/t1/raw/own/L5": null,
+  "common/t1/raw/own/L6": null,
+  "common/t1/raw/own/L7": null,
+  "common/t1/raw/own/L8": null,
+  "common/t1/raw/own/L9": null,
+  "common/t1/raw/own/L10": null,
+  "common/t1/raw/own/L11": null,
+  "common/t1/raw/wrong/L0": null,
+  "common/t1/raw/wrong/L1": {
+   "birth": 0.949378,
+   "death": 0.976693,
+   "persistence": 0.027315,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    1,
+    24,
+    32
+   ],
+   "cycle": [
+    1,
+    3,
+    9,
+    13,
+    17,
+    20,
+    23,
+    26,
+    28,
+    31,
+    32
+   ]
+  },
+  "common/t1/raw/wrong/L2": null,
+  "common/t1/raw/wrong/L3": {
+   "birth": 0.978953,
+   "death": 0.992569,
+   "persistence": 0.013616,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    23,
+    24,
+    32
+   ],
+   "cycle": [
+    1,
+    7,
+    12,
+    17,
+    22,
+    27,
+    32
+   ]
+  },
+  "common/t1/raw/wrong/L4": {
+   "birth": 0.985023,
+   "death": 0.994869,
+   "persistence": 0.009846,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    17,
+    18,
+    32
+   ],
+   "cycle": [
+    1,
+    2,
+    8,
+    14,
+    20,
+    26,
+    32
+   ]
+  },
+  "common/t1/raw/wrong/L5": null,
+  "common/t1/raw/wrong/L6": null,
+  "common/t1/raw/wrong/L7": null,
+  "common/t1/raw/wrong/L8": null,
+  "common/t1/raw/wrong/L9": null,
+  "common/t1/raw/wrong/L10": null,
+  "common/t1/raw/wrong/L11": null,
+  "common/t1/raw/random/L0": null,
+  "common/t1/raw/random/L1": null,
+  "common/t1/raw/random/L2": null,
+  "common/t1/raw/random/L3": null,
+  "common/t1/raw/random/L4": null,
+  "common/t1/raw/random/L5": null,
+  "common/t1/raw/random/L6": null,
+  "common/t1/raw/random/L7": null,
+  "common/t1/raw/random/L8": null,
+  "common/t1/raw/random/L9": null,
+  "common/t1/raw/random/L10": null,
+  "common/t1/raw/random/L11": null,
+  "common/t1/raw/control/L0": null,
+  "common/t1/raw/control/L1": null,
+  "common/t1/raw/control/L2": null,
+  "common/t1/raw/control/L3": null,
+  "common/t1/raw/control/L4": null,
+  "common/t1/raw/control/L5": null,
+  "common/t1/raw/control/L6": null,
+  "common/t1/raw/control/L7": null,
+  "common/t1/raw/control/L8": null,
+  "common/t1/raw/control/L9": null,
+  "common/t1/raw/control/L10": null,
+  "common/t1/raw/control/L11": null,
+  "common/t1/vw/own/L0": null,
+  "common/t1/vw/own/L1": {
+   "birth": 0.950427,
+   "death": 0.970416,
+   "persistence": 0.019989,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    1,
+    25,
+    32
+   ],
+   "cycle": [
+    1,
+    10,
+    16,
+    20,
+    24,
+    27,
+    30,
+    32
+   ]
+  },
+  "common/t1/vw/own/L2": null,
+  "common/t1/vw/own/L3": {
+   "birth": 0.933966,
+   "death": 0.981601,
+   "persistence": 0.047635,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    1,
+    26,
+    32
+   ],
+   "cycle": [
+    1,
+    5,
+    8,
+    11,
+    14,
+    17,
+    20,
+    22,
+    25,
+    28,
+    30,
+    32
+   ]
+  },
+  "common/t1/vw/own/L4": {
+   "birth": 0.886154,
+   "death": 0.988654,
+   "persistence": 0.1025,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    18,
+    21,
+    32
+   ],
+   "cycle": [
+    1,
+    2,
+    4,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32
+   ]
+  },
+  "common/t1/vw/own/L5": null,
+  "common/t1/vw/own/L6": null,
+  "common/t1/vw/own/L7": null,
+  "common/t1/vw/own/L8": null,
+  "common/t1/vw/own/L9": null,
+  "common/t1/vw/own/L10": null,
+  "common/t1/vw/own/L11": null,
+  "common/t1/vw/wrong/L0": null,
+  "common/t1/vw/wrong/L1": {
+   "birth": 0.943861,
+   "death": 0.970416,
+   "persistence": 0.026555,
+   "birth_edge": [
+    31,
+    32
+   ],
+   "death_triangle": [
+    1,
+    25,
+    32
+   ],
+   "cycle": [
+    31,
+    28,
+    26,
+    23,
+    20,
+    17,
+    13,
+    8,
+    1,
+    32
+   ]
+  },
+  "common/t1/vw/wrong/L2": null,
+  "common/t1/vw/wrong/L3": {
+   "birth": 0.942239,
+   "death": 0.981601,
+   "persistence": 0.039362,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    1,
+    26,
+    32
+   ],
+   "cycle": [
+    1,
+    5,
+    8,
+    11,
+    14,
+    17,
+    20,
+    23,
+    26,
+    29,
+    32
+   ]
+  },
+  "common/t1/vw/wrong/L4": {
+   "birth": 0.958625,
+   "death": 0.988606,
+   "persistence": 0.029981,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    2,
+    18,
+    32
+   ],
+   "cycle": [
+    1,
+    4,
+    9,
+    14,
+    18,
+    22,
+    26,
+    29,
+    32
+   ]
+  },
+  "common/t1/vw/wrong/L5": {
+   "birth": 0.969562,
+   "death": 0.982293,
+   "persistence": 0.012731,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    1,
+    25,
+    32
+   ],
+   "cycle": [
+    1,
+    12,
+    17,
+    21,
+    25,
+    29,
+    32
+   ]
+  },
+  "common/t1/vw/wrong/L6": null,
+  "common/t1/vw/wrong/L7": null,
+  "common/t1/vw/wrong/L8": null,
+  "common/t1/vw/wrong/L9": null,
+  "common/t1/vw/wrong/L10": null,
+  "common/t1/vw/wrong/L11": null,
+  "common/t1/vw/random/L0": null,
+  "common/t1/vw/random/L1": null,
+  "common/t1/vw/random/L2": null,
+  "common/t1/vw/random/L3": null,
+  "common/t1/vw/random/L4": null,
+  "common/t1/vw/random/L5": null,
+  "common/t1/vw/random/L6": null,
+  "common/t1/vw/random/L7": null,
+  "common/t1/vw/random/L8": null,
+  "common/t1/vw/random/L9": null,
+  "common/t1/vw/random/L10": null,
+  "common/t1/vw/random/L11": null,
+  "common/t1/vw/control/L0": null,
+  "common/t1/vw/control/L1": null,
+  "common/t1/vw/control/L2": null,
+  "common/t1/vw/control/L3": null,
+  "common/t1/vw/control/L4": null,
+  "common/t1/vw/control/L5": null,
+  "common/t1/vw/control/L6": null,
+  "common/t1/vw/control/L7": null,
+  "common/t1/vw/control/L8": null,
+  "common/t1/vw/control/L9": null,
+  "common/t1/vw/control/L10": null,
+  "common/t1/vw/control/L11": null,
+  "common/t1/vwM/own/L0": null,
+  "common/t1/vwM/own/L1": {
+   "birth": 0.950432,
+   "death": 0.970422,
+   "persistence": 0.01999,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    1,
+    25,
+    32
+   ],
+   "cycle": [
+    1,
+    10,
+    16,
+    20,
+    24,
+    27,
+    30,
+    32
+   ]
+  },
+  "common/t1/vwM/own/L2": null,
+  "common/t1/vwM/own/L3": {
+   "birth": 0.934016,
+   "death": 0.981448,
+   "persistence": 0.047432,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    1,
+    26,
+    32
+   ],
+   "cycle": [
+    1,
+    5,
+    8,
+    11,
+    14,
+    17,
+    20,
+    22,
+    25,
+    28,
+    30,
+    32
+   ]
+  },
+  "common/t1/vwM/own/L4": {
+   "birth": 0.886287,
+   "death": 0.988629,
+   "persistence": 0.102342,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    18,
+    21,
+    32
+   ],
+   "cycle": [
+    1,
+    2,
+    4,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32
+   ]
+  },
+  "common/t1/vwM/own/L5": null,
+  "common/t1/vwM/own/L6": null,
+  "common/t1/vwM/own/L7": null,
+  "common/t1/vwM/own/L8": null,
+  "common/t1/vwM/own/L9": null,
+  "common/t1/vwM/own/L10": null,
+  "common/t1/vwM/own/L11": null,
+  "common/t1/vwM/wrong/L0": null,
+  "common/t1/vwM/wrong/L1": {
+   "birth": 0.943855,
+   "death": 0.970422,
+   "persistence": 0.026567,
+   "birth_edge": [
+    31,
+    32
+   ],
+   "death_triangle": [
+    1,
+    25,
+    32
+   ],
+   "cycle": [
+    31,
+    28,
+    26,
+    23,
+    20,
+    17,
+    13,
+    8,
+    1,
+    32
+   ]
+  },
+  "common/t1/vwM/wrong/L2": null,
+  "common/t1/vwM/wrong/L3": {
+   "birth": 0.942349,
+   "death": 0.981448,
+   "persistence": 0.039099,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    1,
+    26,
+    32
+   ],
+   "cycle": [
+    1,
+    5,
+    8,
+    11,
+    14,
+    17,
+    20,
+    23,
+    26,
+    29,
+    32
+   ]
+  },
+  "common/t1/vwM/wrong/L4": {
+   "birth": 0.958718,
+   "death": 0.988617,
+   "persistence": 0.029899,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    2,
+    18,
+    32
+   ],
+   "cycle": [
+    1,
+    4,
+    9,
+    14,
+    18,
+    22,
+    26,
+    29,
+    32
+   ]
+  },
+  "common/t1/vwM/wrong/L5": {
+   "birth": 0.969625,
+   "death": 0.982024,
+   "persistence": 0.012399,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    1,
+    25,
+    32
+   ],
+   "cycle": [
+    1,
+    12,
+    16,
+    21,
+    25,
+    29,
+    32
+   ]
+  },
+  "common/t1/vwM/wrong/L6": null,
+  "common/t1/vwM/wrong/L7": null,
+  "common/t1/vwM/wrong/L8": null,
+  "common/t1/vwM/wrong/L9": null,
+  "common/t1/vwM/wrong/L10": null,
+  "common/t1/vwM/wrong/L11": null,
+  "common/t1/vwM/random/L0": null,
+  "common/t1/vwM/random/L1": null,
+  "common/t1/vwM/random/L2": null,
+  "common/t1/vwM/random/L3": null,
+  "common/t1/vwM/random/L4": null,
+  "common/t1/vwM/random/L5": null,
+  "common/t1/vwM/random/L6": null,
+  "common/t1/vwM/random/L7": null,
+  "common/t1/vwM/random/L8": null,
+  "common/t1/vwM/random/L9": null,
+  "common/t1/vwM/random/L10": null,
+  "common/t1/vwM/random/L11": null,
+  "common/t1/vwM/control/L0": null,
+  "common/t1/vwM/control/L1": null,
+  "common/t1/vwM/control/L2": null,
+  "common/t1/vwM/control/L3": null,
+  "common/t1/vwM/control/L4": null,
+  "common/t1/vwM/control/L5": null,
+  "common/t1/vwM/control/L6": null,
+  "common/t1/vwM/control/L7": null,
+  "common/t1/vwM/control/L8": null,
+  "common/t1/vwM/control/L9": null,
+  "common/t1/vwM/control/L10": null,
+  "common/t1/vwM/control/L11": null,
+  "common/t1/vwU/own/L0": null,
+  "common/t1/vwU/own/L1": {
+   "birth": 0.948076,
+   "death": 0.969193,
+   "persistence": 0.021117,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    1,
+    25,
+    32
+   ],
+   "cycle": [
+    1,
+    12,
+    17,
+    21,
+    24,
+    27,
+    30,
+    32
+   ]
+  },
+  "common/t1/vwU/own/L2": null,
+  "common/t1/vwU/own/L3": {
+   "birth": 0.924049,
+   "death": 0.980273,
+   "persistence": 0.056224,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    1,
+    25,
+    32
+   ],
+   "cycle": [
+    1,
+    3,
+    6,
+    8,
+    11,
+    13,
+    15,
+    17,
+    19,
+    21,
+    24,
+    26,
+    28,
+    30,
+    32
+   ]
+  },
+  "common/t1/vwU/own/L4": {
+   "birth": 0.854056,
+   "death": 0.987486,
+   "persistence": 0.13343,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    2,
+    18,
+    32
+   ],
+   "cycle": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32
+   ]
+  },
+  "common/t1/vwU/own/L5": null,
+  "common/t1/vwU/own/L6": null,
+  "common/t1/vwU/own/L7": null,
+  "common/t1/vwU/own/L8": null,
+  "common/t1/vwU/own/L9": null,
+  "common/t1/vwU/own/L10": null,
+  "common/t1/vwU/own/L11": null,
+  "common/t1/vwU/wrong/L0": null,
+  "common/t1/vwU/wrong/L1": {
+   "birth": 0.941192,
+   "death": 0.969193,
+   "persistence": 0.028001,
+   "birth_edge": [
+    31,
+    32
+   ],
+   "death_triangle": [
+    1,
+    25,
+    32
+   ],
+   "cycle": [
+    31,
+    28,
+    26,
+    23,
+    20,
+    17,
+    13,
+    8,
+    1,
+    32
+   ]
+  },
+  "common/t1/vwU/wrong/L2": null,
+  "common/t1/vwU/wrong/L3": {
+   "birth": 0.934938,
+   "death": 0.980356,
+   "persistence": 0.045418,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    25,
+    26,
+    32
+   ],
+   "cycle": [
+    1,
+    3,
+    6,
+    9,
+    12,
+    15,
+    18,
+    21,
+    24,
+    26,
+    29,
+    32
+   ]
+  },
+  "common/t1/vwU/wrong/L4": {
+   "birth": 0.951417,
+   "death": 0.987486,
+   "persistence": 0.036069,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    2,
+    18,
+    32
+   ],
+   "cycle": [
+    1,
+    4,
+    8,
+    12,
+    16,
+    20,
+    23,
+    26,
+    29,
+    32
+   ]
+  },
+  "common/t1/vwU/wrong/L5": {
+   "birth": 0.965024,
+   "death": 0.980613,
+   "persistence": 0.015589,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    1,
+    25,
+    32
+   ],
+   "cycle": [
+    1,
+    9,
+    13,
+    17,
+    21,
+    24,
+    27,
+    29,
+    32
+   ]
+  },
+  "common/t1/vwU/wrong/L6": null,
+  "common/t1/vwU/wrong/L7": null,
+  "common/t1/vwU/wrong/L8": null,
+  "common/t1/vwU/wrong/L9": null,
+  "common/t1/vwU/wrong/L10": null,
+  "common/t1/vwU/wrong/L11": null,
+  "common/t1/vwU/random/L0": null,
+  "common/t1/vwU/random/L1": null,
+  "common/t1/vwU/random/L2": null,
+  "common/t1/vwU/random/L3": null,
+  "common/t1/vwU/random/L4": null,
+  "common/t1/vwU/random/L5": null,
+  "common/t1/vwU/random/L6": null,
+  "common/t1/vwU/random/L7": null,
+  "common/t1/vwU/random/L8": null,
+  "common/t1/vwU/random/L9": null,
+  "common/t1/vwU/random/L10": null,
+  "common/t1/vwU/random/L11": null,
+  "common/t1/vwU/control/L0": null,
+  "common/t1/vwU/control/L1": null,
+  "common/t1/vwU/control/L2": null,
+  "common/t1/vwU/control/L3": null,
+  "common/t1/vwU/control/L4": null,
+  "common/t1/vwU/control/L5": null,
+  "common/t1/vwU/control/L6": null,
+  "common/t1/vwU/control/L7": null,
+  "common/t1/vwU/control/L8": null,
+  "common/t1/vwU/control/L9": null,
+  "common/t1/vwU/control/L10": null,
+  "common/t1/vwU/control/L11": null,
+  "rare/t31/raw/own/L0": null,
+  "rare/t31/raw/own/L1": null,
+  "rare/t31/raw/own/L2": null,
+  "rare/t31/raw/own/L3": null,
+  "rare/t31/raw/own/L4": null,
+  "rare/t31/raw/own/L5": null,
+  "rare/t31/raw/own/L6": null,
+  "rare/t31/raw/own/L7": null,
+  "rare/t31/raw/own/L8": null,
+  "rare/t31/raw/own/L9": null,
+  "rare/t31/raw/own/L10": null,
+  "rare/t31/raw/own/L11": null,
+  "rare/t31/raw/wrong/L0": null,
+  "rare/t31/raw/wrong/L1": null,
+  "rare/t31/raw/wrong/L2": null,
+  "rare/t31/raw/wrong/L3": null,
+  "rare/t31/raw/wrong/L4": null,
+  "rare/t31/raw/wrong/L5": null,
+  "rare/t31/raw/wrong/L6": null,
+  "rare/t31/raw/wrong/L7": null,
+  "rare/t31/raw/wrong/L8": null,
+  "rare/t31/raw/wrong/L9": null,
+  "rare/t31/raw/wrong/L10": null,
+  "rare/t31/raw/wrong/L11": null,
+  "rare/t31/raw/random/L0": null,
+  "rare/t31/raw/random/L1": null,
+  "rare/t31/raw/random/L2": null,
+  "rare/t31/raw/random/L3": null,
+  "rare/t31/raw/random/L4": null,
+  "rare/t31/raw/random/L5": null,
+  "rare/t31/raw/random/L6": null,
+  "rare/t31/raw/random/L7": null,
+  "rare/t31/raw/random/L8": null,
+  "rare/t31/raw/random/L9": null,
+  "rare/t31/raw/random/L10": null,
+  "rare/t31/raw/random/L11": null,
+  "rare/t31/raw/control/L0": null,
+  "rare/t31/raw/control/L1": null,
+  "rare/t31/raw/control/L2": null,
+  "rare/t31/raw/control/L3": null,
+  "rare/t31/raw/control/L4": null,
+  "rare/t31/raw/control/L5": null,
+  "rare/t31/raw/control/L6": null,
+  "rare/t31/raw/control/L7": null,
+  "rare/t31/raw/control/L8": null,
+  "rare/t31/raw/control/L9": null,
+  "rare/t31/raw/control/L10": null,
+  "rare/t31/raw/control/L11": null,
+  "rare/t31/vw/own/L0": null,
+  "rare/t31/vw/own/L1": null,
+  "rare/t31/vw/own/L2": null,
+  "rare/t31/vw/own/L3": null,
+  "rare/t31/vw/own/L4": null,
+  "rare/t31/vw/own/L5": null,
+  "rare/t31/vw/own/L6": null,
+  "rare/t31/vw/own/L7": null,
+  "rare/t31/vw/own/L8": null,
+  "rare/t31/vw/own/L9": null,
+  "rare/t31/vw/own/L10": null,
+  "rare/t31/vw/own/L11": null,
+  "rare/t31/vw/wrong/L0": null,
+  "rare/t31/vw/wrong/L1": null,
+  "rare/t31/vw/wrong/L2": null,
+  "rare/t31/vw/wrong/L3": null,
+  "rare/t31/vw/wrong/L4": null,
+  "rare/t31/vw/wrong/L5": null,
+  "rare/t31/vw/wrong/L6": null,
+  "rare/t31/vw/wrong/L7": null,
+  "rare/t31/vw/wrong/L8": null,
+  "rare/t31/vw/wrong/L9": null,
+  "rare/t31/vw/wrong/L10": null,
+  "rare/t31/vw/wrong/L11": null,
+  "rare/t31/vw/random/L0": null,
+  "rare/t31/vw/random/L1": null,
+  "rare/t31/vw/random/L2": null,
+  "rare/t31/vw/random/L3": null,
+  "rare/t31/vw/random/L4": null,
+  "rare/t31/vw/random/L5": null,
+  "rare/t31/vw/random/L6": null,
+  "rare/t31/vw/random/L7": null,
+  "rare/t31/vw/random/L8": null,
+  "rare/t31/vw/random/L9": null,
+  "rare/t31/vw/random/L10": null,
+  "rare/t31/vw/random/L11": null,
+  "rare/t31/vw/control/L0": null,
+  "rare/t31/vw/control/L1": null,
+  "rare/t31/vw/control/L2": null,
+  "rare/t31/vw/control/L3": null,
+  "rare/t31/vw/control/L4": null,
+  "rare/t31/vw/control/L5": null,
+  "rare/t31/vw/control/L6": null,
+  "rare/t31/vw/control/L7": null,
+  "rare/t31/vw/control/L8": null,
+  "rare/t31/vw/control/L9": null,
+  "rare/t31/vw/control/L10": null,
+  "rare/t31/vw/control/L11": null,
+  "rare/t31/vwM/own/L0": null,
+  "rare/t31/vwM/own/L1": null,
+  "rare/t31/vwM/own/L2": null,
+  "rare/t31/vwM/own/L3": null,
+  "rare/t31/vwM/own/L4": null,
+  "rare/t31/vwM/own/L5": null,
+  "rare/t31/vwM/own/L6": null,
+  "rare/t31/vwM/own/L7": null,
+  "rare/t31/vwM/own/L8": null,
+  "rare/t31/vwM/own/L9": null,
+  "rare/t31/vwM/own/L10": null,
+  "rare/t31/vwM/own/L11": null,
+  "rare/t31/vwM/wrong/L0": null,
+  "rare/t31/vwM/wrong/L1": null,
+  "rare/t31/vwM/wrong/L2": null,
+  "rare/t31/vwM/wrong/L3": null,
+  "rare/t31/vwM/wrong/L4": null,
+  "rare/t31/vwM/wrong/L5": null,
+  "rare/t31/vwM/wrong/L6": null,
+  "rare/t31/vwM/wrong/L7": null,
+  "rare/t31/vwM/wrong/L8": null,
+  "rare/t31/vwM/wrong/L9": null,
+  "rare/t31/vwM/wrong/L10": null,
+  "rare/t31/vwM/wrong/L11": null,
+  "rare/t31/vwM/random/L0": null,
+  "rare/t31/vwM/random/L1": null,
+  "rare/t31/vwM/random/L2": null,
+  "rare/t31/vwM/random/L3": null,
+  "rare/t31/vwM/random/L4": null,
+  "rare/t31/vwM/random/L5": null,
+  "rare/t31/vwM/random/L6": null,
+  "rare/t31/vwM/random/L7": null,
+  "rare/t31/vwM/random/L8": null,
+  "rare/t31/vwM/random/L9": null,
+  "rare/t31/vwM/random/L10": null,
+  "rare/t31/vwM/random/L11": null,
+  "rare/t31/vwM/control/L0": null,
+  "rare/t31/vwM/control/L1": null,
+  "rare/t31/vwM/control/L2": null,
+  "rare/t31/vwM/control/L3": null,
+  "rare/t31/vwM/control/L4": null,
+  "rare/t31/vwM/control/L5": null,
+  "rare/t31/vwM/control/L6": null,
+  "rare/t31/vwM/control/L7": null,
+  "rare/t31/vwM/control/L8": null,
+  "rare/t31/vwM/control/L9": null,
+  "rare/t31/vwM/control/L10": null,
+  "rare/t31/vwM/control/L11": null,
+  "rare/t31/vwU/own/L0": null,
+  "rare/t31/vwU/own/L1": null,
+  "rare/t31/vwU/own/L2": null,
+  "rare/t31/vwU/own/L3": null,
+  "rare/t31/vwU/own/L4": null,
+  "rare/t31/vwU/own/L5": null,
+  "rare/t31/vwU/own/L6": null,
+  "rare/t31/vwU/own/L7": null,
+  "rare/t31/vwU/own/L8": null,
+  "rare/t31/vwU/own/L9": null,
+  "rare/t31/vwU/own/L10": null,
+  "rare/t31/vwU/own/L11": null,
+  "rare/t31/vwU/wrong/L0": null,
+  "rare/t31/vwU/wrong/L1": null,
+  "rare/t31/vwU/wrong/L2": null,
+  "rare/t31/vwU/wrong/L3": null,
+  "rare/t31/vwU/wrong/L4": null,
+  "rare/t31/vwU/wrong/L5": null,
+  "rare/t31/vwU/wrong/L6": null,
+  "rare/t31/vwU/wrong/L7": null,
+  "rare/t31/vwU/wrong/L8": null,
+  "rare/t31/vwU/wrong/L9": null,
+  "rare/t31/vwU/wrong/L10": null,
+  "rare/t31/vwU/wrong/L11": null,
+  "rare/t31/vwU/random/L0": null,
+  "rare/t31/vwU/random/L1": null,
+  "rare/t31/vwU/random/L2": null,
+  "rare/t31/vwU/random/L3": null,
+  "rare/t31/vwU/random/L4": null,
+  "rare/t31/vwU/random/L5": null,
+  "rare/t31/vwU/random/L6": null,
+  "rare/t31/vwU/random/L7": null,
+  "rare/t31/vwU/random/L8": null,
+  "rare/t31/vwU/random/L9": null,
+  "rare/t31/vwU/random/L10": null,
+  "rare/t31/vwU/random/L11": null,
+  "rare/t31/vwU/control/L0": null,
+  "rare/t31/vwU/control/L1": null,
+  "rare/t31/vwU/control/L2": null,
+  "rare/t31/vwU/control/L3": null,
+  "rare/t31/vwU/control/L4": null,
+  "rare/t31/vwU/control/L5": null,
+  "rare/t31/vwU/control/L6": null,
+  "rare/t31/vwU/control/L7": null,
+  "rare/t31/vwU/control/L8": null,
+  "rare/t31/vwU/control/L9": null,
+  "rare/t31/vwU/control/L10": null,
+  "rare/t31/vwU/control/L11": null,
+  "rare/t30/raw/own/L0": null,
+  "rare/t30/raw/own/L1": null,
+  "rare/t30/raw/own/L2": null,
+  "rare/t30/raw/own/L3": null,
+  "rare/t30/raw/own/L4": null,
+  "rare/t30/raw/own/L5": null,
+  "rare/t30/raw/own/L6": null,
+  "rare/t30/raw/own/L7": null,
+  "rare/t30/raw/own/L8": null,
+  "rare/t30/raw/own/L9": null,
+  "rare/t30/raw/own/L10": null,
+  "rare/t30/raw/own/L11": null,
+  "rare/t30/raw/wrong/L0": null,
+  "rare/t30/raw/wrong/L1": null,
+  "rare/t30/raw/wrong/L2": null,
+  "rare/t30/raw/wrong/L3": null,
+  "rare/t30/raw/wrong/L4": null,
+  "rare/t30/raw/wrong/L5": null,
+  "rare/t30/raw/wrong/L6": null,
+  "rare/t30/raw/wrong/L7": null,
+  "rare/t30/raw/wrong/L8": null,
+  "rare/t30/raw/wrong/L9": null,
+  "rare/t30/raw/wrong/L10": null,
+  "rare/t30/raw/wrong/L11": null,
+  "rare/t30/raw/random/L0": null,
+  "rare/t30/raw/random/L1": null,
+  "rare/t30/raw/random/L2": null,
+  "rare/t30/raw/random/L3": null,
+  "rare/t30/raw/random/L4": null,
+  "rare/t30/raw/random/L5": null,
+  "rare/t30/raw/random/L6": null,
+  "rare/t30/raw/random/L7": null,
+  "rare/t30/raw/random/L8": null,
+  "rare/t30/raw/random/L9": null,
+  "rare/t30/raw/random/L10": null,
+  "rare/t30/raw/random/L11": null,
+  "rare/t30/raw/control/L0": null,
+  "rare/t30/raw/control/L1": null,
+  "rare/t30/raw/control/L2": null,
+  "rare/t30/raw/control/L3": null,
+  "rare/t30/raw/control/L4": null,
+  "rare/t30/raw/control/L5": null,
+  "rare/t30/raw/control/L6": null,
+  "rare/t30/raw/control/L7": null,
+  "rare/t30/raw/control/L8": null,
+  "rare/t30/raw/control/L9": null,
+  "rare/t30/raw/control/L10": null,
+  "rare/t30/raw/control/L11": null,
+  "rare/t30/vw/own/L0": null,
+  "rare/t30/vw/own/L1": null,
+  "rare/t30/vw/own/L2": null,
+  "rare/t30/vw/own/L3": null,
+  "rare/t30/vw/own/L4": null,
+  "rare/t30/vw/own/L5": null,
+  "rare/t30/vw/own/L6": null,
+  "rare/t30/vw/own/L7": null,
+  "rare/t30/vw/own/L8": null,
+  "rare/t30/vw/own/L9": null,
+  "rare/t30/vw/own/L10": null,
+  "rare/t30/vw/own/L11": null,
+  "rare/t30/vw/wrong/L0": null,
+  "rare/t30/vw/wrong/L1": null,
+  "rare/t30/vw/wrong/L2": null,
+  "rare/t30/vw/wrong/L3": null,
+  "rare/t30/vw/wrong/L4": null,
+  "rare/t30/vw/wrong/L5": null,
+  "rare/t30/vw/wrong/L6": null,
+  "rare/t30/vw/wrong/L7": null,
+  "rare/t30/vw/wrong/L8": null,
+  "rare/t30/vw/wrong/L9": null,
+  "rare/t30/vw/wrong/L10": null,
+  "rare/t30/vw/wrong/L11": null,
+  "rare/t30/vw/random/L0": null,
+  "rare/t30/vw/random/L1": null,
+  "rare/t30/vw/random/L2": null,
+  "rare/t30/vw/random/L3": null,
+  "rare/t30/vw/random/L4": null,
+  "rare/t30/vw/random/L5": null,
+  "rare/t30/vw/random/L6": null,
+  "rare/t30/vw/random/L7": null,
+  "rare/t30/vw/random/L8": null,
+  "rare/t30/vw/random/L9": null,
+  "rare/t30/vw/random/L10": null,
+  "rare/t30/vw/random/L11": null,
+  "rare/t30/vw/control/L0": null,
+  "rare/t30/vw/control/L1": null,
+  "rare/t30/vw/control/L2": null,
+  "rare/t30/vw/control/L3": null,
+  "rare/t30/vw/control/L4": null,
+  "rare/t30/vw/control/L5": null,
+  "rare/t30/vw/control/L6": null,
+  "rare/t30/vw/control/L7": null,
+  "rare/t30/vw/control/L8": null,
+  "rare/t30/vw/control/L9": null,
+  "rare/t30/vw/control/L10": null,
+  "rare/t30/vw/control/L11": null,
+  "rare/t30/vwM/own/L0": null,
+  "rare/t30/vwM/own/L1": null,
+  "rare/t30/vwM/own/L2": null,
+  "rare/t30/vwM/own/L3": null,
+  "rare/t30/vwM/own/L4": null,
+  "rare/t30/vwM/own/L5": null,
+  "rare/t30/vwM/own/L6": null,
+  "rare/t30/vwM/own/L7": null,
+  "rare/t30/vwM/own/L8": null,
+  "rare/t30/vwM/own/L9": null,
+  "rare/t30/vwM/own/L10": null,
+  "rare/t30/vwM/own/L11": null,
+  "rare/t30/vwM/wrong/L0": null,
+  "rare/t30/vwM/wrong/L1": null,
+  "rare/t30/vwM/wrong/L2": null,
+  "rare/t30/vwM/wrong/L3": null,
+  "rare/t30/vwM/wrong/L4": null,
+  "rare/t30/vwM/wrong/L5": null,
+  "rare/t30/vwM/wrong/L6": null,
+  "rare/t30/vwM/wrong/L7": null,
+  "rare/t30/vwM/wrong/L8": null,
+  "rare/t30/vwM/wrong/L9": null,
+  "rare/t30/vwM/wrong/L10": null,
+  "rare/t30/vwM/wrong/L11": null,
+  "rare/t30/vwM/random/L0": null,
+  "rare/t30/vwM/random/L1": null,
+  "rare/t30/vwM/random/L2": null,
+  "rare/t30/vwM/random/L3": null,
+  "rare/t30/vwM/random/L4": null,
+  "rare/t30/vwM/random/L5": null,
+  "rare/t30/vwM/random/L6": null,
+  "rare/t30/vwM/random/L7": null,
+  "rare/t30/vwM/random/L8": null,
+  "rare/t30/vwM/random/L9": null,
+  "rare/t30/vwM/random/L10": null,
+  "rare/t30/vwM/random/L11": null,
+  "rare/t30/vwM/control/L0": null,
+  "rare/t30/vwM/control/L1": null,
+  "rare/t30/vwM/control/L2": null,
+  "rare/t30/vwM/control/L3": null,
+  "rare/t30/vwM/control/L4": null,
+  "rare/t30/vwM/control/L5": null,
+  "rare/t30/vwM/control/L6": null,
+  "rare/t30/vwM/control/L7": null,
+  "rare/t30/vwM/control/L8": null,
+  "rare/t30/vwM/control/L9": null,
+  "rare/t30/vwM/control/L10": null,
+  "rare/t30/vwM/control/L11": null,
+  "rare/t30/vwU/own/L0": null,
+  "rare/t30/vwU/own/L1": null,
+  "rare/t30/vwU/own/L2": null,
+  "rare/t30/vwU/own/L3": null,
+  "rare/t30/vwU/own/L4": null,
+  "rare/t30/vwU/own/L5": null,
+  "rare/t30/vwU/own/L6": null,
+  "rare/t30/vwU/own/L7": null,
+  "rare/t30/vwU/own/L8": null,
+  "rare/t30/vwU/own/L9": null,
+  "rare/t30/vwU/own/L10": null,
+  "rare/t30/vwU/own/L11": null,
+  "rare/t30/vwU/wrong/L0": null,
+  "rare/t30/vwU/wrong/L1": null,
+  "rare/t30/vwU/wrong/L2": null,
+  "rare/t30/vwU/wrong/L3": null,
+  "rare/t30/vwU/wrong/L4": null,
+  "rare/t30/vwU/wrong/L5": null,
+  "rare/t30/vwU/wrong/L6": null,
+  "rare/t30/vwU/wrong/L7": null,
+  "rare/t30/vwU/wrong/L8": null,
+  "rare/t30/vwU/wrong/L9": null,
+  "rare/t30/vwU/wrong/L10": null,
+  "rare/t30/vwU/wrong/L11": null,
+  "rare/t30/vwU/random/L0": null,
+  "rare/t30/vwU/random/L1": null,
+  "rare/t30/vwU/random/L2": null,
+  "rare/t30/vwU/random/L3": null,
+  "rare/t30/vwU/random/L4": null,
+  "rare/t30/vwU/random/L5": null,
+  "rare/t30/vwU/random/L6": null,
+  "rare/t30/vwU/random/L7": null,
+  "rare/t30/vwU/random/L8": null,
+  "rare/t30/vwU/random/L9": null,
+  "rare/t30/vwU/random/L10": null,
+  "rare/t30/vwU/random/L11": null,
+  "rare/t30/vwU/control/L0": null,
+  "rare/t30/vwU/control/L1": null,
+  "rare/t30/vwU/control/L2": null,
+  "rare/t30/vwU/control/L3": null,
+  "rare/t30/vwU/control/L4": null,
+  "rare/t30/vwU/control/L5": null,
+  "rare/t30/vwU/control/L6": null,
+  "rare/t30/vwU/control/L7": null,
+  "rare/t30/vwU/control/L8": null,
+  "rare/t30/vwU/control/L9": null,
+  "rare/t30/vwU/control/L10": null,
+  "rare/t30/vwU/control/L11": null,
+  "rare/t28/raw/own/L0": null,
+  "rare/t28/raw/own/L1": null,
+  "rare/t28/raw/own/L2": null,
+  "rare/t28/raw/own/L3": null,
+  "rare/t28/raw/own/L4": null,
+  "rare/t28/raw/own/L5": null,
+  "rare/t28/raw/own/L6": null,
+  "rare/t28/raw/own/L7": null,
+  "rare/t28/raw/own/L8": null,
+  "rare/t28/raw/own/L9": null,
+  "rare/t28/raw/own/L10": null,
+  "rare/t28/raw/own/L11": null,
+  "rare/t28/raw/wrong/L0": null,
+  "rare/t28/raw/wrong/L1": null,
+  "rare/t28/raw/wrong/L2": null,
+  "rare/t28/raw/wrong/L3": null,
+  "rare/t28/raw/wrong/L4": null,
+  "rare/t28/raw/wrong/L5": null,
+  "rare/t28/raw/wrong/L6": null,
+  "rare/t28/raw/wrong/L7": null,
+  "rare/t28/raw/wrong/L8": null,
+  "rare/t28/raw/wrong/L9": null,
+  "rare/t28/raw/wrong/L10": null,
+  "rare/t28/raw/wrong/L11": null,
+  "rare/t28/raw/random/L0": null,
+  "rare/t28/raw/random/L1": null,
+  "rare/t28/raw/random/L2": null,
+  "rare/t28/raw/random/L3": null,
+  "rare/t28/raw/random/L4": null,
+  "rare/t28/raw/random/L5": null,
+  "rare/t28/raw/random/L6": null,
+  "rare/t28/raw/random/L7": null,
+  "rare/t28/raw/random/L8": null,
+  "rare/t28/raw/random/L9": null,
+  "rare/t28/raw/random/L10": null,
+  "rare/t28/raw/random/L11": null,
+  "rare/t28/raw/control/L0": null,
+  "rare/t28/raw/control/L1": null,
+  "rare/t28/raw/control/L2": null,
+  "rare/t28/raw/control/L3": null,
+  "rare/t28/raw/control/L4": null,
+  "rare/t28/raw/control/L5": null,
+  "rare/t28/raw/control/L6": null,
+  "rare/t28/raw/control/L7": null,
+  "rare/t28/raw/control/L8": null,
+  "rare/t28/raw/control/L9": null,
+  "rare/t28/raw/control/L10": null,
+  "rare/t28/raw/control/L11": null,
+  "rare/t28/vw/own/L0": null,
+  "rare/t28/vw/own/L1": null,
+  "rare/t28/vw/own/L2": null,
+  "rare/t28/vw/own/L3": null,
+  "rare/t28/vw/own/L4": {
+   "birth": 0.893489,
+   "death": 0.930605,
+   "persistence": 0.037116,
+   "birth_edge": [
+    28,
+    32
+   ],
+   "death_triangle": [
+    30,
+    31,
+    32
+   ],
+   "cycle": [
+    28,
+    29,
+    30,
+    31,
+    32
+   ]
+  },
+  "rare/t28/vw/own/L5": null,
+  "rare/t28/vw/own/L6": null,
+  "rare/t28/vw/own/L7": null,
+  "rare/t28/vw/own/L8": null,
+  "rare/t28/vw/own/L9": null,
+  "rare/t28/vw/own/L10": null,
+  "rare/t28/vw/own/L11": null,
+  "rare/t28/vw/wrong/L0": null,
+  "rare/t28/vw/wrong/L1": null,
+  "rare/t28/vw/wrong/L2": null,
+  "rare/t28/vw/wrong/L3": null,
+  "rare/t28/vw/wrong/L4": null,
+  "rare/t28/vw/wrong/L5": null,
+  "rare/t28/vw/wrong/L6": null,
+  "rare/t28/vw/wrong/L7": null,
+  "rare/t28/vw/wrong/L8": null,
+  "rare/t28/vw/wrong/L9": null,
+  "rare/t28/vw/wrong/L10": null,
+  "rare/t28/vw/wrong/L11": null,
+  "rare/t28/vw/random/L0": null,
+  "rare/t28/vw/random/L1": null,
+  "rare/t28/vw/random/L2": null,
+  "rare/t28/vw/random/L3": null,
+  "rare/t28/vw/random/L4": null,
+  "rare/t28/vw/random/L5": null,
+  "rare/t28/vw/random/L6": null,
+  "rare/t28/vw/random/L7": null,
+  "rare/t28/vw/random/L8": null,
+  "rare/t28/vw/random/L9": null,
+  "rare/t28/vw/random/L10": null,
+  "rare/t28/vw/random/L11": null,
+  "rare/t28/vw/control/L0": null,
+  "rare/t28/vw/control/L1": null,
+  "rare/t28/vw/control/L2": null,
+  "rare/t28/vw/control/L3": null,
+  "rare/t28/vw/control/L4": null,
+  "rare/t28/vw/control/L5": null,
+  "rare/t28/vw/control/L6": null,
+  "rare/t28/vw/control/L7": null,
+  "rare/t28/vw/control/L8": null,
+  "rare/t28/vw/control/L9": null,
+  "rare/t28/vw/control/L10": null,
+  "rare/t28/vw/control/L11": null,
+  "rare/t28/vwM/own/L0": null,
+  "rare/t28/vwM/own/L1": null,
+  "rare/t28/vwM/own/L2": null,
+  "rare/t28/vwM/own/L3": null,
+  "rare/t28/vwM/own/L4": {
+   "birth": 0.893195,
+   "death": 0.930462,
+   "persistence": 0.037267,
+   "birth_edge": [
+    28,
+    32
+   ],
+   "death_triangle": [
+    30,
+    31,
+    32
+   ],
+   "cycle": [
+    28,
+    29,
+    30,
+    31,
+    32
+   ]
+  },
+  "rare/t28/vwM/own/L5": null,
+  "rare/t28/vwM/own/L6": null,
+  "rare/t28/vwM/own/L7": null,
+  "rare/t28/vwM/own/L8": null,
+  "rare/t28/vwM/own/L9": null,
+  "rare/t28/vwM/own/L10": null,
+  "rare/t28/vwM/own/L11": null,
+  "rare/t28/vwM/wrong/L0": null,
+  "rare/t28/vwM/wrong/L1": null,
+  "rare/t28/vwM/wrong/L2": null,
+  "rare/t28/vwM/wrong/L3": null,
+  "rare/t28/vwM/wrong/L4": null,
+  "rare/t28/vwM/wrong/L5": null,
+  "rare/t28/vwM/wrong/L6": null,
+  "rare/t28/vwM/wrong/L7": null,
+  "rare/t28/vwM/wrong/L8": null,
+  "rare/t28/vwM/wrong/L9": null,
+  "rare/t28/vwM/wrong/L10": null,
+  "rare/t28/vwM/wrong/L11": null,
+  "rare/t28/vwM/random/L0": null,
+  "rare/t28/vwM/random/L1": null,
+  "rare/t28/vwM/random/L2": null,
+  "rare/t28/vwM/random/L3": null,
+  "rare/t28/vwM/random/L4": null,
+  "rare/t28/vwM/random/L5": null,
+  "rare/t28/vwM/random/L6": null,
+  "rare/t28/vwM/random/L7": null,
+  "rare/t28/vwM/random/L8": null,
+  "rare/t28/vwM/random/L9": null,
+  "rare/t28/vwM/random/L10": null,
+  "rare/t28/vwM/random/L11": null,
+  "rare/t28/vwM/control/L0": null,
+  "rare/t28/vwM/control/L1": null,
+  "rare/t28/vwM/control/L2": null,
+  "rare/t28/vwM/control/L3": null,
+  "rare/t28/vwM/control/L4": null,
+  "rare/t28/vwM/control/L5": null,
+  "rare/t28/vwM/control/L6": null,
+  "rare/t28/vwM/control/L7": null,
+  "rare/t28/vwM/control/L8": null,
+  "rare/t28/vwM/control/L9": null,
+  "rare/t28/vwM/control/L10": null,
+  "rare/t28/vwM/control/L11": null,
+  "rare/t28/vwU/own/L0": null,
+  "rare/t28/vwU/own/L1": null,
+  "rare/t28/vwU/own/L2": null,
+  "rare/t28/vwU/own/L3": null,
+  "rare/t28/vwU/own/L4": {
+   "birth": 0.874231,
+   "death": 0.918116,
+   "persistence": 0.043884,
+   "birth_edge": [
+    28,
+    32
+   ],
+   "death_triangle": [
+    30,
+    31,
+    32
+   ],
+   "cycle": [
+    28,
+    29,
+    30,
+    31,
+    32
+   ]
+  },
+  "rare/t28/vwU/own/L5": null,
+  "rare/t28/vwU/own/L6": null,
+  "rare/t28/vwU/own/L7": null,
+  "rare/t28/vwU/own/L8": null,
+  "rare/t28/vwU/own/L9": null,
+  "rare/t28/vwU/own/L10": null,
+  "rare/t28/vwU/own/L11": null,
+  "rare/t28/vwU/wrong/L0": null,
+  "rare/t28/vwU/wrong/L1": null,
+  "rare/t28/vwU/wrong/L2": null,
+  "rare/t28/vwU/wrong/L3": null,
+  "rare/t28/vwU/wrong/L4": null,
+  "rare/t28/vwU/wrong/L5": null,
+  "rare/t28/vwU/wrong/L6": null,
+  "rare/t28/vwU/wrong/L7": null,
+  "rare/t28/vwU/wrong/L8": null,
+  "rare/t28/vwU/wrong/L9": null,
+  "rare/t28/vwU/wrong/L10": null,
+  "rare/t28/vwU/wrong/L11": null,
+  "rare/t28/vwU/random/L0": null,
+  "rare/t28/vwU/random/L1": null,
+  "rare/t28/vwU/random/L2": null,
+  "rare/t28/vwU/random/L3": null,
+  "rare/t28/vwU/random/L4": null,
+  "rare/t28/vwU/random/L5": null,
+  "rare/t28/vwU/random/L6": null,
+  "rare/t28/vwU/random/L7": null,
+  "rare/t28/vwU/random/L8": null,
+  "rare/t28/vwU/random/L9": null,
+  "rare/t28/vwU/random/L10": null,
+  "rare/t28/vwU/random/L11": null,
+  "rare/t28/vwU/control/L0": null,
+  "rare/t28/vwU/control/L1": null,
+  "rare/t28/vwU/control/L2": null,
+  "rare/t28/vwU/control/L3": null,
+  "rare/t28/vwU/control/L4": null,
+  "rare/t28/vwU/control/L5": null,
+  "rare/t28/vwU/control/L6": null,
+  "rare/t28/vwU/control/L7": null,
+  "rare/t28/vwU/control/L8": null,
+  "rare/t28/vwU/control/L9": null,
+  "rare/t28/vwU/control/L10": null,
+  "rare/t28/vwU/control/L11": null,
+  "rare/t24/raw/own/L0": {
+   "birth": 0.964534,
+   "death": 0.974119,
+   "persistence": 0.009584,
+   "birth_edge": [
+    31,
+    32
+   ],
+   "death_triangle": [
+    24,
+    29,
+    32
+   ],
+   "cycle": [
+    31,
+    29,
+    28,
+    26,
+    24,
+    32
+   ]
+  },
+  "rare/t24/raw/own/L1": null,
+  "rare/t24/raw/own/L2": null,
+  "rare/t24/raw/own/L3": null,
+  "rare/t24/raw/own/L4": {
+   "birth": 0.96702,
+   "death": 0.978454,
+   "persistence": 0.011433,
+   "birth_edge": [
+    24,
+    32
+   ],
+   "death_triangle": [
+    28,
+    29,
+    32
+   ],
+   "cycle": [
+    24,
+    25,
+    28,
+    30,
+    32
+   ]
+  },
+  "rare/t24/raw/own/L5": null,
+  "rare/t24/raw/own/L6": null,
+  "rare/t24/raw/own/L7": null,
+  "rare/t24/raw/own/L8": null,
+  "rare/t24/raw/own/L9": null,
+  "rare/t24/raw/own/L10": null,
+  "rare/t24/raw/own/L11": null,
+  "rare/t24/raw/wrong/L0": null,
+  "rare/t24/raw/wrong/L1": null,
+  "rare/t24/raw/wrong/L2": null,
+  "rare/t24/raw/wrong/L3": null,
+  "rare/t24/raw/wrong/L4": null,
+  "rare/t24/raw/wrong/L5": null,
+  "rare/t24/raw/wrong/L6": null,
+  "rare/t24/raw/wrong/L7": null,
+  "rare/t24/raw/wrong/L8": null,
+  "rare/t24/raw/wrong/L9": null,
+  "rare/t24/raw/wrong/L10": null,
+  "rare/t24/raw/wrong/L11": null,
+  "rare/t24/raw/random/L0": null,
+  "rare/t24/raw/random/L1": null,
+  "rare/t24/raw/random/L2": null,
+  "rare/t24/raw/random/L3": null,
+  "rare/t24/raw/random/L4": null,
+  "rare/t24/raw/random/L5": null,
+  "rare/t24/raw/random/L6": null,
+  "rare/t24/raw/random/L7": null,
+  "rare/t24/raw/random/L8": null,
+  "rare/t24/raw/random/L9": null,
+  "rare/t24/raw/random/L10": null,
+  "rare/t24/raw/random/L11": null,
+  "rare/t24/raw/control/L0": null,
+  "rare/t24/raw/control/L1": null,
+  "rare/t24/raw/control/L2": null,
+  "rare/t24/raw/control/L3": null,
+  "rare/t24/raw/control/L4": null,
+  "rare/t24/raw/control/L5": null,
+  "rare/t24/raw/control/L6": null,
+  "rare/t24/raw/control/L7": null,
+  "rare/t24/raw/control/L8": null,
+  "rare/t24/raw/control/L9": null,
+  "rare/t24/raw/control/L10": null,
+  "rare/t24/raw/control/L11": null,
+  "rare/t24/vw/own/L0": null,
+  "rare/t24/vw/own/L1": null,
+  "rare/t24/vw/own/L2": null,
+  "rare/t24/vw/own/L3": null,
+  "rare/t24/vw/own/L4": {
+   "birth": 0.909584,
+   "death": 0.964369,
+   "persistence": 0.054785,
+   "birth_edge": [
+    24,
+    32
+   ],
+   "death_triangle": [
+    24,
+    29,
+    32
+   ],
+   "cycle": [
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32
+   ]
+  },
+  "rare/t24/vw/own/L5": null,
+  "rare/t24/vw/own/L6": null,
+  "rare/t24/vw/own/L7": null,
+  "rare/t24/vw/own/L8": null,
+  "rare/t24/vw/own/L9": null,
+  "rare/t24/vw/own/L10": null,
+  "rare/t24/vw/own/L11": null,
+  "rare/t24/vw/wrong/L0": null,
+  "rare/t24/vw/wrong/L1": null,
+  "rare/t24/vw/wrong/L2": null,
+  "rare/t24/vw/wrong/L3": null,
+  "rare/t24/vw/wrong/L4": {
+   "birth": 0.950863,
+   "death": 0.963831,
+   "persistence": 0.012968,
+   "birth_edge": [
+    24,
+    32
+   ],
+   "death_triangle": [
+    28,
+    29,
+    32
+   ],
+   "cycle": [
+    24,
+    27,
+    30,
+    32
+   ]
+  },
+  "rare/t24/vw/wrong/L5": null,
+  "rare/t24/vw/wrong/L6": null,
+  "rare/t24/vw/wrong/L7": null,
+  "rare/t24/vw/wrong/L8": null,
+  "rare/t24/vw/wrong/L9": null,
+  "rare/t24/vw/wrong/L10": null,
+  "rare/t24/vw/wrong/L11": null,
+  "rare/t24/vw/random/L0": null,
+  "rare/t24/vw/random/L1": null,
+  "rare/t24/vw/random/L2": null,
+  "rare/t24/vw/random/L3": null,
+  "rare/t24/vw/random/L4": null,
+  "rare/t24/vw/random/L5": null,
+  "rare/t24/vw/random/L6": null,
+  "rare/t24/vw/random/L7": null,
+  "rare/t24/vw/random/L8": null,
+  "rare/t24/vw/random/L9": null,
+  "rare/t24/vw/random/L10": null,
+  "rare/t24/vw/random/L11": null,
+  "rare/t24/vw/control/L0": null,
+  "rare/t24/vw/control/L1": null,
+  "rare/t24/vw/control/L2": null,
+  "rare/t24/vw/control/L3": null,
+  "rare/t24/vw/control/L4": null,
+  "rare/t24/vw/control/L5": null,
+  "rare/t24/vw/control/L6": null,
+  "rare/t24/vw/control/L7": null,
+  "rare/t24/vw/control/L8": null,
+  "rare/t24/vw/control/L9": null,
+  "rare/t24/vw/control/L10": null,
+  "rare/t24/vw/control/L11": null,
+  "rare/t24/vwM/own/L0": null,
+  "rare/t24/vwM/own/L1": null,
+  "rare/t24/vwM/own/L2": null,
+  "rare/t24/vwM/own/L3": null,
+  "rare/t24/vwM/own/L4": {
+   "birth": 0.909344,
+   "death": 0.964084,
+   "persistence": 0.05474,
+   "birth_edge": [
+    24,
+    32
+   ],
+   "death_triangle": [
+    24,
+    29,
+    32
+   ],
+   "cycle": [
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32
+   ]
+  },
+  "rare/t24/vwM/own/L5": null,
+  "rare/t24/vwM/own/L6": null,
+  "rare/t24/vwM/own/L7": null,
+  "rare/t24/vwM/own/L8": null,
+  "rare/t24/vwM/own/L9": null,
+  "rare/t24/vwM/own/L10": null,
+  "rare/t24/vwM/own/L11": null,
+  "rare/t24/vwM/wrong/L0": null,
+  "rare/t24/vwM/wrong/L1": null,
+  "rare/t24/vwM/wrong/L2": null,
+  "rare/t24/vwM/wrong/L3": null,
+  "rare/t24/vwM/wrong/L4": {
+   "birth": 0.950845,
+   "death": 0.963723,
+   "persistence": 0.012878,
+   "birth_edge": [
+    24,
+    32
+   ],
+   "death_triangle": [
+    28,
+    29,
+    32
+   ],
+   "cycle": [
+    24,
+    26,
+    29,
+    32
+   ]
+  },
+  "rare/t24/vwM/wrong/L5": null,
+  "rare/t24/vwM/wrong/L6": null,
+  "rare/t24/vwM/wrong/L7": null,
+  "rare/t24/vwM/wrong/L8": null,
+  "rare/t24/vwM/wrong/L9": null,
+  "rare/t24/vwM/wrong/L10": null,
+  "rare/t24/vwM/wrong/L11": null,
+  "rare/t24/vwM/random/L0": null,
+  "rare/t24/vwM/random/L1": null,
+  "rare/t24/vwM/random/L2": null,
+  "rare/t24/vwM/random/L3": null,
+  "rare/t24/vwM/random/L4": null,
+  "rare/t24/vwM/random/L5": null,
+  "rare/t24/vwM/random/L6": null,
+  "rare/t24/vwM/random/L7": null,
+  "rare/t24/vwM/random/L8": null,
+  "rare/t24/vwM/random/L9": null,
+  "rare/t24/vwM/random/L10": null,
+  "rare/t24/vwM/random/L11": null,
+  "rare/t24/vwM/control/L0": null,
+  "rare/t24/vwM/control/L1": null,
+  "rare/t24/vwM/control/L2": null,
+  "rare/t24/vwM/control/L3": null,
+  "rare/t24/vwM/control/L4": null,
+  "rare/t24/vwM/control/L5": null,
+  "rare/t24/vwM/control/L6": null,
+  "rare/t24/vwM/control/L7": null,
+  "rare/t24/vwM/control/L8": null,
+  "rare/t24/vwM/control/L9": null,
+  "rare/t24/vwM/control/L10": null,
+  "rare/t24/vwM/control/L11": null,
+  "rare/t24/vwU/own/L0": null,
+  "rare/t24/vwU/own/L1": null,
+  "rare/t24/vwU/own/L2": null,
+  "rare/t24/vwU/own/L3": null,
+  "rare/t24/vwU/own/L4": {
+   "birth": 0.893137,
+   "death": 0.958258,
+   "persistence": 0.065122,
+   "birth_edge": [
+    24,
+    32
+   ],
+   "death_triangle": [
+    28,
+    29,
+    32
+   ],
+   "cycle": [
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32
+   ]
+  },
+  "rare/t24/vwU/own/L5": null,
+  "rare/t24/vwU/own/L6": null,
+  "rare/t24/vwU/own/L7": null,
+  "rare/t24/vwU/own/L8": null,
+  "rare/t24/vwU/own/L9": null,
+  "rare/t24/vwU/own/L10": null,
+  "rare/t24/vwU/own/L11": null,
+  "rare/t24/vwU/wrong/L0": null,
+  "rare/t24/vwU/wrong/L1": null,
+  "rare/t24/vwU/wrong/L2": null,
+  "rare/t24/vwU/wrong/L3": null,
+  "rare/t24/vwU/wrong/L4": {
+   "birth": 0.945241,
+   "death": 0.959587,
+   "persistence": 0.014346,
+   "birth_edge": [
+    24,
+    32
+   ],
+   "death_triangle": [
+    28,
+    29,
+    32
+   ],
+   "cycle": [
+    24,
+    26,
+    29,
+    32
+   ]
+  },
+  "rare/t24/vwU/wrong/L5": null,
+  "rare/t24/vwU/wrong/L6": null,
+  "rare/t24/vwU/wrong/L7": null,
+  "rare/t24/vwU/wrong/L8": null,
+  "rare/t24/vwU/wrong/L9": null,
+  "rare/t24/vwU/wrong/L10": null,
+  "rare/t24/vwU/wrong/L11": null,
+  "rare/t24/vwU/random/L0": null,
+  "rare/t24/vwU/random/L1": null,
+  "rare/t24/vwU/random/L2": null,
+  "rare/t24/vwU/random/L3": null,
+  "rare/t24/vwU/random/L4": null,
+  "rare/t24/vwU/random/L5": null,
+  "rare/t24/vwU/random/L6": null,
+  "rare/t24/vwU/random/L7": null,
+  "rare/t24/vwU/random/L8": null,
+  "rare/t24/vwU/random/L9": null,
+  "rare/t24/vwU/random/L10": null,
+  "rare/t24/vwU/random/L11": null,
+  "rare/t24/vwU/control/L0": null,
+  "rare/t24/vwU/control/L1": null,
+  "rare/t24/vwU/control/L2": null,
+  "rare/t24/vwU/control/L3": null,
+  "rare/t24/vwU/control/L4": null,
+  "rare/t24/vwU/control/L5": null,
+  "rare/t24/vwU/control/L6": null,
+  "rare/t24/vwU/control/L7": null,
+  "rare/t24/vwU/control/L8": null,
+  "rare/t24/vwU/control/L9": null,
+  "rare/t24/vwU/control/L10": null,
+  "rare/t24/vwU/control/L11": null,
+  "rare/t16/raw/own/L0": {
+   "birth": 0.96456,
+   "death": 0.979791,
+   "persistence": 0.015231,
+   "birth_edge": [
+    31,
+    32
+   ],
+   "death_triangle": [
+    26,
+    27,
+    32
+   ],
+   "cycle": [
+    31,
+    29,
+    28,
+    26,
+    24,
+    22,
+    20,
+    17,
+    16,
+    32
+   ]
+  },
+  "rare/t16/raw/own/L1": null,
+  "rare/t16/raw/own/L2": null,
+  "rare/t16/raw/own/L3": {
+   "birth": 0.975675,
+   "death": 0.989958,
+   "persistence": 0.014283,
+   "birth_edge": [
+    16,
+    32
+   ],
+   "death_triangle": [
+    25,
+    26,
+    32
+   ],
+   "cycle": [
+    16,
+    20,
+    24,
+    28,
+    32
+   ]
+  },
+  "rare/t16/raw/own/L4": {
+   "birth": 0.971772,
+   "death": 0.991013,
+   "persistence": 0.019241,
+   "birth_edge": [
+    16,
+    32
+   ],
+   "death_triangle": [
+    24,
+    25,
+    32
+   ],
+   "cycle": [
+    16,
+    17,
+    20,
+    23,
+    26,
+    29,
+    32
+   ]
+  },
+  "rare/t16/raw/own/L5": null,
+  "rare/t16/raw/own/L6": null,
+  "rare/t16/raw/own/L7": null,
+  "rare/t16/raw/own/L8": null,
+  "rare/t16/raw/own/L9": null,
+  "rare/t16/raw/own/L10": null,
+  "rare/t16/raw/own/L11": null,
+  "rare/t16/raw/wrong/L0": null,
+  "rare/t16/raw/wrong/L1": null,
+  "rare/t16/raw/wrong/L2": null,
+  "rare/t16/raw/wrong/L3": null,
+  "rare/t16/raw/wrong/L4": {
+   "birth": 0.986483,
+   "death": 0.991068,
+   "persistence": 0.004585,
+   "birth_edge": [
+    16,
+    32
+   ],
+   "death_triangle": [
+    16,
+    25,
+    32
+   ],
+   "cycle": [
+    16,
+    20,
+    26,
+    32
+   ]
+  },
+  "rare/t16/raw/wrong/L5": null,
+  "rare/t16/raw/wrong/L6": null,
+  "rare/t16/raw/wrong/L7": null,
+  "rare/t16/raw/wrong/L8": null,
+  "rare/t16/raw/wrong/L9": null,
+  "rare/t16/raw/wrong/L10": null,
+  "rare/t16/raw/wrong/L11": null,
+  "rare/t16/raw/random/L0": null,
+  "rare/t16/raw/random/L1": null,
+  "rare/t16/raw/random/L2": null,
+  "rare/t16/raw/random/L3": null,
+  "rare/t16/raw/random/L4": null,
+  "rare/t16/raw/random/L5": null,
+  "rare/t16/raw/random/L6": null,
+  "rare/t16/raw/random/L7": null,
+  "rare/t16/raw/random/L8": null,
+  "rare/t16/raw/random/L9": null,
+  "rare/t16/raw/random/L10": null,
+  "rare/t16/raw/random/L11": null,
+  "rare/t16/raw/control/L0": null,
+  "rare/t16/raw/control/L1": null,
+  "rare/t16/raw/control/L2": null,
+  "rare/t16/raw/control/L3": null,
+  "rare/t16/raw/control/L4": null,
+  "rare/t16/raw/control/L5": null,
+  "rare/t16/raw/control/L6": null,
+  "rare/t16/raw/control/L7": null,
+  "rare/t16/raw/control/L8": null,
+  "rare/t16/raw/control/L9": null,
+  "rare/t16/raw/control/L10": null,
+  "rare/t16/raw/control/L11": null,
+  "rare/t16/vw/own/L0": {
+   "birth": 0.963857,
+   "death": 0.97544,
+   "persistence": 0.011583,
+   "birth_edge": [
+    31,
+    32
+   ],
+   "death_triangle": [
+    16,
+    27,
+    32
+   ],
+   "cycle": [
+    31,
+    29,
+    28,
+    26,
+    23,
+    19,
+    16,
+    32
+   ]
+  },
+  "rare/t16/vw/own/L1": null,
+  "rare/t16/vw/own/L2": null,
+  "rare/t16/vw/own/L3": {
+   "birth": 0.953983,
+   "death": 0.981849,
+   "persistence": 0.027866,
+   "birth_edge": [
+    16,
+    32
+   ],
+   "death_triangle": [
+    16,
+    26,
+    32
+   ],
+   "cycle": [
+    16,
+    18,
+    22,
+    26,
+    29,
+    32
+   ]
+  },
+  "rare/t16/vw/own/L4": {
+   "birth": 0.91719,
+   "death": 0.980427,
+   "persistence": 0.063237,
+   "birth_edge": [
+    16,
+    32
+   ],
+   "death_triangle": [
+    25,
+    26,
+    32
+   ],
+   "cycle": [
+    16,
+    18,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32
+   ]
+  },
+  "rare/t16/vw/own/L5": null,
+  "rare/t16/vw/own/L6": null,
+  "rare/t16/vw/own/L7": null,
+  "rare/t16/vw/own/L8": null,
+  "rare/t16/vw/own/L9": null,
+  "rare/t16/vw/own/L10": null,
+  "rare/t16/vw/own/L11": null,
+  "rare/t16/vw/wrong/L0": null,
+  "rare/t16/vw/wrong/L1": null,
+  "rare/t16/vw/wrong/L2": null,
+  "rare/t16/vw/wrong/L3": {
+   "birth": 0.974467,
+   "death": 0.981849,
+   "persistence": 0.007382,
+   "birth_edge": [
+    16,
+    32
+   ],
+   "death_triangle": [
+    16,
+    26,
+    32
+   ],
+   "cycle": [
+    16,
+    22,
+    27,
+    32
+   ]
+  },
+  "rare/t16/vw/wrong/L4": {
+   "birth": 0.961252,
+   "death": 0.980288,
+   "persistence": 0.019036,
+   "birth_edge": [
+    16,
+    32
+   ],
+   "death_triangle": [
+    16,
+    25,
+    32
+   ],
+   "cycle": [
+    16,
+    21,
+    25,
+    29,
+    32
+   ]
+  },
+  "rare/t16/vw/wrong/L5": null,
+  "rare/t16/vw/wrong/L6": null,
+  "rare/t16/vw/wrong/L7": null,
+  "rare/t16/vw/wrong/L8": null,
+  "rare/t16/vw/wrong/L9": null,
+  "rare/t16/vw/wrong/L10": null,
+  "rare/t16/vw/wrong/L11": null,
+  "rare/t16/vw/random/L0": null,
+  "rare/t16/vw/random/L1": null,
+  "rare/t16/vw/random/L2": null,
+  "rare/t16/vw/random/L3": null,
+  "rare/t16/vw/random/L4": null,
+  "rare/t16/vw/random/L5": null,
+  "rare/t16/vw/random/L6": null,
+  "rare/t16/vw/random/L7": null,
+  "rare/t16/vw/random/L8": null,
+  "rare/t16/vw/random/L9": null,
+  "rare/t16/vw/random/L10": null,
+  "rare/t16/vw/random/L11": null,
+  "rare/t16/vw/control/L0": null,
+  "rare/t16/vw/control/L1": null,
+  "rare/t16/vw/control/L2": null,
+  "rare/t16/vw/control/L3": null,
+  "rare/t16/vw/control/L4": null,
+  "rare/t16/vw/control/L5": null,
+  "rare/t16/vw/control/L6": null,
+  "rare/t16/vw/control/L7": null,
+  "rare/t16/vw/control/L8": null,
+  "rare/t16/vw/control/L9": null,
+  "rare/t16/vw/control/L10": null,
+  "rare/t16/vw/control/L11": null,
+  "rare/t16/vwM/own/L0": {
+   "birth": 0.963863,
+   "death": 0.975418,
+   "persistence": 0.011555,
+   "birth_edge": [
+    31,
+    32
+   ],
+   "death_triangle": [
+    16,
+    27,
+    32
+   ],
+   "cycle": [
+    31,
+    29,
+    28,
+    26,
+    23,
+    19,
+    16,
+    32
+   ]
+  },
+  "rare/t16/vwM/own/L1": null,
+  "rare/t16/vwM/own/L2": null,
+  "rare/t16/vwM/own/L3": {
+   "birth": 0.954018,
+   "death": 0.981687,
+   "persistence": 0.027669,
+   "birth_edge": [
+    16,
+    32
+   ],
+   "death_triangle": [
+    16,
+    26,
+    32
+   ],
+   "cycle": [
+    16,
+    18,
+    22,
+    26,
+    29,
+    32
+   ]
+  },
+  "rare/t16/vwM/own/L4": {
+   "birth": 0.917002,
+   "death": 0.980391,
+   "persistence": 0.063389,
+   "birth_edge": [
+    16,
+    32
+   ],
+   "death_triangle": [
+    16,
+    25,
+    32
+   ],
+   "cycle": [
+    16,
+    18,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32
+   ]
+  },
+  "rare/t16/vwM/own/L5": null,
+  "rare/t16/vwM/own/L6": null,
+  "rare/t16/vwM/own/L7": null,
+  "rare/t16/vwM/own/L8": null,
+  "rare/t16/vwM/own/L9": null,
+  "rare/t16/vwM/own/L10": null,
+  "rare/t16/vwM/own/L11": null,
+  "rare/t16/vwM/wrong/L0": null,
+  "rare/t16/vwM/wrong/L1": null,
+  "rare/t16/vwM/wrong/L2": null,
+  "rare/t16/vwM/wrong/L3": {
+   "birth": 0.974418,
+   "death": 0.981687,
+   "persistence": 0.007269,
+   "birth_edge": [
+    16,
+    32
+   ],
+   "death_triangle": [
+    16,
+    26,
+    32
+   ],
+   "cycle": [
+    16,
+    22,
+    27,
+    32
+   ]
+  },
+  "rare/t16/vwM/wrong/L4": {
+   "birth": 0.961246,
+   "death": 0.980391,
+   "persistence": 0.019145,
+   "birth_edge": [
+    16,
+    32
+   ],
+   "death_triangle": [
+    16,
+    25,
+    32
+   ],
+   "cycle": [
+    16,
+    21,
+    25,
+    29,
+    32
+   ]
+  },
+  "rare/t16/vwM/wrong/L5": null,
+  "rare/t16/vwM/wrong/L6": null,
+  "rare/t16/vwM/wrong/L7": null,
+  "rare/t16/vwM/wrong/L8": null,
+  "rare/t16/vwM/wrong/L9": null,
+  "rare/t16/vwM/wrong/L10": null,
+  "rare/t16/vwM/wrong/L11": null,
+  "rare/t16/vwM/random/L0": null,
+  "rare/t16/vwM/random/L1": null,
+  "rare/t16/vwM/random/L2": null,
+  "rare/t16/vwM/random/L3": null,
+  "rare/t16/vwM/random/L4": null,
+  "rare/t16/vwM/random/L5": null,
+  "rare/t16/vwM/random/L6": null,
+  "rare/t16/vwM/random/L7": null,
+  "rare/t16/vwM/random/L8": null,
+  "rare/t16/vwM/random/L9": null,
+  "rare/t16/vwM/random/L10": null,
+  "rare/t16/vwM/random/L11": null,
+  "rare/t16/vwM/control/L0": null,
+  "rare/t16/vwM/control/L1": null,
+  "rare/t16/vwM/control/L2": null,
+  "rare/t16/vwM/control/L3": null,
+  "rare/t16/vwM/control/L4": null,
+  "rare/t16/vwM/control/L5": null,
+  "rare/t16/vwM/control/L6": null,
+  "rare/t16/vwM/control/L7": null,
+  "rare/t16/vwM/control/L8": null,
+  "rare/t16/vwM/control/L9": null,
+  "rare/t16/vwM/control/L10": null,
+  "rare/t16/vwM/control/L11": null,
+  "rare/t16/vwU/own/L0": {
+   "birth": 0.962007,
+   "death": 0.974506,
+   "persistence": 0.012499,
+   "birth_edge": [
+    31,
+    32
+   ],
+   "death_triangle": [
+    16,
+    27,
+    32
+   ],
+   "cycle": [
+    31,
+    29,
+    28,
+    26,
+    23,
+    19,
+    16,
+    32
+   ]
+  },
+  "rare/t16/vwU/own/L1": null,
+  "rare/t16/vwU/own/L2": null,
+  "rare/t16/vwU/own/L3": {
+   "birth": 0.949006,
+   "death": 0.980421,
+   "persistence": 0.031415,
+   "birth_edge": [
+    16,
+    32
+   ],
+   "death_triangle": [
+    16,
+    26,
+    32
+   ],
+   "cycle": [
+    16,
+    20,
+    23,
+    26,
+    29,
+    32
+   ]
+  },
+  "rare/t16/vwU/own/L4": {
+   "birth": 0.901838,
+   "death": 0.978917,
+   "persistence": 0.077079,
+   "birth_edge": [
+    16,
+    32
+   ],
+   "death_triangle": [
+    16,
+    25,
+    32
+   ],
+   "cycle": [
+    16,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32
+   ]
+  },
+  "rare/t16/vwU/own/L5": null,
+  "rare/t16/vwU/own/L6": null,
+  "rare/t16/vwU/own/L7": null,
+  "rare/t16/vwU/own/L8": null,
+  "rare/t16/vwU/own/L9": null,
+  "rare/t16/vwU/own/L10": null,
+  "rare/t16/vwU/own/L11": null,
+  "rare/t16/vwU/wrong/L0": null,
+  "rare/t16/vwU/wrong/L1": null,
+  "rare/t16/vwU/wrong/L2": null,
+  "rare/t16/vwU/wrong/L3": {
+   "birth": 0.972592,
+   "death": 0.980421,
+   "persistence": 0.007829,
+   "birth_edge": [
+    16,
+    32
+   ],
+   "death_triangle": [
+    16,
+    26,
+    32
+   ],
+   "cycle": [
+    16,
+    22,
+    27,
+    32
+   ]
+  },
+  "rare/t16/vwU/wrong/L4": {
+   "birth": 0.956824,
+   "death": 0.978917,
+   "persistence": 0.022093,
+   "birth_edge": [
+    16,
+    32
+   ],
+   "death_triangle": [
+    16,
+    25,
+    32
+   ],
+   "cycle": [
+    16,
+    18,
+    22,
+    26,
+    29,
+    32
+   ]
+  },
+  "rare/t16/vwU/wrong/L5": null,
+  "rare/t16/vwU/wrong/L6": null,
+  "rare/t16/vwU/wrong/L7": null,
+  "rare/t16/vwU/wrong/L8": null,
+  "rare/t16/vwU/wrong/L9": null,
+  "rare/t16/vwU/wrong/L10": null,
+  "rare/t16/vwU/wrong/L11": null,
+  "rare/t16/vwU/random/L0": null,
+  "rare/t16/vwU/random/L1": null,
+  "rare/t16/vwU/random/L2": null,
+  "rare/t16/vwU/random/L3": null,
+  "rare/t16/vwU/random/L4": null,
+  "rare/t16/vwU/random/L5": null,
+  "rare/t16/vwU/random/L6": null,
+  "rare/t16/vwU/random/L7": null,
+  "rare/t16/vwU/random/L8": null,
+  "rare/t16/vwU/random/L9": null,
+  "rare/t16/vwU/random/L10": null,
+  "rare/t16/vwU/random/L11": null,
+  "rare/t16/vwU/control/L0": null,
+  "rare/t16/vwU/control/L1": null,
+  "rare/t16/vwU/control/L2": null,
+  "rare/t16/vwU/control/L3": null,
+  "rare/t16/vwU/control/L4": null,
+  "rare/t16/vwU/control/L5": null,
+  "rare/t16/vwU/control/L6": null,
+  "rare/t16/vwU/control/L7": null,
+  "rare/t16/vwU/control/L8": null,
+  "rare/t16/vwU/control/L9": null,
+  "rare/t16/vwU/control/L10": null,
+  "rare/t16/vwU/control/L11": null,
+  "rare/t8/raw/own/L0": {
+   "birth": 0.964561,
+   "death": 0.98156,
+   "persistence": 0.016998,
+   "birth_edge": [
+    31,
+    32
+   ],
+   "death_triangle": [
+    25,
+    26,
+    32
+   ],
+   "cycle": [
+    31,
+    29,
+    28,
+    26,
+    24,
+    22,
+    20,
+    17,
+    14,
+    9,
+    8,
+    32
+   ]
+  },
+  "rare/t8/raw/own/L1": null,
+  "rare/t8/raw/own/L2": null,
+  "rare/t8/raw/own/L3": {
+   "birth": 0.965078,
+   "death": 0.993991,
+   "persistence": 0.028913,
+   "birth_edge": [
+    8,
+    32
+   ],
+   "death_triangle": [
+    22,
+    23,
+    32
+   ],
+   "cycle": [
+    8,
+    11,
+    15,
+    19,
+    22,
+    26,
+    29,
+    32
+   ]
+  },
+  "rare/t8/raw/own/L4": {
+   "birth": 0.973818,
+   "death": 0.994565,
+   "persistence": 0.020747,
+   "birth_edge": [
+    8,
+    32
+   ],
+   "death_triangle": [
+    20,
+    21,
+    32
+   ],
+   "cycle": [
+    8,
+    10,
+    14,
+    17,
+    20,
+    23,
+    26,
+    29,
+    32
+   ]
+  },
+  "rare/t8/raw/own/L5": null,
+  "rare/t8/raw/own/L6": null,
+  "rare/t8/raw/own/L7": null,
+  "rare/t8/raw/own/L8": null,
+  "rare/t8/raw/own/L9": null,
+  "rare/t8/raw/own/L10": null,
+  "rare/t8/raw/own/L11": null,
+  "rare/t8/raw/wrong/L0": null,
+  "rare/t8/raw/wrong/L1": null,
+  "rare/t8/raw/wrong/L2": null,
+  "rare/t8/raw/wrong/L3": {
+   "birth": 0.989277,
+   "death": 0.994133,
+   "persistence": 0.004856,
+   "birth_edge": [
+    8,
+    32
+   ],
+   "death_triangle": [
+    8,
+    23,
+    32
+   ],
+   "cycle": [
+    8,
+    12,
+    19,
+    26,
+    32
+   ]
+  },
+  "rare/t8/raw/wrong/L4": {
+   "birth": 0.988419,
+   "death": 0.994694,
+   "persistence": 0.006275,
+   "birth_edge": [
+    8,
+    32
+   ],
+   "death_triangle": [
+    20,
+    21,
+    32
+   ],
+   "cycle": [
+    8,
+    12,
+    19,
+    26,
+    32
+   ]
+  },
+  "rare/t8/raw/wrong/L5": null,
+  "rare/t8/raw/wrong/L6": null,
+  "rare/t8/raw/wrong/L7": null,
+  "rare/t8/raw/wrong/L8": null,
+  "rare/t8/raw/wrong/L9": null,
+  "rare/t8/raw/wrong/L10": null,
+  "rare/t8/raw/wrong/L11": null,
+  "rare/t8/raw/random/L0": null,
+  "rare/t8/raw/random/L1": null,
+  "rare/t8/raw/random/L2": null,
+  "rare/t8/raw/random/L3": null,
+  "rare/t8/raw/random/L4": null,
+  "rare/t8/raw/random/L5": null,
+  "rare/t8/raw/random/L6": null,
+  "rare/t8/raw/random/L7": null,
+  "rare/t8/raw/random/L8": null,
+  "rare/t8/raw/random/L9": null,
+  "rare/t8/raw/random/L10": null,
+  "rare/t8/raw/random/L11": null,
+  "rare/t8/raw/control/L0": null,
+  "rare/t8/raw/control/L1": null,
+  "rare/t8/raw/control/L2": null,
+  "rare/t8/raw/control/L3": null,
+  "rare/t8/raw/control/L4": null,
+  "rare/t8/raw/control/L5": null,
+  "rare/t8/raw/control/L6": null,
+  "rare/t8/raw/control/L7": null,
+  "rare/t8/raw/control/L8": null,
+  "rare/t8/raw/control/L9": null,
+  "rare/t8/raw/control/L10": null,
+  "rare/t8/raw/control/L11": null,
+  "rare/t8/vw/own/L0": {
+   "birth": 0.963841,
+   "death": 0.977023,
+   "persistence": 0.013181,
+   "birth_edge": [
+    31,
+    32
+   ],
+   "death_triangle": [
+    8,
+    26,
+    32
+   ],
+   "cycle": [
+    31,
+    29,
+    28,
+    26,
+    23,
+    19,
+    14,
+    8,
+    32
+   ]
+  },
+  "rare/t8/vw/own/L1": null,
+  "rare/t8/vw/own/L2": null,
+  "rare/t8/vw/own/L3": {
+   "birth": 0.930449,
+   "death": 0.988079,
+   "persistence": 0.05763,
+   "birth_edge": [
+    8,
+    32
+   ],
+   "death_triangle": [
+    8,
+    25,
+    32
+   ],
+   "cycle": [
+    8,
+    10,
+    13,
+    15,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32
+   ]
+  },
+  "rare/t8/vw/own/L4": {
+   "birth": 0.923154,
+   "death": 0.985981,
+   "persistence": 0.062827,
+   "birth_edge": [
+    8,
+    32
+   ],
+   "death_triangle": [
+    8,
+    22,
+    32
+   ],
+   "cycle": [
+    8,
+    9,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    29,
+    31,
+    32
+   ]
+  },
+  "rare/t8/vw/own/L5": null,
+  "rare/t8/vw/own/L6": null,
+  "rare/t8/vw/own/L7": null,
+  "rare/t8/vw/own/L8": null,
+  "rare/t8/vw/own/L9": null,
+  "rare/t8/vw/own/L10": null,
+  "rare/t8/vw/own/L11": null,
+  "rare/t8/vw/wrong/L0": null,
+  "rare/t8/vw/wrong/L1": null,
+  "rare/t8/vw/wrong/L2": null,
+  "rare/t8/vw/wrong/L3": {
+   "birth": 0.972506,
+   "death": 0.988079,
+   "persistence": 0.015573,
+   "birth_edge": [
+    8,
+    32
+   ],
+   "death_triangle": [
+    8,
+    25,
+    32
+   ],
+   "cycle": [
+    8,
+    13,
+    18,
+    23,
+    28,
+    32
+   ]
+  },
+  "rare/t8/vw/wrong/L4": {
+   "birth": 0.96573,
+   "death": 0.985981,
+   "persistence": 0.020251,
+   "birth_edge": [
+    8,
+    32
+   ],
+   "death_triangle": [
+    8,
+    22,
+    32
+   ],
+   "cycle": [
+    8,
+    9,
+    14,
+    19,
+    24,
+    28,
+    32
+   ]
+  },
+  "rare/t8/vw/wrong/L5": null,
+  "rare/t8/vw/wrong/L6": null,
+  "rare/t8/vw/wrong/L7": null,
+  "rare/t8/vw/wrong/L8": null,
+  "rare/t8/vw/wrong/L9": null,
+  "rare/t8/vw/wrong/L10": null,
+  "rare/t8/vw/wrong/L11": null,
+  "rare/t8/vw/random/L0": null,
+  "rare/t8/vw/random/L1": null,
+  "rare/t8/vw/random/L2": null,
+  "rare/t8/vw/random/L3": null,
+  "rare/t8/vw/random/L4": null,
+  "rare/t8/vw/random/L5": null,
+  "rare/t8/vw/random/L6": null,
+  "rare/t8/vw/random/L7": null,
+  "rare/t8/vw/random/L8": null,
+  "rare/t8/vw/random/L9": null,
+  "rare/t8/vw/random/L10": null,
+  "rare/t8/vw/random/L11": null,
+  "rare/t8/vw/control/L0": null,
+  "rare/t8/vw/control/L1": null,
+  "rare/t8/vw/control/L2": null,
+  "rare/t8/vw/control/L3": null,
+  "rare/t8/vw/control/L4": null,
+  "rare/t8/vw/control/L5": null,
+  "rare/t8/vw/control/L6": null,
+  "rare/t8/vw/control/L7": null,
+  "rare/t8/vw/control/L8": null,
+  "rare/t8/vw/control/L9": null,
+  "rare/t8/vw/control/L10": null,
+  "rare/t8/vw/control/L11": null,
+  "rare/t8/vwM/own/L0": {
+   "birth": 0.963848,
+   "death": 0.977025,
+   "persistence": 0.013177,
+   "birth_edge": [
+    31,
+    32
+   ],
+   "death_triangle": [
+    8,
+    26,
+    32
+   ],
+   "cycle": [
+    31,
+    29,
+    28,
+    26,
+    23,
+    19,
+    14,
+    8,
+    32
+   ]
+  },
+  "rare/t8/vwM/own/L1": null,
+  "rare/t8/vwM/own/L2": null,
+  "rare/t8/vwM/own/L3": {
+   "birth": 0.93047,
+   "death": 0.988159,
+   "persistence": 0.057689,
+   "birth_edge": [
+    8,
+    32
+   ],
+   "death_triangle": [
+    8,
+    25,
+    32
+   ],
+   "cycle": [
+    8,
+    9,
+    12,
+    15,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32
+   ]
+  },
+  "rare/t8/vwM/own/L4": {
+   "birth": 0.922908,
+   "death": 0.985926,
+   "persistence": 0.063018,
+   "birth_edge": [
+    8,
+    32
+   ],
+   "death_triangle": [
+    8,
+    22,
+    32
+   ],
+   "cycle": [
+    8,
+    9,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    29,
+    31,
+    32
+   ]
+  },
+  "rare/t8/vwM/own/L5": null,
+  "rare/t8/vwM/own/L6": null,
+  "rare/t8/vwM/own/L7": null,
+  "rare/t8/vwM/own/L8": null,
+  "rare/t8/vwM/own/L9": null,
+  "rare/t8/vwM/own/L10": null,
+  "rare/t8/vwM/own/L11": null,
+  "rare/t8/vwM/wrong/L0": null,
+  "rare/t8/vwM/wrong/L1": null,
+  "rare/t8/vwM/wrong/L2": null,
+  "rare/t8/vwM/wrong/L3": {
+   "birth": 0.972498,
+   "death": 0.988159,
+   "persistence": 0.015661,
+   "birth_edge": [
+    8,
+    32
+   ],
+   "death_triangle": [
+    8,
+    25,
+    32
+   ],
+   "cycle": [
+    8,
+    13,
+    18,
+    23,
+    28,
+    32
+   ]
+  },
+  "rare/t8/vwM/wrong/L4": {
+   "birth": 0.965753,
+   "death": 0.985926,
+   "persistence": 0.020173,
+   "birth_edge": [
+    8,
+    32
+   ],
+   "death_triangle": [
+    8,
+    22,
+    32
+   ],
+   "cycle": [
+    8,
+    9,
+    14,
+    19,
+    24,
+    28,
+    32
+   ]
+  },
+  "rare/t8/vwM/wrong/L5": null,
+  "rare/t8/vwM/wrong/L6": null,
+  "rare/t8/vwM/wrong/L7": null,
+  "rare/t8/vwM/wrong/L8": null,
+  "rare/t8/vwM/wrong/L9": null,
+  "rare/t8/vwM/wrong/L10": null,
+  "rare/t8/vwM/wrong/L11": null,
+  "rare/t8/vwM/random/L0": null,
+  "rare/t8/vwM/random/L1": null,
+  "rare/t8/vwM/random/L2": null,
+  "rare/t8/vwM/random/L3": null,
+  "rare/t8/vwM/random/L4": null,
+  "rare/t8/vwM/random/L5": null,
+  "rare/t8/vwM/random/L6": null,
+  "rare/t8/vwM/random/L7": null,
+  "rare/t8/vwM/random/L8": null,
+  "rare/t8/vwM/random/L9": null,
+  "rare/t8/vwM/random/L10": null,
+  "rare/t8/vwM/random/L11": null,
+  "rare/t8/vwM/control/L0": null,
+  "rare/t8/vwM/control/L1": null,
+  "rare/t8/vwM/control/L2": null,
+  "rare/t8/vwM/control/L3": null,
+  "rare/t8/vwM/control/L4": null,
+  "rare/t8/vwM/control/L5": null,
+  "rare/t8/vwM/control/L6": null,
+  "rare/t8/vwM/control/L7": null,
+  "rare/t8/vwM/control/L8": null,
+  "rare/t8/vwM/control/L9": null,
+  "rare/t8/vwM/control/L10": null,
+  "rare/t8/vwM/control/L11": null,
+  "rare/t8/vwU/own/L0": {
+   "birth": 0.962018,
+   "death": 0.976137,
+   "persistence": 0.014119,
+   "birth_edge": [
+    31,
+    32
+   ],
+   "death_triangle": [
+    8,
+    26,
+    32
+   ],
+   "cycle": [
+    31,
+    29,
+    28,
+    26,
+    23,
+    19,
+    14,
+    8,
+    32
+   ]
+  },
+  "rare/t8/vwU/own/L1": null,
+  "rare/t8/vwU/own/L2": null,
+  "rare/t8/vwU/own/L3": {
+   "birth": 0.921777,
+   "death": 0.987082,
+   "persistence": 0.065306,
+   "birth_edge": [
+    8,
+    32
+   ],
+   "death_triangle": [
+    23,
+    24,
+    32
+   ],
+   "cycle": [
+    8,
+    10,
+    13,
+    15,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32
+   ]
+  },
+  "rare/t8/vwU/own/L4": {
+   "birth": 0.908785,
+   "death": 0.985242,
+   "persistence": 0.076457,
+   "birth_edge": [
+    8,
+    32
+   ],
+   "death_triangle": [
+    8,
+    22,
+    32
+   ],
+   "cycle": [
+    8,
+    9,
+    11,
+    13,
+    14,
+    16,
+    18,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32
+   ]
+  },
+  "rare/t8/vwU/own/L5": null,
+  "rare/t8/vwU/own/L6": null,
+  "rare/t8/vwU/own/L7": null,
+  "rare/t8/vwU/own/L8": null,
+  "rare/t8/vwU/own/L9": null,
+  "rare/t8/vwU/own/L10": null,
+  "rare/t8/vwU/own/L11": null,
+  "rare/t8/vwU/wrong/L0": null,
+  "rare/t8/vwU/wrong/L1": null,
+  "rare/t8/vwU/wrong/L2": null,
+  "rare/t8/vwU/wrong/L3": {
+   "birth": 0.970458,
+   "death": 0.987342,
+   "persistence": 0.016884,
+   "birth_edge": [
+    8,
+    32
+   ],
+   "death_triangle": [
+    8,
+    25,
+    32
+   ],
+   "cycle": [
+    8,
+    13,
+    18,
+    23,
+    28,
+    32
+   ]
+  },
+  "rare/t8/vwU/wrong/L4": {
+   "birth": 0.961806,
+   "death": 0.985242,
+   "persistence": 0.023436,
+   "birth_edge": [
+    8,
+    32
+   ],
+   "death_triangle": [
+    8,
+    22,
+    32
+   ],
+   "cycle": [
+    8,
+    9,
+    14,
+    19,
+    24,
+    28,
+    32
+   ]
+  },
+  "rare/t8/vwU/wrong/L5": null,
+  "rare/t8/vwU/wrong/L6": null,
+  "rare/t8/vwU/wrong/L7": null,
+  "rare/t8/vwU/wrong/L8": null,
+  "rare/t8/vwU/wrong/L9": null,
+  "rare/t8/vwU/wrong/L10": null,
+  "rare/t8/vwU/wrong/L11": null,
+  "rare/t8/vwU/random/L0": null,
+  "rare/t8/vwU/random/L1": null,
+  "rare/t8/vwU/random/L2": null,
+  "rare/t8/vwU/random/L3": null,
+  "rare/t8/vwU/random/L4": null,
+  "rare/t8/vwU/random/L5": null,
+  "rare/t8/vwU/random/L6": null,
+  "rare/t8/vwU/random/L7": null,
+  "rare/t8/vwU/random/L8": null,
+  "rare/t8/vwU/random/L9": null,
+  "rare/t8/vwU/random/L10": null,
+  "rare/t8/vwU/random/L11": null,
+  "rare/t8/vwU/control/L0": null,
+  "rare/t8/vwU/control/L1": null,
+  "rare/t8/vwU/control/L2": null,
+  "rare/t8/vwU/control/L3": null,
+  "rare/t8/vwU/control/L4": null,
+  "rare/t8/vwU/control/L5": null,
+  "rare/t8/vwU/control/L6": null,
+  "rare/t8/vwU/control/L7": null,
+  "rare/t8/vwU/control/L8": null,
+  "rare/t8/vwU/control/L9": null,
+  "rare/t8/vwU/control/L10": null,
+  "rare/t8/vwU/control/L11": null,
+  "rare/t1/raw/own/L0": {
+   "birth": 0.96449,
+   "death": 0.979978,
+   "persistence": 0.015488,
+   "birth_edge": [
+    31,
+    32
+   ],
+   "death_triangle": [
+    1,
+    26,
+    32
+   ],
+   "cycle": [
+    31,
+    29,
+    28,
+    26,
+    24,
+    22,
+    20,
+    17,
+    14,
+    1,
+    32
+   ]
+  },
+  "rare/t1/raw/own/L1": {
+   "birth": 0.96683,
+   "death": 0.976181,
+   "persistence": 0.009351,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    1,
+    23,
+    32
+   ],
+   "cycle": [
+    1,
+    13,
+    20,
+    27,
+    32
+   ]
+  },
+  "rare/t1/raw/own/L2": null,
+  "rare/t1/raw/own/L3": {
+   "birth": 0.964731,
+   "death": 0.993934,
+   "persistence": 0.029203,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    22,
+    23,
+    32
+   ],
+   "cycle": [
+    1,
+    3,
+    7,
+    11,
+    15,
+    19,
+    22,
+    26,
+    29,
+    32
+   ]
+  },
+  "rare/t1/raw/own/L4": {
+   "birth": 0.96763,
+   "death": 0.995958,
+   "persistence": 0.028328,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    16,
+    18,
+    32
+   ],
+   "cycle": [
+    1,
+    2,
+    5,
+    8,
+    11,
+    14,
+    17,
+    20,
+    23,
+    26,
+    28,
+    30,
+    32
+   ]
+  },
+  "rare/t1/raw/own/L5": null,
+  "rare/t1/raw/own/L6": null,
+  "rare/t1/raw/own/L7": null,
+  "rare/t1/raw/own/L8": null,
+  "rare/t1/raw/own/L9": null,
+  "rare/t1/raw/own/L10": null,
+  "rare/t1/raw/own/L11": null,
+  "rare/t1/raw/wrong/L0": null,
+  "rare/t1/raw/wrong/L1": {
+   "birth": 0.966702,
+   "death": 0.976181,
+   "persistence": 0.009479,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    1,
+    23,
+    32
+   ],
+   "cycle": [
+    1,
+    14,
+    21,
+    27,
+    32
+   ]
+  },
+  "rare/t1/raw/wrong/L2": null,
+  "rare/t1/raw/wrong/L3": {
+   "birth": 0.98701,
+   "death": 0.993998,
+   "persistence": 0.006988,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    23,
+    24,
+    32
+   ],
+   "cycle": [
+    1,
+    7,
+    14,
+    20,
+    26,
+    32
+   ]
+  },
+  "rare/t1/raw/wrong/L4": {
+   "birth": 0.988471,
+   "death": 0.996024,
+   "persistence": 0.007553,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    1,
+    19,
+    32
+   ],
+   "cycle": [
+    1,
+    5,
+    12,
+    19,
+    26,
+    32
+   ]
+  },
+  "rare/t1/raw/wrong/L5": null,
+  "rare/t1/raw/wrong/L6": null,
+  "rare/t1/raw/wrong/L7": null,
+  "rare/t1/raw/wrong/L8": null,
+  "rare/t1/raw/wrong/L9": null,
+  "rare/t1/raw/wrong/L10": null,
+  "rare/t1/raw/wrong/L11": null,
+  "rare/t1/raw/random/L0": null,
+  "rare/t1/raw/random/L1": null,
+  "rare/t1/raw/random/L2": null,
+  "rare/t1/raw/random/L3": null,
+  "rare/t1/raw/random/L4": null,
+  "rare/t1/raw/random/L5": null,
+  "rare/t1/raw/random/L6": null,
+  "rare/t1/raw/random/L7": null,
+  "rare/t1/raw/random/L8": null,
+  "rare/t1/raw/random/L9": null,
+  "rare/t1/raw/random/L10": null,
+  "rare/t1/raw/random/L11": null,
+  "rare/t1/raw/control/L0": null,
+  "rare/t1/raw/control/L1": null,
+  "rare/t1/raw/control/L2": null,
+  "rare/t1/raw/control/L3": null,
+  "rare/t1/raw/control/L4": null,
+  "rare/t1/raw/control/L5": null,
+  "rare/t1/raw/control/L6": null,
+  "rare/t1/raw/control/L7": null,
+  "rare/t1/raw/control/L8": null,
+  "rare/t1/raw/control/L9": null,
+  "rare/t1/raw/control/L10": null,
+  "rare/t1/raw/control/L11": null,
+  "rare/t1/vw/own/L0": {
+   "birth": 0.963664,
+   "death": 0.975727,
+   "persistence": 0.012063,
+   "birth_edge": [
+    31,
+    32
+   ],
+   "death_triangle": [
+    26,
+    27,
+    32
+   ],
+   "cycle": [
+    31,
+    29,
+    28,
+    26,
+    23,
+    19,
+    14,
+    1,
+    32
+   ]
+  },
+  "rare/t1/vw/own/L1": null,
+  "rare/t1/vw/own/L2": null,
+  "rare/t1/vw/own/L3": {
+   "birth": 0.927167,
+   "death": 0.987596,
+   "persistence": 0.060429,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    1,
+    25,
+    32
+   ],
+   "cycle": [
+    1,
+    4,
+    7,
+    10,
+    13,
+    15,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32
+   ]
+  },
+  "rare/t1/vw/own/L4": {
+   "birth": 0.903016,
+   "death": 0.988525,
+   "persistence": 0.085509,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    1,
+    19,
+    32
+   ],
+   "cycle": [
+    1,
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32
+   ]
+  },
+  "rare/t1/vw/own/L5": null,
+  "rare/t1/vw/own/L6": null,
+  "rare/t1/vw/own/L7": null,
+  "rare/t1/vw/own/L8": null,
+  "rare/t1/vw/own/L9": null,
+  "rare/t1/vw/own/L10": null,
+  "rare/t1/vw/own/L11": null,
+  "rare/t1/vw/wrong/L0": null,
+  "rare/t1/vw/wrong/L1": null,
+  "rare/t1/vw/wrong/L2": null,
+  "rare/t1/vw/wrong/L3": {
+   "birth": 0.96644,
+   "death": 0.987596,
+   "persistence": 0.021156,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    1,
+    25,
+    32
+   ],
+   "cycle": [
+    1,
+    6,
+    11,
+    16,
+    20,
+    24,
+    28,
+    32
+   ]
+  },
+  "rare/t1/vw/wrong/L4": {
+   "birth": 0.965199,
+   "death": 0.988525,
+   "persistence": 0.023326,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    1,
+    19,
+    32
+   ],
+   "cycle": [
+    1,
+    3,
+    9,
+    14,
+    19,
+    24,
+    28,
+    32
+   ]
+  },
+  "rare/t1/vw/wrong/L5": null,
+  "rare/t1/vw/wrong/L6": null,
+  "rare/t1/vw/wrong/L7": null,
+  "rare/t1/vw/wrong/L8": null,
+  "rare/t1/vw/wrong/L9": null,
+  "rare/t1/vw/wrong/L10": null,
+  "rare/t1/vw/wrong/L11": null,
+  "rare/t1/vw/random/L0": null,
+  "rare/t1/vw/random/L1": null,
+  "rare/t1/vw/random/L2": null,
+  "rare/t1/vw/random/L3": null,
+  "rare/t1/vw/random/L4": null,
+  "rare/t1/vw/random/L5": null,
+  "rare/t1/vw/random/L6": null,
+  "rare/t1/vw/random/L7": null,
+  "rare/t1/vw/random/L8": null,
+  "rare/t1/vw/random/L9": null,
+  "rare/t1/vw/random/L10": null,
+  "rare/t1/vw/random/L11": null,
+  "rare/t1/vw/control/L0": null,
+  "rare/t1/vw/control/L1": null,
+  "rare/t1/vw/control/L2": null,
+  "rare/t1/vw/control/L3": null,
+  "rare/t1/vw/control/L4": null,
+  "rare/t1/vw/control/L5": null,
+  "rare/t1/vw/control/L6": null,
+  "rare/t1/vw/control/L7": null,
+  "rare/t1/vw/control/L8": null,
+  "rare/t1/vw/control/L9": null,
+  "rare/t1/vw/control/L10": null,
+  "rare/t1/vw/control/L11": null,
+  "rare/t1/vwM/own/L0": {
+   "birth": 0.963676,
+   "death": 0.975727,
+   "persistence": 0.012051,
+   "birth_edge": [
+    31,
+    32
+   ],
+   "death_triangle": [
+    26,
+    27,
+    32
+   ],
+   "cycle": [
+    31,
+    29,
+    28,
+    26,
+    23,
+    19,
+    14,
+    1,
+    32
+   ]
+  },
+  "rare/t1/vwM/own/L1": null,
+  "rare/t1/vwM/own/L2": null,
+  "rare/t1/vwM/own/L3": {
+   "birth": 0.927241,
+   "death": 0.987725,
+   "persistence": 0.060483,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    1,
+    25,
+    32
+   ],
+   "cycle": [
+    1,
+    4,
+    7,
+    10,
+    13,
+    15,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32
+   ]
+  },
+  "rare/t1/vwM/own/L4": {
+   "birth": 0.903084,
+   "death": 0.988398,
+   "persistence": 0.085314,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    1,
+    19,
+    32
+   ],
+   "cycle": [
+    1,
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32
+   ]
+  },
+  "rare/t1/vwM/own/L5": null,
+  "rare/t1/vwM/own/L6": null,
+  "rare/t1/vwM/own/L7": null,
+  "rare/t1/vwM/own/L8": null,
+  "rare/t1/vwM/own/L9": null,
+  "rare/t1/vwM/own/L10": null,
+  "rare/t1/vwM/own/L11": null,
+  "rare/t1/vwM/wrong/L0": null,
+  "rare/t1/vwM/wrong/L1": null,
+  "rare/t1/vwM/wrong/L2": null,
+  "rare/t1/vwM/wrong/L3": {
+   "birth": 0.966497,
+   "death": 0.987725,
+   "persistence": 0.021228,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    1,
+    25,
+    32
+   ],
+   "cycle": [
+    1,
+    6,
+    11,
+    16,
+    20,
+    24,
+    28,
+    32
+   ]
+  },
+  "rare/t1/vwM/wrong/L4": {
+   "birth": 0.965303,
+   "death": 0.988398,
+   "persistence": 0.023096,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    1,
+    19,
+    32
+   ],
+   "cycle": [
+    1,
+    3,
+    9,
+    14,
+    19,
+    24,
+    28,
+    32
+   ]
+  },
+  "rare/t1/vwM/wrong/L5": null,
+  "rare/t1/vwM/wrong/L6": null,
+  "rare/t1/vwM/wrong/L7": null,
+  "rare/t1/vwM/wrong/L8": null,
+  "rare/t1/vwM/wrong/L9": null,
+  "rare/t1/vwM/wrong/L10": null,
+  "rare/t1/vwM/wrong/L11": null,
+  "rare/t1/vwM/random/L0": null,
+  "rare/t1/vwM/random/L1": null,
+  "rare/t1/vwM/random/L2": null,
+  "rare/t1/vwM/random/L3": null,
+  "rare/t1/vwM/random/L4": null,
+  "rare/t1/vwM/random/L5": null,
+  "rare/t1/vwM/random/L6": null,
+  "rare/t1/vwM/random/L7": null,
+  "rare/t1/vwM/random/L8": null,
+  "rare/t1/vwM/random/L9": null,
+  "rare/t1/vwM/random/L10": null,
+  "rare/t1/vwM/random/L11": null,
+  "rare/t1/vwM/control/L0": null,
+  "rare/t1/vwM/control/L1": null,
+  "rare/t1/vwM/control/L2": null,
+  "rare/t1/vwM/control/L3": null,
+  "rare/t1/vwM/control/L4": null,
+  "rare/t1/vwM/control/L5": null,
+  "rare/t1/vwM/control/L6": null,
+  "rare/t1/vwM/control/L7": null,
+  "rare/t1/vwM/control/L8": null,
+  "rare/t1/vwM/control/L9": null,
+  "rare/t1/vwM/control/L10": null,
+  "rare/t1/vwM/control/L11": null,
+  "rare/t1/vwU/own/L0": {
+   "birth": 0.961935,
+   "death": 0.974563,
+   "persistence": 0.012628,
+   "birth_edge": [
+    31,
+    32
+   ],
+   "death_triangle": [
+    26,
+    27,
+    32
+   ],
+   "cycle": [
+    31,
+    29,
+    28,
+    26,
+    23,
+    19,
+    14,
+    1,
+    32
+   ]
+  },
+  "rare/t1/vwU/own/L1": null,
+  "rare/t1/vwU/own/L2": null,
+  "rare/t1/vwU/own/L3": {
+   "birth": 0.918026,
+   "death": 0.986897,
+   "persistence": 0.068871,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    1,
+    25,
+    32
+   ],
+   "cycle": [
+    1,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32
+   ]
+  },
+  "rare/t1/vwU/own/L4": {
+   "birth": 0.88318,
+   "death": 0.987473,
+   "persistence": 0.104293,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    2,
+    19,
+    32
+   ],
+   "cycle": [
+    1,
+    2,
+    3,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32
+   ]
+  },
+  "rare/t1/vwU/own/L5": null,
+  "rare/t1/vwU/own/L6": null,
+  "rare/t1/vwU/own/L7": null,
+  "rare/t1/vwU/own/L8": null,
+  "rare/t1/vwU/own/L9": null,
+  "rare/t1/vwU/own/L10": null,
+  "rare/t1/vwU/own/L11": null,
+  "rare/t1/vwU/wrong/L0": null,
+  "rare/t1/vwU/wrong/L1": null,
+  "rare/t1/vwU/wrong/L2": null,
+  "rare/t1/vwU/wrong/L3": {
+   "birth": 0.96398,
+   "death": 0.986897,
+   "persistence": 0.022917,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    1,
+    25,
+    32
+   ],
+   "cycle": [
+    1,
+    6,
+    11,
+    16,
+    20,
+    24,
+    28,
+    32
+   ]
+  },
+  "rare/t1/vwU/wrong/L4": {
+   "birth": 0.961245,
+   "death": 0.987906,
+   "persistence": 0.026661,
+   "birth_edge": [
+    1,
+    32
+   ],
+   "death_triangle": [
+    1,
+    19,
+    32
+   ],
+   "cycle": [
+    1,
+    4,
+    9,
+    14,
+    19,
+    24,
+    28,
+    32
+   ]
+  },
+  "rare/t1/vwU/wrong/L5": null,
+  "rare/t1/vwU/wrong/L6": null,
+  "rare/t1/vwU/wrong/L7": null,
+  "rare/t1/vwU/wrong/L8": null,
+  "rare/t1/vwU/wrong/L9": null,
+  "rare/t1/vwU/wrong/L10": null,
+  "rare/t1/vwU/wrong/L11": null,
+  "rare/t1/vwU/random/L0": null,
+  "rare/t1/vwU/random/L1": null,
+  "rare/t1/vwU/random/L2": null,
+  "rare/t1/vwU/random/L3": null,
+  "rare/t1/vwU/random/L4": null,
+  "rare/t1/vwU/random/L5": null,
+  "rare/t1/vwU/random/L6": null,
+  "rare/t1/vwU/random/L7": null,
+  "rare/t1/vwU/random/L8": null,
+  "rare/t1/vwU/random/L9": null,
+  "rare/t1/vwU/random/L10": null,
+  "rare/t1/vwU/random/L11": null,
+  "rare/t1/vwU/control/L0": null,
+  "rare/t1/vwU/control/L1": null,
+  "rare/t1/vwU/control/L2": null,
+  "rare/t1/vwU/control/L3": null,
+  "rare/t1/vwU/control/L4": null,
+  "rare/t1/vwU/control/L5": null,
+  "rare/t1/vwU/control/L6": null,
+  "rare/t1/vwU/control/L7": null,
+  "rare/t1/vwU/control/L8": null,
+  "rare/t1/vwU/control/L9": null,
+  "rare/t1/vwU/control/L10": null,
+  "rare/t1/vwU/control/L11": null
+ }
+}

@@ -1,0 +1,47 @@
+{
+  "R1-a": {
+    "verdict": "PASS",
+    "max_abs_delta0": [
+      0.0,
+      0.0
+    ]
+  },
+  "R1-b": {
+    "verdict": "PASS",
+    "cells_passing": [
+      36,
+      36
+    ],
+    "of": 36,
+    "first_layer": {
+      "common \u03c4=31": 1,
+      "common \u03c4=16": 1,
+      "common \u03c4=1": 1,
+      "rare \u03c4=31": 1,
+      "rare \u03c4=16": 1,
+      "rare \u03c4=1": 1
+    },
+    "min_S_over_null95": [
+      9.825643344236223,
+      9.715453196261953
+    ]
+  },
+  "R1-c": {
+    "verdict": "FAIL",
+    "tested_cells_beating_null": [
+      [
+        23,
+        36
+      ],
+      [
+        14,
+        36
+      ]
+    ],
+    "verdict_by_pca_dim": {
+      "20": "FAIL",
+      "50": "FAIL",
+      "100": "FAIL"
+    }
+  }
+}
