@@ -1,0 +1,351 @@
+<meta charset="utf-8">
+<title>Country Position Slider</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: one column. Controls, then a token strip aligned column-for-column over the attention heatmap,
+   then a per-layer summary of attention on the country's position. Heatmap cells are drawn on a canvas. */
+:root {
+  --bg: #f5f6f8; --panel: #ffffff; --ink: #16202b; --muted: #5b6474; --line: #d8dde5;
+  --country: #2a78d6; --country-bg: #dceafb; --query: #eb6834;
+  --heat-lo: #ffffff; --heat-hi: #102a4c; --neg: #2166ac; --pos: #b2182b; --mid: #f2f2f2;
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1319; --panel: #161b23; --ink: #e5e9ef; --muted: #9aa3b2; --line: #2a313c;
+    --country: #6aa6ff; --country-bg: #1b2b43; --query: #ff8d5f;
+    --heat-lo: #161b23; --heat-hi: #d6e7ff; --neg: #4f94f0; --pos: #ff6a5c; --mid: #232a35; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1319; --panel: #161b23; --ink: #e5e9ef; --muted: #9aa3b2; --line: #2a313c;
+  --country: #6aa6ff; --country-bg: #1b2b43; --query: #ff8d5f;
+  --heat-lo: #161b23; --heat-hi: #d6e7ff; --neg: #4f94f0; --pos: #ff6a5c; --mid: #232a35; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 14px; margin: 0;
+  padding-inline: 16px; padding-block: 20px 36px; }
+main { max-width: 1120px; margin-inline: auto; display: flex; flex-direction: column; gap: 14px; }
+h1 { font-size: 22px; font-weight: 600; margin: 0; letter-spacing: -0.01em; text-wrap: balance; }
+h2 { font-size: 14px; font-weight: 600; margin: 0; }
+.sub { color: var(--muted); margin: 6px 0 0; max-width: 72ch; line-height: 1.5; }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px;
+  display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.controls { flex-direction: row; flex-wrap: wrap; gap: 12px 20px; align-items: flex-end; }
+.ctl { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.lab { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+.slider { flex: 1 1 320px; }
+.slider-row { display: flex; gap: 10px; align-items: center; }
+input[type=range] { flex: 1; min-width: 0; accent-color: var(--country); }
+output { font-family: var(--mono); font-size: 13px; font-variant-numeric: tabular-nums; color: var(--ink); }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.seg button, #play { font: inherit; font-size: 13px; color: var(--ink); background: var(--panel); border: 0;
+  padding: 6px 10px; cursor: pointer; }
+.seg button + button { border-left: 1px solid var(--line); }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--panel); }
+#play { border: 1px solid var(--line); border-radius: 6px; min-width: 116px; }
+button:focus-visible, input:focus-visible { outline: 2px solid var(--country); outline-offset: 2px; }
+.ghead { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; align-items: baseline; }
+.note { color: var(--muted); font-size: 12.5px; margin: 0; }
+.scroll { overflow-x: auto; }
+.graph { min-width: 360px; display: flex; flex-direction: column; gap: 4px; }
+.chips { display: grid; grid-template-columns: 44px repeat(33, minmax(0, 1fr)); gap: 0; height: 64px; }
+.chip { margin: 0 1px; border: 1px solid var(--line); border-radius: 3px; display: flex; align-items: flex-start;
+  justify-content: center; overflow: hidden; font-family: var(--mono); font-size: 11px; color: var(--muted);
+  background: var(--panel); }
+.chip span { writing-mode: vertical-rl; transform: rotate(180deg); white-space: nowrap; padding: 4px 0; }
+.chip.bos { background: var(--ink); color: var(--panel); border-color: var(--ink); }
+.chip.country { background: var(--country-bg); border: 1.5px solid var(--country); color: var(--ink); font-weight: 600; }
+.chip.query { border: 1.5px solid var(--query); color: var(--ink); font-weight: 600; }
+canvas { display: block; width: 100%; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: center; color: var(--muted); font-size: 12px; }
+.ramp { width: 160px; height: 10px; border-radius: 2px; border: 1px solid var(--line); }
+.ramp-wrap { display: flex; flex-direction: column; gap: 2px; }
+.ramp-nums { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10.5px;
+  font-variant-numeric: tabular-nums; }
+.key { display: inline-flex; align-items: center; gap: 6px; }
+.key i { display: inline-block; width: 14px; height: 10px; border-radius: 2px; }
+.summary { margin: 0; line-height: 1.5; max-width: 72ch; }
+.summary b { font-variant-numeric: tabular-nums; }
+svg { display: block; width: 100%; height: auto; font-family: var(--sans); }
+svg text { fill: var(--muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+#tip { position: fixed; z-index: 5; pointer-events: none; background: var(--ink); color: var(--panel);
+  padding: 6px 8px; border-radius: 6px; font-size: 12px; line-height: 1.45; max-width: 260px;
+  font-variant-numeric: tabular-nums; }
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto; } }
+</style>
+
+<main>
+  <header>
+    <h1>Country Position Slider</h1>
+    <p class="sub">GPT-2 small. Each row is one layer (or one head); each column is a position in the sequence. Colour is the attention
+      the final token <b>T</b> pays to that position. T is the country's capital (France … Paris), the same in both versions of each
+      pair. Drag the slider to move the country back from right before T to the start of the sequence. Averages over 11
+      country–capital pairs and 200 random sequences.</p>
+  </header>
+
+  <section class="panel controls" aria-label="Controls">
+    <div class="ctl slider">
+      <label class="lab" for="tau">Country position</label>
+      <div class="slider-row"><input type="range" id="tau" min="1" max="31" step="1" value="31"><output id="tauOut" for="tau"></output></div>
+    </div>
+    <div class="ctl"><span class="lab">Animate</span><button id="play" type="button">Move it back</button></div>
+    <div class="ctl"><span class="lab">Rows</span><div class="seg" id="viewSeg"></div></div>
+    <div class="ctl"><span class="lab">Colour</span><div class="seg" id="modeSeg"></div></div>
+    <div class="ctl" id="condCtl"><span class="lab">Final token T</span><div class="seg" id="condSeg"></div></div>
+    <div class="ctl"><span class="lab">Random tokens</span><div class="seg" id="fillerSeg"></div></div>
+  </section>
+
+  <section class="panel">
+    <div class="ghead"><h2 id="gTitle"></h2><p class="note" id="gNote"></p></div>
+    <div class="scroll"><div class="graph" id="graph">
+      <div class="chips" id="chips" aria-label="Token sequence"></div>
+      <canvas id="heat" role="img" aria-label="Attention from the final token to every position"></canvas>
+    </div></div>
+    <div class="legend" id="legend"></div>
+  </section>
+
+  <section class="panel">
+    <div class="ghead"><h2>Attention on the country's position, by layer</h2>
+      <p class="note">mean over the layer's 12 heads; outline = the original token at the same position</p></div>
+    <svg id="bars" role="img" aria-label="Attention on the country position per layer"></svg>
+    <p class="summary" id="summary"></p>
+  </section>
+</main>
+<div id="tip" hidden></div>
+
+<script id="viz-data" type="application/json">__VIZ_DATA__</script>
+<script>
+(function () {
+"use strict";
+const V = JSON.parse(document.getElementById("viz-data").textContent);
+const M = V.meta, T = M.query_position, NL = 12, NH = 12, NK = T + 1, GUT = 44;
+const $ = (id) => document.getElementById(id);
+// datasets: '<filler type>/<final-token condition>' when the data has conditions, else one per filler type
+const CONDS = M.conditions || null;
+const S = { ftype: (M.filler_types || M.fillers)[0], cond: CONDS ? CONDS[0] : null, tau: T - 1, view: "layers", mode: "attn" };
+const key = () => (CONDS ? S.ftype + "/" + S.cond : S.ftype);
+const country = M.country_example.trim();
+const finalTok = () => String(((M.final_example || {})[key()]) || "").trim();
+
+// ---------- colours from the theme tokens ----------
+let C = {};
+function readTokens() {
+  const cs = getComputedStyle(document.documentElement);
+  const hex = (n) => { const h = cs.getPropertyValue(n).trim().replace("#", ""); return [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16)); };
+  C = { lo: hex("--heat-lo"), hi: hex("--heat-hi"), neg: hex("--neg"), pos: hex("--pos"), mid: hex("--mid"),
+        country: cs.getPropertyValue("--country").trim(), query: cs.getPropertyValue("--query").trim(),
+        muted: cs.getPropertyValue("--muted").trim(), ink: cs.getPropertyValue("--ink").trim(),
+        panel: cs.getPropertyValue("--panel").trim(), line: cs.getPropertyValue("--line").trim() };
+}
+const mixc = (a, b, t) => "rgb(" + a.map((v, i) => Math.round(v + (b[i] - v) * t)).join(",") + ")";
+// square-root scales, attention saturating at ATT_MAX, so small weights stay visible next to the large BOS weight
+const ATT_MAX = 0.3;
+const attnColor = (v) => mixc(C.lo, C.hi, Math.sqrt(Math.max(0, Math.min(1, v / ATT_MAX))));
+const diffColor = (v, mx) => { const t = Math.sqrt(Math.min(1, Math.abs(v) / mx)); return v >= 0 ? mixc(C.mid, C.pos, t) : mixc(C.mid, C.neg, t); };
+
+// ---------- data ----------
+const F = () => V.data[key()];
+const dist = () => T - S.tau;
+const tokens = () => M.example_tokens[key()];
+function rows() {
+  // top to bottom: layer 11 first, as in the head maps (layer 0 at the bottom)
+  const f = F(), v = f.country[dist() - 1], out = [];
+  for (let L = NL - 1; L >= 0; L--) {
+    if (S.view === "layers") {
+      const a = new Array(NK).fill(0), c = new Array(NK).fill(0);
+      for (let H = 0; H < NH; H++) for (let k = 0; k < NK; k++) { a[k] += v[L][H][k] / NH; c[k] += f.control[L][H][k] / NH; }
+      out.push({ L, H: null, a, c });
+    } else {
+      for (let H = 0; H < NH; H++) out.push({ L, H, a: v[L][H], c: f.control[L][H] });
+    }
+  }
+  return out;
+}
+// one fixed change scale per filler type and row view, so colours are comparable as the country moves
+const scaleCache = {};
+function diffScale() {
+  const ck = key() + "|" + S.view;
+  if (scaleCache[ck]) return scaleCache[ck];
+  const f = F(), vals = [];
+  for (let d = 0; d < T - 1; d++) for (let L = 0; L < NL; L++) {
+    if (S.view === "layers") {
+      for (let k = 0; k < NK; k++) { let s = 0; for (let H = 0; H < NH; H++) s += f.country[d][L][H][k] - f.control[L][H][k]; vals.push(Math.abs(s / NH)); }
+    } else {
+      for (let H = 0; H < NH; H++) for (let k = 0; k < NK; k++) vals.push(Math.abs(f.country[d][L][H][k] - f.control[L][H][k]));
+    }
+  }
+  vals.sort((x, y) => x - y);
+  return (scaleCache[ck] = Math.max(0.01, vals[Math.floor(vals.length * 0.999)]));  // clip the rare extreme cells
+}
+
+// ---------- token strip ----------
+function drawChips() {
+  const t = tokens();
+  let h = "<div></div>";
+  for (let k = 0; k < NK; k++) {
+    const cls = k === 0 ? "bos" : k === S.tau ? "country" : k === T ? "query" : "";
+    const txt = k === 0 ? "BOS" : k === S.tau ? country : k === T ? "T · " + finalTok() : t[k].replace(/^ /, "·");
+    h += '<div class="chip ' + cls + '" title="position ' + k + '"><span>' + txt.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c])) + "</span></div>";
+  }
+  $("chips").innerHTML = h;
+}
+
+// ---------- heatmap ----------
+let layout = null;
+function drawHeat() {
+  const cv = $("heat"), W = $("graph").clientWidth, colW = (W - GUT) / NK, R = rows();
+  const rowH = S.view === "layers" ? Math.max(16, Math.min(30, colW * 0.9)) : Math.max(4, Math.min(7, colW / 4));
+  const gap = S.view === "layers" ? 2 : 4, axisH = 24;
+  const groups = S.view === "layers" ? R.length : NL, per = S.view === "layers" ? 1 : NH;
+  const H = R.length * rowH + (groups - 1) * gap + axisH;
+  const dpr = window.devicePixelRatio || 1;
+  cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); cv.style.height = H + "px";
+  const ctx = cv.getContext("2d"); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H);
+  const mx = diffScale(), ys = [];
+  R.forEach((r, i) => {
+    const y = i * rowH + Math.floor(i / per) * gap; ys.push(y);
+    for (let k = 0; k < NK; k++) {
+      ctx.fillStyle = S.mode === "attn" ? attnColor(r.a[k]) : diffColor(r.a[k] - r.c[k], mx);
+      ctx.fillRect(GUT + k * colW + 0.5, y, colW - 1, rowH - (S.view === "layers" ? 0 : 0.4));
+    }
+  });
+  // row labels
+  ctx.fillStyle = C.muted; ctx.font = "11px " + getComputedStyle(document.body).fontFamily; ctx.textAlign = "right"; ctx.textBaseline = "middle";
+  if (S.view === "layers") R.forEach((r, i) => ctx.fillText("L" + r.L, GUT - 8, ys[i] + rowH / 2));
+  else for (let g = 0; g < NL; g++) ctx.fillText("L" + R[g * per].L, GUT - 8, ys[g * per] + per * rowH / 2);
+  const bottom = ys[R.length - 1] + rowH;
+  // the country's column and the final token's column
+  ctx.lineWidth = 2; ctx.strokeStyle = C.country;
+  ctx.strokeRect(GUT + S.tau * colW + 0.5, -1 + 1, colW - 1, bottom);
+  ctx.setLineDash([3, 3]); ctx.strokeStyle = C.query; ctx.strokeRect(GUT + T * colW + 1, 1, colW - 2, bottom - 1); ctx.setLineDash([]);
+  // x axis
+  ctx.textAlign = "center"; ctx.textBaseline = "top";
+  for (let k = 0; k < NK; k++) {
+    const lab = k === 0 ? "0" : k === T ? "T" : k === S.tau ? String(k) : k % 4 === 0 && Math.abs(k - S.tau) > 1 ? String(k) : "";
+    if (!lab) continue;
+    ctx.fillStyle = k === S.tau ? C.country : C.muted;
+    ctx.font = (k === S.tau ? "600 " : "") + "11px " + getComputedStyle(document.body).fontFamily;
+    ctx.fillText(lab, GUT + (k + 0.5) * colW, bottom + 6);
+  }
+  layout = { colW, rowH, ys, R, bottom };
+}
+
+function drawLegend() {
+  const mx = diffScale();
+  const ramp = S.mode === "attn"
+    ? "linear-gradient(90deg," + [0, 0.25, 0.5, 0.75, 1].map((t) => attnColor(t * t * ATT_MAX)).join(",") + ")"
+    : "linear-gradient(90deg," + [-1, -0.5, 0, 0.5, 1].map((t) => diffColor(Math.sign(t) * t * t * mx, mx)).join(",") + ")";
+  const nums = S.mode === "attn" ? ["0", (ATT_MAX / 4).toFixed(3), "≥ " + ATT_MAX] : ["−" + mx.toFixed(2), "0", "+" + mx.toFixed(2)];
+  $("legend").innerHTML =
+    '<div class="ramp-wrap"><div class="ramp" style="background:' + ramp + '"></div><div class="ramp-nums">' +
+    nums.map((n) => "<span>" + n + "</span>").join("") + "</div></div>" +
+    "<span>" + (S.mode === "attn" ? "attention weight (square-root scale; BOS is above the top of the scale)"
+      : "country minus original token (blue = less, red = more; square-root scale)") + "</span>" +
+    '<span class="key"><i style="border:2px solid var(--country)"></i>country\'s position</span>' +
+    '<span class="key"><i style="border:2px dashed var(--query)"></i>final token T (where attention is measured)</span>';
+}
+
+// ---------- per-layer bars ----------
+const barMax = {};
+function layerTau(f, d, tau) {
+  const a = [], c = [];
+  for (let L = 0; L < NL; L++) {
+    let s = 0, s0 = 0;
+    for (let H = 0; H < NH; H++) { s += f.country[d][L][H][tau]; s0 += f.control[L][H][tau]; }
+    a.push(s / NH); c.push(s0 / NH);
+  }
+  return { a, c };
+}
+function drawBars() {
+  const f = F(), d = dist() - 1, { a, c } = layerTau(f, d, S.tau);
+  if (!barMax[key()]) {
+    let m = 0.02;
+    for (let dd = 0; dd < T - 1; dd++) { const r = layerTau(f, dd, T - 1 - dd); m = Math.max(m, ...r.a, ...r.c); }
+    barMax[key()] = m;
+  }
+  // viewBox in CSS pixels (one unit = one pixel), so text keeps its size at every width
+  const W = Math.max(320, $("bars").parentElement.clientWidth - 28), ml = 34, mr = 56, rh = 18, top = 4, Hh = top + NL * rh + 22;
+  const X = (v) => ml + (v / barMax[key()]) * (W - ml - mr);
+  let s = "";
+  for (let i = 0; i < NL; i++) {
+    const L = NL - 1 - i, y = top + i * rh;
+    s += '<text x="' + (ml - 8) + '" y="' + (y + rh / 2 + 4) + '" text-anchor="end">L' + L + "</text>";
+    s += '<rect x="' + ml + '" y="' + (y + 3) + '" width="' + Math.max(0, X(a[L]) - ml) + '" height="' + (rh - 6) + '" rx="2" fill="var(--country)"/>';
+    s += '<rect x="' + ml + '" y="' + (y + 3) + '" width="' + Math.max(0, X(c[L]) - ml) + '" height="' + (rh - 6) + '" rx="2" fill="none" stroke="var(--ink)" stroke-width="1.2"/>';
+    s += '<text x="' + (Math.max(X(a[L]), X(c[L])) + 6) + '" y="' + (y + rh / 2 + 4) + '">' + a[L].toFixed(3) + "</text>";
+  }
+  const ticks = [0, barMax[key()] / 2, barMax[key()]];
+  ticks.forEach((t) => { s += '<text x="' + X(t) + '" y="' + (top + NL * rh + 16) + '" text-anchor="middle">' + t.toFixed(2) + "</text>"; });
+  const el = $("bars"); el.setAttribute("viewBox", "0 0 " + W + " " + Hh); el.innerHTML = s;
+  let sa = 0, sc = 0; for (let L = 0; L < NL; L++) { sa += a[L]; sc += c[L]; }
+  sa /= NL; sc /= NL;
+  $("summary").innerHTML = "Averaged over all 144 heads, position " + S.tau + " gets <b>" + sa.toFixed(3) + "</b> of the final token's attention with " +
+    country + " there, against <b>" + sc.toFixed(3) + "</b> with the original token" + (sc > 0 ? " (" + (sa / sc).toFixed(1) + "×)" : "") +
+    (CONDS ? "; final token = " + M.condition_labels[S.cond] + " (example: " + finalTok() + ")" : "") + ".";
+}
+
+// ---------- tooltip ----------
+const tip = $("tip");
+$("heat").addEventListener("mousemove", (e) => {
+  if (!layout) return;
+  const r = e.currentTarget.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+  const k = Math.floor((x - GUT) / layout.colW);
+  let i = -1;
+  for (let j = 0; j < layout.ys.length; j++) if (y >= layout.ys[j] && y < layout.ys[j] + layout.rowH) { i = j; break; }
+  if (k < 0 || k >= NK || i < 0) { tip.hidden = true; return; }
+  const row = layout.R[i], name = row.H === null ? "Layer " + row.L + " (mean of 12 heads)" : "L" + row.L + "H" + row.H;
+  const tok = k === 0 ? "BOS" : k === T ? "final token T (" + finalTok() + ")" : k === S.tau ? country + " (replaces “" + tokens()[k].trim() + "”)" : "“" + tokens()[k].trim() + "”";
+  const dv = row.a[k] - row.c[k];
+  tip.innerHTML = "<b>" + name + "</b><br>position " + k + ": " + tok + "<br>with " + country + " at " + S.tau + ": " + row.a[k].toFixed(3) +
+    "<br>original sequence: " + row.c[k].toFixed(3) + "<br>change: " + (dv >= 0 ? "+" : "−") + Math.abs(dv).toFixed(3);
+  tip.hidden = false;
+  const tw = tip.offsetWidth, th = tip.offsetHeight;
+  tip.style.left = Math.max(4, e.clientX + 14 + tw > innerWidth ? e.clientX - tw - 14 : e.clientX + 14) + "px";
+  tip.style.top = Math.max(4, e.clientY + 14 + th > innerHeight ? e.clientY - th - 14 : e.clientY + 14) + "px";
+});
+$("heat").addEventListener("mouseleave", () => { tip.hidden = true; });
+
+// ---------- controls ----------
+function seg(host, items, get, set) {
+  host.innerHTML = items.map(([k, t]) => '<button type="button" data-k="' + k + '">' + t + "</button>").join("");
+  host.querySelectorAll("button").forEach((b) => (b.onclick = () => { set(b.dataset.k); render(); }));
+  host._sync = () => host.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", String(get() === b.dataset.k)));
+}
+seg($("viewSeg"), [["layers", "Layers"], ["heads", "All 144 heads"]], () => S.view, (k) => (S.view = k));
+seg($("modeSeg"), [["attn", "Attention"], ["diff", "Change vs original"]], () => S.mode, (k) => (S.mode = k));
+seg($("fillerSeg"), (M.filler_types || M.fillers).map((b) => [b, b]), () => S.ftype, (k) => (S.ftype = k));
+if (CONDS) seg($("condSeg"), CONDS.map((c) => [c, M.condition_labels[c]]), () => S.cond, (k) => (S.cond = k));
+else { $("condCtl").hidden = true; $("condSeg")._sync = () => {}; }
+$("tau").addEventListener("input", (e) => { S.tau = +e.target.value; render(); });
+let timer = null;
+$("play").onclick = () => {
+  if (timer) { clearInterval(timer); timer = null; $("play").textContent = "Move it back"; return; }
+  if (S.tau <= 1) S.tau = T - 1;
+  $("play").textContent = "Stop";
+  timer = setInterval(() => {
+    if (S.tau <= 1) { clearInterval(timer); timer = null; $("play").textContent = "Move it back"; return; }
+    S.tau -= 1; render();
+  }, 380);
+};
+
+function render() {
+  $("tau").value = S.tau;
+  $("tauOut").textContent = "position " + S.tau + " · " + dist() + " back from T";
+  ["viewSeg", "modeSeg", "condSeg", "fillerSeg"].forEach((id) => $(id)._sync());
+  $("gTitle").textContent = (S.mode === "attn" ? "Attention from the final token" : "Change in attention from the final token") +
+    (S.view === "layers" ? ", one row per layer" : ", one row per head");
+  $("gNote").textContent = country + " at position " + S.tau + " · T = " + finalTok() + " · " + (M.filler_labels || {})[key()];
+  drawChips(); drawHeat(); drawLegend(); drawBars();
+}
+
+readTokens();
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => { readTokens(); render(); });
+new MutationObserver(() => { readTokens(); render(); }).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+new ResizeObserver(() => { drawHeat(); drawBars(); }).observe($("graph"));
+render();
+})();
+</script>

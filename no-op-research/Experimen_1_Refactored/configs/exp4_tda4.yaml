@@ -1,0 +1,45 @@
+# TDA analysis 4 of 4: topology of the full attention graph (every query position) with a country at tau and a capital
+# (own / wrong) or the row's random token at 32. See exp4/PREDICTIONS_tda4.md. Everything about the stimuli, rows,
+# seeds and the model comes from base_config, so the sequences are exactly Exp 4b's.
+base_config: configs/exp4_capital.yaml
+n_rows: 200
+taus: [31, 30, 28, 24, 16, 8, 1]
+rows_per_batch: 50                # 50 rows x 11 countries = 550 sequences per forward batch, as Exp 4b's batch_size
+
+named_heads:                      # [layer, head, group]
+  - [0, 2, same-country]
+  - [1, 11, same-country]
+  - [3, 0, same-country]
+  - [4, 10, same-country]
+  - [2, 2, previous-token]
+  - [2, 9, previous-token]
+  - [3, 7, previous-token]
+  - [4, 11, previous-token]
+pooled_units: {"L0-4": [0, 4], "L0-11": [0, 11]}   # mean over these layers' head means (descriptive)
+
+random_run: results/20261024-000548_exp4ctrl      # Exp 4 (random final token), for the consistency check
+capital_run: results/20261024-150407_exp4cap      # Exp 4b (own / wrong capital), for the consistency check
+
+tda:
+  persist_min: 0.002              # absolute persistence floor (1 - w units)
+  persist_ratio: 0.75             # and death weight <= ratio x birth weight
+  n_swap: 200                     # paired own/wrong label swaps (primary null)
+  n_split: 100                    # split-half scale (descriptive)
+  n_boot: 100                     # row resamples for MPC / E1-role stability
+  boot_stable: 0.8
+  boot_absent: 0.2
+  alpha: 0.05
+  seed: 0
+  g1_tau: 31
+  early_layers: [0, 4]
+  late_layers: [6, 11]
+  far_taus: [16, 8, 1]
+  workers: 6
+
+checks:
+  row_sum_atol: 1.0e-4
+  prefix_atol: 1.0e-6
+  saved_atol: 2.0e-3              # Exp 4b arrays are float16
+  ripser_atol: 1.0e-6
+
+draw: {filler: common, unit: L0, tau: 16}          # fallback for the graph drawing when no G2 cell exists

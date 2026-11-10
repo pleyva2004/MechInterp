@@ -1,0 +1,96 @@
+# Experiment 4b, controlled difference with the capital as the final token: per random row and tau = 1..31, a country
+# (or a matched placebo word) at tau vs the row's own token, with a capital at the final token (32) in BOTH versions:
+# the country's own capital ("own") or a fixed derangement's ("wrong"). See exp4/PREDICTIONS_capital.md.
+# Everything else as configs/exp4_controlled.yaml (same rows, countries, placebo words). Positions: BOS 0, tokens 1..32.
+model: gpt2-small
+seq_len: 32
+bos_token_id: 50256
+query_position: -1
+batch_size: 550
+seed: 0
+device: cpu
+dtype: float32
+
+backends:
+  transformer_lens: {model_name: gpt2-small}
+  huggingface:      {model_name: gpt2, attn_implementation: eager}
+primary_backend: transformer_lens
+
+paths:
+  sequences_dir: data/sequences/exp3
+  results_dir: results
+
+bases:
+  common: [256, 999]
+  rare:   [1000, 39999]
+base_cache_n: 200
+n_rows: 200
+
+stimuli:
+  - {country: " France",  country_id: 4881, capital: " Paris",   capital_id: 6342,  city: " Lyon",       city_id: 35193}
+  - {country: " Germany", country_id: 4486, capital: " Berlin",  capital_id: 11307, city: " Munich",     city_id: 22418}
+  - {country: " Italy",   country_id: 8031, capital: " Rome",    capital_id: 10598, city: " Milan",      city_id: 21574}
+  - {country: " Spain",   country_id: 8602, capital: " Madrid",  capital_id: 14708, city: " Barcelona",  city_id: 15142}
+  - {country: " Russia",  country_id: 3284, capital: " Moscow",  capital_id: 9070,  city: " Petersburg", city_id: 27051}
+  - {country: " Ireland", country_id: 7517, capital: " Dublin",  capital_id: 18220, city: " Cork",       city_id: 25567}
+  - {country: " Ukraine", country_id: 7049, capital: " Kiev",    capital_id: 22761, city: " Donetsk",    city_id: 31819}
+  - {country: " Japan",   country_id: 2869, capital: " Tokyo",   capital_id: 11790, city: " Kyoto",      city_id: 36298}
+  - {country: " China",   country_id: 2807, capital: " Beijing", capital_id: 11618, city: " Shanghai",   city_id: 21865}
+  - {country: " Egypt",   country_id: 6365, capital: " Cairo",   capital_id: 23732, city: " Alexandria", city_id: 27872}
+  - {country: " Canada",  country_id: 3340, capital: " Ottawa",  capital_id: 14074, city: " Montreal",   city_id: 12871}
+
+demonstration_ids: [12671, 24377, 10710, 29679, 16490, 31104, 10315, 21891, 12873, 32955, 7648, 36878,
+                    8037, 34753, 4068, 20882, 16952, 35007, 13316, 31721, 17456, 34802]
+
+match_features: [leading_space, is_alpha, is_capitalized]
+token_classes:
+  common: [256, 999]
+  rare:   [1000, 39999]
+word_seed: 4                    # as Exp 4, so the placebo words are the same
+
+final_conditions: [own, wrong]  # the token at 32: the cell country's own capital, or the derangement's
+wrong_capital_seed: 5
+random_run: results/20261024-000548_exp4ctrl   # Exp 4 (random final token), for the descriptive comparison and the viewers
+
+focus_heads:                    # [layer, head, source]
+  - [1, 0, Exp 1 previous-token]
+  - [2, 2, Exp 1 previous-token]
+  - [2, 3, Exp 1 previous-token]
+  - [2, 5, Exp 1 previous-token]
+  - [2, 8, Exp 1 previous-token]
+  - [2, 9, Exp 1 previous-token]
+  - [3, 2, Exp 1 previous-token]
+  - [3, 6, Exp 1 previous-token]
+  - [3, 7, Exp 1 previous-token]
+  - [3, 8, Exp 1 previous-token]
+  - [4, 11, Exp 1 previous-token]
+  - [11, 8, adjacent-only country in Exp 10 (advisor)]
+  - [9, 8, any-distance country in Exp 4]
+  - [10, 3, any-distance country in Exp 4]
+  - [11, 7, any-distance country in Exp 4]
+  - [11, 2, any-distance country in Exp 4]
+
+analysis:
+  margin: 0.02
+  q: 0.05
+  bootstrap: {iters: 2000, seed: 0}
+  prev_min: 0.2
+  global_min: 15
+  near: [2, 4]
+  far: [16, 31]
+  layer_groups: {"5-8": [5, 8], "9-11": [9, 11]}
+  late_layers: [6, 11]
+  local_max_d: 8                # F6
+  global_heads: [[9, 8], [10, 3], [11, 7], [11, 2]]
+
+checks:
+  hf_rows: 5
+  hf_taus: [1, 16, 31]
+  hf_atol: 1.0e-4
+  determinism_rows: 2
+  row_sum_atol: 1.0e-4
+  prev_sanity_head: [4, 11]
+  prev_sanity_min: 0.9
+
+figures:
+  tokenizer: gpt2

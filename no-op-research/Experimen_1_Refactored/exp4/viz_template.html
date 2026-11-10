@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Country Attention Viewer</title>
+<style>
+/* Layout: controls bar, full-width sequence panel, then a 2-column grid of charts that stacks on phones. */
+:root {
+  --bg: #f4f6f9; --panel: #ffffff; --fg: #1a1f29; --muted: #5a6373; --line: #d6dbe3; --grid: #e7eaf0;
+  --arm: #7a3fe0; --arm-word: #cf8200; --ctrl: #8791a2;
+  --pos: #d63f2c; --neg: #2a6ed2; --neu: #eef0f4; --sel: #1a1f29;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #11151b; --panel: #1a1f27; --fg: #e5e8ee; --muted: #9aa3b2; --line: #2d3440; --grid: #262c36;
+    --arm: #ab8cff; --arm-word: #f0b233; --ctrl: #7c8697;
+    --pos: #ef6a56; --neg: #5b9bff; --neu: #252b35; --sel: #e5e8ee; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #11151b; --panel: #1a1f27; --fg: #e5e8ee; --muted: #9aa3b2; --line: #2d3440; --grid: #262c36;
+  --arm: #ab8cff; --arm-word: #f0b233; --ctrl: #7c8697;
+  --pos: #ef6a56; --neg: #5b9bff; --neu: #252b35; --sel: #e5e8ee; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 14px; margin: 0;
+  padding-inline: 16px; padding-block: 18px 32px; }
+main { max-width: 1180px; margin-inline: auto; display: flex; flex-direction: column; gap: 14px; }
+h1 { font-size: 20px; margin: 0; letter-spacing: -0.01em; }
+h2 { font-size: 13px; margin: 0; font-weight: 650; }
+.sub { color: var(--muted); margin: 4px 0 0; max-width: 80ch; line-height: 1.45; }
+.bar { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: flex-end; background: var(--panel);
+  border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; }
+.ctl { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.ctl > label, .ctl > .lab { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+.row { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+button, select { font: inherit; color: var(--fg); background: var(--panel); border: 1px solid var(--line);
+  border-radius: 6px; padding: 5px 9px; cursor: pointer; }
+button:hover, select:hover { border-color: var(--muted); }
+button:focus-visible, select:focus-visible, input:focus-visible { outline: 2px solid var(--arm); outline-offset: 1px; }
+button[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+button.head { font-family: var(--mono); font-size: 12px; padding: 4px 7px; }
+input[type=range] { width: 200px; max-width: 100%; accent-color: var(--arm); }
+.tau { font-variant-numeric: tabular-nums; font-size: 13px; }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 12px;
+  display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.ph { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 12px; align-items: baseline; }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 12px; color: var(--muted); font-size: 12px; align-items: center; }
+.sw { display: inline-block; width: 12px; height: 10px; border-radius: 2px; margin-right: 4px; vertical-align: -1px; }
+.scroll { overflow-x: auto; }
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: 14px; }
+svg { display: block; width: 100%; height: auto; font-family: var(--font); }
+svg text { fill: var(--muted); font-size: 10px; }
+svg text.t { fill: var(--fg); }
+.maps { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 14px; }
+.card { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px 14px; }
+.card div span { display: block; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+.card div b { font-variant-numeric: tabular-nums; font-weight: 600; font-size: 15px; }
+.cbar { height: 10px; border-radius: 3px; background: linear-gradient(90deg, var(--neg), var(--neu), var(--pos));
+  border: 1px solid var(--line); }
+.cnum { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted);
+  font-variant-numeric: tabular-nums; }
+.cwrap { max-width: 320px; display: flex; flex-direction: column; gap: 3px; }
+#tip { position: fixed; z-index: 10; pointer-events: none; background: var(--fg); color: var(--bg);
+  padding: 6px 8px; border-radius: 6px; font-size: 12px; line-height: 1.4; max-width: 260px;
+  font-variant-numeric: tabular-nums; box-shadow: 0 2px 8px #0004; }
+#tip[hidden] { display: none; }
+.cell { cursor: pointer; }
+.hit { fill: transparent; cursor: pointer; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Country Attention Viewer</h1>
+    <p class="sub">GPT-2 small. D(d) is the attention from the final token T to the position that holds a country, minus the same attention when that position holds the original random token. T is the country's capital by default (the same in both versions of each pair). D near 0 means the head ignores the swap; D &gt; 0 means it attends to the country.</p>
+  </header>
+
+  <section class="bar" aria-label="Controls">
+    <div class="ctl" id="condCtl"><span class="lab">Final token T</span><div class="row" id="condBtns"></div></div>
+    <div class="ctl"><span class="lab">Random-token filler</span><div class="row" id="fillerBtns"></div></div>
+    <div class="ctl"><span class="lab">Comparison</span><div class="row" id="cmpBtns"></div></div>
+    <div class="ctl"><span class="lab">Head</span>
+      <div class="row">
+        <label for="selL">layer</label><select id="selL"></select>
+        <label for="selH">head</label><select id="selH"></select>
+      </div></div>
+    <div class="ctl"><span class="lab">Focus heads</span><div class="row" id="focusBtns"></div></div>
+    <div class="ctl"><label for="tau">Country position</label>
+      <div class="row"><button id="play" type="button" aria-label="Play animation">Play</button>
+        <input id="tau" type="range" min="1" max="31" step="1" value="31"></div>
+      <div class="tau" id="tauLab"></div></div>
+  </section>
+
+  <section class="panel">
+    <div class="ph"><h2 id="p1t"></h2>
+      <div class="legend" id="p1leg"></div></div>
+    <div class="scroll"><svg id="seq" viewBox="0 0 704 220" style="min-width:640px" role="img" aria-label="Token sequence and attention bars"></svg></div>
+  </section>
+
+  <section class="panel">
+    <div class="ph"><h2 id="lht"></h2>
+      <div class="row" id="lmodeBtns"></div></div>
+    <div class="scroll"><svg id="lheat" viewBox="0 0 704 208" style="min-width:640px" role="img" aria-label="Attention of the selected layer's heads"></svg></div>
+    <div class="legend" id="lleg"></div>
+  </section>
+
+  <div class="maps">
+    <section class="panel">
+      <div class="ph"><h2 id="mvt"></h2></div>
+      <svg id="topV" viewBox="0 0 400 400" role="img" aria-label="Most attended key per head, with variant"></svg>
+      <div class="legend" id="topVleg"></div>
+    </section>
+    <section class="panel">
+      <div class="ph"><h2 id="mct"></h2></div>
+      <svg id="topC" viewBox="0 0 400 400" role="img" aria-label="Most attended key per head, control"></svg>
+      <div class="legend" id="topCleg"></div>
+    </section>
+    <section class="panel">
+      <div class="ph"><h2 id="p3t"></h2></div>
+      <svg id="grid" viewBox="0 0 400 400" role="img" aria-label="Head grid"></svg>
+      <div class="cwrap"><div class="cbar"></div><div class="cnum" id="gnum"></div></div>
+      <div class="legend">dot = focus head</div>
+    </section>
+  </div>
+
+  <div class="cols">
+    <section class="panel">
+      <div class="ph"><h2 id="p2t">&Delta; attention vs distance</h2><div class="legend" id="p2leg"></div></div>
+      <svg id="dline" viewBox="0 0 640 300" role="img" aria-label="Delta attention versus distance"></svg>
+      <div class="card" id="card"></div>
+    </section>
+    <section class="panel">
+      <div class="ph"><h2>Mean &Delta; over each layer's 12 heads</h2><div class="legend" id="p4leg">click a column to set the distance</div></div>
+      <div class="scroll"><svg id="heat" viewBox="0 0 700 270" style="min-width:520px" role="img" aria-label="Layer by distance heatmap"></svg></div>
+      <div class="cwrap"><div class="cbar"></div><div class="cnum" id="hnum"></div></div>
+    </section>
+  </div>
+</main>
+<div id="tip" hidden></div>
+
+<script id="viz-data" type="application/json">__VIZ_DATA__</script>
+<script>
+(function () {
+"use strict";
+const V = JSON.parse(document.getElementById("viz-data").textContent);
+const M = V.meta, T = M.query_position, NL = 12, NH = 12, ND = M.distances.length, NK = T + 1;
+const $ = (id) => document.getElementById(id);
+// datasets: '<filler type>/<final-token condition>' when the data has conditions, else one per filler type
+const CONDS = M.conditions || null;
+const S = { ftype: (M.filler_types || M.fillers)[0], cond: CONDS ? CONDS[0] : null, filler: null, cmp: "country", L: 11, H: 8, tau: 31, lmode: "attn" };
+const setKey = () => { S.filler = CONDS ? S.ftype + "/" + S.cond : S.ftype; };
+setKey();
+const finalTok = () => String(((M.final_example || {})[S.filler]) || "").trim();
+const CMP = { country: "country vs original token", word: "matched word vs original token" };
+const ARMVAR = { country: "var(--arm)", word: "var(--arm-word)" };
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const f3 = (x) => (x >= 0 ? "+" : "−") + Math.abs(x).toFixed(3);
+const f4 = (x) => x.toFixed(4);
+const mean = (a, i0, i1) => { let s = 0; for (let i = i0; i < i1; i++) s += a[i]; return s / (i1 - i0); };
+const F = () => V.data[S.filler];
+const dist = () => T - S.tau;
+const other = () => (S.cmp === "country" ? "word" : "country");
+const armName = (c) => (c === "country" ? "country" : "matched word");
+const tokAt = (k) => {
+  if (k === S.tau) return S.cmp === "country" ? M.country_example : M.word_example[S.filler];
+  return M.example_tokens[S.filler][k];
+};
+const showTok = (s) => esc(String(s).replace(/^ /, "·"));
+const mix = (v, mx) => {
+  const s = Math.min(Math.abs(v) / mx, 1) * 100;
+  return "color-mix(in srgb, var(" + (v >= 0 ? "--pos" : "--neg") + ") " + s.toFixed(1) + "%, var(--neu))";
+};
+const fmtNum = (x) => (Math.abs(x) >= 0.1 ? x.toFixed(2) : x.toFixed(3));
+
+// scales derived once per (filler, comparison)
+let gmax = 0.05, hmax = 0.05, LM = null;
+function layerMean() {
+  if (S.cmp === "country") return F().layer_mean;
+  const w = F().diff.word, out = { mean: [], lo: [], hi: [] };
+  for (let L = 0; L < NL; L++) {
+    out.mean.push([]); out.lo.push([]); out.hi.push([]);
+    for (let i = 0; i < ND; i++) {
+      let m = 0, lo = 0, hi = 0;
+      for (let H = 0; H < NH; H++) { m += w.mean[L][H][i]; lo += w.lo[L][H][i]; hi += w.hi[L][H][i]; }
+      out.mean[L].push(m / NH); out.lo[L].push(lo / NH); out.hi[L].push(hi / NH);
+    }
+  }
+  return out;
+}
+function rescale() {
+  const d = F().diff[S.cmp].mean;
+  let g = 0, h = 0;
+  for (let L = 0; L < NL; L++) for (let H = 0; H < NH; H++) for (let i = 0; i < ND; i++) g = Math.max(g, Math.abs(d[L][H][i]));
+  LM = layerMean();
+  for (let L = 0; L < NL; L++) for (let i = 0; i < ND; i++) h = Math.max(h, Math.abs(LM.mean[L][i]));
+  gmax = Math.max(g, 0.01); hmax = Math.max(h, 0.01);
+  $("gnum").innerHTML = "<span>−" + fmtNum(gmax) + "</span><span>0</span><span>+" + fmtNum(gmax) + "</span>";
+  $("hnum").innerHTML = "<span>−" + fmtNum(hmax) + "</span><span>0</span><span>+" + fmtNum(hmax) + "</span>";
+}
+
+// tooltip
+const tip = $("tip");
+function showTip(e, html) {
+  tip.innerHTML = html; tip.hidden = false;
+  const r = tip.getBoundingClientRect();
+  let x = e.clientX + 14, y = e.clientY + 14;
+  if (x + r.width > innerWidth - 4) x = e.clientX - r.width - 14;
+  if (y + r.height > innerHeight - 4) y = e.clientY - r.height - 14;
+  tip.style.left = Math.max(4, x) + "px"; tip.style.top = Math.max(4, y) + "px";
+}
+function hook(svg, build, onClick) {
+  svg.onmousemove = (e) => {
+    const el = e.target.closest("[data-i]");
+    if (!el) { tip.hidden = true; return; }
+    showTip(e, build(el.dataset));
+  };
+  svg.onmouseleave = () => { tip.hidden = true; };
+  svg.onclick = (e) => { const el = e.target.closest("[data-i]"); if (el && onClick) onClick(el.dataset); };
+}
+
+function niceTicks(lo, hi, n) {
+  const raw = (hi - lo) / n, p = Math.pow(10, Math.floor(Math.log10(raw))), r = raw / p;
+  const step = (r < 1.5 ? 1 : r < 3.5 ? 2 : r < 7.5 ? 5 : 10) * p, out = [];
+  for (let t = Math.ceil(lo / step - 1e-9) * step; t <= hi + 1e-9; t += step) out.push(Math.abs(t) < 1e-12 ? 0 : t);
+  return out;
+}
+const tk = (t) => (Math.abs(t) < 1e-9 ? "0" : +t.toFixed(3) + "");
+
+// ---------- panel 1: sequence + bars ----------
+function drawSeq() {
+  const d = dist(), Fd = F(), L = S.L, H = S.H;
+  const variant = Fd[S.cmp][d - 1][L][H], ctrl = Fd.control[L][H];
+  const ymax = Math.max(0.05, ...variant, ...ctrl) * 1.08;
+  const x0 = 38, cw = 20, chipH = 62, by0 = 76, bh = 110, base = by0 + bh;
+  const yv = (v) => base - (v / ymax) * bh;
+  let s = "";
+  const ticks = niceTicks(0, ymax, 3);
+  ticks.forEach((t) => {
+    s += '<line x1="' + x0 + '" x2="' + (x0 + NK * cw) + '" y1="' + yv(t) + '" y2="' + yv(t) + '" stroke="var(--grid)"/>';
+    s += '<text x="' + (x0 - 5) + '" y="' + (yv(t) + 3) + '" text-anchor="end">' + tk(t) + "</text>";
+  });
+  s += '<text x="0" y="' + (by0 - 8) + '">attention</text>';
+  for (let k = 0; k < NK; k++) {
+    const x = x0 + k * cw, isT = k === S.tau, isQ = k === T;
+    const chipFill = isT ? ARMVAR[S.cmp] : isQ ? "var(--fg)" : "var(--neu)";
+    const txtFill = isT || isQ ? "var(--bg)" : "var(--fg)";
+    s += '<rect x="' + (x + 1.5) + '" y="0" width="' + (cw - 3) + '" height="' + chipH + '" rx="3" fill="' + chipFill + '" stroke="var(--line)"/>';
+    let tok = isQ ? (finalTok() ? "T·" + finalTok() : "T") : tokAt(k);
+    tok = String(tok).replace(/^ /, "·"); if (tok.length > 8) tok = tok.slice(0, 7) + "…";
+    s += '<text class="t" style="fill:' + txtFill + ';font-size:10px;font-weight:' + (isT || isQ ? 650 : 400) + '" transform="rotate(-90 ' + (x + cw / 2 + 3.5) + " " + (chipH - 4) + ')" x="' + (x + cw / 2 + 3.5) + '" y="' + (chipH - 4) + '">' + esc(tok) + "</text>";
+    const bx = x + 3, bw = cw - 6;
+    s += '<rect x="' + bx + '" y="' + yv(variant[k]) + '" width="' + bw + '" height="' + Math.max(0, base - yv(variant[k])) + '" fill="' + ARMVAR[S.cmp] + '" opacity="' + (isT ? 1 : 0.38) + '"/>';
+    s += '<rect x="' + bx + '" y="' + yv(ctrl[k]) + '" width="' + bw + '" height="' + Math.max(0, base - yv(ctrl[k])) + '" fill="none" stroke="var(--ctrl)" stroke-width="1.3"/>';
+    if (isT) s += '<rect x="' + (x + 1) + '" y="' + (by0 - 4) + '" width="' + (cw - 2) + '" height="' + (bh + 8) + '" fill="none" stroke="' + ARMVAR[S.cmp] + '" stroke-dasharray="3 2"/>';
+    const lab = k === 0 ? "0" : isQ ? "T" : isT ? "τ" : k % 4 === 0 ? String(k) : "";
+    if (lab) s += '<text x="' + (x + cw / 2) + '" y="' + (base + 13) + '" text-anchor="middle"' + (isT ? ' class="t" style="font-weight:700"' : "") + ">" + lab + "</text>";
+    s += '<rect class="hit" x="' + x + '" y="0" width="' + cw + '" height="' + (base + 4) + '" data-i="' + k + '"/>';
+  }
+  s += '<text x="' + (x0 + NK * cw / 2) + '" y="' + (base + 28) + '" text-anchor="middle">key position (0 = BOS, T = final token, · = leading space)</text>';
+  s += '<line x1="' + x0 + '" x2="' + (x0 + NK * cw) + '" y1="' + base + '" y2="' + base + '" stroke="var(--muted)"/>';
+  const el = $("seq"); el.innerHTML = s;
+  hook(el, (ds) => {
+    const k = +ds.i, v = variant[k], c = ctrl[k];
+    const name = k === 0 ? "BOS (0)" : k === T ? "final token T (" + k + ")" : "position " + k;
+    const tkn = k === 0 ? "BOS" : k === T ? M.example_tokens[S.filler][T] : tokAt(k);
+    return "<b>" + name + "</b><br>token: " + esc(tkn) + (k === S.tau ? " (" + armName(S.cmp) + "; original: " + esc(M.example_tokens[S.filler][k]) + ")" : "") +
+      "<br>" + armName(S.cmp) + ": " + f4(v) + "<br>control: " + f4(c) + "<br>difference: " + f3(v - c);
+  });
+  $("p1t").textContent = "L" + L + "H" + H + ": attention from the final token to each key, τ = " + S.tau;
+  $("p1leg").innerHTML = '<span><i class="sw" style="background:' + ARMVAR[S.cmp] + '"></i>' + armName(S.cmp) + ' (solid)</span><span><i class="sw" style="border:1.5px solid var(--ctrl)"></i>control (outline)</span>';
+}
+
+// ---------- panel 2: D vs distance ----------
+function drawLine() {
+  const Fd = F(), L = S.L, H = S.H, d = dist(), mg = M.margin;
+  const A = Fd.diff[S.cmp], B = Fd.diff[other()];
+  const W = 640, Ht = 300, ml = 54, mr = 14, mt = 12, mb = 44;
+  let lo = -mg, hi = mg;
+  [A, B].forEach((a) => { for (let i = 0; i < ND; i++) { lo = Math.min(lo, a.lo[L][H][i]); hi = Math.max(hi, a.hi[L][H][i]); } });
+  const pad = (hi - lo) * 0.06; lo -= pad; hi += pad;
+  const X = (dd) => ml + ((dd - 1) / (ND - 1)) * (W - ml - mr);
+  const Y = (v) => mt + (1 - (v - lo) / (hi - lo)) * (Ht - mt - mb);
+  let s = "";
+  niceTicks(lo, hi, 5).forEach((t) => {
+    s += '<line x1="' + ml + '" x2="' + (W - mr) + '" y1="' + Y(t) + '" y2="' + Y(t) + '" stroke="var(--grid)"/><text x="' + (ml - 6) + '" y="' + (Y(t) + 3) + '" text-anchor="end">' + tk(t) + "</text>";
+  });
+  for (let dd = 1; dd <= ND; dd += dd === 1 ? 4 : 5) {
+    s += '<text x="' + X(dd) + '" y="' + (Ht - mb + 14) + '" text-anchor="middle">' + dd + "</text>";
+  }
+  s += '<text x="' + X(31) + '" y="' + (Ht - mb + 14) + '" text-anchor="middle">31</text>';
+  s += '<rect x="' + ml + '" y="' + Y(mg) + '" width="' + (W - ml - mr) + '" height="' + (Y(-mg) - Y(mg)) + '" fill="var(--ctrl)" opacity="0.14"/>';
+  s += '<line x1="' + ml + '" x2="' + (W - mr) + '" y1="' + Y(0) + '" y2="' + Y(0) + '" stroke="var(--muted)"/>';
+  const path = (a, key) => a[key][L][H].map((v, i) => (i ? "L" : "M") + X(i + 1).toFixed(1) + " " + Y(v).toFixed(1)).join("");
+  // faint other arm
+  s += '<path d="' + path(B, "mean") + '" fill="none" stroke="' + ARMVAR[other()] + '" stroke-width="1.5" opacity="0.45" stroke-dasharray="4 3"/>';
+  // CI band
+  const up = A.hi[L][H].map((v, i) => (i ? "L" : "M") + X(i + 1).toFixed(1) + " " + Y(v).toFixed(1)).join("");
+  const dn = A.lo[L][H].map((v, i) => "L" + X(ND - i).toFixed(1) + " " + Y(A.lo[L][H][ND - 1 - i]).toFixed(1)).join("");
+  s += '<path d="' + up + dn + 'Z" fill="' + ARMVAR[S.cmp] + '" opacity="0.2"/>';
+  s += '<path d="' + path(A, "mean") + '" fill="none" stroke="' + ARMVAR[S.cmp] + '" stroke-width="2"/>';
+  s += '<line x1="' + X(d) + '" x2="' + X(d) + '" y1="' + mt + '" y2="' + (Ht - mb) + '" stroke="var(--fg)" stroke-dasharray="2 3"/>';
+  for (let i = 0; i < ND; i++) {
+    const sig = A.sig[L][H][i] === 1, cur = i + 1 === d;
+    s += '<circle cx="' + X(i + 1) + '" cy="' + Y(A.mean[L][H][i]) + '" r="' + (cur ? 5 : sig ? 3.5 : 2.5) + '" fill="' + (sig || cur ? ARMVAR[S.cmp] : "var(--panel)") + '" stroke="' + (cur ? "var(--fg)" : ARMVAR[S.cmp]) + '" stroke-width="' + (cur ? 2 : 1.2) + '"/>';
+  }
+  for (let i = 0; i < ND; i++) {
+    const w = (W - ml - mr) / (ND - 1);
+    s += '<rect class="hit" x="' + (X(i + 1) - w / 2) + '" y="' + mt + '" width="' + w + '" height="' + (Ht - mt - mb) + '" data-i="' + i + '"/>';
+  }
+  s += '<text x="' + ((ml + W - mr) / 2) + '" y="' + (Ht - 6) + '" text-anchor="middle">distance T − τ (1 = adjacent)</text>';
+  s += '<text transform="rotate(-90)" x="' + (-(mt + (Ht - mt - mb) / 2)) + '" y="11" text-anchor="middle">Δ attention to τ (variant − control)</text>';
+  const el = $("dline"); el.innerHTML = s;
+  hook(el, (ds) => {
+    const i = +ds.i;
+    return "<b>L" + L + "H" + H + ", d = " + (i + 1) + " (τ = " + (T - i - 1) + ")</b><br>" + armName(S.cmp) + ": " + f3(A.mean[L][H][i]) +
+      "<br>95% CI [" + f3(A.lo[L][H][i]) + ", " + f3(A.hi[L][H][i]) + "]<br>" + (A.sig[L][H][i] ? "significant" : "not significant") +
+      "<br>" + armName(other()) + ": " + f3(B.mean[L][H][i]);
+  }, (ds) => setTau(T - (+ds.i + 1)));
+  $("p2leg").innerHTML = '<span><i class="sw" style="background:' + ARMVAR[S.cmp] + '"></i>' + armName(S.cmp) + ' ± 95% CI</span><span><i class="sw" style="background:' + ARMVAR[other()] + ';opacity:.5"></i>' + armName(other()) + ' (dashed)</span><span>filled dot = significant; band = ±' + mg + "</span>";
+  $("p2t").textContent = "L" + L + "H" + H + ": Δ attention vs distance";
+}
+
+// ---------- readout ----------
+function drawCard() {
+  const Fd = F(), m = Fd.diff[S.cmp].mean[S.L][S.H];
+  const items = [["Class", Fd.label[S.L][S.H]], ["Previous-token attention", f4(Fd.prev_score[S.L][S.H])],
+    ["Δ at d = 1", f3(m[0])], ["Mean Δ, d = 2–4", f3(mean(m, 1, 4))], ["Mean Δ, d = 16–31", f3(mean(m, 15, 31))]];
+  $("card").innerHTML = items.map((a) => "<div><span>" + a[0] + "</span><b>" + esc(a[1]) + "</b></div>").join("");
+}
+
+// ---------- panel 3: head grid ----------
+function drawGrid() {
+  const Fd = F(), d = dist(), A = Fd.diff[S.cmp], c = 28, mlg = 26, mtg = 6;
+  const foc = new Set(M.focus_heads.map((h) => h[0] + "," + h[1]));
+  let s = "";
+  for (let L = 0; L < NL; L++) {
+    const y = mtg + (NL - 1 - L) * c;
+    s += '<text x="' + (mlg - 6) + '" y="' + (y + c / 2 + 3) + '" text-anchor="end">' + L + "</text>";
+    for (let H = 0; H < NH; H++) {
+      const x = mlg + H * c, v = A.mean[L][H][d - 1];
+      s += '<rect class="cell" x="' + x + '" y="' + y + '" width="' + (c - 1) + '" height="' + (c - 1) + '" rx="2" style="fill:' + mix(v, gmax) + '" data-i="' + L + "," + H + '"/>';
+      if (foc.has(L + "," + H)) s += '<circle cx="' + (x + c / 2 - 0.5) + '" cy="' + (y + c / 2 - 0.5) + '" r="2.6" fill="var(--fg)" stroke="var(--bg)" stroke-width="0.8" pointer-events="none"/>';
+    }
+  }
+  for (let H = 0; H < NH; H++) s += '<text x="' + (mlg + H * c + c / 2) + '" y="' + (mtg + NL * c + 13) + '" text-anchor="middle">' + H + "</text>";
+  s += '<text x="' + (mlg + NH * c / 2) + '" y="' + (mtg + NL * c + 28) + '" text-anchor="middle">head</text>';
+  s += '<text transform="rotate(-90)" x="' + (-(mtg + NL * c / 2)) + '" y="8" text-anchor="middle">layer</text>';
+  s += '<rect x="' + (mlg + S.H * c - 1) + '" y="' + (mtg + (NL - 1 - S.L) * c - 1) + '" width="' + (c + 1) + '" height="' + (c + 1) + '" fill="none" stroke="var(--sel)" stroke-width="2.5" pointer-events="none" rx="2"/>';
+  const el = $("grid"); el.setAttribute("viewBox", "0 0 " + (mlg + NH * c + 4) + " " + (mtg + NL * c + 34));
+  el.innerHTML = s;
+  hook(el, (ds) => {
+    const [L, H] = ds.i.split(",").map(Number), i = d - 1;
+    return "<b>L" + L + "H" + H + "</b> at d = " + d + "<br>Δ " + f3(A.mean[L][H][i]) + " [" + f3(A.lo[L][H][i]) + ", " + f3(A.hi[L][H][i]) + "]" +
+      (A.sig[L][H][i] ? " (sig.)" : "") + "<br>" + esc(Fd.label[L][H]) + "<br>previous-token attn: " + f4(Fd.prev_score[L][H]);
+  }, (ds) => { const [L, H] = ds.i.split(",").map(Number); setHead(L, H); });
+  $("p3t").textContent = "Δ attention to τ for all heads, d = " + d;
+}
+
+// ---------- panel 4: layer x distance ----------
+function drawHeat() {
+  const d = dist(), ml = 40, mr = 8, mt = 6, mb = 40, W = 700, Ht = 270;
+  const cw = (W - ml - mr) / ND, ch = (Ht - mt - mb) / NL;
+  let s = "";
+  for (let L = 0; L < NL; L++) {
+    const y = mt + (NL - 1 - L) * ch;
+    s += '<text x="' + (ml - 6) + '" y="' + (y + ch / 2 + 3) + '" text-anchor="end"' + (L === S.L ? ' class="t" style="font-weight:700"' : "") + ">" + L + "</text>";
+    for (let i = 0; i < ND; i++) {
+      s += '<rect class="cell" x="' + (ml + i * cw) + '" y="' + y + '" width="' + (cw - 0.6) + '" height="' + (ch - 0.6) + '" style="fill:' + mix(LM.mean[L][i], hmax) + '" data-i="' + L + "," + i + '"/>';
+    }
+  }
+  for (let dd = 1; dd <= ND; dd += dd === 1 ? 4 : 5) s += '<text x="' + (ml + (dd - 0.5) * cw) + '" y="' + (mt + NL * ch + 13) + '" text-anchor="middle">' + dd + "</text>";
+  s += '<text x="' + (ml + (ND - 0.5) * cw) + '" y="' + (mt + NL * ch + 13) + '" text-anchor="middle">31</text>';
+  s += '<text x="' + (ml + (W - ml - mr) / 2) + '" y="' + (Ht - 8) + '" text-anchor="middle">distance T − τ (1 = adjacent)</text>';
+  s += '<text transform="rotate(-90)" x="' + (-(mt + NL * ch / 2)) + '" y="9" text-anchor="middle">layer</text>';
+  s += '<rect x="' + (ml + (d - 1) * cw - 0.5) + '" y="' + (mt - 1) + '" width="' + (cw + 0.4) + '" height="' + (NL * ch + 1) + '" fill="none" stroke="var(--sel)" stroke-width="2" pointer-events="none"/>';
+  const el = $("heat"); el.innerHTML = s;
+  hook(el, (ds) => {
+    const [L, i] = ds.i.split(",").map(Number);
+    return "<b>layer " + L + ", d = " + (i + 1) + "</b><br>mean Δ " + f3(LM.mean[L][i]) + "<br>95% CI [" + f3(LM.lo[L][i]) + ", " + f3(LM.hi[L][i]) + "]";
+  }, (ds) => { const i = +ds.i.split(",")[1]; setTau(T - (i + 1)); });
+}
+
+// ---------- top-attended-key maps ----------
+const CAT = { "Diffuse": "#ffffff", "BOS": "#d62728", "Previous token": "#1f77b4", "Self": "#9467bd",
+  "Country": "#eb6834", "Placebo word": "#eda100", "Other token": "#d3d3d3" };
+function topCat(row, ctrl) {
+  let k = 0, m = -1;
+  for (let i = 0; i < row.length; i++) if (row[i] > m) { m = row[i]; k = i; }
+  let c;
+  if (m < 0.2) c = "Diffuse";
+  else if (k === 0) c = "BOS";
+  else if (!ctrl && k === S.tau) c = S.cmp === "country" ? "Country" : "Placebo word";
+  else if (k === T - 1) c = "Previous token";
+  else if (k === T) c = "Self";
+  else c = "Other token";
+  return { c, k, m };
+}
+function drawTop(svgId, legId, ctrl) {
+  const Fd = F(), d = dist(), cs = 28, mlg = 26, mtg = 6;
+  const att = (L, H) => (ctrl ? Fd.control[L][H] : Fd[S.cmp][d - 1][L][H]);
+  const present = {};
+  let s = "";
+  for (let L = 0; L < NL; L++) {
+    const y = mtg + (NL - 1 - L) * cs;
+    s += '<text x="' + (mlg - 6) + '" y="' + (y + cs / 2 + 3) + '" text-anchor="end">' + L + "</text>";
+    for (let H = 0; H < NH; H++) {
+      const r = topCat(att(L, H), ctrl); present[r.c] = (present[r.c] || 0) + 1;
+      s += '<rect class="cell" x="' + (mlg + H * cs) + '" y="' + y + '" width="' + (cs - 1) + '" height="' + (cs - 1) + '" rx="2" fill="' + CAT[r.c] + '"' + (r.c === "Diffuse" ? ' stroke="var(--ctrl)" stroke-width="0.8"' : "") + ' data-i="' + L + "," + H + '"/>';
+    }
+  }
+  for (let H = 0; H < NH; H++) s += '<text x="' + (mlg + H * cs + cs / 2) + '" y="' + (mtg + NL * cs + 13) + '" text-anchor="middle">' + H + "</text>";
+  s += '<text x="' + (mlg + NH * cs / 2) + '" y="' + (mtg + NL * cs + 28) + '" text-anchor="middle">head</text>';
+  s += '<text transform="rotate(-90)" x="' + (-(mtg + NL * cs / 2)) + '" y="8" text-anchor="middle">layer</text>';
+  s += '<rect x="' + (mlg + S.H * cs - 1) + '" y="' + (mtg + (NL - 1 - S.L) * cs - 1) + '" width="' + (cs + 1) + '" height="' + (cs + 1) + '" fill="none" stroke="var(--sel)" stroke-width="2.5" pointer-events="none" rx="2"/>';
+  const el = $(svgId); el.setAttribute("viewBox", "0 0 " + (mlg + NH * cs + 4) + " " + (mtg + NL * cs + 34));
+  el.innerHTML = s;
+  hook(el, (ds) => {
+    const [L, H] = ds.i.split(",").map(Number), r = topCat(att(L, H), ctrl);
+    return "<b>L" + L + "H" + H + "</b>: " + r.c + "<br>top key: " + (r.k === 0 ? "BOS" : r.k === T ? "final token (T)" : "position " + r.k) + "<br>weight " + f4(r.m);
+  }, (ds) => { const [L, H] = ds.i.split(",").map(Number); setHead(L, H); });
+  $(legId).innerHTML = Object.keys(CAT).filter((k) => present[k]).map((k) =>
+    '<span><i class="sw" style="background:' + CAT[k] + ';border:1px solid var(--ctrl)"></i>' + k + " (" + present[k] + ")</span>").join("");
+}
+function drawMaps() {
+  const ctrlName = "original token at τ = " + S.tau;
+  $("mvt").textContent = "Most-attended key, with " + armName(S.cmp) + " at τ = " + S.tau;
+  $("mct").textContent = "Most-attended key, control (" + ctrlName + ")";
+  drawTop("topV", "topVleg", false);
+  drawTop("topC", "topCleg", true);
+}
+
+// ---------- layer attention heatmap (12 heads x 33 keys) ----------
+function drawLayer() {
+  const Fd = F(), d = dist(), L = S.L, x0 = 38, cw = 20, rh = 14, mt = 6, diff = S.lmode === "diff";
+  const V_ = Fd[S.cmp][d - 1][L], C_ = Fd.control[L];
+  let dmax = 0.02;
+  if (diff) for (let H = 0; H < NH; H++) for (let k = 0; k < NK; k++) dmax = Math.max(dmax, Math.abs(V_[H][k] - C_[H][k]));
+  let s = "";
+  for (let H = 0; H < NH; H++) {
+    const y = mt + H * rh;
+    s += '<text x="' + (x0 - 6) + '" y="' + (y + rh / 2 + 3) + '" text-anchor="end"' + (H === S.H ? ' class="t" style="font-weight:700"' : "") + ">" + H + "</text>";
+    for (let k = 0; k < NK; k++) {
+      const v = V_[H][k], fill = diff ? mix(v - C_[H][k], dmax)
+        : "color-mix(in srgb, " + ARMVAR[S.cmp] + " " + (Math.sqrt(Math.min(v, 1)) * 100).toFixed(1) + "%, var(--neu))";
+      s += '<rect class="cell" x="' + (x0 + k * cw) + '" y="' + y + '" width="' + (cw - 0.6) + '" height="' + (rh - 0.6) + '" style="fill:' + fill + '" data-i="' + H + "," + k + '"/>';
+    }
+  }
+  const base = mt + NH * rh;
+  for (let k = 0; k < NK; k++) {
+    const lab = k === 0 ? "0" : k === T ? "T" : k === S.tau ? "τ" : k % 4 === 0 ? String(k) : "";
+    if (lab) s += '<text x="' + (x0 + k * cw + cw / 2) + '" y="' + (base + 13) + '" text-anchor="middle"' + (k === S.tau ? ' class="t" style="font-weight:700"' : "") + ">" + lab + "</text>";
+  }
+  s += '<text x="' + (x0 + NK * cw / 2) + '" y="' + (base + 28) + '" text-anchor="middle">key position</text>';
+  s += '<text transform="rotate(-90)" x="' + (-(mt + NH * rh / 2)) + '" y="9" text-anchor="middle">head</text>';
+  s += '<rect x="' + (x0 + S.tau * cw - 0.5) + '" y="' + (mt - 1) + '" width="' + (cw + 0.4) + '" height="' + (NH * rh + 1) + '" fill="none" stroke="' + ARMVAR[S.cmp] + '" stroke-width="2" pointer-events="none"/>';
+  s += '<rect x="' + (x0 - 1) + '" y="' + (mt + S.H * rh - 1) + '" width="' + (NK * cw + 1) + '" height="' + (rh + 1) + '" fill="none" stroke="var(--sel)" stroke-width="1.5" pointer-events="none"/>';
+  const el = $("lheat"); el.innerHTML = s;
+  hook(el, (ds) => {
+    const [H, k] = ds.i.split(",").map(Number), v = V_[H][k], c = C_[H][k];
+    return "<b>L" + L + "H" + H + "</b>, key " + (k === 0 ? "BOS" : k === T ? "T (final)" : k) + " " + esc(k === 0 ? "" : k === T ? "" : tokAt(k)) +
+      "<br>" + armName(S.cmp) + ": " + f4(v) + "<br>control: " + f4(c) + "<br>difference: " + f3(v - c);
+  }, (ds) => setHead(S.L, +ds.i.split(",")[0]));
+  $("lht").textContent = "Layer " + L + ": attention from the final token, one row per head (τ = " + S.tau + ")";
+  $("lleg").textContent = diff ? "blue = less than control, red = more than control; scale ±" + fmtNum(dmax) + ". Outlined column = τ; outlined row = selected head."
+    : "darker = more attention (square-root scale, 0 to 1). Outlined column = τ; outlined row = selected head.";
+}
+
+// ---------- controls ----------
+function mkBtns(host, items, getActive, onPick) {
+  host.innerHTML = "";
+  items.forEach(([key, text, title]) => {
+    const b = document.createElement("button"); b.type = "button"; b.textContent = text;
+    if (title) b.title = title;
+    b.dataset.k = key; b.onclick = () => onPick(key); host.appendChild(b);
+  });
+  host._sync = () => host.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", getActive(b.dataset.k) ? "true" : "false"));
+}
+function setTau(t) { S.tau = Math.max(1, Math.min(T - 1, t)); update(); }
+function setHead(L, H) { S.L = L; S.H = H; update(); }
+function update(rescaleToo) {
+  if (rescaleToo) rescale();
+  $("tau").value = S.tau;
+  $("tauLab").textContent = "position τ = " + S.tau + ", distance T − τ = " + dist();
+  $("selL").value = S.L; $("selH").value = S.H;
+  ["condBtns", "fillerBtns", "cmpBtns", "focusBtns", "lmodeBtns"].forEach((id) => $(id)._sync());
+  drawSeq(); drawLayer(); drawMaps(); drawGrid(); drawLine(); drawCard(); drawHeat();
+}
+function init() {
+  mkBtns($("fillerBtns"), (M.filler_types || M.fillers).map((k) => [k, k]), (k) => k === S.ftype, (k) => { S.ftype = k; setKey(); update(true); });
+  if (CONDS) mkBtns($("condBtns"), CONDS.map((c) => [c, M.condition_labels[c]]), (k) => k === S.cond, (k) => { S.cond = k; setKey(); update(true); });
+  else { $("condCtl").hidden = true; $("condBtns")._sync = () => {}; }
+  mkBtns($("cmpBtns"), Object.keys(CMP).map((k) => [k, CMP[k]]), (k) => k === S.cmp, (k) => { S.cmp = k; update(true); });
+  mkBtns($("focusBtns"), M.focus_heads.map((h, i) => [String(i), "L" + h[0] + "H" + h[1], h[2]]),
+    (k) => { const h = M.focus_heads[+k]; return h[0] === S.L && h[1] === S.H; }, (k) => { const h = M.focus_heads[+k]; setHead(h[0], h[1]); });
+  mkBtns($("lmodeBtns"), [["attn", "attention"], ["diff", "variant − control"]], (k) => k === S.lmode, (k) => { S.lmode = k; update(); });
+  for (let i = 0; i < 12; i++) { $("selL").add(new Option(i, i)); $("selH").add(new Option(i, i)); }
+  $("selL").onchange = (e) => setHead(+e.target.value, S.H);
+  $("selH").onchange = (e) => setHead(S.L, +e.target.value);
+  $("tau").oninput = (e) => setTau(+e.target.value);
+  let timer = null;
+  $("play").onclick = () => {
+    if (timer) { clearInterval(timer); timer = null; $("play").textContent = "Play"; return; }
+    $("play").textContent = "Pause";
+    timer = setInterval(() => setTau(S.tau <= 1 ? T - 1 : S.tau - 1), 450);
+  };
+  rescale(); update();
+}
+init();
+})();
+</script>
+</body>
+</html>
